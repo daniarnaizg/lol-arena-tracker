@@ -1,0 +1,1028 @@
+[
+  {
+    "id": 1,
+    "name": "Aatrox",
+    "imageKey": "aatrox",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 2,
+    "name": "Ahri",
+    "imageKey": "ahri",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 3,
+    "name": "Akali",
+    "imageKey": "akali",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 4,
+    "name": "Akshan",
+    "imageKey": "akshan",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 5,
+    "name": "Alistar",
+    "imageKey": "alistar",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 6,
+    "name": "Ambessa",
+    "imageKey": "ambessa",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 7,
+    "name": "Amumu",
+    "imageKey": "amumu",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 8,
+    "name": "Anivia",
+    "imageKey": "anivia",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 9,
+    "name": "Annie",
+    "imageKey": "annie",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 10,
+    "name": "Aphelios",
+    "imageKey": "aphelios",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 11,
+    "name": "Ashe",
+    "imageKey": "ashe",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 12,
+    "name": "Aurelion Sol",
+    "imageKey": "aurelionsol",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 13,
+    "name": "Aurora",
+    "imageKey": "aurora",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 14,
+    "name": "Azir",
+    "imageKey": "azir",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 15,
+    "name": "Bard",
+    "imageKey": "bard",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 16,
+    "name": "Bel'Veth",
+    "imageKey": "belveth",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 17,
+    "name": "Blitzcrank",
+    "imageKey": "blitzcrank",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 18,
+    "name": "Brand",
+    "imageKey": "brand",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 19,
+    "name": "Braum",
+    "imageKey": "braum",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 20,
+    "name": "Briar",
+    "imageKey": "briar",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 21,
+    "name": "Caitlyn",
+    "imageKey": "caitlyn",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 22,
+    "name": "Camille",
+    "imageKey": "camille",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 23,
+    "name": "Cassiopeia",
+    "imageKey": "cassiopeia",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 24,
+    "name": "Cho'Gath",
+    "imageKey": "chogath",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 25,
+    "name": "Corki",
+    "imageKey": "corki",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 26,
+    "name": "Darius",
+    "imageKey": "darius",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 27,
+    "name": "Diana",
+    "imageKey": "diana",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 28,
+    "name": "Dr. Mundo",
+    "imageKey": "drmundo",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 29,
+    "name": "Draven",
+    "imageKey": "draven",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 30,
+    "name": "Ekko",
+    "imageKey": "ekko",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 31,
+    "name": "Elise",
+    "imageKey": "elise",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 32,
+    "name": "Evelynn",
+    "imageKey": "evelynn",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 33,
+    "name": "Ezreal",
+    "imageKey": "ezreal",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 34,
+    "name": "Fiddlesticks",
+    "imageKey": "fiddlesticks",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 35,
+    "name": "Fiora",
+    "imageKey": "fiora",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 36,
+    "name": "Fizz",
+    "imageKey": "fizz",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 37,
+    "name": "Galio",
+    "imageKey": "galio",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 38,
+    "name": "Gangplank",
+    "imageKey": "gangplank",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 39,
+    "name": "Garen",
+    "imageKey": "garen",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 40,
+    "name": "Gnar",
+    "imageKey": "gnar",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 41,
+    "name": "Gragas",
+    "imageKey": "gragas",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 42,
+    "name": "Graves",
+    "imageKey": "graves",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 43,
+    "name": "Gwen",
+    "imageKey": "gwen",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 44,
+    "name": "Hecarim",
+    "imageKey": "hecarim",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 45,
+    "name": "Heimerdinger",
+    "imageKey": "heimerdinger",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 46,
+    "name": "Hwei",
+    "imageKey": "hwei",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 47,
+    "name": "Illaoi",
+    "imageKey": "illaoi",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 48,
+    "name": "Irelia",
+    "imageKey": "irelia",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 49,
+    "name": "Ivern",
+    "imageKey": "ivern",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 50,
+    "name": "Janna",
+    "imageKey": "janna",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 51,
+    "name": "Jarvan IV",
+    "imageKey": "jarvaniv",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 52,
+    "name": "Jax",
+    "imageKey": "jax",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 53,
+    "name": "Jayce",
+    "imageKey": "jayce",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 54,
+    "name": "Jhin",
+    "imageKey": "jhin",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 55,
+    "name": "Jinx",
+    "imageKey": "jinx",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 56,
+    "name": "K'Sante",
+    "imageKey": "ksante",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 57,
+    "name": "Kai'Sa",
+    "imageKey": "kaisa",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 58,
+    "name": "Kalista",
+    "imageKey": "kalista",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 59,
+    "name": "Karma",
+    "imageKey": "karma",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 60,
+    "name": "Karthus",
+    "imageKey": "karthus",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 61,
+    "name": "Kassadin",
+    "imageKey": "kassadin",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 62,
+    "name": "Katarina",
+    "imageKey": "katarina",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 63,
+    "name": "Kayle",
+    "imageKey": "kayle",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 64,
+    "name": "Kayn",
+    "imageKey": "kayn",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 65,
+    "name": "Kennen",
+    "imageKey": "kennen",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 66,
+    "name": "Kha'Zix",
+    "imageKey": "khazix",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 67,
+    "name": "Kindred",
+    "imageKey": "kindred",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 68,
+    "name": "Kled",
+    "imageKey": "kled",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 69,
+    "name": "Kog'Maw",
+    "imageKey": "kogmaw",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 70,
+    "name": "LeBlanc",
+    "imageKey": "leblanc",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 71,
+    "name": "Lee Sin",
+    "imageKey": "leesin",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 72,
+    "name": "Leona",
+    "imageKey": "leona",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 73,
+    "name": "Lillia",
+    "imageKey": "lillia",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 74,
+    "name": "Lissandra",
+    "imageKey": "lissandra",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 75,
+    "name": "Lucian",
+    "imageKey": "lucian",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 76,
+    "name": "Lulu",
+    "imageKey": "lulu",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 77,
+    "name": "Lux",
+    "imageKey": "lux",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 78,
+    "name": "Malphite",
+    "imageKey": "malphite",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 79,
+    "name": "Malzahar",
+    "imageKey": "malzahar",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 80,
+    "name": "Maokai",
+    "imageKey": "maokai",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 81,
+    "name": "Master Yi",
+    "imageKey": "masteryi",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 82,
+    "name": "Mel",
+    "imageKey": "mel",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 83,
+    "name": "Milio",
+    "imageKey": "milio",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 84,
+    "name": "Miss Fortune",
+    "imageKey": "missfortune",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 85,
+    "name": "Mordekaiser",
+    "imageKey": "mordekaiser",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 86,
+    "name": "Morgana",
+    "imageKey": "morgana",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 87,
+    "name": "Naafiri",
+    "imageKey": "naafiri",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 88,
+    "name": "Nami",
+    "imageKey": "nami",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 89,
+    "name": "Nasus",
+    "imageKey": "nasus",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 90,
+    "name": "Nautilus",
+    "imageKey": "nautilus",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 91,
+    "name": "Neeko",
+    "imageKey": "neeko",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 92,
+    "name": "Nidalee",
+    "imageKey": "nidalee",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 93,
+    "name": "Nilah",
+    "imageKey": "nilah",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 94,
+    "name": "Nocturne",
+    "imageKey": "nocturne",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 95,
+    "name": "Nunu & Willump",
+    "imageKey": "nunu",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 96,
+    "name": "Olaf",
+    "imageKey": "olaf",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 97,
+    "name": "Orianna",
+    "imageKey": "orianna",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 98,
+    "name": "Ornn",
+    "imageKey": "ornn",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 99,
+    "name": "Pantheon",
+    "imageKey": "pantheon",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 100,
+    "name": "Poppy",
+    "imageKey": "poppy",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 101,
+    "name": "Pyke",
+    "imageKey": "pyke",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 102,
+    "name": "Qiyana",
+    "imageKey": "qiyana",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 103,
+    "name": "Quinn",
+    "imageKey": "quinn",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 104,
+    "name": "Rakan",
+    "imageKey": "rakan",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 105,
+    "name": "Rammus",
+    "imageKey": "rammus",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 106,
+    "name": "Rek'Sai",
+    "imageKey": "reksai",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 107,
+    "name": "Rell",
+    "imageKey": "rell",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 108,
+    "name": "Renata Glasc",
+    "imageKey": "renataglasc",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 109,
+    "name": "Renekton",
+    "imageKey": "renekton",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 110,
+    "name": "Rengar",
+    "imageKey": "rengar",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 111,
+    "name": "Riven",
+    "imageKey": "riven",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 112,
+    "name": "Rumble",
+    "imageKey": "rumble",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 113,
+    "name": "Ryze",
+    "imageKey": "ryze",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 114,
+    "name": "Samira",
+    "imageKey": "samira",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 115,
+    "name": "Sejuani",
+    "imageKey": "sejuani",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 116,
+    "name": "Senna",
+    "imageKey": "senna",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 117,
+    "name": "Seraphine",
+    "imageKey": "seraphine",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 118,
+    "name": "Sett",
+    "imageKey": "sett",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 119,
+    "name": "Shaco",
+    "imageKey": "shaco",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 120,
+    "name": "Shen",
+    "imageKey": "shen",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 121,
+    "name": "Shyvana",
+    "imageKey": "shyvana",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 122,
+    "name": "Singed",
+    "imageKey": "singed",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 123,
+    "name": "Sion",
+    "imageKey": "sion",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 124,
+    "name": "Sivir",
+    "imageKey": "sivir",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 125,
+    "name": "Skarner",
+    "imageKey": "skarner",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 126,
+    "name": "Smolder",
+    "imageKey": "smolder",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 127,
+    "name": "Sona",
+    "imageKey": "sona",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 128,
+    "name": "Soraka",
+    "imageKey": "soraka",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 129,
+    "name": "Swain",
+    "imageKey": "swain",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 130,
+    "name": "Sylas",
+    "imageKey": "sylas",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 131,
+    "name": "Syndra",
+    "imageKey": "syndra",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 132,
+    "name": "Tahm Kench",
+    "imageKey": "tahmkench",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 133,
+    "name": "Taliyah",
+    "imageKey": "taliyah",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 134,
+    "name": "Talon",
+    "imageKey": "talon",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 135,
+    "name": "Taric",
+    "imageKey": "taric",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 136,
+    "name": "Teemo",
+    "imageKey": "teemo",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 137,
+    "name": "Thresh",
+    "imageKey": "thresh",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 138,
+    "name": "Tristana",
+    "imageKey": "tristana",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 139,
+    "name": "Trundle",
+    "imageKey": "trundle",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 140,
+    "name": "Tryndamere",
+    "imageKey": "tryndamere",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 141,
+    "name": "Twisted Fate",
+    "imageKey": "twistedfate",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 142,
+    "name": "Twitch",
+    "imageKey": "twitch",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 143,
+    "name": "Udyr",
+    "imageKey": "udyr",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 144,
+    "name": "Urgot",
+    "imageKey": "urgot",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 145,
+    "name": "Varus",
+    "imageKey": "varus",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 146,
+    "name": "Vayne",
+    "imageKey": "vayne",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 147,
+    "name": "Veigar",
+    "imageKey": "veigar",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 148,
+    "name": "Vel'Koz",
+    "imageKey": "velkoz",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 149,
+    "name": "Vex",
+    "imageKey": "vex",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 150,
+    "name": "Vi",
+    "imageKey": "vi",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 151,
+    "name": "Viego",
+    "imageKey": "viego",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 152,
+    "name": "Viktor",
+    "imageKey": "viktor",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 153,
+    "name": "Vladimir",
+    "imageKey": "vladimir",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 154,
+    "name": "Volibear",
+    "imageKey": "volibear",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 155,
+    "name": "Warwick",
+    "imageKey": "warwick",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 156,
+    "name": "Wukong",
+    "imageKey": "wukong",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 157,
+    "name": "Xayah",
+    "imageKey": "xayah",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 158,
+    "name": "Xerath",
+    "imageKey": "xerath",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 159,
+    "name": "Xin Zhao",
+    "imageKey": "xinzhao",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 160,
+    "name": "Yasuo",
+    "imageKey": "yasuo",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 161,
+    "name": "Yone",
+    "imageKey": "yone",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 162,
+    "name": "Yorick",
+    "imageKey": "yorick",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 163,
+    "name": "Yunara",
+    "imageKey": "yunara",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 164,
+    "name": "Yuumi",
+    "imageKey": "yuumi",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 165,
+    "name": "Zac",
+    "imageKey": "zac",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 166,
+    "name": "Zed",
+    "imageKey": "zed",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 167,
+    "name": "Zeri",
+    "imageKey": "zeri",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 168,
+    "name": "Ziggs",
+    "imageKey": "ziggs",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 169,
+    "name": "Zilean",
+    "imageKey": "zilean",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 170,
+    "name": "Zoe",
+    "imageKey": "zoe",
+    "checklist": { "played": false, "top4": false, "win": false }
+  },
+  {
+    "id": 171,
+    "name": "Zyra",
+    "imageKey": "zyra",
+    "checklist": { "played": false, "top4": false, "win": false }
+  }
+]
