@@ -142,9 +142,10 @@ const ChampionsGrid = ({ search }: ChampionsGridProps) => {
         }}
       >
         {filteredChampions.map(champ => {
+          // Use imageKey as-is, no forced uppercase, no placeholder
           const imgUrl = champ.imageKey
             ? `https://ddragon.leagueoflegends.com/cdn/15.14.1/img/champion/${champ.imageKey}.png`
-            : '/window.svg';
+            : '';
           const checklist = champ.checklist || { played: false, top4: false, win: false };
           const size = 80 * zoom;
           return (
@@ -157,14 +158,16 @@ const ChampionsGrid = ({ search }: ChampionsGridProps) => {
                 className="relative mb-2"
                 style={{ width: size, height: size }}
               >
-                <Image
-                  src={imgUrl}
-                  alt={champ.name}
-                  fill
-                  className="object-contain rounded"
-                  sizes={`${size}px`}
-                  unoptimized
-                />
+                {imgUrl && (
+                  <Image
+                    src={imgUrl}
+                    alt={champ.name}
+                    fill
+                    className="object-contain rounded"
+                    sizes={`${size}px`}
+                    unoptimized
+                  />
+                )}
               </div>
               <span className="font-medium text-center text-sm mt-1">{champ.name}</span>
               <div className="flex gap-2 mt-2">
