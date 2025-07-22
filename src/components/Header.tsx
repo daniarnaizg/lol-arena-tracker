@@ -15,7 +15,7 @@ const Header = ({ search, setSearch }: HeaderProps) => {
         placeholder="Search champions..."
         value={search}
         onChange={e => setSearch(e.target.value)}
-        className="rounded px-6 py-4 text-black w-full max-w-xl text-2xl font-semibold focus:outline-none focus:ring-4 focus:ring-blue-500 text-center"
+        className="rounded px-6 py-4 text-white bg-gray-800 w-full max-w-xl text-2xl font-semibold focus:outline-none focus:ring-4 focus:ring-blue-500 text-center placeholder-gray-400"
         autoFocus
       />
     </header>

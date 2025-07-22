@@ -5,10 +5,10 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'http',
+        protocol: 'https',
         hostname: 'ddragon.leagueoflegends.com',
         port: '',
-        pathname: '/cdn/15.14.1/img/champion/**',
+        pathname: '/cdn/**/img/champion/**',
       },
     ],
   },
