@@ -24,9 +24,9 @@ interface ChampionsGridProps {
   search: string;
 }
 
-const MIN_COLUMNS = 3;
+const MIN_COLUMNS = 5;
 const MAX_COLUMNS = 10;
-const DEFAULT_COLUMNS = 6;
+const DEFAULT_COLUMNS = 8;
 
 const ChampionsGrid = ({ search }: ChampionsGridProps) => {
   const [champions, setChampions] = useState<Champion[]>([]);
@@ -141,8 +141,18 @@ const ChampionsGrid = ({ search }: ChampionsGridProps) => {
             : '';
           const checklist = champ.checklist || { played: false, top4: false, win: false };
           
+          // Determine card background class based on highest achieved status
+          let cardClass = styles.championCard;
+          if (checklist.win) {
+            cardClass += ` ${styles.cardWin}`;
+          } else if (checklist.top4) {
+            cardClass += ` ${styles.cardTop4}`;
+          } else if (checklist.played) {
+            cardClass += ` ${styles.cardPlayed}`;
+          }
+          
           return (
-            <div key={champ.id} className={styles.championCard}>
+            <div key={champ.id} className={cardClass}>
               <div className={styles.championImage}>
                 {imgUrl && (
                   <Image
@@ -164,19 +174,24 @@ const ChampionsGrid = ({ search }: ChampionsGridProps) => {
                     { key: 'played' as const, emoji: '✔️', className: 'played', label: 'Played' },
                     { key: 'top4' as const, emoji: '🏅', className: 'top4', label: 'Top 4' },
                     { key: 'win' as const, emoji: '🏆', className: 'win', label: 'Win' },
-                  ].map(({ key, emoji, className, label }) => (
-                    <button
-                      key={key}
-                      onClick={() => handleChecklistChange(champ.id, key)}
-                      className={`${styles.checkboxButton} ${
-                        checklist[key] ? styles[className] : styles.unchecked
-                      }`}
-                      title={label}
-                      aria-label={`${label} for ${champ.name}`}
-                    >
-                      {checklist[key] ? emoji : ''}
-                    </button>
-                  ))}
+                  ].map(({ key, emoji, className, label }) => {
+                    const isChecked = checklist[key];
+                    const buttonClass = isChecked 
+                      ? `${styles.checkboxButton} ${styles[className]}`
+                      : `${styles.checkboxButton} ${styles[`unchecked${className.charAt(0).toUpperCase() + className.slice(1)}` as keyof typeof styles] || styles.unchecked}`;
+                    
+                    return (
+                      <button
+                        key={key}
+                        onClick={() => handleChecklistChange(champ.id, key)}
+                        className={buttonClass}
+                        title={label}
+                        aria-label={`${label} for ${champ.name}`}
+                      >
+                        {isChecked ? emoji : ''}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             </div>
