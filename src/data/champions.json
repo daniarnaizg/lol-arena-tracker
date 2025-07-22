@@ -152,7 +152,7 @@
   {
     "id": 16,
     "name": "Bel'Veth",
-    "imageKey": "BelVeth",
+    "imageKey": "Belveth",
     "checklist": {
       "played": false,
       "top4": false,
@@ -1072,7 +1072,7 @@
   {
     "id": 108,
     "name": "Renata Glasc",
-    "imageKey": "RenataGlasc",
+    "imageKey": "Renata",
     "checklist": {
       "played": false,
       "top4": false,
@@ -1552,7 +1552,7 @@
   {
     "id": 156,
     "name": "Wukong",
-    "imageKey": "Wukong",
+    "imageKey": "MonkeyKing",
     "checklist": {
       "played": false,
       "top4": false,
@@ -1582,7 +1582,7 @@
   {
     "id": 159,
     "name": "Xin Zhao",
-    "imageKey": "Xinzhao",
+    "imageKey": "XinZhao",
     "checklist": {
       "played": false,
       "top4": false,
