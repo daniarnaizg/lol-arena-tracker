@@ -1,6 +1,7 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import styles from './ChampionsGrid.module.css';
 
 
 export interface ChampionChecklist {
@@ -17,29 +18,20 @@ interface Champion {
 }
 
 
-function getFrameColor(checklist: ChampionChecklist) {
-  if (checklist.win) return 'border-green-500';
-  if (checklist.top4) return 'border-yellow-500';
-  if (checklist.played) return 'border-blue-500';
-  return 'border-gray-300';
-}
-
-
-
+type FilterType = 'all' | 'played' | 'top4' | 'win' | 'unplayed';
 
 interface ChampionsGridProps {
   search: string;
 }
 
-
-const MIN_ZOOM = 1;
-const MAX_ZOOM = 3;
-const DEFAULT_ZOOM = 1.5;
+const MIN_COLUMNS = 3;
+const MAX_COLUMNS = 10;
+const DEFAULT_COLUMNS = 6;
 
 const ChampionsGrid = ({ search }: ChampionsGridProps) => {
   const [champions, setChampions] = useState<Champion[]>([]);
-  const [filter, setFilter] = useState<'all' | 'played' | 'top4' | 'win' | 'unplayed'>('all');
-  const [zoom, setZoom] = useState(DEFAULT_ZOOM);
+  const [filter, setFilter] = useState<FilterType>('all');
+  const [columns, setColumns] = useState(DEFAULT_COLUMNS);
 
   useEffect(() => {
     // Load champions from localStorage or fallback to static json
@@ -96,121 +88,96 @@ const ChampionsGrid = ({ search }: ChampionsGridProps) => {
   });
 
   return (
-    <section className="flex-1 w-full max-w-5xl mx-auto p-4">
-      <div className="flex flex-col sm:flex-row gap-2 mb-4 items-center justify-between">
+    <section className="flex-1 w-full max-w-7xl mx-auto p-6">
+      <div className="flex flex-col sm:flex-row gap-4 mb-8 items-center justify-between">
         <div className="flex items-center gap-4 w-full max-w-xs">
-          <label htmlFor="zoom-slider" className="text-sm font-medium whitespace-nowrap">Zoom:</label>
+          <label htmlFor="columns-slider" className="text-sm font-medium whitespace-nowrap text-gray-600">
+            Columns:
+          </label>
           <input
-            id="zoom-slider"
+            id="columns-slider"
             type="range"
-            min={MIN_ZOOM}
-            max={MAX_ZOOM}
-            step={0.1}
-            value={zoom}
-            onChange={e => setZoom(Number(e.target.value))}
+            min={MIN_COLUMNS}
+            max={MAX_COLUMNS}
+            step={1}
+            value={columns}
+            onChange={e => setColumns(Number(e.target.value))}
             className="w-full accent-blue-500"
           />
-          <span className="text-xs w-8 text-center">{zoom.toFixed(1)}x</span>
+          <span className="text-xs w-8 text-center text-gray-500">{columns}</span>
         </div>
         <div className="flex gap-2 mt-2 sm:mt-0">
-          <button
-            className={`px-3 py-1 rounded border ${filter === 'all' ? 'bg-blue-500 text-white' : 'bg-white text-black border-gray-300'}`}
-            onClick={() => setFilter('all')}
-          >All</button>
-          <button
-            className={`px-3 py-1 rounded border ${filter === 'played' ? 'bg-blue-500 text-white' : 'bg-white text-black border-gray-300'}`}
-            onClick={() => setFilter('played')}
-          >Played</button>
-          <button
-            className={`px-3 py-1 rounded border ${filter === 'top4' ? 'bg-yellow-500 text-white' : 'bg-white text-black border-gray-300'}`}
-            onClick={() => setFilter('top4')}
-          >Top 4</button>
-          <button
-            className={`px-3 py-1 rounded border ${filter === 'win' ? 'bg-green-500 text-white' : 'bg-white text-black border-gray-300'}`}
-            onClick={() => setFilter('win')}
-          >Win</button>
-          <button
-            className={`px-3 py-1 rounded border ${filter === 'unplayed' ? 'bg-gray-400 text-white' : 'bg-white text-black border-gray-300'}`}
-            onClick={() => setFilter('unplayed')}
-          >Unplayed</button>
+          {[
+            { key: 'all' as const, label: 'All', color: 'bg-gray-100 text-gray-700 hover:bg-gray-200' },
+            { key: 'played' as const, label: 'Played', color: 'bg-blue-100 text-blue-700 hover:bg-blue-200' },
+            { key: 'top4' as const, label: 'Top 4', color: 'bg-yellow-100 text-yellow-700 hover:bg-yellow-200' },
+            { key: 'win' as const, label: 'Win', color: 'bg-green-100 text-green-700 hover:bg-green-200' },
+            { key: 'unplayed' as const, label: 'Unplayed', color: 'bg-gray-50 text-gray-500 hover:bg-gray-100' },
+          ].map(({ key, label, color }) => (
+            <button
+              key={key}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                filter === key 
+                  ? color.replace('hover:', '').replace('100', '200').replace('50', '100')
+                  : `${color} border border-gray-200`
+              }`}
+              onClick={() => setFilter(key)}
+            >
+              {label}
+            </button>
+          ))}
         </div>
       </div>
+      
       <main
-        className="grid gap-4"
+        className={styles.championGrid}
         style={{
-          gridTemplateColumns: `repeat(${Math.round(5 * zoom)}, minmax(0, 1fr))`,
+          gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
         }}
       >
         {filteredChampions.map(champ => {
-          // Use imageKey as-is, no forced uppercase, no placeholder
           const imgUrl = champ.imageKey
             ? `https://ddragon.leagueoflegends.com/cdn/15.14.1/img/champion/${champ.imageKey}.png`
             : '';
           const checklist = champ.checklist || { played: false, top4: false, win: false };
-          const size = 80 * zoom;
+          
           return (
-            <div
-              key={champ.id}
-              className={`flex flex-col items-center p-3 rounded-lg border-4 transition-all ${getFrameColor(checklist)}`}
-              style={{ fontSize: `${zoom * 1}rem` }}
-            >
-              <div
-                className="relative mb-2 bg-white flex items-center justify-center rounded"
-                style={{ width: size, height: size, padding: `${Math.max(8, size * 0.12)}px` }}
-              >
+            <div key={champ.id} className={styles.championCard}>
+              <div className={styles.championImage}>
                 {imgUrl && (
                   <Image
                     src={imgUrl}
                     alt={champ.name}
                     fill
-                    className="object-contain rounded"
-                    sizes={`${size}px`}
+                    className="object-cover"
+                    sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
                     unoptimized
-                    style={{ position: 'static', width: '100%', height: '100%' }}
                   />
                 )}
               </div>
-              <span className="font-medium text-center text-sm mt-1">{champ.name}</span>
-              <div className="flex gap-2 mt-2">
-                <label className="flex items-center gap-1 text-xs select-none">
-                  <span
-                    role="checkbox"
-                    aria-checked={checklist.played ? 'true' : 'false'}
-                    tabIndex={0}
-                    onClick={() => handleChecklistChange(champ.id, 'played')}
-                    onKeyDown={e => (e.key === ' ' || e.key === 'Enter') && handleChecklistChange(champ.id, 'played')}
-                    className={`w-5 h-5 flex items-center justify-center border rounded ${checklist.played ? 'bg-blue-500 border-blue-500' : 'bg-white border-gray-300'} transition-colors cursor-pointer`}
-                  >
-                    {checklist.played ? '✔️' : ''}
-                  </span>
-                  <span>Played</span>
-                </label>
-                <label className="flex items-center gap-1 text-xs select-none">
-                  <span
-                    role="checkbox"
-                    aria-checked={checklist.top4 ? 'true' : 'false'}
-                    tabIndex={0}
-                    onClick={() => handleChecklistChange(champ.id, 'top4')}
-                    onKeyDown={e => (e.key === ' ' || e.key === 'Enter') && handleChecklistChange(champ.id, 'top4')}
-                    className={`w-5 h-5 flex items-center justify-center border rounded ${checklist.top4 ? 'bg-yellow-400 border-yellow-500' : 'bg-white border-gray-300'} transition-colors cursor-pointer`}
-                  >
-                    {checklist.top4 ? '🏅' : ''}
-                  </span>
-                  <span>Top 4</span>
-                </label>
-                <label className="flex items-center gap-1 text-xs select-none">
-                  <span
-                    role="checkbox"
-                    aria-checked={checklist.win ? 'true' : 'false'}
-                    tabIndex={0}
-                    onClick={() => handleChecklistChange(champ.id, 'win')}
-                    onKeyDown={e => (e.key === ' ' || e.key === 'Enter') && handleChecklistChange(champ.id, 'win')}
-                    className={`w-5 h-5 flex items-center justify-center border rounded ${checklist.win ? 'bg-green-500 border-green-500' : 'bg-white border-gray-300'} transition-colors cursor-pointer`}
-                  >
-                    {checklist.win ? '🏆' : ''}
-                  </span>
-                  <span>Win</span>
-                </label>
+              
+              <div className={styles.championInfo}>
+                <h3 className={styles.championName}>{champ.name}</h3>
+                
+                <div className={styles.checkboxContainer}>
+                  {[
+                    { key: 'played' as const, emoji: '✔️', className: 'played', label: 'Played' },
+                    { key: 'top4' as const, emoji: '🏅', className: 'top4', label: 'Top 4' },
+                    { key: 'win' as const, emoji: '🏆', className: 'win', label: 'Win' },
+                  ].map(({ key, emoji, className, label }) => (
+                    <button
+                      key={key}
+                      onClick={() => handleChecklistChange(champ.id, key)}
+                      className={`${styles.checkboxButton} ${
+                        checklist[key] ? styles[className] : styles.unchecked
+                      }`}
+                      title={label}
+                      aria-label={`${label} for ${champ.name}`}
+                    >
+                      {checklist[key] ? emoji : ''}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           );
