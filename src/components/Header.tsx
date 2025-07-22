@@ -1,14 +1,22 @@
 import React from 'react';
 
-const Header = () => {
+
+interface HeaderProps {
+  search: string;
+  setSearch: (value: string) => void;
+}
+
+const Header = ({ search, setSearch }: HeaderProps) => {
   return (
-    <header className="w-full py-4 px-6 bg-gray-900 text-white flex flex-col md:flex-row items-center justify-between shadow">
-      <h1 className="text-2xl font-bold tracking-tight mb-2 md:mb-0">LoL Arena Tracker</h1>
+    <header className="w-full py-6 px-6 bg-gray-900 text-white flex flex-col items-center shadow">
+      <h1 className="text-3xl font-bold tracking-tight mb-4 text-center">LoL Arena Tracker</h1>
       <input
         type="text"
         placeholder="Search champions..."
-        className="rounded px-3 py-2 text-black w-full md:w-64 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        disabled
+        value={search}
+        onChange={e => setSearch(e.target.value)}
+        className="rounded px-6 py-4 text-black w-full max-w-xl text-2xl font-semibold focus:outline-none focus:ring-4 focus:ring-blue-500 text-center"
+        autoFocus
       />
     </header>
   );

@@ -1,3 +1,4 @@
+"use client";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -16,21 +17,25 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: 'LoL Arena Tracker',
-  description: 'Track your LoL Arena champion status',
-};
+//export const metadata: Metadata = {
+//  title: 'LoL Arena Tracker',
+//  description: 'Track your LoL Arena champion status',
+//};
+
+
+import React, { useState } from 'react';
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [search, setSearch] = useState('');
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-gray-100`}>
-        <Header />
-        <ChampionsGrid />
+        <Header search={search} setSearch={setSearch} />
+        <ChampionsGrid search={search} />
         <Footer />
         {children}
       </body>

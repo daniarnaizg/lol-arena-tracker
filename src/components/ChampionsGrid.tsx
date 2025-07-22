@@ -1,5 +1,5 @@
 "use client"
-import React, { use, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 
@@ -26,9 +26,13 @@ function getFrameColor(checklist: ChampionChecklist) {
 
 
 
-const ChampionsGrid = () => {
+
+interface ChampionsGridProps {
+  search: string;
+}
+
+const ChampionsGrid = ({ search }: ChampionsGridProps) => {
   const [champions, setChampions] = useState<Champion[]>([]);
-  const [search, setSearch] = useState('');
   const [filter, setFilter] = useState<'all' | 'played' | 'top4' | 'win' | 'unplayed'>('all');
 
   useEffect(() => {
@@ -41,7 +45,7 @@ const ChampionsGrid = () => {
         .then(res => res.json())
         .then(data => {
           // Migrate old status to new checklist if needed
-          setChampions(data.map((champ: any) => ({
+          setChampions(data.map((champ: Champion) => ({
             ...champ,
             checklist: champ.checklist || { played: false, top4: false, win: false },
           })));
@@ -87,14 +91,7 @@ const ChampionsGrid = () => {
 
   return (
     <section className="flex-1 w-full max-w-5xl mx-auto p-4">
-      <div className="flex flex-col sm:flex-row gap-2 mb-4 items-center justify-between">
-        <input
-          type="text"
-          placeholder="Search champions..."
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-          className="rounded px-3 py-2 text-black w-full sm:w-64 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
+      <div className="flex flex-col sm:flex-row gap-2 mb-4 items-center justify-end">
         <div className="flex gap-2 mt-2 sm:mt-0">
           <button
             className={`px-3 py-1 rounded border ${filter === 'all' ? 'bg-blue-500 text-white' : 'bg-white text-black border-gray-300'}`}
