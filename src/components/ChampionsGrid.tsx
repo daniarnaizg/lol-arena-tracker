@@ -31,9 +31,15 @@ interface ChampionsGridProps {
   search: string;
 }
 
+
+const MIN_ZOOM = 1;
+const MAX_ZOOM = 3;
+const DEFAULT_ZOOM = 1.5;
+
 const ChampionsGrid = ({ search }: ChampionsGridProps) => {
   const [champions, setChampions] = useState<Champion[]>([]);
   const [filter, setFilter] = useState<'all' | 'played' | 'top4' | 'win' | 'unplayed'>('all');
+  const [zoom, setZoom] = useState(DEFAULT_ZOOM);
 
   useEffect(() => {
     // Load champions from localStorage or fallback to static json
@@ -91,7 +97,21 @@ const ChampionsGrid = ({ search }: ChampionsGridProps) => {
 
   return (
     <section className="flex-1 w-full max-w-5xl mx-auto p-4">
-      <div className="flex flex-col sm:flex-row gap-2 mb-4 items-center justify-end">
+      <div className="flex flex-col sm:flex-row gap-2 mb-4 items-center justify-between">
+        <div className="flex items-center gap-4 w-full max-w-xs">
+          <label htmlFor="zoom-slider" className="text-sm font-medium whitespace-nowrap">Zoom:</label>
+          <input
+            id="zoom-slider"
+            type="range"
+            min={MIN_ZOOM}
+            max={MAX_ZOOM}
+            step={0.1}
+            value={zoom}
+            onChange={e => setZoom(Number(e.target.value))}
+            className="w-full accent-blue-500"
+          />
+          <span className="text-xs w-8 text-center">{zoom.toFixed(1)}x</span>
+        </div>
         <div className="flex gap-2 mt-2 sm:mt-0">
           <button
             className={`px-3 py-1 rounded border ${filter === 'all' ? 'bg-blue-500 text-white' : 'bg-white text-black border-gray-300'}`}
@@ -115,24 +135,35 @@ const ChampionsGrid = ({ search }: ChampionsGridProps) => {
           >Unplayed</button>
         </div>
       </div>
-      <main className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+      <main
+        className="grid gap-4"
+        style={{
+          gridTemplateColumns: `repeat(${Math.round(5 * zoom)}, minmax(0, 1fr))`,
+        }}
+      >
         {filteredChampions.map(champ => {
-        const imgUrl = champ.imageKey
-          ? `https://ddragon.leagueoflegends.com/cdn/15.14.1/img/champion/${champ.imageKey}.png`
-          : '/window.svg'; // fallback to a local placeholder if imageKey is missing
+          const imgUrl = champ.imageKey
+            ? `https://ddragon.leagueoflegends.com/cdn/15.14.1/img/champion/${champ.imageKey}.png`
+            : '/window.svg';
           const checklist = champ.checklist || { played: false, top4: false, win: false };
+          const size = 80 * zoom;
           return (
             <div
               key={champ.id}
               className={`flex flex-col items-center p-3 rounded-lg border-4 cursor-pointer transition-all ${getFrameColor(checklist)}`}
+              style={{ fontSize: `${zoom * 1}rem` }}
             >
-              <div className="w-20 h-20 relative mb-2">
+              <div
+                className="relative mb-2"
+                style={{ width: size, height: size }}
+              >
                 <Image
                   src={imgUrl}
                   alt={champ.name}
                   fill
                   className="object-contain rounded"
-                  sizes="80px"
+                  sizes={`${size}px`}
+                  unoptimized
                 />
               </div>
               <span className="font-medium text-center text-sm mt-1">{champ.name}</span>
