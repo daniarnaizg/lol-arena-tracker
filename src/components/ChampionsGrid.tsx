@@ -118,7 +118,7 @@ const ChampionsGrid = ({ search }: ChampionsGridProps) => {
       <main className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
         {filteredChampions.map(champ => {
         const imgUrl = champ.imageKey
-          ? `http://ddragon.leagueoflegends.com/cdn/15.14.1/img/champion/${champ.imageKey}.png`
+          ? `https://ddragon.leagueoflegends.com/cdn/15.14.1/img/champion/${champ.imageKey}.png`
           : '/window.svg'; // fallback to a local placeholder if imageKey is missing
           const checklist = champ.checklist || { played: false, top4: false, win: false };
           return (
