@@ -112,7 +112,7 @@
   {
     "id": 12,
     "name": "Aurelion Sol",
-    "imageKey": "Aurelionsol",
+    "imageKey": "AurelionSol",
     "checklist": {
       "played": false,
       "top4": false,
@@ -152,7 +152,7 @@
   {
     "id": 16,
     "name": "Bel'Veth",
-    "imageKey": "Belveth",
+    "imageKey": "BelVeth",
     "checklist": {
       "played": false,
       "top4": false,
@@ -272,7 +272,7 @@
   {
     "id": 28,
     "name": "Dr. Mundo",
-    "imageKey": "Drmundo",
+    "imageKey": "DrMundo",
     "checklist": {
       "played": false,
       "top4": false,
@@ -502,7 +502,7 @@
   {
     "id": 51,
     "name": "Jarvan IV",
-    "imageKey": "Jarvaniv",
+    "imageKey": "JarvanIV",
     "checklist": {
       "played": false,
       "top4": false,
@@ -552,7 +552,7 @@
   {
     "id": 56,
     "name": "K'Sante",
-    "imageKey": "Ksante",
+    "imageKey": "KSante",
     "checklist": {
       "played": false,
       "top4": false,
@@ -682,7 +682,7 @@
   {
     "id": 69,
     "name": "Kog'Maw",
-    "imageKey": "Kogmaw",
+    "imageKey": "KogMaw",
     "checklist": {
       "played": false,
       "top4": false,
@@ -702,7 +702,7 @@
   {
     "id": 71,
     "name": "Lee Sin",
-    "imageKey": "Leesin",
+    "imageKey": "LeeSin",
     "checklist": {
       "played": false,
       "top4": false,
@@ -802,7 +802,7 @@
   {
     "id": 81,
     "name": "Master Yi",
-    "imageKey": "Masteryi",
+    "imageKey": "MasterYi",
     "checklist": {
       "played": false,
       "top4": false,
@@ -832,7 +832,7 @@
   {
     "id": 84,
     "name": "Miss Fortune",
-    "imageKey": "Missfortune",
+    "imageKey": "MissFortune",
     "checklist": {
       "played": false,
       "top4": false,
@@ -1052,7 +1052,7 @@
   {
     "id": 106,
     "name": "Rek'Sai",
-    "imageKey": "Reksai",
+    "imageKey": "RekSai",
     "checklist": {
       "played": false,
       "top4": false,
@@ -1072,7 +1072,7 @@
   {
     "id": 108,
     "name": "Renata Glasc",
-    "imageKey": "Renataglasc",
+    "imageKey": "RenataGlasc",
     "checklist": {
       "played": false,
       "top4": false,
@@ -1312,7 +1312,7 @@
   {
     "id": 132,
     "name": "Tahm Kench",
-    "imageKey": "Tahmkench",
+    "imageKey": "TahmKench",
     "checklist": {
       "played": false,
       "top4": false,
@@ -1402,7 +1402,7 @@
   {
     "id": 141,
     "name": "Twisted Fate",
-    "imageKey": "Twistedfate",
+    "imageKey": "TwistedFate",
     "checklist": {
       "played": false,
       "top4": false,
@@ -1472,7 +1472,7 @@
   {
     "id": 148,
     "name": "Vel'Koz",
-    "imageKey": "Velkoz",
+    "imageKey": "VelKoz",
     "checklist": {
       "played": false,
       "top4": false,
