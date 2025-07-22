@@ -151,12 +151,12 @@ const ChampionsGrid = ({ search }: ChampionsGridProps) => {
           return (
             <div
               key={champ.id}
-              className={`flex flex-col items-center p-3 rounded-lg border-4 cursor-pointer transition-all ${getFrameColor(checklist)}`}
+              className={`flex flex-col items-center p-3 rounded-lg border-4 transition-all ${getFrameColor(checklist)}`}
               style={{ fontSize: `${zoom * 1}rem` }}
             >
               <div
-                className="relative mb-2"
-                style={{ width: size, height: size }}
+                className="relative mb-2 bg-white flex items-center justify-center rounded"
+                style={{ width: size, height: size, padding: `${Math.max(8, size * 0.12)}px` }}
               >
                 {imgUrl && (
                   <Image
@@ -166,34 +166,50 @@ const ChampionsGrid = ({ search }: ChampionsGridProps) => {
                     className="object-contain rounded"
                     sizes={`${size}px`}
                     unoptimized
+                    style={{ position: 'static', width: '100%', height: '100%' }}
                   />
                 )}
               </div>
               <span className="font-medium text-center text-sm mt-1">{champ.name}</span>
               <div className="flex gap-2 mt-2">
-                <label className="flex items-center gap-1 text-xs cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={checklist.played}
-                    onChange={() => handleChecklistChange(champ.id, 'played')}
-                  />
-                  Played
+                <label className="flex items-center gap-1 text-xs select-none">
+                  <span
+                    role="checkbox"
+                    aria-checked={checklist.played ? 'true' : 'false'}
+                    tabIndex={0}
+                    onClick={() => handleChecklistChange(champ.id, 'played')}
+                    onKeyDown={e => (e.key === ' ' || e.key === 'Enter') && handleChecklistChange(champ.id, 'played')}
+                    className={`w-5 h-5 flex items-center justify-center border rounded ${checklist.played ? 'bg-blue-500 border-blue-500' : 'bg-white border-gray-300'} transition-colors cursor-pointer`}
+                  >
+                    {checklist.played ? '✔️' : ''}
+                  </span>
+                  <span>Played</span>
                 </label>
-                <label className="flex items-center gap-1 text-xs cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={checklist.top4}
-                    onChange={() => handleChecklistChange(champ.id, 'top4')}
-                  />
-                  Top 4
+                <label className="flex items-center gap-1 text-xs select-none">
+                  <span
+                    role="checkbox"
+                    aria-checked={checklist.top4 ? 'true' : 'false'}
+                    tabIndex={0}
+                    onClick={() => handleChecklistChange(champ.id, 'top4')}
+                    onKeyDown={e => (e.key === ' ' || e.key === 'Enter') && handleChecklistChange(champ.id, 'top4')}
+                    className={`w-5 h-5 flex items-center justify-center border rounded ${checklist.top4 ? 'bg-yellow-400 border-yellow-500' : 'bg-white border-gray-300'} transition-colors cursor-pointer`}
+                  >
+                    {checklist.top4 ? '🏅' : ''}
+                  </span>
+                  <span>Top 4</span>
                 </label>
-                <label className="flex items-center gap-1 text-xs cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={checklist.win}
-                    onChange={() => handleChecklistChange(champ.id, 'win')}
-                  />
-                  Win
+                <label className="flex items-center gap-1 text-xs select-none">
+                  <span
+                    role="checkbox"
+                    aria-checked={checklist.win ? 'true' : 'false'}
+                    tabIndex={0}
+                    onClick={() => handleChecklistChange(champ.id, 'win')}
+                    onKeyDown={e => (e.key === ' ' || e.key === 'Enter') && handleChecklistChange(champ.id, 'win')}
+                    className={`w-5 h-5 flex items-center justify-center border rounded ${checklist.win ? 'bg-green-500 border-green-500' : 'bg-white border-gray-300'} transition-colors cursor-pointer`}
+                  >
+                    {checklist.win ? '🏆' : ''}
+                  </span>
+                  <span>Win</span>
                 </label>
               </div>
             </div>
