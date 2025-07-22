@@ -19,29 +19,38 @@
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* hover:shadow-md */
 }
 
-/* Card background variants based on champion status */
+/* Card background variants - main status indicators */
 .championCard.cardPlayed {
-  background-color: rgb(239, 246, 255); /* bg-blue-50 */
+  background-color: rgb(219, 234, 254); /* bg-blue-100 - more prominent */
+  border: 1px solid rgb(147, 197, 253); /* border-blue-300 */
 }
 
 .championCard.cardTop4 {
-  background-color: rgb(255, 251, 235); /* bg-yellow-50 */
+  background-color: rgb(254, 240, 138); /* bg-yellow-100 - more prominent */
+  border: 1px solid rgb(252, 211, 77); /* border-yellow-300 */
 }
 
 .championCard.cardWin {
-  background-color: rgb(240, 253, 244); /* bg-green-50 */
+  background-color: rgb(220, 252, 231); /* bg-green-100 - more prominent */
+  border: 1px solid rgb(134, 239, 172); /* border-green-300 */
 }
 
 .championCard.cardPlayed:hover {
-  background-color: rgb(219, 234, 254); /* hover:bg-blue-100 */
+  background-color: rgb(191, 219, 254); /* hover:bg-blue-200 */
+  border-color: rgb(96, 165, 250); /* hover:border-blue-400 */
+  transform: translateY(-1px);
 }
 
 .championCard.cardTop4:hover {
-  background-color: rgb(254, 240, 138); /* hover:bg-yellow-100 */
+  background-color: rgb(253, 224, 71); /* hover:bg-yellow-200 */
+  border-color: rgb(251, 191, 36); /* hover:border-yellow-400 */
+  transform: translateY(-1px);
 }
 
 .championCard.cardWin:hover {
-  background-color: rgb(220, 252, 231); /* hover:bg-green-100 */
+  background-color: rgb(187, 247, 208); /* hover:bg-green-200 */
+  border-color: rgb(74, 222, 128); /* hover:border-green-400 */
+  transform: translateY(-1px);
 }
 
 .championImage {
@@ -83,74 +92,74 @@
 }
 
 .checkboxButton {
-  width: 2rem; /* 32px - equivalent to w-8 */
-  height: 2rem; /* 32px - equivalent to h-8 */
+  width: 1.75rem; /* 28px - slightly smaller */
+  height: 1.75rem; /* 28px - slightly smaller */
   border-radius: 50%; /* rounded-full */
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.875rem; /* text-sm */
+  font-size: 0.75rem; /* text-xs - smaller emoji */
   transition: all 0.2s ease;
   cursor: pointer;
   border: none;
 }
 
 .checkboxButton:hover {
-  transform: scale(1.1); /* hover:scale-110 */
+  transform: scale(1.05); /* subtle hover effect */
 }
 
+/* Subtle unselected states - minimal color hints */
 .checkboxButton.unchecked {
-  background-color: rgb(243, 244, 246); /* bg-gray-100 */
-  border: 1px solid rgb(209, 213, 219); /* border-gray-300 */
+  background-color: rgba(0, 0, 0, 0.05); /* very subtle gray */
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .checkboxButton.unchecked:hover {
-  background-color: rgb(229, 231, 235); /* hover:bg-gray-200 */
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
-/* Unselected state with color hints */
 .checkboxButton.uncheckedPlayed {
-  background-color: rgb(219, 234, 254); /* bg-blue-100 */
-  border: 1px solid rgb(147, 197, 253); /* border-blue-300 */
+  background-color: rgba(59, 130, 246, 0.1); /* very subtle blue hint */
+  border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
 .checkboxButton.uncheckedPlayed:hover {
-  background-color: rgb(191, 219, 254); /* hover:bg-blue-200 */
+  background-color: rgba(59, 130, 246, 0.15);
 }
 
 .checkboxButton.uncheckedTop4 {
-  background-color: rgb(254, 240, 138); /* bg-yellow-100 */
-  border: 1px solid rgb(252, 211, 77); /* border-yellow-300 */
+  background-color: rgba(245, 158, 11, 0.1); /* very subtle yellow hint */
+  border: 1px solid rgba(245, 158, 11, 0.2);
 }
 
 .checkboxButton.uncheckedTop4:hover {
-  background-color: rgb(253, 224, 71); /* hover:bg-yellow-200 */
+  background-color: rgba(245, 158, 11, 0.15);
 }
 
 .checkboxButton.uncheckedWin {
-  background-color: rgb(220, 252, 231); /* bg-green-100 */
-  border: 1px solid rgb(134, 239, 172); /* border-green-300 */
+  background-color: rgba(34, 197, 94, 0.1); /* very subtle green hint */
+  border: 1px solid rgba(34, 197, 94, 0.2);
 }
 
 .checkboxButton.uncheckedWin:hover {
-  background-color: rgb(187, 247, 208); /* hover:bg-green-200 */
+  background-color: rgba(34, 197, 94, 0.15);
 }
 
-/* Selected states - darker than card backgrounds */
+/* Selected states - subtle accent colors */
 .checkboxButton.played {
-  background-color: rgb(37, 99, 235); /* bg-blue-600 - darker than card */
-  color: white;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+  background-color: rgba(59, 130, 246, 0.2); /* subtle blue accent */
+  color: rgb(37, 99, 235); /* darker blue text */
+  border: 1px solid rgba(59, 130, 246, 0.3);
 }
 
 .checkboxButton.top4 {
-  background-color: rgb(217, 119, 6); /* bg-yellow-600 - darker than card */
-  color: white;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+  background-color: rgba(245, 158, 11, 0.2); /* subtle yellow accent */
+  color: rgb(217, 119, 6); /* darker yellow text */
+  border: 1px solid rgba(245, 158, 11, 0.3);
 }
 
 .checkboxButton.win {
-  background-color: rgb(22, 163, 74); /* bg-green-600 - darker than card */
-  color: white;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+  background-color: rgba(34, 197, 94, 0.2); /* subtle green accent */
+  color: rgb(22, 163, 74); /* darker green text */
+  border: 1px solid rgba(34, 197, 94, 0.3);
 }
