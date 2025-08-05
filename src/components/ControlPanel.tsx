@@ -3,7 +3,6 @@ import React from 'react';
 import { ColumnSlider } from './ui/ColumnSlider';
 import { ToggleSwitch } from './ui/ToggleSwitch';
 import { ClearAllButton } from './ui/ClearAllButton';
-import { RefreshButton } from './ui/RefreshButton';
 import { FilterButtons, FilterType } from './ui/FilterButtons';
 
 interface ControlPanelProps {
@@ -23,10 +22,6 @@ interface ControlPanelProps {
   onClearStart: () => void;
   onClearStop: () => void;
   
-  // Refresh functionality
-  isRefreshing?: boolean;
-  onRefresh?: () => void;
-  
   // Filter controls
   currentFilter: FilterType;
   onFilterChange: (filter: FilterType) => void;
@@ -45,8 +40,6 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
   clearProgress,
   onClearStart,
   onClearStop,
-  isRefreshing = false,
-  onRefresh,
   currentFilter,
   onFilterChange,
   className = ''
@@ -68,13 +61,6 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
             onToggle={onEffectsToggle}
             tooltip="Toggle animations and effects"
           />
-          
-          {onRefresh && (
-            <RefreshButton
-              isRefreshing={isRefreshing}
-              onRefresh={onRefresh}
-            />
-          )}
           
           <ClearAllButton
             isClearing={isClearing}
