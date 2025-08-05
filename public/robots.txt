@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Optimize crawl budget
+Disallow: /api/
+Disallow: /_next/
+Disallow: /_vercel/
+
+# Sitemap
+Sitemap: https://lol-arena-tracker.vercel.app/sitemap.xml
