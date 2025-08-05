@@ -16,14 +16,14 @@ export const ClearAllButton: React.FC<ClearAllButtonProps> = ({
       className={`
         flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium
         transition-all duration-200 group
-        bg-red-50 text-red-600 border-red-200 hover:bg-red-100
+        bg-red-200 text-gray-800 hover:bg-red-300
         border-2 whitespace-nowrap
-        focus:outline-none focus:ring-2 focus:ring-red-300
+        focus:outline-none focus:ring-2 focus:ring-red-800
         ${className}
       `}
       title="Clear all selections"
     >
-      <span>🗑️</span>
+      <span>❌</span>
       <span>Clear All</span>
       
       {/* Tooltip */}

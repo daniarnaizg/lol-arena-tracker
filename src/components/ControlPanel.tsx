@@ -20,8 +20,8 @@ interface ControlPanelProps {
   onClearAll: () => void;
   
   // Filter controls
-  currentFilter: FilterType;
-  onFilterChange: (filter: FilterType) => void;
+  activeFilters: FilterType[];
+  onFilterChange: (filters: FilterType[]) => void;
   
   className?: string;
 }
@@ -34,7 +34,7 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
   effectsEnabled,
   onEffectsToggle,
   onClearAll,
-  currentFilter,
+  activeFilters,
   onFilterChange,
   className = ''
 }) => {
@@ -64,7 +64,7 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
       
       {/* Right section: Filter buttons */}
       <FilterButtons
-        currentFilter={currentFilter}
+        activeFilters={activeFilters}
         onFilterChange={onFilterChange}
         effectsEnabled={effectsEnabled}
         className="mt-2 sm:mt-0"

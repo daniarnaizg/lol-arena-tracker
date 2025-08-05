@@ -5,62 +5,143 @@ import { motion } from 'framer-motion';
 export type FilterType = 'all' | 'played' | 'top4' | 'win' | 'unplayed';
 
 interface FilterButtonsProps {
-  currentFilter: FilterType;
-  onFilterChange: (filter: FilterType) => void;
+  activeFilters: FilterType[];
+  onFilterChange: (filters: FilterType[]) => void;
   effectsEnabled?: boolean;
   className?: string;
 }
 
-const filterOptions = [
-  { key: 'all' as const, label: 'All', color: 'bg-gray-100 text-gray-700 hover:bg-gray-200' },
-  { key: 'played' as const, label: 'Played ✔️', color: 'bg-orange-100 text-orange-800 hover:bg-orange-200' },
-  { key: 'top4' as const, label: 'Top 4 🏅', color: 'bg-gray-200 text-gray-800 hover:bg-gray-300' },
-  { key: 'win' as const, label: 'Win 🏆', color: 'bg-yellow-100 text-yellow-800 hover:bg-yellow-200' },
-  { key: 'unplayed' as const, label: 'Unplayed', color: 'bg-gray-50 text-gray-500 hover:bg-gray-100' },
+interface FilterOption {
+  key: FilterType;
+  label: string;
+  inactiveStyles: string;
+  activeStyles: string;
+}
+
+const FILTER_OPTIONS: FilterOption[] = [
+  { 
+    key: 'all', 
+    label: 'All', 
+    inactiveStyles: 'bg-gray-700 text-gray-300 hover:bg-gray-600 border-gray-600',
+    activeStyles: 'bg-blue-600 text-white border-blue-500'
+  },
+  { 
+    key: 'played', 
+    label: 'Played ✔️', 
+    inactiveStyles: 'bg-gray-700 text-gray-300 hover:bg-gray-600 border-gray-600',
+    activeStyles: 'bg-orange-600 text-white border-orange-500'
+  },
+  { 
+    key: 'top4', 
+    label: 'Top 4 🏅', 
+    inactiveStyles: 'bg-gray-700 text-gray-300 hover:bg-gray-600 border-gray-600',
+    activeStyles: 'bg-purple-600 text-white border-purple-500'
+  },
+  { 
+    key: 'win', 
+    label: 'Win 🏆', 
+    inactiveStyles: 'bg-gray-700 text-gray-300 hover:bg-gray-600 border-gray-600',
+    activeStyles: 'bg-yellow-600 text-white border-yellow-500'
+  },
+  { 
+    key: 'unplayed', 
+    label: 'Unplayed', 
+    inactiveStyles: 'bg-gray-700 text-gray-300 hover:bg-gray-600 border-gray-600',
+    activeStyles: 'bg-red-600 text-white border-red-500'
+  },
 ];
 
+const DEFAULT_FILTERS: FilterType[] = ['all'];
+
 export const FilterButtons: React.FC<FilterButtonsProps> = ({
-  currentFilter,
+  activeFilters = DEFAULT_FILTERS,
   onFilterChange,
   effectsEnabled = true,
   className = ''
 }) => {
+  const safeActiveFilters = activeFilters || DEFAULT_FILTERS;
+
+  const isAllSelected = () => safeActiveFilters.includes('all');
+  
+  const isFilterActive = (filterKey: FilterType) => safeActiveFilters.includes(filterKey);
+
+  const handleAllFilterClick = () => {
+    onFilterChange(['all']);
+  };
+
+  const handleSpecificFilterClick = (filterKey: FilterType) => {
+    if (isAllSelected()) {
+      // Replace "All" with the specific filter
+      onFilterChange([filterKey]);
+      return;
+    }
+
+    const isCurrentlyActive = isFilterActive(filterKey);
+    
+    if (isCurrentlyActive) {
+      // Remove the filter
+      const updatedFilters = safeActiveFilters.filter(f => f !== filterKey);
+      // Fallback to "All" if no filters remain
+      onFilterChange(updatedFilters.length === 0 ? ['all'] : updatedFilters);
+    } else {
+      // Add the filter
+      onFilterChange([...safeActiveFilters, filterKey]);
+    }
+  };
+
+  const handleFilterClick = (filterKey: FilterType) => {
+    if (filterKey === 'all') {
+      handleAllFilterClick();
+    } else {
+      handleSpecificFilterClick(filterKey);
+    }
+  };
+
+  const renderButton = (option: FilterOption) => {
+    const isActive = isFilterActive(option.key);
+    const buttonStyles = isActive ? option.activeStyles : option.inactiveStyles;
+    const shadowStyles = isActive ? 'shadow-lg' : 'shadow-sm';
+
+    return (
+      <button
+        className={`
+          px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 border
+          ${buttonStyles} ${shadowStyles}
+        `}
+        onClick={() => handleFilterClick(option.key)}
+        type="button"
+        aria-pressed={isActive ? "true" : "false"}
+      >
+        {option.label}
+      </button>
+    );
+  };
+
+  const renderFilterButton = (option: FilterOption) => {
+    const buttonElement = renderButton(option);
+
+    if (!effectsEnabled) {
+      return (
+        <div key={option.key}>
+          {buttonElement}
+        </div>
+      );
+    }
+
+    return (
+      <motion.div
+        key={option.key}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        {buttonElement}
+      </motion.div>
+    );
+  };
+
   return (
-    <div className={`flex gap-2 ${className}`}>
-      {filterOptions.map(({ key, label, color }) => {
-        const isActive = currentFilter === key;
-        const activeColor = color.replace('hover:', '').replace('100', '200').replace('50', '100');
-        
-        const buttonContent = (
-          <button
-            className={`
-              px-4 py-2 rounded-lg text-sm font-medium transition-all border border-gray-200
-              ${isActive ? activeColor : color}
-            `}
-            onClick={() => onFilterChange(key)}
-          >
-            {label}
-          </button>
-        );
-
-        if (!effectsEnabled) {
-          return (
-            <div key={key}>
-              {buttonContent}
-            </div>
-          );
-        }
-
-        return (
-          <motion.div
-            key={key}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            {buttonContent}
-          </motion.div>
-        );
-      })}
+    <div className={`flex gap-2 ${className}`} role="group" aria-label="Filter options">
+      {FILTER_OPTIONS.map(renderFilterButton)}
     </div>
   );
 };

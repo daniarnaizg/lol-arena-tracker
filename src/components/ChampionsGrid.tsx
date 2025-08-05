@@ -19,7 +19,7 @@ const DEFAULT_COLUMNS = 8;
 
 const ChampionsGrid = ({ search }: ChampionsGridProps) => {
   const [champions, setChampions] = useState<Champion[]>([]);
-  const [filter, setFilter] = useState<FilterType>('all');
+  const [activeFilters, setActiveFilters] = useState<FilterType[]>(['all']);
   const [columns, setColumns] = useState(DEFAULT_COLUMNS);
   const [effectsEnabled, setEffectsEnabled] = useState(true);
   const [showClearModal, setShowClearModal] = useState(false);
@@ -142,12 +142,18 @@ const ChampionsGrid = ({ search }: ChampionsGridProps) => {
     const checklist = champ.checklist || { played: false, top4: false, win: false };
     const nameMatch = champ.name.toLowerCase().includes(search.toLowerCase());
     if (!nameMatch) return false;
-    if (filter === 'all') return true;
-    if (filter === 'played') return checklist.played && !checklist.top4 && !checklist.win;
-    if (filter === 'top4') return checklist.top4 && !checklist.win;
-    if (filter === 'win') return checklist.win;
-    if (filter === 'unplayed') return !checklist.played && !checklist.top4 && !checklist.win;
-    return true;
+    
+    // If 'all' is active, show everything
+    if (activeFilters.includes('all')) return true;
+    
+    // Check if champion matches any of the active filters
+    return activeFilters.some(filter => {
+      if (filter === 'played') return checklist.played && !checklist.top4 && !checklist.win;
+      if (filter === 'top4') return checklist.top4 && !checklist.win;
+      if (filter === 'win') return checklist.win;
+      if (filter === 'unplayed') return !checklist.played && !checklist.top4 && !checklist.win;
+      return false;
+    });
   });
 
   return (
@@ -160,8 +166,8 @@ const ChampionsGrid = ({ search }: ChampionsGridProps) => {
         effectsEnabled={effectsEnabled}
         onEffectsToggle={() => setEffectsEnabled(!effectsEnabled)}
         onClearAll={handleClearAllClick}
-        currentFilter={filter}
-        onFilterChange={setFilter}
+        activeFilters={activeFilters}
+        onFilterChange={setActiveFilters}
       />
       
       <ChampionsGridDisplay
