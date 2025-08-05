@@ -8,6 +8,7 @@ import { FilterType } from './ui/FilterButtons';
 import { ChampionChecklist } from './ui/CheckboxButton';
 import { championService } from '@/services/championService';
 import { Champion } from '@/services/ddragon';
+import { championNameIncludes } from '@/utils/championUtils';
 
 interface ChampionsGridProps {
   search: string;
@@ -140,7 +141,9 @@ const ChampionsGrid = ({ search }: ChampionsGridProps) => {
   // Filtering logic
   const filteredChampions = champions.filter(champ => {
     const checklist = champ.checklist || { played: false, top4: false, win: false };
-    const nameMatch = champ.name.toLowerCase().includes(search.toLowerCase());
+    
+    // Use the utility function for normalized champion name matching
+    const nameMatch = championNameIncludes(champ.name, search);
     if (!nameMatch) return false;
     
     // If 'all' is active, show everything

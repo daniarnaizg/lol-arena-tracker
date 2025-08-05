@@ -10,6 +10,7 @@ interface ArenaMatchCardProps {
   matchDate: string;
   index: number;
   className?: string;
+  onChampionSearch?: (championName: string) => void;
 }
 
 interface PlacementStyle {
@@ -43,7 +44,8 @@ export const ArenaMatchCard: React.FC<ArenaMatchCardProps> = ({
   placement,
   matchDate,
   index,
-  className = ''
+  className = '',
+  onChampionSearch
 }) => {
   const placementStyle = getPlacementStyle(placement);
   const cardTitle = `#${placement} - ${championName} - ${matchDate}`;
@@ -52,16 +54,23 @@ export const ArenaMatchCard: React.FC<ArenaMatchCardProps> = ({
     e.currentTarget.src = `https://via.placeholder.com/64x64/6b7280/ffffff?text=${championName.charAt(0)}`;
   };
 
+  const handleClick = () => {
+    if (onChampionSearch) {
+      onChampionSearch(championName);
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: index * 0.1 }}
-      className={`flex-shrink-0 relative group p-1 ${className}`}
-      title={cardTitle}
+      className={`flex-shrink-0 relative group p-1 ${className} ${onChampionSearch ? 'cursor-pointer' : ''}`}
+      title={onChampionSearch ? `Click to search for ${championName}` : cardTitle}
+      onClick={handleClick}
     >
       {/* Champion Image Container */}
-      <div className={`w-16 h-16 rounded-lg overflow-hidden border-2 relative ${placementStyle.border}`}>
+      <div className={`w-16 h-16 rounded-lg overflow-hidden border-2 relative transition-transform duration-200 ${placementStyle.border} ${onChampionSearch ? 'group-hover:scale-110' : ''}`}>
         <Image
           src={`https://ddragon.leagueoflegends.com/cdn/14.1.1/img/champion/${championName}.png`}
           alt={championName}
@@ -83,7 +92,7 @@ export const ArenaMatchCard: React.FC<ArenaMatchCardProps> = ({
       
       {/* Tooltip on hover */}
       <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10">
-        {cardTitle}
+        {onChampionSearch ? `Click to search for ${championName}` : cardTitle}
       </div>
     </motion.div>
   );

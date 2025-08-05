@@ -6,6 +6,7 @@ import Header from '@/components/Header';
 import ChampionsGrid from '@/components/ChampionsGrid';
 import { MatchHistory } from '@/components/MatchHistory';
 import Footer from '@/components/Footer';
+import { normalizeChampionName } from '@/utils/championUtils';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,12 +32,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const [search, setSearch] = useState('');
+  
+  const handleChampionSearch = (championName: string) => {
+    // Normalize the champion name by removing apostrophes and other special characters
+    const normalizedName = normalizeChampionName(championName);
+    setSearch(normalizedName);
+  };
+  
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-gray-100`}>
         <Header search={search} setSearch={setSearch} />
         <div className="flex-1 w-full max-w-7xl mx-auto p-6 space-y-8">
-          <MatchHistory />
+          <MatchHistory onChampionSearch={handleChampionSearch} />
           <ChampionsGrid search={search} />
         </div>
         <Footer />

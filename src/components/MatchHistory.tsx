@@ -44,9 +44,10 @@ interface ArenaMatchesData {
 
 interface MatchHistoryProps {
   className?: string;
+  onChampionSearch?: (championName: string) => void;
 }
 
-export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '' }) => {
+export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onChampionSearch }) => {
   const [gameName, setGameName] = useState('');
   const [tagLine, setTagLine] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -328,6 +329,7 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '' }) =>
                           placement={userParticipant.placement}
                           matchDate={matchDate}
                           index={index}
+                          onChampionSearch={onChampionSearch}
                         />
                       );
                     })
