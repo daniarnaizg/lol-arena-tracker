@@ -12,34 +12,19 @@ import { championNameIncludes } from '@/utils/championUtils';
 
 interface ChampionsGridProps {
   search: string;
+  champions: Champion[];
+  setChampions: React.Dispatch<React.SetStateAction<Champion[]>>;
 }
 
 const MIN_COLUMNS = 5;
 const MAX_COLUMNS = 10;
 const DEFAULT_COLUMNS = 8;
 
-const ChampionsGrid = ({ search }: ChampionsGridProps) => {
-  const [champions, setChampions] = useState<Champion[]>([]);
+const ChampionsGrid = ({ search, champions, setChampions }: ChampionsGridProps) => {
   const [activeFilters, setActiveFilters] = useState<FilterType[]>(['all']);
   const [columns, setColumns] = useState(DEFAULT_COLUMNS);
   const [effectsEnabled, setEffectsEnabled] = useState(true);
   const [showClearModal, setShowClearModal] = useState(false);
-
-  useEffect(() => {
-    // Load champions using the new service
-    const loadChampions = async () => {
-      try {
-        const championsData = await championService.getChampions();
-        setChampions(championsData);
-      } catch (error) {
-        console.error('Failed to load champions:', error);
-        // Fallback to empty array or show error message
-        setChampions([]);
-      }
-    };
-
-    loadChampions();
-  }, []);
 
   useEffect(() => {
     if (champions.length > 0) {
@@ -100,7 +85,7 @@ const ChampionsGrid = ({ search }: ChampionsGridProps) => {
 
     // Cleanup interval on component unmount
     return () => clearInterval(intervalId);
-  }, []);
+  }, [setChampions]);
 
   const handleClearAllClick = () => {
     setShowClearModal(true);
