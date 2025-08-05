@@ -1,17 +1,12 @@
 "use client"
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 interface RiotAccount {
   puuid: string;
   gameName: string;
   tagLine: string;
-}
-
-interface MatchHistoryData {
-  matchIds: string[];
-  count: number;
-  puuid: string;
 }
 
 interface ArenaMatch {
@@ -52,40 +47,24 @@ interface MatchHistoryProps {
 }
 
 export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '' }) => {
-  const [riotId, setRiotId] = useState('');
+  const [gameName, setGameName] = useState('');
+  const [tagLine, setTagLine] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [account, setAccount] = useState<RiotAccount | null>(null);
-  const [matchHistory, setMatchHistory] = useState<MatchHistoryData | null>(null);
   const [arenaMatches, setArenaMatches] = useState<ArenaMatchesData | null>(null);
-  const [isFetchingMatches, setIsFetchingMatches] = useState(false);
-  const [isFetchingArenaDetails, setIsFetchingArenaDetails] = useState(false);
+  const [showInputs, setShowInputs] = useState(true);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (e?: React.FormEvent) => {
+    e?.preventDefault();
     
-    if (!riotId.trim()) {
-      setError('Please enter your Riot ID');
-      return;
-    }
-
-    // Validate format (should contain #)
-    if (!riotId.includes('#')) {
-      setError('Riot ID should be in format: GameName#TagLine');
-      return;
-    }
-
-    const [gameName, tagLine] = riotId.split('#');
     if (!gameName.trim() || !tagLine.trim()) {
-      setError('Both Game Name and Tag Line are required');
+      setError('Please enter both Game Name and Tag Line');
       return;
     }
 
     setIsLoading(true);
     setError(null);
-    setAccount(null);
-    setMatchHistory(null);
-    setArenaMatches(null);
 
     try {
       // Step 1: Get PUUID from Riot ID
@@ -105,15 +84,10 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '' }) =>
       if (!accountResponse.ok) {
         throw new Error(accountData.error || 'Failed to fetch account');
       }
-
-      // Log PUUID to console as requested
-      console.log('PUUID for', riotId, ':', accountData.account.puuid);
       
       setAccount(accountData.account);
       
-      // Step 2: Fetch match history using the PUUID
-      setIsFetchingMatches(true);
-      
+      // Step 2: Fetch match history
       const matchResponse = await fetch('/api/match-history', {
         method: 'POST',
         headers: {
@@ -121,8 +95,7 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '' }) =>
         },
         body: JSON.stringify({
           puuid: accountData.account.puuid,
-          count: 20, // Get last 20 matches to find Arena games
-          // queue: 1700, // Uncomment to filter only Arena matches at API level
+          count: 20,
         }),
       });
 
@@ -131,19 +104,9 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '' }) =>
       if (!matchResponse.ok) {
         throw new Error(matchData.error || 'Failed to fetch match history');
       }
-
-      console.log('Match IDs for', riotId, ':', matchData.matchIds);
-      setMatchHistory(matchData);
-      setIsFetchingMatches(false);
       
-      // Step 3: Fetch Arena match details only
+      // Step 3: Fetch Arena match details
       if (matchData.matchIds && matchData.matchIds.length > 0) {
-        setIsFetchingArenaDetails(true);
-        
-        console.log('=== REQUESTING ARENA MATCHES ===');
-        console.log('Match IDs to send:', matchData.matchIds);
-        console.log('Number of match IDs:', matchData.matchIds.length);
-        
         const arenaResponse = await fetch('/api/arena-matches', {
           method: 'POST',
           headers: {
@@ -151,22 +114,20 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '' }) =>
           },
           body: JSON.stringify({
             matchIds: matchData.matchIds,
-            maxMatches: 10, // Limit to avoid rate limits
+            maxMatches: 10,
           }),
         });
 
-        console.log('Arena API response status:', arenaResponse.status);
         const arenaData = await arenaResponse.json();
-        console.log('Arena API response data:', arenaData);
 
         if (!arenaResponse.ok) {
           throw new Error(arenaData.error || 'Failed to fetch Arena match details');
         }
 
-        console.log('Arena matches for', riotId, ':', arenaData.arenaMatches);
         setArenaMatches(arenaData);
+        setShowInputs(false);
       } else {
-        console.log('No match IDs to process for Arena matches');
+        throw new Error('No matches found for this account');
       }
       
     } catch (err) {
@@ -174,192 +135,238 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '' }) =>
       setError(err instanceof Error ? err.message : 'Failed to fetch data');
     } finally {
       setIsLoading(false);
-      setIsFetchingMatches(false);
-      setIsFetchingArenaDetails(false);
     }
   };
 
+  const handleRefresh = () => {
+    handleSubmit();
+  };
+
+  const handleBack = () => {
+    setShowInputs(true);
+    setArenaMatches(null);
+    setAccount(null);
+    setError(null);
+  };
+
+  const formatDate = (timestamp: number) => {
+    return new Date(timestamp).toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  };
+
+  const getPlacementColor = (placement: number) => {
+    if (placement === 1) return 'bg-yellow-400 text-yellow-900'; // Gold
+    if (placement <= 3) return 'bg-gray-300 text-gray-800'; // Silver/Bronze
+    return 'bg-gray-100 text-gray-600'; // Others
+  };
+
   return (
-    <div className={`bg-white rounded-xl shadow-sm border p-6 ${className}`}>
-      <div className="flex items-center gap-3 mb-4">
-        <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-          <span className="text-blue-600 text-sm">📊</span>
-        </div>
-        <h2 className="text-xl font-semibold text-gray-800">Match History</h2>
-      </div>
-      
-      <p className="text-gray-600 text-sm mb-4">
-        Enter your Riot ID to connect your League of Legends account and track your Arena match history.
-      </p>
-
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label htmlFor="riot-id" className="block text-sm font-medium text-gray-700 mb-2">
-            Riot ID
-          </label>
-          <input
-            id="riot-id"
-            type="text"
-            value={riotId}
-            onChange={(e) => setRiotId(e.target.value)}
-            placeholder="GameName#TagLine"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            disabled={isLoading}
-          />
-          <p className="text-xs text-gray-500 mt-1">
-            Example: Player#EUW or YourName#NA1
-          </p>
-        </div>
-
-        <motion.button
-          type="submit"
-          disabled={isLoading || isFetchingMatches || isFetchingArenaDetails}
-          className={`
-            w-full py-2 px-4 rounded-lg font-medium transition-all duration-200
-            ${isLoading || isFetchingMatches || isFetchingArenaDetails
-              ? 'bg-gray-400 cursor-not-allowed' 
-              : 'bg-blue-500 hover:bg-blue-600 active:scale-95'
-            }
-            text-white
-          `}
-          whileTap={!(isLoading || isFetchingMatches || isFetchingArenaDetails) ? { scale: 0.98 } : {}}
-        >
-          {isLoading ? (
-            <div className="flex items-center justify-center gap-2">
-              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-              Looking up account...
-            </div>
-          ) : isFetchingMatches ? (
-            <div className="flex items-center justify-center gap-2">
-              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-              Fetching match history...
-            </div>
-          ) : isFetchingArenaDetails ? (
-            <div className="flex items-center justify-center gap-2">
-              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-              Analyzing Arena matches...
-            </div>
-          ) : (
-            'Connect Account'
-          )}
-        </motion.button>
-      </form>
-
-      {/* Error Message */}
-      {error && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg"
-        >
-          <p className="text-red-600 text-sm">{error}</p>
-        </motion.div>
-      )}
-
-      {/* Account Information */}
-      {account && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg"
-        >
-          <h3 className="text-green-800 font-medium mb-2">Account Connected</h3>
-          <div className="text-sm text-green-700">
-            <p><strong>Riot ID:</strong> {account.gameName}#{account.tagLine}</p>
-            <p><strong>PUUID:</strong> <code className="bg-green-100 px-1 rounded text-xs">{account.puuid}</code></p>
-          </div>
-        </motion.div>
-      )}
-
-      {/* Match History */}
-      {matchHistory && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg"
-        >
-          <h3 className="text-blue-800 font-medium mb-2">
-            All Match History ({matchHistory.count} matches)
-          </h3>
-          <div className="space-y-2 max-h-48 overflow-y-auto">
-            {matchHistory.matchIds.map((matchId, index) => (
-              <div key={matchId} className="text-sm text-blue-700 bg-blue-100 p-2 rounded">
-                <span className="font-mono text-xs">{index + 1}. {matchId}</span>
+    <div className={`bg-white rounded-xl shadow-sm border ${className}`}>
+      <AnimatePresence mode="wait">
+        {showInputs ? (
+          <motion.div
+            key="inputs"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="p-6"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                <span className="text-blue-600 text-sm">🏟️</span>
               </div>
-            ))}
-          </div>
-          {matchHistory.count === 0 && (
-            <p className="text-blue-600 text-sm">No recent matches found for this account.</p>
-          )}
-        </motion.div>
-      )}
-
-      {/* Arena Matches */}
-      {arenaMatches && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mt-4 p-4 bg-purple-50 border border-purple-200 rounded-lg"
-        >
-          <h3 className="text-purple-800 font-medium mb-2">
-            🏟️ Arena Matches ({arenaMatches.arenaCount} of {arenaMatches.totalChecked} matches)
-          </h3>
-          <div className="space-y-3 max-h-64 overflow-y-auto">
-            {arenaMatches.arenaMatches.length > 0 ? (
-              arenaMatches.arenaMatches.map((match, index) => {
-                const userParticipant = match.info.participants.find(p => p.puuid === account?.puuid);
-                const matchDate = new Date(match.info.gameEndTimestamp).toLocaleDateString();
-                const matchDuration = Math.round(match.info.gameDuration / 60); // Convert to minutes
-                
-                return (
-                  <div key={match.metadata.matchId} className="bg-purple-100 p-3 rounded border">
-                    <div className="flex justify-between items-start mb-2">
-                      <div className="text-sm font-medium text-purple-800">
-                        Arena Match #{index + 1}
-                      </div>
-                      <div className="text-xs text-purple-600">{matchDate}</div>
-                    </div>
-                    
-                    {userParticipant && (
-                      <div className="text-sm text-purple-700 mb-2">
-                        <div className="flex items-center gap-2">
-                          <span className="font-medium">{userParticipant.championName}</span>
-                          <span className="bg-purple-200 px-2 py-1 rounded text-xs">
-                            Placement: #{userParticipant.placement}
-                          </span>
-                          {userParticipant.win && (
-                            <span className="bg-green-200 text-green-800 px-2 py-1 rounded text-xs">
-                              🏆 Win
-                            </span>
-                          )}
-                        </div>
-                      </div>
+              <h2 className="text-xl font-semibold text-gray-800">Arena Match History</h2>
+            </div>
+            
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <input
+                    type="text"
+                    value={gameName}
+                    onChange={(e) => setGameName(e.target.value)}
+                    placeholder="MamporreroDeHeca"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                    disabled={isLoading}
+                  />
+                </div>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={tagLine}
+                    onChange={(e) => setTagLine(e.target.value)}
+                    placeholder="8888"
+                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                    disabled={isLoading}
+                  />
+                  <button
+                    type="submit"
+                    disabled={isLoading}
+                    title={isLoading ? "Loading..." : "Search Arena matches"}
+                    className={`
+                      px-4 py-2 rounded-lg transition-all duration-200 flex items-center justify-center
+                      ${isLoading 
+                        ? 'bg-gray-400 cursor-not-allowed' 
+                        : 'bg-blue-500 hover:bg-blue-600 active:scale-95'
+                      }
+                      text-white
+                    `}
+                  >
+                    {isLoading ? (
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    ) : (
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
                     )}
-                    
-                    <div className="text-xs text-purple-600 grid grid-cols-2 gap-2">
-                      <span>Duration: {matchDuration}m</span>
-                      <span>Players: {match.info.participants.length}</span>
+                  </button>
+                </div>
+              </div>
+
+              {error && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="p-3 bg-red-50 border border-red-200 rounded-lg"
+                >
+                  <p className="text-red-600 text-sm">{error}</p>
+                </motion.div>
+              )}
+            </form>
+          </motion.div>
+        ) : (
+          <motion.div
+            key="matches"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="p-6"
+          >
+            {/* Header with navigation */}
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={handleBack}
+                  title="Go back to search"
+                  className="w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center justify-center transition-colors"
+                >
+                  <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <div>
+                  <h2 className="text-xl font-semibold text-gray-800">Arena Matches</h2>
+                  {account && (
+                    <p className="text-sm text-gray-600">{account.gameName}#{account.tagLine}</p>
+                  )}
+                </div>
+              </div>
+              
+              <button
+                onClick={handleRefresh}
+                disabled={isLoading}
+                title="Refresh match history"
+                className={`
+                  w-8 h-8 rounded-lg flex items-center justify-center transition-colors
+                  ${isLoading 
+                    ? 'bg-gray-100 cursor-not-allowed' 
+                    : 'bg-blue-100 hover:bg-blue-200'
+                  }
+                `}
+              >
+                {isLoading ? (
+                  <div className="w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+                ) : (
+                  <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
+                )}
+              </button>
+            </div>
+
+            {/* Match history horizontal scroll */}
+            {arenaMatches && (
+              <div className="overflow-x-auto pb-2">
+                <div className="flex gap-3 min-w-max">
+                  {arenaMatches.arenaMatches.length > 0 ? (
+                    arenaMatches.arenaMatches.map((match, index) => {
+                      const userParticipant = match.info.participants.find(p => p.puuid === account?.puuid);
+                      const matchDate = formatDate(match.info.gameEndTimestamp);
+                      
+                      if (!userParticipant) return null;
+                      
+                      return (
+                        <motion.div
+                          key={match.metadata.matchId}
+                          initial={{ opacity: 0, x: 20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.1 }}
+                          className="flex-shrink-0 relative group"
+                          title={`${userParticipant.championName} - ${matchDate} - Placement #${userParticipant.placement}`}
+                        >
+                          <div className="w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 relative">
+                            <Image
+                              src={`https://ddragon.leagueoflegends.com/cdn/14.1.1/img/champion/${userParticipant.championName}.png`}
+                              alt={userParticipant.championName}
+                              width={64}
+                              height={64}
+                              className="w-full h-full object-cover"
+                              onError={(e) => {
+                                // Fallback to a placeholder if image fails to load
+                                e.currentTarget.src = `https://via.placeholder.com/64x64/6b7280/ffffff?text=${userParticipant.championName.charAt(0)}`;
+                              }}
+                            />
+                            
+                            {/* Placement badge */}
+                            <div className={`
+                              absolute -top-1 -right-1 w-6 h-6 rounded-full text-xs font-bold
+                              flex items-center justify-center border-2 border-white
+                              ${getPlacementColor(userParticipant.placement)}
+                            `}>
+                              {userParticipant.placement}
+                            </div>
+                            
+                            {/* Win indicator */}
+                            {userParticipant.win && (
+                              <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white flex items-center justify-center">
+                                <span className="text-white text-xs">👑</span>
+                              </div>
+                            )}
+                          </div>
+                          
+                          {/* Tooltip on hover */}
+                          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10">
+                            {matchDate}
+                          </div>
+                        </motion.div>
+                      );
+                    })
+                  ) : (
+                    <div className="flex items-center justify-center py-8 text-gray-500 w-full">
+                      <div className="text-center">
+                        <div className="text-4xl mb-2">🏟️</div>
+                        <p className="text-sm">No Arena matches found</p>
+                      </div>
                     </div>
-                    
-                    <details className="mt-2">
-                      <summary className="text-xs text-purple-600 cursor-pointer hover:text-purple-800">
-                        Match ID
-                      </summary>
-                      <code className="text-xs bg-purple-200 p-1 rounded block mt-1">
-                        {match.metadata.matchId}
-                      </code>
-                    </details>
-                  </div>
-                );
-              })
-            ) : (
-              <p className="text-purple-600 text-sm">
-                No Arena matches found in recent match history.
+                  )}
+                </div>
+              </div>
+            )}
+            
+            {arenaMatches && arenaMatches.arenaMatches.length > 0 && (
+              <p className="text-xs text-gray-500 mt-3 text-center">
+                Found {arenaMatches.arenaCount} Arena matches from {arenaMatches.totalChecked} recent games
               </p>
             )}
-          </div>
-        </motion.div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
