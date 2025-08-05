@@ -39,7 +39,7 @@ export const ProgressCounter: React.FC<ProgressCounterProps> = ({ champions }) =
               className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 h-8 rounded-full transition-all duration-500 ease-out shadow-sm"
             />
             <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-sm font-bold text-gray-800">
+              <span className="text-md mt-1 font-bold text-gray-800">
                 {winPercentage}%
               </span>
             </div>
