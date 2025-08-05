@@ -1,70 +1,30 @@
 "use client"
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 
 interface ClearAllButtonProps {
-  isClearing: boolean;
-  progress: number;
-  onStart: () => void;
-  onStop: () => void;
+  onClick: () => void;
   className?: string;
 }
 
 export const ClearAllButton: React.FC<ClearAllButtonProps> = ({
-  isClearing,
-  progress,
-  onStart,
-  onStop,
+  onClick,
   className = ''
 }) => {
-  const buttonRef = useRef<HTMLDivElement>(null);
-
-  // Handle touch events for mobile
-  useEffect(() => {
-    const button = buttonRef.current;
-    if (!button) return;
-
-    const handleContextMenu = (e: Event) => e.preventDefault();
-    button.addEventListener('contextmenu', handleContextMenu);
-
-    return () => {
-      button.removeEventListener('contextmenu', handleContextMenu);
-    };
-  }, []);
-
   return (
-    <div
-      ref={buttonRef}
+    <button
+      onClick={onClick}
       className={`
-        relative overflow-hidden cursor-pointer select-none
         flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium
         transition-all duration-200 group
-        ${isClearing 
-          ? 'bg-red-600 text-white border-red-700' 
-          : 'bg-red-50 text-red-600 border-red-200 hover:bg-red-100'
-        }
+        bg-red-50 text-red-600 border-red-200 hover:bg-red-100
         border-2 whitespace-nowrap
+        focus:outline-none focus:ring-2 focus:ring-red-300
         ${className}
       `}
-      onMouseDown={onStart}
-      onMouseUp={onStop}
-      onMouseLeave={onStop}
-      onTouchStart={onStart}
-      onTouchEnd={onStop}
-      title="Hold to clear all selections"
+      title="Clear all selections"
     >
       <span>🗑️</span>
-      <span>{isClearing ? 'Clearing...' : 'Clear All'}</span>
-      
-      {/* Progress bar */}
-      <div 
-        className={`
-          absolute bottom-0 left-0 h-1 transition-all duration-100 rounded-b-md
-          ${isClearing ? 'bg-white/80' : 'bg-red-600'}
-        `}
-        style={{
-          width: `${Math.min(Math.max(progress, 0), 100)}%`
-        }}
-      />
+      <span>Clear All</span>
       
       {/* Tooltip */}
       <div className="
@@ -73,9 +33,9 @@ export const ClearAllButton: React.FC<ClearAllButtonProps> = ({
         opacity-0 group-hover:opacity-100 transition-opacity duration-300
         pointer-events-none z-50
       ">
-        Hold to clear all selections
+        Clear all champion selections
         <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-700" />
       </div>
-    </div>
+    </button>
   );
 };

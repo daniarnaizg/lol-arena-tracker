@@ -1,8 +1,9 @@
 "use client"
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import confetti from 'canvas-confetti';
 import { ControlPanel } from './ControlPanel';
 import { ChampionsGridDisplay } from './ChampionsGridDisplay';
+import { ConfirmationModal } from './ui/ConfirmationModal';
 import { FilterType } from './ui/FilterButtons';
 import { ChampionChecklist } from './ui/CheckboxButton';
 import { championService } from '@/services/championService';
@@ -21,10 +22,7 @@ const ChampionsGrid = ({ search }: ChampionsGridProps) => {
   const [filter, setFilter] = useState<FilterType>('all');
   const [columns, setColumns] = useState(DEFAULT_COLUMNS);
   const [effectsEnabled, setEffectsEnabled] = useState(true);
-  const [isPressingClear, setIsPressingClear] = useState(false);
-  const [clearProgress, setClearProgress] = useState(0);
-  const clearTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const progressIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const [showClearModal, setShowClearModal] = useState(false);
 
   useEffect(() => {
     // Load champions using the new service
@@ -103,55 +101,18 @@ const ChampionsGrid = ({ search }: ChampionsGridProps) => {
     return () => clearInterval(intervalId);
   }, []);
 
-  const startClearPress = () => {
-    setIsPressingClear(true);
-    setClearProgress(0);
-    
-    const TOTAL_DURATION = 2000; // 2 seconds for better UX
-    const INTERVAL = 40; // 40ms intervals for smoother animation
-    const INCREMENT = (100 / TOTAL_DURATION) * INTERVAL; // Calculate increment for smooth progress
-    
-    // Start progress animation
-    progressIntervalRef.current = setInterval(() => {
-      setClearProgress(prev => {
-        const newProgress = prev + INCREMENT;
-        if (newProgress >= 100) {
-          clearInterval(progressIntervalRef.current!);
-          return 100;
-        }
-        return newProgress;
-      });
-    }, INTERVAL);
-    
-    // Execute clear after the full duration
-    clearTimeoutRef.current = setTimeout(() => {
-      clearAllSelections();
-      stopClearPress();
-    }, TOTAL_DURATION);
+  const handleClearAllClick = () => {
+    setShowClearModal(true);
   };
 
-  const stopClearPress = () => {
-    setIsPressingClear(false);
-    setClearProgress(0);
-    
-    if (clearTimeoutRef.current) {
-      clearTimeout(clearTimeoutRef.current);
-      clearTimeoutRef.current = null;
-    }
-    
-    if (progressIntervalRef.current) {
-      clearInterval(progressIntervalRef.current);
-      progressIntervalRef.current = null;
-    }
+  const handleClearConfirm = () => {
+    clearAllSelections();
+    setShowClearModal(false);
   };
 
-  // Cleanup on unmount
-  useEffect(() => {
-    return () => {
-      if (clearTimeoutRef.current) clearTimeout(clearTimeoutRef.current);
-      if (progressIntervalRef.current) clearInterval(progressIntervalRef.current);
-    };
-  }, []);
+  const handleClearCancel = () => {
+    setShowClearModal(false);
+  };
 
   const handleChecklistChange = (id: number, key: keyof ChampionChecklist, elementRef?: HTMLElement) => {
     setChampions(prev =>
@@ -198,10 +159,7 @@ const ChampionsGrid = ({ search }: ChampionsGridProps) => {
         onColumnsChange={setColumns}
         effectsEnabled={effectsEnabled}
         onEffectsToggle={() => setEffectsEnabled(!effectsEnabled)}
-        isClearing={isPressingClear}
-        clearProgress={clearProgress}
-        onClearStart={startClearPress}
-        onClearStop={stopClearPress}
+        onClearAll={handleClearAllClick}
         currentFilter={filter}
         onFilterChange={setFilter}
       />
@@ -211,6 +169,16 @@ const ChampionsGrid = ({ search }: ChampionsGridProps) => {
         columns={columns}
         onChecklistChange={handleChecklistChange}
         effectsEnabled={effectsEnabled}
+      />
+
+      <ConfirmationModal
+        isOpen={showClearModal}
+        title="Clear All Selections"
+        message="Are you sure you want to clear all champion selections? This action cannot be undone and will reset all champion progress data."
+        confirmText="Clear All"
+        cancelText="Cancel"
+        onConfirm={handleClearConfirm}
+        onCancel={handleClearCancel}
       />
     </section>
   );

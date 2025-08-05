@@ -17,10 +17,7 @@ interface ControlPanelProps {
   onEffectsToggle: () => void;
   
   // Clear all functionality
-  isClearing: boolean;
-  clearProgress: number;
-  onClearStart: () => void;
-  onClearStop: () => void;
+  onClearAll: () => void;
   
   // Filter controls
   currentFilter: FilterType;
@@ -36,10 +33,7 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
   onColumnsChange,
   effectsEnabled,
   onEffectsToggle,
-  isClearing,
-  clearProgress,
-  onClearStart,
-  onClearStop,
+  onClearAll,
   currentFilter,
   onFilterChange,
   className = ''
@@ -63,10 +57,7 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
           />
           
           <ClearAllButton
-            isClearing={isClearing}
-            progress={clearProgress}
-            onStart={onClearStart}
-            onStop={onClearStop}
+            onClick={onClearAll}
           />
         </div>
       </div>
