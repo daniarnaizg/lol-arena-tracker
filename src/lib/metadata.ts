@@ -20,7 +20,7 @@ export const SITE_CONFIG = {
     "Champion Synergies",
     "Riot Games",
     "Gaming Tracker"
-  ] as const
+  ]
 } as const;
 
 // For backward compatibility

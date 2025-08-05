@@ -1,10 +1,10 @@
 import React from 'react';
-import { siteConfig } from '@/lib/metadata';
+import { SITE_CONFIG } from '@/lib/metadata';
 
 interface SEOProps {
   title?: string;
   description?: string;
-  keywords?: string[];
+  keywords?: readonly string[];
   canonical?: string;
   ogImage?: string;
   noIndex?: boolean;
@@ -12,23 +12,23 @@ interface SEOProps {
 }
 
 export function SEOHead({
-  title = siteConfig.title,
-  description = siteConfig.description,
-  keywords = siteConfig.keywords,
+  title = SITE_CONFIG.title,
+  description = SITE_CONFIG.description,
+  keywords = SITE_CONFIG.keywords,
   canonical,
-  ogImage = siteConfig.ogImage,
+  ogImage = SITE_CONFIG.ogImage,
   noIndex = false,
   structuredData,
 }: SEOProps) {
-  const fullTitle = title.includes(siteConfig.name) ? title : `${title} | ${siteConfig.name}`;
-  const canonicalUrl = canonical || siteConfig.url;
+  const fullTitle = title.includes(SITE_CONFIG.name) ? title : `${title} | ${SITE_CONFIG.name}`;
+  const canonicalUrl = canonical || SITE_CONFIG.url;
 
   return (
     <>
       {/* Basic Meta Tags */}
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
-      <meta name="keywords" content={keywords.join(', ')} />
+      <meta name="keywords" content={[...keywords].join(', ')} />
       
       {/* Canonical URL */}
       <link rel="canonical" href={canonicalUrl} />
@@ -39,24 +39,24 @@ export function SEOHead({
       <meta property="og:image" content={ogImage} />
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:type" content="website" />
-      <meta property="og:site_name" content={siteConfig.name} />
+      <meta property="og:site_name" content={SITE_CONFIG.name} />
       
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
-      <meta name="twitter:creator" content={siteConfig.creator} />
+      <meta name="twitter:creator" content={SITE_CONFIG.creator} />
       
       {/* Robots */}
       <meta name="robots" content={noIndex ? 'noindex,nofollow' : 'index,follow'} />
       <meta name="googlebot" content={noIndex ? 'noindex,nofollow' : 'index,follow'} />
       
       {/* Additional SEO tags */}
-      <meta name="author" content={siteConfig.creator.replace('@', '')} />
-      <meta name="creator" content={siteConfig.creator} />
-      <meta name="publisher" content={siteConfig.name} />
-      <meta name="application-name" content={siteConfig.name} />
+      <meta name="author" content={SITE_CONFIG.creator.replace('@', '')} />
+      <meta name="creator" content={SITE_CONFIG.creator} />
+      <meta name="publisher" content={SITE_CONFIG.name} />
+      <meta name="application-name" content={SITE_CONFIG.name} />
       
       {/* Structured Data */}
       {structuredData && (
@@ -75,9 +75,9 @@ export function SEOHead({
 export const getWebApplicationSchema = () => ({
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": siteConfig.name,
-  "description": siteConfig.description,
-  "url": siteConfig.url,
+  "name": SITE_CONFIG.name,
+  "description": SITE_CONFIG.description,
+  "url": SITE_CONFIG.url,
   "applicationCategory": "GameApplication",
   "operatingSystem": "Web Browser",
   "offers": {
@@ -87,9 +87,9 @@ export const getWebApplicationSchema = () => ({
   },
   "author": {
     "@type": "Person",
-    "name": siteConfig.creator.replace('@', '')
+    "name": SITE_CONFIG.creator.replace('@', '')
   },
-  "screenshot": siteConfig.ogImage,
+  "screenshot": SITE_CONFIG.ogImage,
   "featureList": [
     "Champion progress tracking",
     "Match history analysis", 
