@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Image from 'next/image';
+import { ArenaMatchCard } from './ui/ArenaMatchCard';
 
 interface RiotAccount {
   puuid: string;
@@ -54,6 +54,7 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '' }) =>
   const [account, setAccount] = useState<RiotAccount | null>(null);
   const [arenaMatches, setArenaMatches] = useState<ArenaMatchesData | null>(null);
   const [showInputs, setShowInputs] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const handleSubmit = async (e?: React.FormEvent) => {
     e?.preventDefault();
@@ -156,14 +157,8 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '' }) =>
     });
   };
 
-  const getPlacementColor = (placement: number) => {
-    if (placement === 1) return 'bg-yellow-400 text-yellow-900'; // Gold
-    if (placement <= 3) return 'bg-gray-300 text-gray-800'; // Silver/Bronze
-    return 'bg-gray-100 text-gray-600'; // Others
-  };
-
   return (
-    <div className={`rounded-xl shadow-sm bg-[#1f2e4e] ${className}`}>
+    <div className={`rounded-xl shadow-sm bg-slate-800 ${className}`}>
       <AnimatePresence mode="wait">
         {showInputs ? (
           <motion.div
@@ -172,71 +167,97 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '' }) =>
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="p-6"
+            className={`p-6 ${!isExpanded ? 'pb-6' : ''}`}
           >
-            <div className="flex items-center gap-3 mb-4">
-              <div>
+            <div className={`flex items-center justify-between ${isExpanded ? 'mb-4' : ''}`}>
+              <div className="flex items-center gap-3">
                 <h2 className="text-xl font-semibold text-gray-300">MATCH HISTORY</h2>
               </div>
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                title={isExpanded ? "Minimize section" : "Expand section"}
+                className="w-8 h-8 bg-gray-700 hover:bg-gray-600 rounded-lg flex items-center justify-center transition-colors"
+              >
+                <svg 
+                  className={`w-4 h-4 text-gray-300 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
             </div>
             
-            <form onSubmit={handleSubmit} className="space-y-4 min-h-[120px] flex flex-col justify-center">
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="sr-only">Game Name</label>
-                  <input
-                    type="text"
-                    value={gameName}
-                    onChange={(e) => setGameName(e.target.value.toUpperCase())}
-                    placeholder="MAMPORRERODEHECA"
-                    className="w-full h-12 px-4 py-2 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm uppercase"
-                    disabled={isLoading}
-                  />
-                </div>
-                <div className="flex gap-2">
-                  <label className="sr-only">Tag Line</label>
-                  <input
-                    type="text"
-                    value={tagLine}
-                    onChange={(e) => setTagLine(e.target.value.toUpperCase())}
-                    placeholder="8888"
-                    className="flex-1 px-4 py-2 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm uppercase"
-                    disabled={isLoading}
-                  />
-                  <button
-                    type="submit"
-                    disabled={isLoading}
-                    title={isLoading ? "Loading..." : "Search Arena matches"}
-                    className={`
-                      px-4 py-2 rounded-lg transition-all duration-200 flex items-center justify-center
-                      ${isLoading 
-                        ? 'bg-gray-400 cursor-not-allowed' 
-                        : 'bg-blue-500 hover:bg-blue-600 active:scale-95'
-                      }
-                      text-white
-                    `}
-                  >
-                    {isLoading ? (
-                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                    ) : (
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    )}
-                  </button>
-                </div>
-              </div>
+            <motion.div
+              initial={false}
+              animate={{ 
+                height: isExpanded ? "auto" : 0,
+                opacity: isExpanded ? 1 : 0
+              }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="overflow-hidden"
+            >
+              <div className="pt-4">
+                <form onSubmit={handleSubmit} className="space-y-4 min-h-[90px] flex flex-col justify-center">
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="sr-only">Game Name</label>
+                      <input
+                        type="text"
+                        value={gameName}
+                        onChange={(e) => setGameName(e.target.value.toUpperCase())}
+                        placeholder="MAMPORRERODEHECA"
+                        className="w-full h-12 px-4 py-2 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm uppercase"
+                        disabled={isLoading}
+                      />
+                    </div>
+                    <div className="flex gap-2">
+                      <label className="sr-only">Tag Line</label>
+                      <input
+                        type="text"
+                        value={tagLine}
+                        onChange={(e) => setTagLine(e.target.value.toUpperCase())}
+                        placeholder="8888"
+                        className="flex-1 px-4 py-2 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm uppercase"
+                        disabled={isLoading}
+                      />
+                      <button
+                        type="submit"
+                        disabled={isLoading}
+                        title={isLoading ? "Loading..." : "Search Arena matches"}
+                        className={`
+                          px-4 py-2 rounded-lg transition-all duration-200 flex items-center justify-center
+                          ${isLoading 
+                            ? 'bg-gray-400 cursor-not-allowed' 
+                            : 'bg-blue-500 hover:bg-blue-600 active:scale-95'
+                          }
+                          text-white
+                        `}
+                      >
+                        {isLoading ? (
+                          <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                        ) : (
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        )}
+                      </button>
+                    </div>
+                  </div>
 
-              {error && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="p-3 bg-red-50 border border-red-200 rounded-lg"
-                >
-                  <p className="text-red-600 text-sm">{error}</p>
-                </motion.div>
-              )}
-            </form>
+                  {error && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="p-3 bg-red-50 border border-red-200 rounded-lg"
+                    >
+                      <p className="text-red-600 text-sm">{error}</p>
+                    </motion.div>
+                  )}
+                </form>
+              </div>
+            </motion.div>
           </motion.div>
         ) : (
           <motion.div
@@ -255,14 +276,14 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '' }) =>
                   title="Go back to search"
                   className="w-8 h-8 bg-gray-700 hover:bg-gray-200 rounded-lg flex items-center justify-center transition-colors"
                 >
-                  <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
                 </button>
-                <div className="flex items-center gap-6">
-                  <h2 className="text-xl font-semibold text-gray-300">Arena Matches</h2>
+                <div className="flex items-center gap-4">
+                  <h2 className="text-xl font-bold text-gray-300">LAST ARENA MATCHES</h2>
                   {account && (
-                    <p className="text-sm text-gray-200">{account.gameName}#{account.tagLine}</p>
+                    <p className="text-m font-semibold text-gray-500 uppercase">{account.gameName}#{account.tagLine}</p>
                   )}
                 </div>
               </div>
@@ -291,7 +312,7 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '' }) =>
 
             {/* Match history horizontal scroll */}
             {arenaMatches && (
-              <div className="overflow-x-auto pb-2 min-h-[120px]">
+                <div className="overflow-x-auto flex items-center min-h-[90px]">
                 <div className="flex gap-3 min-w-max">
                   {arenaMatches.arenaMatches.length > 0 ? (
                     arenaMatches.arenaMatches.map((match, index) => {
@@ -301,49 +322,19 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '' }) =>
                       if (!userParticipant) return null;
                       
                       return (
-                        <motion.div
+                        <ArenaMatchCard
                           key={match.metadata.matchId}
-                          initial={{ opacity: 0, x: 20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: index * 0.1 }}
-                          className="flex-shrink-0 relative group"
-                          title={`#${userParticipant.placement} - ${userParticipant.championName} - ${matchDate}`}
-                        >
-                          <div className="w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 relative">
-                            <Image
-                              src={`https://ddragon.leagueoflegends.com/cdn/14.1.1/img/champion/${userParticipant.championName}.png`}
-                              alt={userParticipant.championName}
-                              width={64}
-                              height={64}
-                              className="w-full h-full object-cover"
-                              onError={(e) => {
-                                // Fallback to a placeholder if image fails to load
-                                e.currentTarget.src = `https://via.placeholder.com/64x64/6b7280/ffffff?text=${userParticipant.championName.charAt(0)}`;
-                              }}
-                            />
-                            
-                            {/* Placement badge - positioned inside the image */}
-                            <div className={`
-                              absolute top-1 right-1 w-6 h-6 rounded-full text-xs font-bold
-                              flex items-center justify-center border-2 border-white
-                              ${getPlacementColor(userParticipant.placement)}
-                            `}>
-                              {userParticipant.placement}
-                            </div>
-                          </div>
-                          
-                          {/* Tooltip on hover */}
-                          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10">
-                            #{userParticipant.placement} - {userParticipant.championName} - {matchDate}
-                          </div>
-                        </motion.div>
+                          championName={userParticipant.championName}
+                          placement={userParticipant.placement}
+                          matchDate={matchDate}
+                          index={index}
+                        />
                       );
                     })
                   ) : (
                     <div className="flex items-center justify-center py-8 text-gray-500 w-full">
                       <div className="text-center">
-                        <div className="text-4xl mb-2">🏟️</div>
-                        <p className="text-sm">No Arena matches found</p>
+                        <p className="text-sm">No Arena matches found in the last 20 games</p>
                       </div>
                     </div>
                   )}
