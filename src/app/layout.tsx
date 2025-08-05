@@ -16,6 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = defaultMetadata;
+export const metadata = defaultMetadata;
 
 export default function RootLayout({
   children,
@@ -24,6 +25,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Additional meta tags */}
+        <meta name="theme-color" content="#0f172a" />
+        <meta name="color-scheme" content="dark light" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+        
+        {/* Preconnect to external domains for better performance */}
+        <link rel="preconnect" href="https://ddragon.leagueoflegends.com" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        
+        {/* Structured Data for Gaming Application */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(generateWebApplicationSchema())
+          }}
+        />
+      </head>
       <head>
         {/* Additional meta tags */}
         <meta name="theme-color" content="#0f172a" />
