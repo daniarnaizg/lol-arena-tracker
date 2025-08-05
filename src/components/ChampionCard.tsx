@@ -3,13 +3,8 @@ import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { CheckboxButton, ChampionChecklist } from './ui/CheckboxButton';
-
-export interface Champion {
-  id: number;
-  name: string;
-  imageKey: string;
-  checklist: ChampionChecklist;
-}
+import { Champion, ddragonService } from '@/services/ddragon';
+import { championService } from '@/services/championService';
 
 interface ChampionCardProps {
   champion: Champion;
@@ -54,8 +49,9 @@ export const ChampionCard: React.FC<ChampionCardProps> = ({
   onChecklistChange,
   effectsEnabled = true
 }) => {
+  const currentVersion = championService.getCurrentVersion();
   const imgUrl = champion.imageKey
-    ? `https://ddragon.leagueoflegends.com/cdn/15.14.1/img/champion/${champion.imageKey}.png`
+    ? ddragonService.getChampionImageUrlSync(champion.imageKey, currentVersion || undefined)
     : '';
   
   const checklist = champion.checklist || { played: false, top4: false, win: false };

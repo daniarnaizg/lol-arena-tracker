@@ -3,14 +3,8 @@ import React from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { ChampionCard } from './ChampionCard';
 import { ChampionChecklist } from './ui/CheckboxButton';
+import { Champion } from '@/services/ddragon';
 import styles from './ChampionsGridDisplay.module.css';
-
-export interface Champion {
-  id: number;
-  name: string;
-  imageKey: string;
-  checklist: ChampionChecklist;
-}
 
 interface ChampionsGridDisplayProps {
   champions: Champion[];

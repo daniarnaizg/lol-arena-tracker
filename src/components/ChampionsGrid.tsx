@@ -5,13 +5,8 @@ import { ControlPanel } from './ControlPanel';
 import { ChampionsGridDisplay } from './ChampionsGridDisplay';
 import { FilterType } from './ui/FilterButtons';
 import { ChampionChecklist } from './ui/CheckboxButton';
-
-export interface Champion {
-  id: number;
-  name: string;
-  imageKey: string;
-  checklist: ChampionChecklist;
-}
+import { championService } from '@/services/championService';
+import { Champion } from '@/services/ddragon';
 
 interface ChampionsGridProps {
   search: string;
@@ -32,26 +27,25 @@ const ChampionsGrid = ({ search }: ChampionsGridProps) => {
   const progressIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    // Load champions from localStorage or fallback to static json
-    const saved = localStorage.getItem('champions');
-    if (saved) {
-      setChampions(JSON.parse(saved));
-    } else {
-      fetch('/api/champions')
-        .then(res => res.json())
-        .then(data => {
-          // Migrate old status to new checklist if needed
-          setChampions(data.map((champ: Champion) => ({
-            ...champ,
-            checklist: champ.checklist || { played: false, top4: false, win: false },
-          })));
-        });
-    }
+    // Load champions using the new service
+    const loadChampions = async () => {
+      try {
+        const championsData = await championService.getChampions();
+        setChampions(championsData);
+      } catch (error) {
+        console.error('Failed to load champions:', error);
+        // Fallback to empty array or show error message
+        setChampions([]);
+      }
+    };
+
+    loadChampions();
   }, []);
 
   useEffect(() => {
     if (champions.length > 0) {
-      localStorage.setItem('champions', JSON.stringify(champions));
+      // Update champion progress using the service
+      championService.updateChampionProgress(champions);
     }
   }, [champions]);
 
@@ -86,6 +80,28 @@ const ChampionsGrid = ({ search }: ChampionsGridProps) => {
       }))
     );
   };
+
+  // Automatic refresh every minute
+  useEffect(() => {
+    const refreshChampions = async () => {
+      try {
+        // Check every minute, but with a shorter cache time (5 minutes = 300000ms)
+        // This allows for fresh data while not being too aggressive with API calls
+        const FIVE_MINUTES = 5 * 60 * 1000;
+        const refreshedChampions = await championService.getChampions(false, FIVE_MINUTES);
+        setChampions(refreshedChampions);
+        console.log('Champions data auto-refreshed successfully');
+      } catch (error) {
+        console.error('Failed to auto-refresh champions:', error);
+      }
+    };
+
+    // Set up interval for automatic refresh every minute (60000ms)
+    const intervalId = setInterval(refreshChampions, 60000);
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(intervalId);
+  }, []);
 
   const startClearPress = () => {
     setIsPressingClear(true);
