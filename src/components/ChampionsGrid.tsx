@@ -23,6 +23,7 @@ const ChampionsGrid = ({ search }: ChampionsGridProps) => {
   const [effectsEnabled, setEffectsEnabled] = useState(true);
   const [isPressingClear, setIsPressingClear] = useState(false);
   const [clearProgress, setClearProgress] = useState(0);
+  const [isRefreshing, setIsRefreshing] = useState(false);
   const clearTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const progressIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -102,6 +103,19 @@ const ChampionsGrid = ({ search }: ChampionsGridProps) => {
     // Cleanup interval on component unmount
     return () => clearInterval(intervalId);
   }, []);
+
+  const handleRefresh = async () => {
+    setIsRefreshing(true);
+    try {
+      const refreshedChampions = await championService.refreshChampions();
+      setChampions(refreshedChampions);
+      console.log('Champions data manually refreshed successfully');
+    } catch (error) {
+      console.error('Failed to manually refresh champions:', error);
+    } finally {
+      setIsRefreshing(false);
+    }
+  };
 
   const startClearPress = () => {
     setIsPressingClear(true);
@@ -190,7 +204,7 @@ const ChampionsGrid = ({ search }: ChampionsGridProps) => {
   });
 
   return (
-    <section className="flex-1 w-full max-w-7xl mx-auto p-6">
+    <section className="flex-1 w-full">
       <ControlPanel
         columns={columns}
         minColumns={MIN_COLUMNS}
@@ -202,6 +216,8 @@ const ChampionsGrid = ({ search }: ChampionsGridProps) => {
         clearProgress={clearProgress}
         onClearStart={startClearPress}
         onClearStop={stopClearPress}
+        isRefreshing={isRefreshing}
+        onRefresh={handleRefresh}
         currentFilter={filter}
         onFilterChange={setFilter}
       />
