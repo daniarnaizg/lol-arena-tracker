@@ -163,7 +163,7 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '' }) =>
   };
 
   return (
-    <div className={`bg-white rounded-xl shadow-sm border ${className}`}>
+    <div className={`rounded-xl shadow-sm bg-[#1f2e4e] ${className}`}>
       <AnimatePresence mode="wait">
         {showInputs ? (
           <motion.div
@@ -175,34 +175,32 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '' }) =>
             className="p-6"
           >
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-                <span className="text-blue-600 text-sm">🏟️</span>
-              </div>
               <div>
-                <h2 className="text-xl font-semibold text-gray-800">Arena Match History</h2>
-                <p className="text-sm text-gray-600">Enter your Riot ID to view your Arena matches</p>
+                <h2 className="text-xl font-semibold text-gray-300">MATCH HISTORY</h2>
               </div>
             </div>
             
             <form onSubmit={handleSubmit} className="space-y-4 min-h-[120px] flex flex-col justify-center">
               <div className="grid grid-cols-2 gap-3">
                 <div>
+                  <label className="sr-only">Game Name</label>
                   <input
                     type="text"
                     value={gameName}
                     onChange={(e) => setGameName(e.target.value.toUpperCase())}
-                    placeholder="MAMPORRERODHECA"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm uppercase"
+                    placeholder="MAMPORRERODEHECA"
+                    className="w-full h-12 px-4 py-2 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm uppercase"
                     disabled={isLoading}
                   />
                 </div>
                 <div className="flex gap-2">
+                  <label className="sr-only">Tag Line</label>
                   <input
                     type="text"
                     value={tagLine}
                     onChange={(e) => setTagLine(e.target.value.toUpperCase())}
                     placeholder="8888"
-                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm uppercase"
+                    className="flex-1 px-4 py-2 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm uppercase"
                     disabled={isLoading}
                   />
                   <button
@@ -255,16 +253,16 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '' }) =>
                 <button
                   onClick={handleBack}
                   title="Go back to search"
-                  className="w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center justify-center transition-colors"
+                  className="w-8 h-8 bg-gray-700 hover:bg-gray-200 rounded-lg flex items-center justify-center transition-colors"
                 >
                   <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
                 </button>
-                <div>
-                  <h2 className="text-xl font-semibold text-gray-800">Arena Matches</h2>
+                <div className="flex items-center gap-6">
+                  <h2 className="text-xl font-semibold text-gray-300">Arena Matches</h2>
                   {account && (
-                    <p className="text-sm text-gray-600">{account.gameName}#{account.tagLine}</p>
+                    <p className="text-sm text-gray-200">{account.gameName}#{account.tagLine}</p>
                   )}
                 </div>
               </div>
@@ -276,15 +274,15 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '' }) =>
                 className={`
                   w-8 h-8 rounded-lg flex items-center justify-center transition-colors
                   ${isLoading 
-                    ? 'bg-gray-100 cursor-not-allowed' 
-                    : 'bg-blue-100 hover:bg-blue-200'
+                    ? 'bg-blue-500 cursor-not-allowed' 
+                    : 'bg-gray-700 hover:bg-blue-200'
                   }
                 `}
               >
                 {isLoading ? (
-                  <div className="w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+                  <div className="w-4 h-4 border-2 border-blue-200 border-t-transparent rounded-full animate-spin" />
                 ) : (
-                  <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                   </svg>
                 )}
