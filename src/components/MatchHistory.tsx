@@ -159,7 +159,7 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
   };
 
   return (
-    <div className={`rounded-xl shadow-sm bg-slate-800 ${className}`}>
+    <div className={`rounded-xl shadow-sm bg-slate-900 ${className}`}>
       <AnimatePresence mode="wait">
         {showInputs ? (
           <motion.div

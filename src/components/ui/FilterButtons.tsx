@@ -110,7 +110,7 @@ export const FilterButtons: React.FC<FilterButtonsProps> = ({
         `}
         onClick={() => handleFilterClick(option.key)}
         type="button"
-        aria-pressed={isActive ? "true" : "false"}
+        aria-pressed={isActive}
       >
         {option.label}
       </button>
