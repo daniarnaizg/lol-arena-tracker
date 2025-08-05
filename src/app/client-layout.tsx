@@ -10,7 +10,6 @@ import { normalizeChampionName } from '@/utils/championUtils';
 import { Champion } from '@/services/ddragon';
 import { championService } from '@/services/championService';
 import { ROUTES, type RouteValue } from '@/lib/constants';
-import { Analytics } from "@vercel/analytics/next"
 
 interface ClientLayoutProps {
   children: React.ReactNode;
@@ -79,7 +78,6 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
         />
       </main>
       <Footer />
-      <Analytics />
       {children}
     </>
   );
