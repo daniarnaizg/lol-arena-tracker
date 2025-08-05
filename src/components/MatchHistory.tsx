@@ -151,10 +151,8 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '' }) =>
 
   const formatDate = (timestamp: number) => {
     return new Date(timestamp).toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
+      day: '2-digit',
+      month: 'short'
     });
   };
 
@@ -180,18 +178,21 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '' }) =>
               <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
                 <span className="text-blue-600 text-sm">🏟️</span>
               </div>
-              <h2 className="text-xl font-semibold text-gray-800">Arena Match History</h2>
+              <div>
+                <h2 className="text-xl font-semibold text-gray-800">Arena Match History</h2>
+                <p className="text-sm text-gray-600">Enter your Riot ID to view your Arena matches</p>
+              </div>
             </div>
             
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4 min-h-[120px] flex flex-col justify-center">
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <input
                     type="text"
                     value={gameName}
-                    onChange={(e) => setGameName(e.target.value)}
-                    placeholder="MamporreroDeHeca"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                    onChange={(e) => setGameName(e.target.value.toUpperCase())}
+                    placeholder="MAMPORRERODHECA"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm uppercase"
                     disabled={isLoading}
                   />
                 </div>
@@ -199,9 +200,9 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '' }) =>
                   <input
                     type="text"
                     value={tagLine}
-                    onChange={(e) => setTagLine(e.target.value)}
+                    onChange={(e) => setTagLine(e.target.value.toUpperCase())}
                     placeholder="8888"
-                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm uppercase"
                     disabled={isLoading}
                   />
                   <button
@@ -292,7 +293,7 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '' }) =>
 
             {/* Match history horizontal scroll */}
             {arenaMatches && (
-              <div className="overflow-x-auto pb-2">
+              <div className="overflow-x-auto pb-2 min-h-[120px]">
                 <div className="flex gap-3 min-w-max">
                   {arenaMatches.arenaMatches.length > 0 ? (
                     arenaMatches.arenaMatches.map((match, index) => {
@@ -308,7 +309,7 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '' }) =>
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: index * 0.1 }}
                           className="flex-shrink-0 relative group"
-                          title={`${userParticipant.championName} - ${matchDate} - Placement #${userParticipant.placement}`}
+                          title={`#${userParticipant.placement} - ${userParticipant.championName} - ${matchDate}`}
                         >
                           <div className="w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 relative">
                             <Image
@@ -323,26 +324,19 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '' }) =>
                               }}
                             />
                             
-                            {/* Placement badge */}
+                            {/* Placement badge - positioned inside the image */}
                             <div className={`
-                              absolute -top-1 -right-1 w-6 h-6 rounded-full text-xs font-bold
+                              absolute top-1 right-1 w-6 h-6 rounded-full text-xs font-bold
                               flex items-center justify-center border-2 border-white
                               ${getPlacementColor(userParticipant.placement)}
                             `}>
                               {userParticipant.placement}
                             </div>
-                            
-                            {/* Win indicator */}
-                            {userParticipant.win && (
-                              <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white flex items-center justify-center">
-                                <span className="text-white text-xs">👑</span>
-                              </div>
-                            )}
                           </div>
                           
                           {/* Tooltip on hover */}
                           <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10">
-                            {matchDate}
+                            #{userParticipant.placement} - {userParticipant.championName} - {matchDate}
                           </div>
                         </motion.div>
                       );
@@ -357,12 +351,6 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '' }) =>
                   )}
                 </div>
               </div>
-            )}
-            
-            {arenaMatches && arenaMatches.arenaMatches.length > 0 && (
-              <p className="text-xs text-gray-500 mt-3 text-center">
-                Found {arenaMatches.arenaCount} Arena matches from {arenaMatches.totalChecked} recent games
-              </p>
             )}
           </motion.div>
         )}
