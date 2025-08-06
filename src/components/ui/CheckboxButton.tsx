@@ -29,6 +29,7 @@ type UncheckedColors = {
   border: readonly string[];
   hover: readonly string[];
   text: readonly string[];
+  shadow: readonly string[];
 };
 
 const CHECKBOX_CONFIG = {
@@ -43,10 +44,11 @@ const CHECKBOX_CONFIG = {
         shadow: ['shadow-lg', 'shadow-amber-500/40']
       } satisfies CheckedColors,
       unchecked: {
-        background: ['bg-amber-50/15'],
-        border: ['border-amber-200/30'],
+        background: ['bg-amber-50/50'],
+        border: ['border-amber-200/50'],
         hover: ['hover:bg-amber-100/25'],
-        text: ['text-amber-600']
+        text: ['text-amber-600'],
+        shadow: ['shadow-inner', 'shadow-amber-400/50']
       } satisfies UncheckedColors
     }
   },
@@ -61,10 +63,11 @@ const CHECKBOX_CONFIG = {
         shadow: ['shadow-lg', 'shadow-gray-500/40']
       } satisfies CheckedColors,
       unchecked: {
-        background: ['bg-gray-50/15'],
-        border: ['border-gray-200/30'],
+        background: ['bg-gray-50/50'],
+        border: ['border-gray-200/50'],
         hover: ['hover:bg-gray-100/25'],
-        text: ['text-gray-600']
+        text: ['text-gray-600'],
+        shadow: ['shadow-inner', 'shadow-gray-400/50']
       } satisfies UncheckedColors
     }
   },
@@ -79,10 +82,11 @@ const CHECKBOX_CONFIG = {
         shadow: ['shadow-md', 'shadow-yellow-500/30']
       } satisfies CheckedColors,
       unchecked: {
-        background: ['bg-yellow-50/15'],
-        border: ['border-yellow-200/30'],
+        background: ['bg-yellow-50/50'],
+        border: ['border-yellow-200/50'],
         hover: ['hover:bg-yellow-100/25'],
-        text: ['text-yellow-600']
+        text: ['text-yellow-600'],
+        shadow: ['shadow-inner', 'shadow-yellow-500/50']
       } satisfies UncheckedColors
     }
   }
@@ -112,7 +116,8 @@ const getButtonStyleClasses = (type: keyof ChampionChecklist, isChecked: boolean
       ...colorConfig.background,
       ...colorConfig.border,
       ...colorConfig.hover,
-      ...colorConfig.text
+      ...colorConfig.text,
+      ...colorConfig.shadow
     );
   }
   
