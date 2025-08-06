@@ -1,23 +1,6 @@
 # LoL Arena Tracker
 
-Track your LEdit `.env.local` with your settings:
-```env
-# Optional: Riot API key (not r| Variable | Description | Default | Required |
-|----------|-------------|---------|----------|
-| `RIOT_API_KEY` | Riot API key (optional for DDragon) | - | No |
-| `DDRAGON_BASE_URL` | DDragon API base URL | `https://ddragon.leagueoflegends.com` | No |
-| `RIOT_API_CACHE_TTL` | Cache duration in seconds | `3600` | No |
-
-**Note**: `CURRENT_PATCH` is automatically fetched from DDragon API and no longer needs manual configuration!d for DDragon)
-RIOT_API_KEY=your_api_key_here
-
-# DDragon API settings (these have sensible defaults)
-DDRAGON_BASE_URL=https://ddragon.leagueoflegends.com
-# CURRENT_PATCH is auto-fetched from DDragon API
-
-# Cache configuration
-RIOT_API_CACHE_TTL=3600
-```ends Arena champion progress with automatic updates from DDragon API.
+Track your League of Legends Arena champion progress with automatic updates from DDragon API.
 
 ## Features
 
@@ -26,12 +9,17 @@ RIOT_API_CACHE_TTL=3600
 - **Offline Fallback**: Works even when the API is unavailable using cached data
 - **Real-time Sync**: Automatically updates with new champion releases
 - **Manual Refresh**: Force update champion data with the refresh button
+- **Arena Match Tracking**: Track and analyze your Arena game performance
+- **Match History**: View detailed match history and statistics
+- **Responsive Design**: Optimized for desktop and mobile devices
+- **Grid Customization**: Adjustable grid layout with column controls
+- **Visual Feedback**: Smooth animations and progress indicators
 
 ## Getting Started
 
 ### 1. Clone the repository
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/daniarnaizg/lol-arena-tracker.git
 cd lol-arena-tracker
 ```
 
@@ -44,24 +32,20 @@ yarn install
 pnpm install
 ```
 
-### 3. Environment Setup
-Copy the example environment file and configure it:
-```bash
-cp .env.example .env.local
-```
-
-Edit `.env.local` with your settings:
+### 3. Environment Setup (Optional)
+Create a `.env.local` file in the root directory:
 ```env
-# Optional: Riot API key (not required for DDragon)
+# Optional: Riot API key (not required for DDragon functionality)
 RIOT_API_KEY=your_api_key_here
 
 # DDragon API settings (these have sensible defaults)
 DDRAGON_BASE_URL=https://ddragon.leagueoflegends.com
-CURRENT_PATCH=15.14.1
 
 # Cache configuration
 RIOT_API_CACHE_TTL=3600
 ```
+
+**Note**: `CURRENT_PATCH` is automatically fetched from DDragon API and no longer needs manual configuration!
 
 ### 4. Run the development server
 ```bash
@@ -73,6 +57,8 @@ pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the application.
+
+**Note**: The project uses Next.js with Turbopack for faster development builds.
 
 ## Champion Data System
 
@@ -115,14 +101,24 @@ Returns champion data with automatic DDragon integration:
 ### `/api/cache` (DELETE)
 Clears server-side cache to force fresh data fetch on next request.
 
+### `/api/arena-matches`
+Handles Arena match data retrieval and processing.
+
+### `/api/match-history`
+Provides match history functionality for tracked champions.
+
+### `/api/riot-account`
+Manages Riot account information and validation.
+
 ## Environment Variables
 
 | Variable | Description | Default | Required |
 |----------|-------------|---------|----------|
 | `RIOT_API_KEY` | Riot API key (optional for DDragon) | - | No |
 | `DDRAGON_BASE_URL` | DDragon API base URL | `https://ddragon.leagueoflegends.com` | No |
-| `CURRENT_PATCH` | Current LoL patch version | `15.14.1` | No |
 | `RIOT_API_CACHE_TTL` | Cache duration in seconds | `3600` | No |
+
+**Note**: `CURRENT_PATCH` is automatically fetched from DDragon API and no longer needs manual configuration!
 
 ## Deployment
 
@@ -164,16 +160,48 @@ The application automatically handles:
 ```
 src/
 ├── app/
-│   ├── api/champions/          # Champion data API
-│   └── api/cache/              # Cache management API
+│   ├── api/
+│   │   ├── arena-matches/      # Arena match data API
+│   │   ├── cache/              # Cache management API
+│   │   ├── champions/          # Champion data API
+│   │   ├── match-history/      # Match history API
+│   │   └── riot-account/       # Riot account API
+│   ├── globals.css             # Global styles
+│   ├── layout.tsx              # Root layout component
+│   ├── not-found.tsx           # 404 page
+│   └── page.tsx                # Home page
 ├── components/
 │   ├── ui/                     # Reusable UI components
-│   └── *.tsx                   # Main components
+│   │   ├── ArenaMatchCard.tsx
+│   │   ├── CheckboxButton.tsx
+│   │   ├── ClearAllButton.tsx
+│   │   ├── ColumnSlider.tsx
+│   │   ├── ConfirmationModal.tsx
+│   │   ├── FilterButtons.tsx
+│   │   ├── ToggleSwitch.tsx
+│   │   └── index.ts
+│   ├── ChampionCard.tsx        # Individual champion card
+│   ├── ChampionsGrid.tsx       # Main champions grid
+│   ├── ControlPanel.tsx        # Control interface
+│   ├── Header.tsx              # Application header
+│   ├── Footer.tsx              # Application footer
+│   ├── MatchHistory.tsx        # Match history display
+│   ├── ProgressCounter.tsx     # Progress tracking
+│   └── VersionInitializer.tsx  # Version management
+├── hooks/
+│   ├── useGridColumns.ts       # Grid layout hook
+│   └── useVersionInitializer.ts # Version initialization hook
+├── lib/
+│   ├── constants.ts            # Application constants
+│   └── metadata.ts             # Metadata configuration
 ├── services/
-│   ├── ddragon.ts              # DDragon API service
 │   ├── championService.ts      # Champion data management
-│   └── *.ts                    # Other services
+│   ├── ddragon.ts              # DDragon API service
+│   └── riotApi.ts              # Riot API service
 ├── utils/
+│   ├── championUtils.ts        # Champion utilities
+│   ├── debugUtils.ts           # Debug utilities
+│   ├── imageUtils.ts           # Image utilities
 │   └── localStorage.ts         # Local storage utilities
 └── data/
     └── champions.json          # Fallback champion data
@@ -195,6 +223,15 @@ src/
 
 ## License
 
-[Your License Here]
+MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Technologies Used
+
+- **Next.js 15** - React framework with App Router
+- **React 19** - UI library
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Styling
+- **Framer Motion** - Animations
+- **Vercel Analytics** - Usage analytics
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
