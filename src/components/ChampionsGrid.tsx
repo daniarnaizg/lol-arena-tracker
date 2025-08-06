@@ -65,6 +65,30 @@ const ChampionsGrid = ({ search, champions, setChampions }: ChampionsGridProps) 
     );
   };
 
+  const handleImport = (importedChampions: Champion[]) => {
+    // Merge imported data with current champions
+    // Retro-compatible: only import progress for champions that exist in current data
+    setChampions(prev => {
+      const importedMap = new Map(
+        importedChampions.map(champ => [champ.name.toLowerCase(), champ])
+      );
+      
+      return prev.map(currentChamp => {
+        const imported = importedMap.get(currentChamp.name.toLowerCase());
+        if (imported && imported.checklist) {
+          // Import the checklist data but keep current champion metadata
+          return {
+            ...currentChamp,
+            checklist: { ...imported.checklist }
+          };
+        }
+        return currentChamp;
+      });
+    });
+    
+    console.log('Champion progress imported successfully');
+  };
+
   // Automatic refresh every minute
   useEffect(() => {
     const refreshChampions = async () => {
@@ -156,6 +180,8 @@ const ChampionsGrid = ({ search, champions, setChampions }: ChampionsGridProps) 
         onClearAll={handleClearAllClick}
         activeFilters={activeFilters}
         onFilterChange={setActiveFilters}
+        champions={champions}
+        onImport={handleImport}
       />
       
       <ChampionsGridDisplay
