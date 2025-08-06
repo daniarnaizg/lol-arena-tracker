@@ -15,18 +15,21 @@ interface ChampionCardProps {
 const getCardStyles = (checklist: ChampionChecklist) => {
   const baseClasses = `
     flex flex-col items-center gap-3 p-4 rounded-xl bg-white transition-all duration-200
-    shadow-sm hover:shadow-md
+    shadow-sm hover:shadow-md hover:-translate-y-1 hover:scale-[1.02]
   `;
 
   if (checklist.win) {
     return `${baseClasses} bg-gradient-to-br from-yellow-400 via-yellow-300 to-yellow-400 
-            border-2 border-yellow-500 shadow-xl shadow-yellow-500/30 text-gray-800`;
+            border-2 border-yellow-500 shadow-lg shadow-yellow-500/25 text-gray-800
+            hover:shadow-xl hover:shadow-yellow-500/35`;
   } else if (checklist.top4) {
-    return `${baseClasses} bg-gradient-to-br from-gray-400 via-gray-300 to-gray-400 
-            border-2 border-gray-500 shadow-lg shadow-gray-500/30 text-white`;
+    return `${baseClasses} bg-gradient-to-br from-gray-500 via-gray-400 to-gray-500 
+            border-2 border-gray-600 shadow-lg shadow-gray-500/40 text-white
+            hover:shadow-xl hover:shadow-gray-500/50`;
   } else if (checklist.played) {
     return `${baseClasses} bg-gradient-to-br from-amber-600 via-amber-500 to-amber-600 
-            border-2 border-amber-700 shadow-lg shadow-amber-500/30 text-white`;
+            border-2 border-amber-700 shadow-lg shadow-amber-500/40 text-white
+            hover:shadow-xl hover:shadow-amber-500/50`;
   }
 
   return baseClasses;
@@ -35,8 +38,10 @@ const getCardStyles = (checklist: ChampionChecklist) => {
 const getNameStyles = (checklist: ChampionChecklist) => {
   const baseClasses = 'font-semibold text-sm leading-tight text-center transition-all duration-200';
   
-  if (checklist.win || checklist.top4) {
+  if (checklist.win) {
     return `${baseClasses} text-gray-800 drop-shadow-sm`;
+  } else if (checklist.top4) {
+    return `${baseClasses} text-white drop-shadow-md`;
   } else if (checklist.played) {
     return `${baseClasses} text-white drop-shadow-md`;
   }

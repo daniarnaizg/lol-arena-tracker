@@ -25,28 +25,28 @@ const checkboxConfig = {
 const getButtonStyles = (type: keyof ChampionChecklist, isChecked: boolean) => {
   const baseClasses = `
     w-7 h-7 rounded-full flex items-center justify-center text-xs
-    transition-all duration-200 cursor-pointer border
+    transition-all duration-200 cursor-pointer border hover:scale-105
   `;
 
   if (isChecked) {
     switch (type) {
       case 'played':
-        return `${baseClasses} bg-gradient-to-r from-amber-600 to-amber-500 text-white border-amber-700 shadow-lg shadow-amber-500/40`;
+        return `${baseClasses} bg-gradient-to-br from-amber-600 to-amber-500 text-white border-amber-700 shadow-lg shadow-amber-500/40`;
       case 'top4':
-        return `${baseClasses} bg-gradient-to-r from-gray-500 to-gray-400 text-white border-gray-600 shadow-lg shadow-gray-500/40`;
+        return `${baseClasses} bg-gradient-to-br from-gray-500 to-gray-400 text-white border-gray-600 shadow-lg shadow-gray-500/40`;
       case 'win':
-        return `${baseClasses} bg-gradient-to-r from-yellow-400 to-yellow-300 text-gray-800 border-yellow-500 shadow-lg shadow-yellow-500/60 animate-pulse`;
+        return `${baseClasses} bg-gradient-to-br from-yellow-400 to-yellow-300 text-gray-800 border-yellow-500 shadow-md shadow-yellow-500/30`;
       default:
         return baseClasses;
     }
   } else {
     switch (type) {
       case 'played':
-        return `${baseClasses} bg-amber-50 border-amber-200 hover:bg-amber-100 text-amber-600`;
+        return `${baseClasses} bg-amber-50/15 border-amber-200/30 hover:bg-amber-100/25 text-amber-600`;
       case 'top4':
-        return `${baseClasses} bg-gray-50 border-gray-200 hover:bg-gray-100 text-gray-600`;
+        return `${baseClasses} bg-gray-50/15 border-gray-200/30 hover:bg-gray-100/25 text-gray-600`;
       case 'win':
-        return `${baseClasses} bg-yellow-50 border-yellow-200 hover:bg-yellow-100 text-yellow-600`;
+        return `${baseClasses} bg-yellow-50/15 border-yellow-200/30 hover:bg-yellow-100/25 text-yellow-600`;
       default:
         return `${baseClasses} bg-gray-50 border-gray-200 hover:bg-gray-100`;
     }
