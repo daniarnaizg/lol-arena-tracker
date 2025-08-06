@@ -6,6 +6,7 @@ Track your League of Legends Arena champion progress with automatic updates from
 
 - **Automatic Champion Updates**: Fetches the latest champion data from Riot's DDragon API
 - **Progress Preservation**: Your tracking progress is automatically preserved when new champions are added
+- **Import/Export Data**: Easily backup and restore your champion progress with JSON file support
 - **Offline Fallback**: Works even when the API is unavailable using cached data
 - **Real-time Sync**: Automatically updates with new champion releases
 - **Manual Refresh**: Force update champion data with the refresh button
@@ -86,6 +87,38 @@ Use the refresh button in the control panel to:
 - Update to newest game version
 - Sync with recent champion releases
 
+### Import/Export Data
+Easily backup and restore your champion progress data:
+
+#### Export
+- **One-click download**: Export button downloads a JSON file with your current progress
+- **Complete data**: Includes all champion tracking data, game version, and metadata
+- **Filename format**: `lol-arena-progress-YYYY-MM-DD.json`
+- **Preserves progress**: All played, top 4, and win statuses are saved
+
+#### Import
+- **File upload**: Select a JSON file from your device
+- **Text paste**: Directly paste JSON content into the import dialog
+- **Fast validation**: Real-time validation with clear error messages
+- **Retro-compatible**: Import data from older LoL patches seamlessly
+- **Safe merging**: Only imports progress for champions that exist in your current data
+
+#### Data Format
+The exported JSON includes:
+```json
+{
+  "version": "15.14.1",
+  "exportDate": "2025-08-06T12:00:00.000Z",
+  "champions": [...],
+  "metadata": {
+    "totalChampions": 168,
+    "appVersion": "1.0.0"
+  }
+}
+```
+
+**Note**: Import is backwards compatible - you can import progress from any previous LoL patch!
+
 ## API Endpoints
 
 ### `/api/champions`
@@ -145,7 +178,7 @@ The application works on any platform that supports Next.js:
 ### Components
 - **ChampionsGrid**: Main grid display with filtering and tracking
 - **ChampionCard**: Individual champion card with progress tracking
-- **ControlPanel**: Controls for filtering, refreshing, and clearing data
+- **ControlPanel**: Controls for filtering, refreshing, clearing data, and import/export functionality
 
 ### Data Migration
 The application automatically handles:
@@ -153,6 +186,7 @@ The application automatically handles:
 - Version updates
 - Champion additions/removals
 - Progress preservation across updates
+- Import/export data compatibility across different LoL patches
 
 ## Development
 
@@ -178,6 +212,7 @@ src/
 │   │   ├── ColumnSlider.tsx
 │   │   ├── ConfirmationModal.tsx
 │   │   ├── FilterButtons.tsx
+│   │   ├── ImportExportButtons.tsx # Data import/export functionality
 │   │   ├── ToggleSwitch.tsx
 │   │   └── index.ts
 │   ├── ChampionCard.tsx        # Individual champion card
@@ -212,6 +247,7 @@ src/
 2. User progress is preserved across all updates
 3. Add new tracking fields to the `Champion` interface
 4. Update migration logic in `LocalStorageManager`
+5. Import/export functionality ensures data portability across updates
 
 ## Contributing
 
