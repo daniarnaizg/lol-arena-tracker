@@ -4,8 +4,10 @@ import { SortingOptions, SortType } from './SortingOptions';
 import { ColumnSlider } from './ColumnSlider';
 import { ChampionCounter } from './ChampionCounter';
 import { EffectsToggle } from './EffectsToggle';
+import { BaseUIProps } from './shared/types';
+import { combineClasses, LAYOUT_CLASSES } from './shared';
 
-interface SecondaryControlsProps {
+interface SecondaryControlsProps extends BaseUIProps {
   // Sorting
   sortBy: SortType;
   onSortChange: (sortType: SortType) => void;
@@ -17,14 +19,11 @@ interface SecondaryControlsProps {
   onColumnsChange: (columns: number) => void;
   
   // Effects toggle
-  effectsEnabled: boolean;
   onEffectsToggle: () => void;
   
   // Counter
   totalChampions: number;
   filteredChampions: number;
-  
-  className?: string;
 }
 
 export const SecondaryControls: React.FC<SecondaryControlsProps> = ({
@@ -34,16 +33,28 @@ export const SecondaryControls: React.FC<SecondaryControlsProps> = ({
   minColumns,
   maxColumns,
   onColumnsChange,
-  effectsEnabled,
+  effectsEnabled = true,
   onEffectsToggle,
   totalChampions,
   filteredChampions,
   className = ''
 }) => {
+  const containerClasses = combineClasses(
+    'flex flex-col sm:flex-row mb-6 items-center justify-between',
+    LAYOUT_CLASSES.gap.md,
+    className
+  );
+
+  const leftSectionClasses = combineClasses(
+    LAYOUT_CLASSES.flexRow,
+    'items-center',
+    LAYOUT_CLASSES.gap.md
+  );
+
   return (
-    <div className={`flex flex-col sm:flex-row gap-4 mb-6 items-center justify-between ${className}`}>
+    <div className={containerClasses}>
       {/* Left section: Sorting options, column slider, and effects toggle */}
-      <div className="flex items-center gap-4">
+      <div className={leftSectionClasses}>
         <SortingOptions
           sortBy={sortBy}
           onSortChange={onSortChange}

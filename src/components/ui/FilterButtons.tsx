@@ -1,14 +1,15 @@
 "use client"
 import React from 'react';
-import { motion } from 'framer-motion';
+import { MotionWrapper } from './shared';
+import { BaseUIProps } from './shared/types';
+import { MOTION_CONFIGS } from './shared/constants';
+import { combineClasses } from './shared/utils';
 
 export type FilterType = 'all' | 'played' | 'top4' | 'win' | 'unplayed';
 
-interface FilterButtonsProps {
+interface FilterButtonsProps extends BaseUIProps {
   activeFilters: FilterType[];
   onFilterChange: (filters: FilterType[]) => void;
-  effectsEnabled?: boolean;
-  className?: string;
 }
 
 interface FilterOption {
@@ -53,16 +54,18 @@ const FILTER_OPTIONS: FilterOption[] = [
 
 const DEFAULT_FILTERS: FilterType[] = ['all'];
 
-export const FilterButtons: React.FC<FilterButtonsProps> = ({
-  activeFilters = DEFAULT_FILTERS,
-  onFilterChange,
-  effectsEnabled = true,
-  className = ''
-}) => {
+const BASE_BUTTON_CLASSES = 'px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 border';
+
+/**
+ * Custom hook to manage filter logic
+ */
+const useFilterLogic = (
+  activeFilters: FilterType[],
+  onFilterChange: (filters: FilterType[]) => void
+) => {
   const safeActiveFilters = activeFilters || DEFAULT_FILTERS;
 
   const isAllSelected = () => safeActiveFilters.includes('all');
-  
   const isFilterActive = (filterKey: FilterType) => safeActiveFilters.includes(filterKey);
 
   const handleAllFilterClick = () => {
@@ -97,51 +100,77 @@ export const FilterButtons: React.FC<FilterButtonsProps> = ({
     }
   };
 
-  const renderButton = (option: FilterOption) => {
-    const isActive = isFilterActive(option.key);
-    const buttonStyles = isActive ? option.activeStyles : option.inactiveStyles;
-    const shadowStyles = isActive ? 'shadow-lg' : 'shadow-sm';
-
-    return (
-      <button
-        className={`
-          px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 border
-          ${buttonStyles} ${shadowStyles}
-        `}
-        onClick={() => handleFilterClick(option.key)}
-        type="button"
-        aria-pressed={isActive}
-      >
-        {option.label}
-      </button>
-    );
+  return {
+    isFilterActive,
+    handleFilterClick
   };
+};
 
-  const renderFilterButton = (option: FilterOption) => {
-    const buttonElement = renderButton(option);
+/**
+ * Individual filter button component
+ */
+interface FilterButtonProps {
+  option: FilterOption;
+  isActive: boolean;
+  onClick: () => void;
+  effectsEnabled: boolean;
+}
 
-    if (!effectsEnabled) {
-      return (
-        <div key={option.key}>
-          {buttonElement}
-        </div>
-      );
-    }
+const FilterButton: React.FC<FilterButtonProps> = ({
+  option,
+  isActive,
+  onClick,
+  effectsEnabled
+}) => {
+  const buttonStyles = isActive ? option.activeStyles : option.inactiveStyles;
+  const shadowStyles = isActive ? 'shadow-lg' : 'shadow-sm';
+  
+  const buttonClasses = combineClasses(
+    BASE_BUTTON_CLASSES,
+    buttonStyles,
+    shadowStyles
+  );
 
-    return (
-      <motion.div
-        key={option.key}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        {buttonElement}
-      </motion.div>
-    );
-  };
+  const button = (
+    <button
+      className={buttonClasses}
+      onClick={onClick}
+      type="button"
+      {...(typeof isActive === 'boolean' && { 'aria-pressed': isActive })}
+    >
+      {option.label}
+    </button>
+  );
 
   return (
-    <div className={`flex gap-2 ${className}`} role="group" aria-label="Filter options">
-      {FILTER_OPTIONS.map(renderFilterButton)}
+    <MotionWrapper
+      effectsEnabled={effectsEnabled}
+      config={MOTION_CONFIGS.filter}
+    >
+      {button}
+    </MotionWrapper>
+  );
+};
+
+export const FilterButtons: React.FC<FilterButtonsProps> = ({
+  activeFilters = DEFAULT_FILTERS,
+  onFilterChange,
+  effectsEnabled = true,
+  className = ''
+}) => {
+  const { isFilterActive, handleFilterClick } = useFilterLogic(activeFilters, onFilterChange);
+
+  return (
+    <div className={combineClasses('flex gap-2', className)} role="group" aria-label="Filter options">
+      {FILTER_OPTIONS.map((option) => (
+        <FilterButton
+          key={option.key}
+          option={option}
+          isActive={isFilterActive(option.key)}
+          onClick={() => handleFilterClick(option.key)}
+          effectsEnabled={effectsEnabled}
+        />
+      ))}
     </div>
   );
 };

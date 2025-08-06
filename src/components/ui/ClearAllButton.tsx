@@ -1,26 +1,26 @@
 "use client"
 import React from 'react';
+import { BaseButton } from './shared';
+import { BaseUIProps } from './shared/types';
 
-interface ClearAllButtonProps {
+interface ClearAllButtonProps extends BaseUIProps {
   onClick: () => void;
-  className?: string;
 }
 
 export const ClearAllButton: React.FC<ClearAllButtonProps> = ({
   onClick,
-  className = ''
+  className = '',
+  effectsEnabled = true
 }) => {
   return (
-    <button
+    <BaseButton
+      variant="danger"
       onClick={onClick}
-      className={`
-        px-4 py-2 rounded-lg font-medium transition-all duration-200 flex items-center gap-2
-        text-white border border-red-700 hover:bg-red-700
-        ${className}
-      `}
       title="Clear all champion selections"
+      className={className}
+      effectsEnabled={effectsEnabled}
     >
       Clear All
-    </button>
+    </BaseButton>
   );
 };

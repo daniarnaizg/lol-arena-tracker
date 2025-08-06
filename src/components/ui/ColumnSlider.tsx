@@ -1,12 +1,13 @@
 "use client"
 import React from 'react';
+import { BaseUIProps } from './shared/types';
+import { combineClasses } from './shared/utils';
 
-interface ColumnSliderProps {
+interface ColumnSliderProps extends BaseUIProps {
   columns: number;
   minColumns: number;
   maxColumns: number;
   onColumnsChange: (columns: number) => void;
-  className?: string;
 }
 
 export const ColumnSlider: React.FC<ColumnSliderProps> = ({
@@ -16,8 +17,13 @@ export const ColumnSlider: React.FC<ColumnSliderProps> = ({
   onColumnsChange,
   className = ''
 }) => {
+  const containerClasses = combineClasses(
+    'flex items-center gap-4 w-full max-w-md',
+    className
+  );
+
   return (
-    <div className={`flex items-center gap-4 w-full max-w-md ${className}`}>
+    <div className={containerClasses}>
       <label 
         htmlFor="columns-slider" 
         className="text-sm font-medium whitespace-nowrap text-gray-100"

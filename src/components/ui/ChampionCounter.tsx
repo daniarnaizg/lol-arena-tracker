@@ -1,12 +1,12 @@
 "use client"
 import React from 'react';
 import { motion } from 'framer-motion';
+import { BaseUIProps } from './shared/types';
+import { combineClasses } from './shared/utils';
 
-interface ChampionCounterProps {
+interface ChampionCounterProps extends BaseUIProps {
   totalChampions: number;
   filteredChampions: number;
-  effectsEnabled?: boolean;
-  className?: string;
 }
 
 export const ChampionCounter: React.FC<ChampionCounterProps> = ({
@@ -15,8 +15,13 @@ export const ChampionCounter: React.FC<ChampionCounterProps> = ({
   effectsEnabled = true,
   className = ''
 }) => {
+  const counterClasses = combineClasses(
+    'flex items-center gap-2 text-sm',
+    className
+  );
+
   const counterElement = (
-    <div className={`flex items-center gap-2 text-sm ${className}`}>
+    <div className={counterClasses}>
       <span className="text-gray-400 font-medium">Showing</span>
       <span className="text-white font-bold text-lg">
         {filteredChampions}
