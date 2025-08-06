@@ -126,7 +126,7 @@ export const ImportModal: React.FC<ImportModalProps> = ({
               value={importContent}
               onChange={(e) => handleTextareaChange(e.target.value)}
               placeholder="Paste your champion progress JSON data here..."
-              className="w-full h-32 p-3 border border-gray-300 rounded-lg text-sm font-mono resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full h-32 p-3 border text-gray-800 border-gray-300 rounded-lg text-sm font-mono resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
 
