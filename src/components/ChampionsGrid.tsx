@@ -177,7 +177,6 @@ const ChampionsGrid = ({ search, champions, setChampions }: ChampionsGridProps) 
     <section className="flex-1 w-full">
       <ControlPanel
         effectsEnabled={effectsEnabled}
-        onEffectsToggle={() => setEffectsEnabled(!effectsEnabled)}
         onClearAll={handleClearAllClick}
         activeFilters={activeFilters}
         onFilterChange={setActiveFilters}
@@ -192,9 +191,10 @@ const ChampionsGrid = ({ search, champions, setChampions }: ChampionsGridProps) 
         minColumns={MIN_COLUMNS}
         maxColumns={MAX_COLUMNS}
         onColumnsChange={setColumns}
+        effectsEnabled={effectsEnabled}
+        onEffectsToggle={() => setEffectsEnabled(!effectsEnabled)}
         totalChampions={champions.length}
         filteredChampions={filteredChampions.length}
-        effectsEnabled={effectsEnabled}
       />
       
       <ChampionsGridDisplay

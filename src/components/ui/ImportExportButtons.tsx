@@ -3,10 +3,12 @@ import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Champion } from '@/services/ddragon';
 import { championService } from '@/services/championService';
+import { ClearAllButton } from './ClearAllButton';
 
 interface ImportExportButtonsProps {
   champions: Champion[];
   onImport: (champions: Champion[]) => void;
+  onClearAll: () => void;
   effectsEnabled?: boolean;
   className?: string;
 }
@@ -31,6 +33,7 @@ interface ValidationResult {
 export const ImportExportButtons: React.FC<ImportExportButtonsProps> = ({
   champions,
   onImport,
+  onClearAll,
   effectsEnabled = true,
   className = ''
 }) => {
@@ -238,6 +241,17 @@ export const ImportExportButtons: React.FC<ImportExportButtonsProps> = ({
         >
           Import data
         </ButtonWrapper>
+        
+        {effectsEnabled ? (
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <ClearAllButton onClick={onClearAll} />
+          </motion.div>
+        ) : (
+          <ClearAllButton onClick={onClearAll} />
+        )}
       </div>
 
       {/* Import Modal */}

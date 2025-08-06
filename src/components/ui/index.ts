@@ -8,3 +8,4 @@ export { ImportExportButtons } from './ImportExportButtons';
 export { SortingOptions, type SortType } from './SortingOptions';
 export { ChampionCounter } from './ChampionCounter';
 export { SecondaryControls } from './SecondaryControls';
+export { EffectsToggle } from './EffectsToggle';

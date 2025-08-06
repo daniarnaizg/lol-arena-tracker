@@ -3,6 +3,7 @@ import React from 'react';
 import { SortingOptions, SortType } from './SortingOptions';
 import { ColumnSlider } from './ColumnSlider';
 import { ChampionCounter } from './ChampionCounter';
+import { EffectsToggle } from './EffectsToggle';
 
 interface SecondaryControlsProps {
   // Sorting
@@ -15,12 +16,14 @@ interface SecondaryControlsProps {
   maxColumns: number;
   onColumnsChange: (columns: number) => void;
   
+  // Effects toggle
+  effectsEnabled: boolean;
+  onEffectsToggle: () => void;
+  
   // Counter
   totalChampions: number;
   filteredChampions: number;
   
-  // Effects
-  effectsEnabled?: boolean;
   className?: string;
 }
 
@@ -31,14 +34,15 @@ export const SecondaryControls: React.FC<SecondaryControlsProps> = ({
   minColumns,
   maxColumns,
   onColumnsChange,
+  effectsEnabled,
+  onEffectsToggle,
   totalChampions,
   filteredChampions,
-  effectsEnabled = true,
   className = ''
 }) => {
   return (
     <div className={`flex flex-col sm:flex-row gap-4 mb-6 items-center justify-between ${className}`}>
-      {/* Left section: Sorting options and column slider */}
+      {/* Left section: Sorting options, column slider, and effects toggle */}
       <div className="flex items-center gap-4">
         <SortingOptions
           sortBy={sortBy}
@@ -51,6 +55,12 @@ export const SecondaryControls: React.FC<SecondaryControlsProps> = ({
           minColumns={minColumns}
           maxColumns={maxColumns}
           onColumnsChange={onColumnsChange}
+        />
+        
+        <EffectsToggle
+          enabled={effectsEnabled}
+          onToggle={onEffectsToggle}
+          effectsEnabled={effectsEnabled}
         />
       </div>
       
