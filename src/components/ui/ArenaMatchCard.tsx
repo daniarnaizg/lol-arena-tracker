@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { createChampionImageUrl, createImageErrorHandler } from '@/utils/imageUtils';
 
 interface ArenaMatchCardProps {
   championName: string;
@@ -50,9 +51,9 @@ export const ArenaMatchCard: React.FC<ArenaMatchCardProps> = ({
   const placementStyle = getPlacementStyle(placement);
   const cardTitle = `#${placement} - ${championName} - ${matchDate}`;
 
-  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    e.currentTarget.src = `https://via.placeholder.com/64x64/6b7280/ffffff?text=${championName.charAt(0)}`;
-  };
+  // Get the champion image URL using the latest version
+  const championImageUrl = createChampionImageUrl(championName);
+  const handleImageError = createImageErrorHandler(championName);
 
   const handleClick = () => {
     if (onChampionSearch) {
@@ -72,7 +73,7 @@ export const ArenaMatchCard: React.FC<ArenaMatchCardProps> = ({
       {/* Champion Image Container */}
       <div className={`w-16 h-16 rounded-lg overflow-hidden border-2 relative transition-transform duration-200 ${placementStyle.border} ${onChampionSearch ? 'group-hover:scale-110' : ''}`}>
         <Image
-          src={`https://ddragon.leagueoflegends.com/cdn/14.1.1/img/champion/${championName}.png`}
+          src={championImageUrl}
           alt={championName}
           width={64}
           height={64}

@@ -37,6 +37,8 @@ class DDragonService {
   private baseUrl: string;
   private cache: Map<string, { data: unknown; timestamp: number }> = new Map();
   private cacheTTL: number = 60 * 60 * 1000; // 1 hour
+  private latestVersionCache: { version: string; timestamp: number } | null = null;
+  private versionCacheTTL: number = 10 * 60 * 1000; // 10 minutes for version cache
 
   constructor() {
     this.baseUrl = process.env.DDRAGON_BASE_URL || process.env.NEXT_PUBLIC_DDRAGON_BASE_URL || 'https://ddragon.leagueoflegends.com';
@@ -60,9 +62,23 @@ class DDragonService {
   }
 
   async getLatestVersion(): Promise<string> {
+    // Check if we have a cached version that's still fresh
+    if (this.latestVersionCache && 
+        Date.now() - this.latestVersionCache.timestamp < this.versionCacheTTL) {
+      return this.latestVersionCache.version;
+    }
+
     const url = `${this.baseUrl}/api/versions.json`;
     const versions: string[] = await this.fetchWithCache(url);
-    return versions[0]; // Latest version is always first
+    const latestVersion = versions[0]; // Latest version is always first
+    
+    // Cache the latest version
+    this.latestVersionCache = {
+      version: latestVersion,
+      timestamp: Date.now()
+    };
+    
+    return latestVersion;
   }
 
   async getChampions(version?: string): Promise<DDragonResponse> {
@@ -121,9 +137,32 @@ class DDragonService {
     return `${this.baseUrl}/cdn/${patchVersion}/img/champion/${imageKey}.png`;
   }
 
-  // Synchronous version that uses a default fallback for immediate use
-  getChampionImageUrlSync(imageKey: string, version: string = '15.1.1'): string {
-    return `${this.baseUrl}/cdn/${version}/img/champion/${imageKey}.png`;
+  // Synchronous version that uses cached or fallback version for immediate use
+  getChampionImageUrlSync(imageKey: string, version?: string): string {
+    // Use provided version, cached version, or fallback
+    let useVersion = version;
+    
+    if (!useVersion && this.latestVersionCache) {
+      useVersion = this.latestVersionCache.version;
+    }
+    
+    if (!useVersion) {
+      // Fallback to a recent version if no cache available
+      useVersion = '15.15.1';
+    }
+    
+    return `${this.baseUrl}/cdn/${useVersion}/img/champion/${imageKey}.png`;
+  }
+
+  // Get cached version synchronously (useful for components that need immediate access)
+  getCachedVersion(): string | null {
+    return this.latestVersionCache?.version || null;
+  }
+
+  // Clear all caches (useful for debugging or forced refresh)
+  clearCache(): void {
+    this.cache.clear();
+    this.latestVersionCache = null;
   }
 }
 

@@ -16,41 +16,107 @@ interface CheckboxButtonProps {
   effectsEnabled?: boolean;
 }
 
-const checkboxConfig = {
-  played: { emoji: '✔️', label: 'Played' },
-  top4: { emoji: '🏅', label: 'Top 4' },
-  win: { emoji: '🏆', label: 'Win' },
-} as const;
+// Configuration for checkbox types
+type CheckedColors = {
+  background: readonly string[];
+  text: readonly string[];
+  border: readonly string[];
+  shadow: readonly string[];
+};
 
-const getButtonStyles = (type: keyof ChampionChecklist, isChecked: boolean) => {
-  const baseClasses = `
-    w-7 h-7 rounded-full flex items-center justify-center text-xs
-    transition-all duration-200 cursor-pointer border hover:scale-105
-  `;
+type UncheckedColors = {
+  background: readonly string[];
+  border: readonly string[];
+  hover: readonly string[];
+  text: readonly string[];
+};
 
-  if (isChecked) {
-    switch (type) {
-      case 'played':
-        return `${baseClasses} bg-gradient-to-br from-amber-600 to-amber-500 text-white border-amber-700 shadow-lg shadow-amber-500/40`;
-      case 'top4':
-        return `${baseClasses} bg-gradient-to-br from-gray-500 to-gray-400 text-white border-gray-600 shadow-lg shadow-gray-500/40`;
-      case 'win':
-        return `${baseClasses} bg-gradient-to-br from-yellow-400 to-yellow-300 text-gray-800 border-yellow-500 shadow-md shadow-yellow-500/30`;
-      default:
-        return baseClasses;
+const CHECKBOX_CONFIG = {
+  played: { 
+    emoji: '✔️', 
+    label: 'Played',
+    colors: {
+      checked: {
+        background: ['bg-gradient-to-br', 'from-amber-600', 'to-amber-500'],
+        text: ['text-white'],
+        border: ['border-amber-700'],
+        shadow: ['shadow-lg', 'shadow-amber-500/40']
+      } satisfies CheckedColors,
+      unchecked: {
+        background: ['bg-amber-50/15'],
+        border: ['border-amber-200/30'],
+        hover: ['hover:bg-amber-100/25'],
+        text: ['text-amber-600']
+      } satisfies UncheckedColors
     }
-  } else {
-    switch (type) {
-      case 'played':
-        return `${baseClasses} bg-amber-50/15 border-amber-200/30 hover:bg-amber-100/25 text-amber-600`;
-      case 'top4':
-        return `${baseClasses} bg-gray-50/15 border-gray-200/30 hover:bg-gray-100/25 text-gray-600`;
-      case 'win':
-        return `${baseClasses} bg-yellow-50/15 border-yellow-200/30 hover:bg-yellow-100/25 text-yellow-600`;
-      default:
-        return `${baseClasses} bg-gray-50 border-gray-200 hover:bg-gray-100`;
+  },
+  top4: { 
+    emoji: '🏅', 
+    label: 'Top 4',
+    colors: {
+      checked: {
+        background: ['bg-gradient-to-br', 'from-gray-500', 'to-gray-400'],
+        text: ['text-white'],
+        border: ['border-gray-600'],
+        shadow: ['shadow-lg', 'shadow-gray-500/40']
+      } satisfies CheckedColors,
+      unchecked: {
+        background: ['bg-gray-50/15'],
+        border: ['border-gray-200/30'],
+        hover: ['hover:bg-gray-100/25'],
+        text: ['text-gray-600']
+      } satisfies UncheckedColors
+    }
+  },
+  win: { 
+    emoji: '🏆', 
+    label: 'Win',
+    colors: {
+      checked: {
+        background: ['bg-gradient-to-br', 'from-yellow-400', 'to-yellow-300'],
+        text: ['text-gray-800'],
+        border: ['border-yellow-500'],
+        shadow: ['shadow-md', 'shadow-yellow-500/30']
+      } satisfies CheckedColors,
+      unchecked: {
+        background: ['bg-yellow-50/15'],
+        border: ['border-yellow-200/30'],
+        hover: ['hover:bg-yellow-100/25'],
+        text: ['text-yellow-600']
+      } satisfies UncheckedColors
     }
   }
+} as const;
+
+const BASE_BUTTON_CLASSES = [
+  'w-7', 'h-7', 'rounded-full', 'flex', 'items-center', 'justify-center', 
+  'text-xs', 'transition-all', 'duration-200', 'cursor-pointer', 'border', 'hover:scale-105'
+];
+
+const getButtonStyleClasses = (type: keyof ChampionChecklist, isChecked: boolean): string => {
+  const config = CHECKBOX_CONFIG[type];
+  
+  const classes = [...BASE_BUTTON_CLASSES];
+  
+  if (isChecked) {
+    const colorConfig = config.colors.checked;
+    classes.push(
+      ...colorConfig.background,
+      ...colorConfig.text,
+      ...colorConfig.border,
+      ...colorConfig.shadow
+    );
+  } else {
+    const colorConfig = config.colors.unchecked;
+    classes.push(
+      ...colorConfig.background,
+      ...colorConfig.border,
+      ...colorConfig.hover,
+      ...colorConfig.text
+    );
+  }
+  
+  return classes.join(' ');
 };
 
 export const CheckboxButton: React.FC<CheckboxButtonProps> = ({
@@ -60,8 +126,8 @@ export const CheckboxButton: React.FC<CheckboxButtonProps> = ({
   championName,
   effectsEnabled = true
 }) => {
-  const config = checkboxConfig[type];
-  const buttonClass = getButtonStyles(type, isChecked);
+  const config = CHECKBOX_CONFIG[type];
+  const buttonClass = getButtonStyleClasses(type, isChecked);
   
   const buttonContent = (
     <button

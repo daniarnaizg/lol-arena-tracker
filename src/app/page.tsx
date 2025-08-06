@@ -6,6 +6,7 @@ import ChampionsGrid from '@/components/ChampionsGrid';
 import { MatchHistory } from '@/components/MatchHistory';
 import { ProgressCounter } from '@/components/ProgressCounter';
 import Footer from '@/components/Footer';
+import { VersionInitializer } from '@/components/VersionInitializer';
 import { normalizeChampionName } from '@/utils/championUtils';
 import { Champion } from '@/services/ddragon';
 import { championService } from '@/services/championService';
@@ -41,7 +42,7 @@ export default function Home() {
   };
 
   return (
-    <>
+    <VersionInitializer>
       <Header search={search} setSearch={setSearch} />
       <div className="flex-1 w-full max-w-7xl mx-auto p-6 space-y-8">
         <MatchHistory onChampionSearch={handleChampionSearch} />
@@ -49,6 +50,6 @@ export default function Home() {
         <ChampionsGrid search={search} champions={champions} setChampions={updateChampions} />
       </div>
       <Footer />
-    </>
+    </VersionInitializer>
   );
 }

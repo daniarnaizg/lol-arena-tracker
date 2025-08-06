@@ -23,8 +23,25 @@ export class ChampionService {
     return this.currentVersion;
   }
 
+  // Get the latest version and cache it for the application
+  async ensureLatestVersion(): Promise<string> {
+    try {
+      const { ddragonService } = await import('@/services/ddragon');
+      const version = await ddragonService.getLatestVersion();
+      this.currentVersion = version;
+      return version;
+    } catch (error) {
+      console.error('Failed to fetch latest version:', error);
+      // Return cached version or fallback
+      return this.currentVersion || '15.15.1';
+    }
+  }
+
   async getChampions(forceRefresh = false, cacheMaxAge?: number): Promise<Champion[]> {
     try {
+      // Ensure we have the latest version before proceeding
+      await this.ensureLatestVersion();
+      
       // Check if we should use cached data
       // Use custom cache time if provided, otherwise use default (24 hours)
       const shouldUpdate = cacheMaxAge !== undefined 
@@ -35,6 +52,8 @@ export class ChampionService {
         const storedData = LocalStorageManager.getChampionData();
         if (storedData) {
           console.log('Using cached champion data, version:', storedData.version);
+          // Update currentVersion with cached version
+          this.currentVersion = storedData.version;
           return storedData.champions;
         }
       }
@@ -119,6 +138,11 @@ export class ChampionService {
 
   clearCache(): void {
     LocalStorageManager.clearChampionData();
+    this.currentVersion = null;
+    // Also clear DDragon cache
+    import('@/services/ddragon').then(({ ddragonService }) => {
+      ddragonService.clearCache();
+    }).catch(err => console.warn('Failed to clear DDragon cache:', err));
   }
 }
 
