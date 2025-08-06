@@ -2,13 +2,14 @@
 import React, { useEffect, useState } from 'react';
 import confetti from 'canvas-confetti';
 import { ControlPanel } from './ControlPanel';
+import { SecondaryControls } from './ui/SecondaryControls';
 import { ChampionsGridDisplay } from './ChampionsGridDisplay';
 import { ConfirmationModal } from './ui/ConfirmationModal';
-import { FilterType } from './ui/FilterButtons';
+import { FilterType, SortType } from './ui';
 import { ChampionChecklist } from './ui/CheckboxButton';
 import { championService } from '@/services/championService';
 import { Champion } from '@/services/ddragon';
-import { championNameIncludes } from '@/utils/championUtils';
+import { championNameIncludes, sortChampions } from '@/utils/championUtils';
 
 interface ChampionsGridProps {
   search: string;
@@ -25,6 +26,7 @@ const ChampionsGrid = ({ search, champions, setChampions }: ChampionsGridProps) 
   const [columns, setColumns] = useState(DEFAULT_COLUMNS);
   const [effectsEnabled, setEffectsEnabled] = useState(true);
   const [showClearModal, setShowClearModal] = useState(false);
+  const [sortBy, setSortBy] = useState<SortType>('status');
 
   useEffect(() => {
     if (champions.length > 0) {
@@ -147,7 +149,7 @@ const ChampionsGrid = ({ search, champions, setChampions }: ChampionsGridProps) 
     );
   };
 
-  // Filtering logic
+  // Filtering and sorting logic
   const filteredChampions = champions.filter(champ => {
     const checklist = champ.checklist || { played: false, top4: false, win: false };
     
@@ -168,13 +170,12 @@ const ChampionsGrid = ({ search, champions, setChampions }: ChampionsGridProps) 
     });
   });
 
+  // Apply sorting to filtered champions
+  const sortedChampions = sortChampions(filteredChampions, sortBy);
+
   return (
     <section className="flex-1 w-full">
       <ControlPanel
-        columns={columns}
-        minColumns={MIN_COLUMNS}
-        maxColumns={MAX_COLUMNS}
-        onColumnsChange={setColumns}
         effectsEnabled={effectsEnabled}
         onEffectsToggle={() => setEffectsEnabled(!effectsEnabled)}
         onClearAll={handleClearAllClick}
@@ -184,8 +185,20 @@ const ChampionsGrid = ({ search, champions, setChampions }: ChampionsGridProps) 
         onImport={handleImport}
       />
       
+      <SecondaryControls
+        sortBy={sortBy}
+        onSortChange={setSortBy}
+        columns={columns}
+        minColumns={MIN_COLUMNS}
+        maxColumns={MAX_COLUMNS}
+        onColumnsChange={setColumns}
+        totalChampions={champions.length}
+        filteredChampions={filteredChampions.length}
+        effectsEnabled={effectsEnabled}
+      />
+      
       <ChampionsGridDisplay
-        champions={filteredChampions}
+        champions={sortedChampions}
         columns={columns}
         onChecklistChange={handleChecklistChange}
         effectsEnabled={effectsEnabled}

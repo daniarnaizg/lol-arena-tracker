@@ -1,6 +1,5 @@
 "use client"
 import React from 'react';
-import { ColumnSlider } from './ui/ColumnSlider';
 import { ToggleSwitch } from './ui/ToggleSwitch';
 import { ClearAllButton } from './ui/ClearAllButton';
 import { FilterButtons, FilterType } from './ui/FilterButtons';
@@ -8,12 +7,6 @@ import { ImportExportButtons } from './ui/ImportExportButtons';
 import { Champion } from '@/services/ddragon';
 
 interface ControlPanelProps {
-  // Column controls
-  columns: number;
-  minColumns: number;
-  maxColumns: number;
-  onColumnsChange: (columns: number) => void;
-  
   // Effects toggle
   effectsEnabled: boolean;
   onEffectsToggle: () => void;
@@ -33,10 +26,6 @@ interface ControlPanelProps {
 }
 
 export const ControlPanel: React.FC<ControlPanelProps> = ({
-  columns,
-  minColumns,
-  maxColumns,
-  onColumnsChange,
   effectsEnabled,
   onEffectsToggle,
   onClearAll,
@@ -48,26 +37,17 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
 }) => {
   return (
     <div className={`flex flex-col xl:flex-row gap-4 mb-8 items-center justify-between ${className}`}>
-      {/* Left section: Column slider and basic controls */}
-      <div className="flex items-center gap-4 w-full max-w-md">
-        <ColumnSlider
-          columns={columns}
-          minColumns={minColumns}
-          maxColumns={maxColumns}
-          onColumnsChange={onColumnsChange}
+      {/* Left section: Basic controls */}
+      <div className="flex items-center gap-6">
+        <ToggleSwitch
+          enabled={effectsEnabled}
+          onToggle={onEffectsToggle}
+          tooltip="Toggle animations and effects"
         />
         
-        <div className="flex gap-6 ml-4">
-          <ToggleSwitch
-            enabled={effectsEnabled}
-            onToggle={onEffectsToggle}
-            tooltip="Toggle animations and effects"
-          />
-          
-          <ClearAllButton
-            onClick={onClearAll}
-          />
-        </div>
+        <ClearAllButton
+          onClick={onClearAll}
+        />
       </div>
       
       {/* Center section: Import/Export buttons */}

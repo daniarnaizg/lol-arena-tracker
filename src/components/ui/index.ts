@@ -5,3 +5,6 @@ export { ColumnSlider } from './ColumnSlider';
 export { CheckboxButton, type ChampionChecklist } from './CheckboxButton';
 export { ConfirmationModal } from './ConfirmationModal';
 export { ImportExportButtons } from './ImportExportButtons';
+export { SortingOptions, type SortType } from './SortingOptions';
+export { ChampionCounter } from './ChampionCounter';
+export { SecondaryControls } from './SecondaryControls';
