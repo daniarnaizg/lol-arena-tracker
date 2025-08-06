@@ -3,8 +3,8 @@ import { Metadata } from 'next';
 // Site configuration constants
 export const SITE_CONFIG = {
   name: "LoL Arena Tracker",
-  title: "League of Legends Arena Tracker - Track Your 2v2v2v2 Progress",
-  description: "Track your League of Legends Arena mode progress, discover champion synergies, and monitor your match history in the fast-paced 2v2v2v2 game mode.",
+  title: "League of Legends Arena Tracker",
+  description: "Track your League of Legends Arena mode progress, discover champion synergies, and monitor your match history.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://lol-arena-tracker.vercel.app",
   ogImage: "/og-image.jpg",
   creator: "@daniarnaizg",
@@ -53,7 +53,7 @@ export const defaultMetadata: Metadata = {
         width: 1200,
         height: 630,
         alt: siteConfig.title,
-        type: "image/jpeg"
+        type: "image/png"
       }
     ]
   },
