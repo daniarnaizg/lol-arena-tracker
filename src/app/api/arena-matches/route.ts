@@ -4,9 +4,10 @@ import { riotApiService } from '@/services/riotApi';
 export async function POST(request: NextRequest) {
   try {
     console.log('=== ARENA MATCHES API CALLED ===');
-    const { matchIds, maxMatches = 10 } = await request.json();
+    const { matchIds, maxMatches = 15, puuid } = await request.json();
     
-    console.log('Received request data:', { matchIds, maxMatches });
+    console.log('Received request data:', { matchIds, maxMatches, puuid });
+    console.log('Region cache status:', riotApiService.getRegionCacheStatus());
     console.log('Match IDs type:', typeof matchIds);
     console.log('Match IDs is array:', Array.isArray(matchIds));
     console.log('Match IDs length:', matchIds ? matchIds.length : 'N/A');
@@ -32,17 +33,24 @@ export async function POST(request: NextRequest) {
     try {
       console.log(`Fetching match details for ${matchIds.length} matches...`);
       
-      // Limit the number of matches to process to avoid rate limits
-      const limitedMatchIds = matchIds.slice(0, Math.min(maxMatches, 20));
-      console.log(`Limited to ${limitedMatchIds.length} matches:`, limitedMatchIds);
+      // We'll check up to 50 matches to find the requested number of Arena matches
+      // But we'll process them in batches to avoid rate limits and return early when we have enough
+      const maxArenaMatches = maxMatches || 15;
+      const maxMatchesToCheck = Math.min(matchIds.length, 50);
       
-      // Get Arena matches only
-      const arenaMatches = await riotApiService.getArenaMatchDetails(limitedMatchIds);
+      console.log(`Looking for ${maxArenaMatches} Arena matches from ${maxMatchesToCheck} total matches`);
       
-      console.log(`Found ${arenaMatches.length} Arena matches out of ${limitedMatchIds.length} total matches`);
+      // Get Arena matches only - the service will stop early when we have enough
+      const result = await riotApiService.getArenaMatchDetails(
+        matchIds.slice(0, maxMatchesToCheck), 
+        puuid, 
+        maxArenaMatches
+      );
+      
+      console.log(`Found ${result.arenaMatches.length} Arena matches out of ${result.totalChecked} checked matches`);
       
       // Log Arena match details
-      arenaMatches.forEach((match, index) => {
+      result.arenaMatches.forEach((match, index) => {
         console.log(`Arena Match ${index + 1}:`, {
           matchId: match.metadata.matchId,
           gameMode: match.info.gameMode,
@@ -53,9 +61,9 @@ export async function POST(request: NextRequest) {
       
       return NextResponse.json({
         success: true,
-        arenaMatches,
-        totalChecked: limitedMatchIds.length,
-        arenaCount: arenaMatches.length,
+        arenaMatches: result.arenaMatches,
+        totalChecked: result.totalChecked,
+        arenaCount: result.arenaMatches.length,
       });
     } catch (riotError) {
       console.error('Riot Arena Matches API Error:', riotError);

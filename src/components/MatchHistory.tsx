@@ -89,7 +89,7 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
       
       setAccount(accountData.account);
       
-      // Step 2: Fetch match history
+      // Step 2: Fetch match history (increased to 50 matches to find more Arena games)
       const matchResponse = await fetch('/api/match-history', {
         method: 'POST',
         headers: {
@@ -97,7 +97,7 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
         },
         body: JSON.stringify({
           puuid: accountData.account.puuid,
-          count: 20,
+          count: 50, // Increased from 20 to 50 to get more matches
         }),
       });
 
@@ -107,7 +107,7 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
         throw new Error(matchData.error || 'Failed to fetch match history');
       }
       
-      // Step 3: Fetch Arena match details
+      // Step 3: Fetch Arena match details (get up to 15 Arena matches from the 50 recent matches)
       if (matchData.matchIds && matchData.matchIds.length > 0) {
         const arenaResponse = await fetch('/api/arena-matches', {
           method: 'POST',
@@ -116,7 +116,8 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
           },
           body: JSON.stringify({
             matchIds: matchData.matchIds,
-            maxMatches: 10,
+            maxMatches: 13, // Get up to 13 Arena matches
+            puuid: accountData.account.puuid,
           }),
         });
 
@@ -336,7 +337,7 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
                   ) : (
                     <div className="flex items-center justify-center py-8 text-gray-500 w-full">
                       <div className="text-center">
-                        <p className="text-sm">No Arena matches found in the last 20 games</p>
+                        <p className="text-sm">No Arena matches found in the last 50 games</p>
                       </div>
                     </div>
                   )}

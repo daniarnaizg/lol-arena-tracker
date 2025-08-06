@@ -54,11 +54,15 @@ const RIOT_API_REGIONS = {
   americas: 'https://americas.api.riotgames.com',
   asia: 'https://asia.api.riotgames.com',
   europe: 'https://europe.api.riotgames.com',
+  sea: 'https://sea.api.riotgames.com',
 } as const;
 
 const ARENA_GAME_MODE = 'CHERRY';
 const DEFAULT_REGION = 'americas';
-const MATCH_API_REGION = 'europe'; // Use Europe for match data
+
+// Region priority order for trying to find match data
+// Order based on player distribution: Americas, Europe, Asia, SEA
+const REGION_PRIORITY: RiotRegion[] = ['americas', 'europe', 'asia', 'sea'];
 
 type RiotRegion = keyof typeof RIOT_API_REGIONS;
 
@@ -68,6 +72,7 @@ type RiotRegion = keyof typeof RIOT_API_REGIONS;
 export class RiotApiService {
   private readonly apiKey: string;
   private readonly accountApiBaseUrl: string;
+  private regionCache: Map<string, RiotRegion> = new Map(); // Cache successful regions per PUUID
 
   constructor() {
     const apiKey = process.env.RIOT_API_KEY;
@@ -105,13 +110,92 @@ export class RiotApiService {
   }
 
   /**
+   * Detect the correct region for match data by trying regions in priority order
+   */
+  private async detectMatchRegion(puuid: string): Promise<RiotRegion> {
+    console.log(`🔍 Detecting region for PUUID: ${puuid}`);
+    
+    // Check if we have a cached region for this PUUID
+    const cachedRegion = this.regionCache.get(puuid);
+    if (cachedRegion) {
+      console.log(`✅ Using cached region for ${puuid}: ${cachedRegion}`);
+      return cachedRegion;
+    }
+
+    const validRegions: { region: RiotRegion; matchCount: number }[] = [];
+
+    // Try all regions and collect successful responses
+    for (const region of REGION_PRIORITY) {
+      try {
+        console.log(`🌍 Trying region: ${region} for PUUID: ${puuid}`);
+        const baseUrl = this.getRegionalUrl(region);
+        const endpoint = `/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=10`;
+        const url = `${baseUrl}${endpoint}`;
+        
+        const matches = await this.makeRequest<string[]>(url);
+        
+        if (matches !== null && matches !== undefined && Array.isArray(matches)) {
+          console.log(`📊 Region ${region} response for ${puuid}: ${matches.length} matches`);
+          validRegions.push({ region, matchCount: matches.length });
+        }
+      } catch (error) {
+        console.log(`❌ Region ${region} failed for PUUID ${puuid}:`, error instanceof Error ? error.message : error);
+      }
+    }
+
+    // Choose the best region based on match count
+    if (validRegions.length > 0) {
+      // Sort by match count (descending) and take the region with most matches
+      validRegions.sort((a, b) => b.matchCount - a.matchCount);
+      const bestRegion = validRegions[0].region;
+      
+      console.log(`✅ Selected region for ${puuid}: ${bestRegion} (${validRegions[0].matchCount} matches)`);
+      console.log(`📈 All valid regions:`, validRegions);
+      
+      this.regionCache.set(puuid, bestRegion);
+      return bestRegion;
+    }
+
+    // If all regions fail, default to americas
+    console.warn(`⚠️ Could not detect region for PUUID ${puuid}, defaulting to americas`);
+    const defaultRegion: RiotRegion = 'americas';
+    this.regionCache.set(puuid, defaultRegion);
+    return defaultRegion;
+  }
+
+  /**
+   * Clear the region cache (useful for debugging or when needed)
+   */
+  public clearRegionCache(): void {
+    console.log('🗑️ Clearing region cache');
+    this.regionCache.clear();
+  }
+
+  /**
+   * Get current region cache status (for debugging)
+   */
+  public getRegionCacheStatus(): { [puuid: string]: RiotRegion } {
+    const status: { [puuid: string]: RiotRegion } = {};
+    this.regionCache.forEach((region, puuid) => {
+      status[puuid] = region;
+    });
+    return status;
+  }
+
+  /**
    * Get account information by Riot ID
    */
   async getAccountByRiotId(gameName: string, tagLine: string): Promise<RiotAccount> {
     const endpoint = `/riot/account/v1/accounts/by-riot-id/${encodeURIComponent(gameName)}/${encodeURIComponent(tagLine)}`;
     const url = `${this.accountApiBaseUrl}${endpoint}`;
     
-    return this.makeRequest<RiotAccount>(url);
+    const account = await this.makeRequest<RiotAccount>(url);
+    
+    // Try to pre-determine the likely match region based on common patterns
+    // This is a heuristic approach to optimize the region detection
+    console.log(`🎮 Account found: ${account.gameName}#${account.tagLine} (PUUID: ${account.puuid})`);
+    
+    return account;
   }
 
   /**
@@ -120,7 +204,10 @@ export class RiotApiService {
   async getMatchHistory(params: MatchHistoryParams): Promise<string[]> {
     const { puuid, start = 0, count = 20, queue } = params;
     
-    const baseUrl = this.getRegionalUrl(MATCH_API_REGION);
+    // Detect the correct region for this player's match data
+    const matchRegion = await this.detectMatchRegion(puuid);
+    const baseUrl = this.getRegionalUrl(matchRegion);
+    
     let endpoint = `/lol/match/v5/matches/by-puuid/${puuid}/ids?start=${start}&count=${count}`;
     
     if (queue) {
@@ -134,8 +221,28 @@ export class RiotApiService {
   /**
    * Get detailed information for a specific match
    */
-  async getMatchDetails(matchId: string): Promise<MatchDetails> {
-    const baseUrl = this.getRegionalUrl(MATCH_API_REGION);
+  async getMatchDetails(matchId: string, region?: RiotRegion): Promise<MatchDetails> {
+    // If no region provided, try to extract PUUID from context or use default detection
+    const matchRegion = region;
+    
+    if (!matchRegion) {
+      // For backwards compatibility, try regions in order
+      for (const tryRegion of REGION_PRIORITY) {
+        try {
+          const baseUrl = this.getRegionalUrl(tryRegion);
+          const endpoint = `/lol/match/v5/matches/${matchId}`;
+          const url = `${baseUrl}${endpoint}`;
+          
+          return await this.makeRequest<MatchDetails>(url);
+        } catch {
+          // Continue to next region
+          continue;
+        }
+      }
+      throw new Error(`Match ${matchId} not found in any region`);
+    }
+
+    const baseUrl = this.getRegionalUrl(matchRegion);
     const endpoint = `/lol/match/v5/matches/${matchId}`;
     const url = `${baseUrl}${endpoint}`;
     
@@ -152,16 +259,42 @@ export class RiotApiService {
   /**
    * Get Arena match details from a list of match IDs
    * Filters out non-Arena matches and returns only Arena game data
+   * Optimized to use the same region for all matches from the same player
+   * Now supports early stopping when desired number of Arena matches is found
    */
-  async getArenaMatchDetails(matchIds: string[]): Promise<MatchDetails[]> {
+  async getArenaMatchDetails(
+    matchIds: string[], 
+    puuid?: string, 
+    maxArenaMatches?: number
+  ): Promise<{ arenaMatches: MatchDetails[]; totalChecked: number }> {
     const arenaMatches: MatchDetails[] = [];
+    const limit = maxArenaMatches || matchIds.length;
+    let totalChecked = 0;
+    
+    // If we have a PUUID, detect the region once and reuse it
+    let detectedRegion: RiotRegion | undefined;
+    if (puuid) {
+      try {
+        detectedRegion = await this.detectMatchRegion(puuid);
+      } catch {
+        console.warn('Failed to detect region for PUUID, will try all regions per match');
+      }
+    }
     
     for (const matchId of matchIds) {
+      // Stop early if we've found enough Arena matches
+      if (arenaMatches.length >= limit) {
+        console.log(`✅ Found ${limit} Arena matches, stopping early (checked ${totalChecked} matches)`);
+        break;
+      }
+      
       try {
-        const matchDetails = await this.getMatchDetails(matchId);
+        totalChecked++;
+        const matchDetails = await this.getMatchDetails(matchId, detectedRegion);
         
         if (RiotApiService.isArenaMatch(matchDetails)) {
           arenaMatches.push(matchDetails);
+          console.log(`🎯 Arena match found: ${matchId} (${arenaMatches.length}/${limit})`);
         }
       } catch (error) {
         // Log error but continue processing other matches
@@ -169,7 +302,8 @@ export class RiotApiService {
       }
     }
     
-    return arenaMatches;
+    console.log(`📊 Final result: ${arenaMatches.length} Arena matches found after checking ${totalChecked} matches`);
+    return { arenaMatches, totalChecked };
   }
 
   /**
