@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import confetti from 'canvas-confetti';
 import { ControlPanel } from './ControlPanel';
 import { ChampionsGridDisplay } from './ChampionsGridDisplay';
@@ -16,29 +16,37 @@ interface ChampionsGridProps {
   setChampions: React.Dispatch<React.SetStateAction<Champion[]>>;
 }
 
-const MIN_COLUMNS = 5;
-const MAX_COLUMNS = 10;
-const DEFAULT_COLUMNS = 8;
+// Column configuration
+const MIN_COLUMNS = 5; // Slider min for md+
+const MAX_COLUMNS = 10; // Slider max for md+
+const DEFAULT_COLUMNS = 8; // Default user preference for md+
+const MOBILE_FIXED_COLUMNS = 3; // Columns for < md (easily tweakable)
 
 const ChampionsGrid = ({ search, champions, setChampions }: ChampionsGridProps) => {
   const [activeFilters, setActiveFilters] = useState<FilterType[]>(['all']);
-  const [columns, setColumns] = useState(DEFAULT_COLUMNS);
+  // User-selected columns (only used on md+). Keep separate from the effective value used by the grid.
+  const [userColumns, setUserColumns] = useState(DEFAULT_COLUMNS);
+  // Tracks if viewport is md and up; start as false to avoid hydration mismatch and adjust after mount.
+  const [isMdUp, setIsMdUp] = useState(false);
   const [effectsEnabled, setEffectsEnabled] = useState(true);
   const [showClearModal, setShowClearModal] = useState(false);
   const [sortBy, setSortBy] = useState<SortType>('status');
 
+  // Determine if we're on md+ and update reactively without touching render-time values.
   useEffect(() => {
-    // Lock columns to 3 on small screens (portrait) for mobile layout
-    const mq = window.matchMedia('(max-width: 768px)');
-    const applyColumnsForViewport = () => {
-      if (mq.matches) {
-        setColumns(3);
-      }
+    const mq = window.matchMedia('(min-width: 768px)');
+    const handler = (e: MediaQueryListEvent) => setIsMdUp(e.matches);
+    // Initialize on mount
+    setIsMdUp(mq.matches);
+    // Subscribe to changes
+    mq.addEventListener?.('change', handler);
+    return () => {
+      mq.removeEventListener?.('change', handler);
     };
-    applyColumnsForViewport();
-    mq.addEventListener?.('change', applyColumnsForViewport);
-    return () => mq.removeEventListener?.('change', applyColumnsForViewport);
   }, []);
+
+  // Effective columns used by the grid: locked on mobile, user-controlled on md+
+  const effectiveColumns = useMemo(() => (isMdUp ? userColumns : MOBILE_FIXED_COLUMNS), [isMdUp, userColumns]);
 
   useEffect(() => {
     if (champions.length > 0) {
@@ -197,17 +205,19 @@ const ChampionsGrid = ({ search, champions, setChampions }: ChampionsGridProps) 
         onEffectsToggle={() => setEffectsEnabled(!effectsEnabled)}
         sortBy={sortBy}
         onSortChange={setSortBy}
-        columns={columns}
+        // Pass the user-controlled value to the slider (only visible on md+)
+        columns={userColumns}
         minColumns={MIN_COLUMNS}
         maxColumns={MAX_COLUMNS}
-        onColumnsChange={setColumns}
+        onColumnsChange={setUserColumns}
         totalChampions={champions.length}
         filteredChampions={filteredChampions.length}
       />
       
       <ChampionsGridDisplay
         champions={sortedChampions}
-        columns={columns}
+        // Use effective columns for the actual grid
+        columns={effectiveColumns}
         onChecklistChange={handleChecklistChange}
         effectsEnabled={effectsEnabled}
       />

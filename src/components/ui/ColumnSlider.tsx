@@ -1,5 +1,5 @@
 "use client"
-import React, { useMemo } from 'react';
+import React from 'react';
 import { BaseUIProps } from './shared/types';
 import { combineClasses } from './shared/utils';
 
@@ -17,18 +17,6 @@ export const ColumnSlider: React.FC<ColumnSliderProps> = ({
   onColumnsChange,
   className = ''
 }) => {
-  // On small screens, cap the max at 3 for better readability
-  const effectiveMax = useMemo(() => {
-    if (typeof window === 'undefined') return maxColumns;
-    const isSmallPortrait = window.matchMedia && window.matchMedia('(max-width: 640px) and (orientation: portrait)').matches;
-    return isSmallPortrait ? Math.min(3, maxColumns) : maxColumns;
-  }, [maxColumns]);
-
-  const effectiveMin = useMemo(() => {
-    if (typeof window === 'undefined') return minColumns;
-    const isSmallPortrait = window.matchMedia && window.matchMedia('(max-width: 640px) and (orientation: portrait)').matches;
-    return isSmallPortrait ? Math.min(minColumns, 1) : minColumns;
-  }, [minColumns]);
   const containerClasses = combineClasses(
     'flex items-center gap-3 md:gap-4 w-full max-w-sm md:max-w-md',
     className
@@ -45,8 +33,8 @@ export const ColumnSlider: React.FC<ColumnSliderProps> = ({
       <input
         id="columns-slider"
         type="range"
-        min={effectiveMin}
-        max={effectiveMax}
+  min={minColumns}
+  max={maxColumns}
         step={1}
         value={columns}
         onChange={e => onColumnsChange(Number(e.target.value))}
