@@ -268,7 +268,7 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
             >
               <div className="pt-4">
                 <form onSubmit={handleSubmit} className="space-y-4 min-h-[90px] flex flex-col justify-center">
-                  <div className="flex items-center gap-3">
+                  <div className="flex flex-col gap-3 md:flex-row md:items-center">
                     <div className="flex-1">
                       <label className="sr-only">Game Name</label>
                       <input
@@ -281,7 +281,7 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
                       />
                     </div>
 
-                    <span className="text-gray-400 text-2xl font-semibold">#</span> 
+                    <span className="hidden md:inline text-gray-400 text-2xl font-semibold">#</span> 
 
                     <div className="flex gap-2 flex-1">
                       <label className="sr-only">Tag Line</label>

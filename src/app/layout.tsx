@@ -4,6 +4,7 @@ import type { Metadata, Viewport } from "next";
 import { Analytics } from '@vercel/analytics/react';
 import { defaultMetadata } from '@/lib/metadata';
 import { KofiOverlayWidget } from '@/components/KofiOverlayWidget';
+import { BackToTopFab } from '@/components/ui/BackToTopFab';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,6 +35,7 @@ export default function RootLayout({
   <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-dvh md:min-h-screen flex flex-col bg-gray-100 pt-[env(safe-area-inset-top)] md:pt-0 pb-[env(safe-area-inset-bottom)] md:pb-0`}>
         <KofiOverlayWidget />
         {children}
+  <BackToTopFab />
         <Analytics />
       </body>
     </html>

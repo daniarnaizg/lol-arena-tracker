@@ -9,6 +9,7 @@ export { SortingOptions, type SortType } from './SortingOptions';
 export { ChampionCounter } from './ChampionCounter';
 export { EffectsToggle } from './EffectsToggle';
 export { KofiButton } from './KofiButton';
+export { BackToTopFab } from './BackToTopFab';
 
 // Shared utilities and components
 export * from './shared';

@@ -16,7 +16,7 @@ interface ChampionCardProps {
 // Card styling configuration
 const CARD_STYLES = {
   base: [
-    'flex', 'flex-col', 'items-center', 'gap-3', 'p-4', 'rounded-xl', 
+  'flex', 'flex-col', 'items-center', 'gap-2', 'md:gap-3', 'p-2', 'md:p-4', 'rounded-xl', 
     'bg-white', 'transition-all', 'duration-200', 'shadow-sm',
     'hover:shadow-md', 'hover:-translate-y-1', 'hover:scale-[1.02]'
   ],
@@ -121,12 +121,12 @@ export const ChampionCard: React.FC<ChampionCardProps> = ({
         )}
       </div>
       
-      <div className="flex flex-col items-center gap-2 w-full">
+      <div className="flex flex-col items-center gap-1.5 md:gap-2 w-full flex-1">
         <h3 className={nameClass}>
           {champion.name}
         </h3>
         
-        <div className="flex justify-center gap-3">
+  <div className="mt-auto w-full flex justify-center md:justify-center px-1 md:px-0 gap-2 md:gap-3 flex-nowrap">
           {(['played', 'top4', 'win'] as const).map((key) => (
             <CheckboxButton
               key={key}

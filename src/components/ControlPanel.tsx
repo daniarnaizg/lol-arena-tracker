@@ -65,7 +65,7 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
   return (
     <div className={containerClasses}>
       {/* Row 1 (mobile only): Data actions + Effects toggle */}
-      <div className="flex px-2 items-center justify-between gap-2 w-full md:hidden">
+      <div className="flex items-center justify-between gap-2 w-full md:hidden">
         <ImportExportButtons
           champions={champions}
           onImport={onImport}
@@ -83,7 +83,7 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
       </div>
 
       {/* Row 2 (mobile only): Filters single line, horizontally scrollable */}
-      <div className="w-full md:hidden">
+      <div className="w-full md:hidden overflow-x-auto scrollbar-hide">
         <FilterButtons
           activeFilters={activeFilters}
           onFilterChange={onFilterChange}
