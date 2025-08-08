@@ -1,5 +1,5 @@
 import React from 'react';
-
+import SearchBar from './SearchBar';
 
 interface HeaderProps {
   search: string;
@@ -8,16 +8,11 @@ interface HeaderProps {
 
 const Header = ({ search, setSearch }: HeaderProps) => {
   return (
-    <header className="w-full py-6 px-6 bg-slate-900 text-white flex flex-col items-center shadow">
-      <h1 className="text-3xl font-bold tracking-tight mb-4 text-center">Arena Tracker</h1>
-      <input
-        type="text"
-        placeholder="Search champions..."
-        value={search}
-        onChange={e => setSearch(e.target.value)}
-        className="rounded px-6 py-4 text-white bg-slate-800 w-full max-w-xl text-2xl font-semibold focus:outline-none focus:ring-4 focus:ring-blue-500 text-center placeholder-gray-400"
-        autoFocus
-      />
+    <header className="w-full py-10 px-6 bg-slate-900 text-white shadow relative">
+      <h1 className="text-3xl ml-4 font-bold tracking-tight">Arena Tracker</h1>
+      <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-xl px-6">
+        <SearchBar search={search} setSearch={setSearch} />
+      </div>
     </header>
   );
 };
