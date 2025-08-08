@@ -1,7 +1,8 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArenaMatchCard } from './ui/ArenaMatchCard';
+import { LocalStorageManager, StoredPlayerData } from '@/utils/localStorage';
 
 interface RiotAccount {
   puuid: string;
@@ -56,11 +57,13 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
   const [arenaMatches, setArenaMatches] = useState<ArenaMatchesData | null>(null);
   const [showInputs, setShowInputs] = useState(true);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [hasAutoSearched, setHasAutoSearched] = useState(false);
 
-  const handleSubmit = async (e?: React.FormEvent) => {
-    e?.preventDefault();
+  const performSearch = useCallback(async (playerData?: StoredPlayerData) => {
+    const searchGameName = playerData?.gameName || gameName.trim();
+    const searchTagLine = playerData?.tagLine || tagLine.trim();
     
-    if (!gameName.trim() || !tagLine.trim()) {
+    if (!searchGameName || !searchTagLine) {
       setError('Please enter both Game Name and Tag Line');
       return;
     }
@@ -69,25 +72,48 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
     setError(null);
 
     try {
-      // Step 1: Get PUUID from Riot ID
-      const accountResponse = await fetch('/api/riot-account', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          gameName: gameName.trim(),
-          tagLine: tagLine.trim(),
-        }),
-      });
-
-      const accountData = await accountResponse.json();
-
-      if (!accountResponse.ok) {
-        throw new Error(accountData.error || 'Failed to fetch account');
-      }
+      let accountData;
       
-      setAccount(accountData.account);
+      // If we have saved player data with puuid, use it directly
+      if (playerData?.puuid) {
+        accountData = {
+          account: {
+            puuid: playerData.puuid,
+            gameName: playerData.gameName,
+            tagLine: playerData.tagLine,
+          }
+        };
+        setAccount(accountData.account);
+      } else {
+        // Step 1: Get PUUID from Riot ID
+        const accountResponse = await fetch('/api/riot-account', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            gameName: searchGameName,
+            tagLine: searchTagLine,
+          }),
+        });
+
+        accountData = await accountResponse.json();
+
+        if (!accountResponse.ok) {
+          throw new Error(accountData.error || 'Failed to fetch account');
+        }
+        
+        setAccount(accountData.account);
+        
+        // Save player data for future visits
+        const playerDataToSave: StoredPlayerData = {
+          gameName: accountData.account.gameName,
+          tagLine: accountData.account.tagLine,
+          puuid: accountData.account.puuid,
+          savedAt: Date.now(),
+        };
+        LocalStorageManager.setPlayerData(playerDataToSave);
+      }
       
       // Step 2: Fetch match history (increased to 50 matches to find more Arena games)
       const matchResponse = await fetch('/api/match-history', {
@@ -136,13 +162,48 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
     } catch (err) {
       console.error('Error fetching data:', err);
       setError(err instanceof Error ? err.message : 'Failed to fetch data');
+      
+      // If auto-search fails, show inputs and clear saved data
+      if (playerData) {
+        setShowInputs(true);
+        setIsExpanded(true);
+        LocalStorageManager.clearPlayerData();
+      }
     } finally {
       setIsLoading(false);
     }
+  }, [gameName, tagLine]);
+
+  // Load saved player data on component mount
+  useEffect(() => {
+    const loadSavedPlayer = async () => {
+      const savedPlayer = LocalStorageManager.getPlayerData();
+      if (savedPlayer && !hasAutoSearched) {
+        setGameName(savedPlayer.gameName);
+        setTagLine(savedPlayer.tagLine);
+        setAccount({
+          puuid: savedPlayer.puuid,
+          gameName: savedPlayer.gameName,
+          tagLine: savedPlayer.tagLine,
+        });
+        setIsExpanded(true); // Start expanded when there's a saved player
+        setHasAutoSearched(true);
+        
+        // Auto-search for the saved player
+        await performSearch(savedPlayer);
+      }
+    };
+
+    loadSavedPlayer();
+  }, [hasAutoSearched, performSearch]);
+
+  const handleSubmit = async (e?: React.FormEvent) => {
+    e?.preventDefault();
+    await performSearch();
   };
 
   const handleRefresh = () => {
-    handleSubmit();
+    performSearch();
   };
 
   const handleBack = () => {
@@ -150,6 +211,11 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
     setArenaMatches(null);
     setAccount(null);
     setError(null);
+    // Clear saved data when manually going back to search for a new player
+    LocalStorageManager.clearPlayerData();
+    setGameName('');
+    setTagLine('');
+    setHasAutoSearched(false);
   };
 
   const formatDate = (timestamp: number) => {
@@ -202,26 +268,29 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
             >
               <div className="pt-4">
                 <form onSubmit={handleSubmit} className="space-y-4 min-h-[90px] flex flex-col justify-center">
-                  <div className="grid grid-cols-2 gap-3">
-                    <div>
+                  <div className="flex items-center gap-3">
+                    <div className="flex-1">
                       <label className="sr-only">Game Name</label>
                       <input
                         type="text"
                         value={gameName}
                         onChange={(e) => setGameName(e.target.value.toUpperCase())}
-                        placeholder="MAMPORRERODEHECA"
+                        placeholder="PLAYER NAME"
                         className="w-full h-12 px-4 py-2 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm uppercase"
                         disabled={isLoading}
                       />
                     </div>
-                    <div className="flex gap-2">
+
+                    <span className="text-gray-400 text-2xl font-semibold">#</span> 
+
+                    <div className="flex gap-2 flex-1">
                       <label className="sr-only">Tag Line</label>
                       <input
                         type="text"
                         value={tagLine}
                         onChange={(e) => setTagLine(e.target.value.toUpperCase())}
-                        placeholder="8888"
-                        className="flex-1 px-4 py-2 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm uppercase"
+                        placeholder="TAG"
+                        className="flex-1 h-12 px-4 py-2 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm uppercase"
                         disabled={isLoading}
                       />
                       <button

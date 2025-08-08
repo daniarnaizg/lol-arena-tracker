@@ -5,12 +5,21 @@ export const STORAGE_KEYS = {
   CHAMPIONS: 'champions',
   CHAMPIONS_VERSION: 'champions_version',
   LAST_UPDATE: 'champions_last_update',
+  LAST_PLAYER: 'last_player',
 } as const;
 
 export interface StoredChampionData {
   champions: Champion[];
   version: string;
   lastUpdate: number;
+}
+
+export interface StoredPlayerData {
+  gameName: string;
+  tagLine: string;
+  puuid: string;
+  region?: string;
+  savedAt: number;
 }
 
 export class LocalStorageManager {
@@ -90,5 +99,43 @@ export class LocalStorageManager {
     }
     
     return null;
+  }
+
+  // Player Data Management
+  static setPlayerData(data: StoredPlayerData): void {
+    if (typeof window === 'undefined') return;
+    
+    try {
+      localStorage.setItem(STORAGE_KEYS.LAST_PLAYER, JSON.stringify(data));
+    } catch (error) {
+      console.warn('Failed to save player data to localStorage:', error);
+    }
+  }
+
+  static getPlayerData(): StoredPlayerData | null {
+    if (typeof window === 'undefined') return null;
+    
+    try {
+      const playerData = localStorage.getItem(STORAGE_KEYS.LAST_PLAYER);
+      
+      if (!playerData) {
+        return null;
+      }
+
+      return JSON.parse(playerData);
+    } catch (error) {
+      console.warn('Failed to load player data from localStorage:', error);
+      return null;
+    }
+  }
+
+  static clearPlayerData(): void {
+    if (typeof window === 'undefined') return;
+    
+    try {
+      localStorage.removeItem(STORAGE_KEYS.LAST_PLAYER);
+    } catch (error) {
+      console.warn('Failed to clear player data from localStorage:', error);
+    }
   }
 }

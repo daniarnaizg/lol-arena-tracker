@@ -15,7 +15,7 @@ export const KofiOverlayWidget = () => {
     // Function to initialize the widget
     const initializeWidget = () => {
       if (typeof window !== 'undefined' && window.kofiWidgetOverlay) {
-        window.kofiWidgetOverlay.draw('daniarnaizg', {
+        window.kofiWidgetOverlay.draw('daniarnaizdev', {
           'type': 'floating-chat',
           'floating-chat.donateButton.text': 'Support me',
           'floating-chat.donateButton.background-color': '#00b9fe',
