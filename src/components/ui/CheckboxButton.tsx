@@ -93,8 +93,12 @@ const CHECKBOX_CONFIG = {
 } as const;
 
 const BASE_BUTTON_CLASSES = [
-  'w-7', 'h-7', 'rounded-full', 'flex', 'items-center', 'justify-center', 
-  'text-xs', 'transition-all', 'duration-200', 'cursor-pointer', 'border', 'hover:scale-105'
+  // Sized to always fit three per row on the smallest cards
+  'w-7', 'h-7', 'sm:w-8', 'sm:h-8',
+  'rounded-full', 'flex', 'items-center', 'justify-center',
+  'text-xs', 'transition-all', 'duration-200', 'cursor-pointer', 'border', 'hover:scale-105',
+  // Prevent flex shrinking that could distort circles when space is tight
+  'shrink-0'
 ];
 
 const getButtonStyleClasses = (type: keyof ChampionChecklist, isChecked: boolean): string => {

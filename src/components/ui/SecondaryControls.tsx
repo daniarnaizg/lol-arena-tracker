@@ -3,9 +3,8 @@ import React from 'react';
 import { SortingOptions, SortType } from './SortingOptions';
 import { ColumnSlider } from './ColumnSlider';
 import { ChampionCounter } from './ChampionCounter';
-import { EffectsToggle } from './EffectsToggle';
 import { BaseUIProps } from './shared/types';
-import { combineClasses, LAYOUT_CLASSES } from './shared';
+import { combineClasses } from './shared';
 
 interface SecondaryControlsProps extends BaseUIProps {
   // Sorting
@@ -17,9 +16,6 @@ interface SecondaryControlsProps extends BaseUIProps {
   minColumns: number;
   maxColumns: number;
   onColumnsChange: (columns: number) => void;
-  
-  // Effects toggle
-  onEffectsToggle: () => void;
   
   // Counter
   totalChampions: number;
@@ -34,53 +30,45 @@ export const SecondaryControls: React.FC<SecondaryControlsProps> = ({
   maxColumns,
   onColumnsChange,
   effectsEnabled = true,
-  onEffectsToggle,
   totalChampions,
   filteredChampions,
   className = ''
 }) => {
+  // Mobile: single-row toolbar with horizontal scroll; Desktop: spaced layout
   const containerClasses = combineClasses(
-    'flex flex-col sm:flex-row mb-6 items-center justify-between',
-    LAYOUT_CLASSES.gap.md,
+    'flex items-center gap-2 md:gap-0 mb-4 md:mb-6 overflow-x-auto md:overflow-visible whitespace-nowrap',
     className
-  );
-
-  const leftSectionClasses = combineClasses(
-    LAYOUT_CLASSES.flexRow,
-    'items-center',
-    LAYOUT_CLASSES.gap.md
   );
 
   return (
     <div className={containerClasses}>
-      {/* Left section: Sorting options, column slider, and effects toggle */}
-      <div className={leftSectionClasses}>
+      {/* Sorting toggle */}
+      <div className="shrink-0">
         <SortingOptions
           sortBy={sortBy}
           onSortChange={onSortChange}
           effectsEnabled={effectsEnabled}
         />
-        
+      </div>
+
+      {/* Column selector */}
+      <div className="shrink-0">
         <ColumnSlider
           columns={columns}
           minColumns={minColumns}
           maxColumns={maxColumns}
           onColumnsChange={onColumnsChange}
         />
-        
-        <EffectsToggle
-          enabled={effectsEnabled}
-          onToggle={onEffectsToggle}
+      </div>
+
+      {/* Counter aligned to the end on wider screens; stays inline on mobile */}
+      <div className="shrink-0 ml-auto">
+        <ChampionCounter
+          totalChampions={totalChampions}
+          filteredChampions={filteredChampions}
           effectsEnabled={effectsEnabled}
         />
       </div>
-      
-      {/* Right section: Champion counter */}
-      <ChampionCounter
-        totalChampions={totalChampions}
-        filteredChampions={filteredChampions}
-        effectsEnabled={effectsEnabled}
-      />
     </div>
   );
 };

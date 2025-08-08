@@ -66,7 +66,7 @@ export const ArenaMatchCard: React.FC<ArenaMatchCardProps> = ({
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: index * 0.1 }}
-      className={`flex-shrink-0 relative group p-1 ${className} ${onChampionSearch ? 'cursor-pointer' : ''}`}
+      className={`flex-shrink-0 relative group p-2 md:p-1 ${className} ${onChampionSearch ? 'cursor-pointer' : ''}`}
       title={onChampionSearch ? `Click to search for ${championName}` : cardTitle}
       onClick={handleClick}
     >
@@ -92,7 +92,7 @@ export const ArenaMatchCard: React.FC<ArenaMatchCardProps> = ({
       </div>
       
       {/* Tooltip on hover */}
-      <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10">
+  <div className="hidden sm:block absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10">
         {onChampionSearch ? `Click to search for ${championName}` : cardTitle}
       </div>
     </motion.div>

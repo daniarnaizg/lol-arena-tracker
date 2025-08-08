@@ -23,9 +23,9 @@ interface BaseButtonProps extends BaseUIProps {
 }
 
 const SIZE_CLASSES = {
-  sm: 'px-3 py-1.5 text-xs',
-  md: 'px-4 py-2 text-sm',
-  lg: 'px-6 py-3 text-base'
+  sm: 'px-3 py-2 md:py-1.5 text-xs',      // mobile py-2, desktop py-1.5 (diff: 0.5)
+  md: 'px-4 py-2.5 md:py-2 text-sm',      // mobile py-2.5, desktop py-2 (diff: 0.5)
+  lg: 'px-6 py-3 md:py-2.5 text-base'     // mobile py-3, desktop py-2.5 (diff: 0.5)
 } as const;
 
 export const BaseButton: React.FC<BaseButtonProps> = ({

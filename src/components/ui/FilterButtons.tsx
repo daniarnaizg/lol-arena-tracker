@@ -54,7 +54,7 @@ const FILTER_OPTIONS: FilterOption[] = [
 
 const DEFAULT_FILTERS: FilterType[] = ['all'];
 
-const BASE_BUTTON_CLASSES = 'px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 border';
+const BASE_BUTTON_CLASSES = 'px-3 py-1.5 md:px-4 md:py-2 rounded-lg text-xs md:text-sm font-medium transition-all duration-200 border';
 
 /**
  * Custom hook to manage filter logic
@@ -133,7 +133,7 @@ const FilterButton: React.FC<FilterButtonProps> = ({
 
   const button = (
     <button
-      className={buttonClasses}
+      className={`${buttonClasses} shrink-0`}
       onClick={onClick}
       type="button"
       {...(typeof isActive === 'boolean' && { 'aria-pressed': isActive })}
@@ -161,7 +161,7 @@ export const FilterButtons: React.FC<FilterButtonsProps> = ({
   const { isFilterActive, handleFilterClick } = useFilterLogic(activeFilters, onFilterChange);
 
   return (
-    <div className={combineClasses('flex gap-2', className)} role="group" aria-label="Filter options">
+    <div className={combineClasses('flex justify-between gap-2 md:gap-3 overflow-x-auto md:overflow-visible whitespace-nowrap', className)} role="group" aria-label="Filter options">
       {FILTER_OPTIONS.map((option) => (
         <FilterButton
           key={option.key}

@@ -235,19 +235,19 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className={`p-6 ${!isExpanded ? 'pb-6' : ''}`}
+            className={`p-4 md:p-6 ${!isExpanded ? 'pb-4 md:pb-6' : ''}`}
           >
             <div className={`flex items-center justify-between ${isExpanded ? 'mb-4' : ''}`}>
               <div className="flex items-center gap-3">
-                <h2 className="text-xl font-semibold text-gray-300">MATCH HISTORY</h2>
+                <h2 className="text-lg md:text-xl font-semibold text-gray-300 truncate">MATCH HISTORY</h2>
               </div>
               <button
                 onClick={() => setIsExpanded(!isExpanded)}
                 title={isExpanded ? "Minimize section" : "Expand section"}
-                className="w-8 h-8 bg-gray-700 hover:bg-gray-600 rounded-lg flex items-center justify-center transition-colors"
+                className="w-10 h-10 md:w-8 md:h-8 bg-gray-700 hover:bg-gray-600 rounded-lg flex items-center justify-center transition-colors"
               >
                 <svg 
-                  className={`w-4 h-4 text-gray-300 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} 
+                  className={`w-5 h-5 md:w-4 md:h-4 text-gray-300 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} 
                   fill="none" 
                   stroke="currentColor" 
                   viewBox="0 0 24 24"
@@ -268,7 +268,7 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
             >
               <div className="pt-4">
                 <form onSubmit={handleSubmit} className="space-y-4 min-h-[90px] flex flex-col justify-center">
-                  <div className="flex items-center gap-3">
+                  <div className="flex flex-col gap-3 md:flex-row md:items-center">
                     <div className="flex-1">
                       <label className="sr-only">Game Name</label>
                       <input
@@ -281,7 +281,7 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
                       />
                     </div>
 
-                    <span className="text-gray-400 text-2xl font-semibold">#</span> 
+                    <span className="hidden md:inline text-gray-400 text-2xl font-semibold">#</span> 
 
                     <div className="flex gap-2 flex-1">
                       <label className="sr-only">Tag Line</label>
@@ -337,10 +337,52 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="p-6"
+            className="p-4 md:p-6"
           >
             {/* Header with navigation */}
-            <div className="flex items-center justify-between mb-4">
+            {/* Mobile toolbar */}
+            <div className="md:hidden mb-4">
+              <div className="flex items-center justify-between gap-2">
+                <button
+                  onClick={handleBack}
+                  title="Go back to search"
+                  className="w-10 h-10 bg-gray-700 hover:bg-gray-600 rounded-lg flex items-center justify-center transition-colors"
+                >
+                  <svg className="w-5 h-5 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <h2 className="flex-1 text-center text-lg font-bold text-gray-300 px-2 truncate">MATCH HISTORY</h2>
+                <button
+                  onClick={handleRefresh}
+                  disabled={isLoading}
+                  title="Refresh match history"
+                  className={`
+                    w-10 h-10 rounded-lg flex items-center justify-center transition-colors
+                    ${isLoading 
+                      ? 'bg-blue-500 cursor-not-allowed' 
+                      : 'bg-gray-700 hover:bg-blue-600'
+                    }
+                  `}
+                >
+                  {isLoading ? (
+                    <div className="w-5 h-5 border-2 border-blue-200 border-t-transparent rounded-full animate-spin" />
+                  ) : (
+                    <svg className="w-5 h-5 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                  )}
+                </button>
+              </div>
+              {account && (
+                <p className="mt-1 text-xs font-semibold text-gray-500 uppercase text-center truncate">
+                  {account.gameName}#{account.tagLine}
+                </p>
+              )}
+            </div>
+
+            {/* Desktop/tablet header (unchanged) */}
+            <div className="hidden md:flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
                 <button
                   onClick={handleBack}
@@ -352,7 +394,7 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
                   </svg>
                 </button>
                 <div className="flex items-center gap-4">
-                  <h2 className="text-xl font-bold text-gray-300">LAST ARENA MATCHES</h2>
+                  <h2 className="text-xl font-bold text-gray-300">MATCH HISTORY</h2>
                   {account && (
                     <p className="text-m font-semibold text-gray-500 uppercase">{account.gameName}#{account.tagLine}</p>
                   )}

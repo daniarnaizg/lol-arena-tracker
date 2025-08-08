@@ -23,10 +23,12 @@ export const EffectsToggle: React.FC<EffectsToggleProps> = ({
       variant={variant}
       onClick={onToggle}
       title={title}
+      size="sm"
       className={`whitespace-nowrap ${className}`}
       effectsEnabled={effectsEnabled}
     >
-      {buttonText}
+      <span className="hidden sm:inline">{buttonText}</span>
+      <span className="sm:hidden">{enabled ? 'Effects: On' : 'Effects: Off'}</span>
     </BaseButton>
   );
 };

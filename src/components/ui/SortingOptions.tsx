@@ -63,11 +63,12 @@ export const SortingOptions: React.FC<SortingOptionsProps> = ({
       variant="secondary"
       onClick={toggleSort}
       title={currentOption?.description}
-      className={`flex items-center gap-2 whitespace-nowrap ${className}`}
+  size="sm"
+  className={`flex items-center gap-1.5 md:gap-2 whitespace-nowrap ${className}`}
       effectsEnabled={effectsEnabled}
     >
       <SortIcon />
-      <span>{buttonText}</span>
+  <span className="text-xs md:text-sm">{buttonText}</span>
     </BaseButton>
   );
 };
