@@ -44,7 +44,7 @@ export default function Home() {
   return (
     <VersionInitializer>
       <Header search={search} setSearch={setSearch} />
-      <div className="flex-1 w-full max-w-7xl mx-auto p-6 space-y-8">
+  <div className="flex-1 w-full max-w-7xl mx-auto px-4 py-4 md:px-6 md:py-6 space-y-6 md:space-y-8">
         <MatchHistory onChampionSearch={handleChampionSearch} />
         <ProgressCounter champions={champions} />
         <ChampionsGrid search={search} champions={champions} setChampions={updateChampions} />

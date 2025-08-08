@@ -16,14 +16,14 @@ export const ChampionCounter: React.FC<ChampionCounterProps> = ({
   className = ''
 }) => {
   const counterClasses = combineClasses(
-    'flex items-center gap-2 text-sm',
+    'flex items-center gap-1.5 md:gap-2 text-sm',
     className
   );
 
   const counterElement = (
     <div className={counterClasses}>
       <span className="text-gray-400 font-medium">Showing</span>
-      <span className="text-white font-bold text-lg">
+  <span className="text-white font-bold text-base md:text-lg">
         {filteredChampions}
       </span>
       <span className="text-gray-400">

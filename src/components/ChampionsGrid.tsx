@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import confetti from 'canvas-confetti';
 import { ControlPanel } from './ControlPanel';
-import { SecondaryControls } from './ui/SecondaryControls';
 import { ChampionsGridDisplay } from './ChampionsGridDisplay';
 import { ConfirmationModal } from './ui/ConfirmationModal';
 import { FilterType, SortType } from './ui';
@@ -27,6 +26,19 @@ const ChampionsGrid = ({ search, champions, setChampions }: ChampionsGridProps) 
   const [effectsEnabled, setEffectsEnabled] = useState(true);
   const [showClearModal, setShowClearModal] = useState(false);
   const [sortBy, setSortBy] = useState<SortType>('status');
+
+  useEffect(() => {
+    // Lock columns to 3 on small screens (portrait) for mobile layout
+    const mq = window.matchMedia('(max-width: 768px)');
+    const applyColumnsForViewport = () => {
+      if (mq.matches) {
+        setColumns(3);
+      }
+    };
+    applyColumnsForViewport();
+    mq.addEventListener?.('change', applyColumnsForViewport);
+    return () => mq.removeEventListener?.('change', applyColumnsForViewport);
+  }, []);
 
   useEffect(() => {
     if (champions.length > 0) {
@@ -182,17 +194,13 @@ const ChampionsGrid = ({ search, champions, setChampions }: ChampionsGridProps) 
         onFilterChange={setActiveFilters}
         champions={champions}
         onImport={handleImport}
-      />
-      
-      <SecondaryControls
+        onEffectsToggle={() => setEffectsEnabled(!effectsEnabled)}
         sortBy={sortBy}
         onSortChange={setSortBy}
         columns={columns}
         minColumns={MIN_COLUMNS}
         maxColumns={MAX_COLUMNS}
         onColumnsChange={setColumns}
-        effectsEnabled={effectsEnabled}
-        onEffectsToggle={() => setEffectsEnabled(!effectsEnabled)}
         totalChampions={champions.length}
         filteredChampions={filteredChampions.length}
       />

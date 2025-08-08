@@ -93,7 +93,7 @@ const CHECKBOX_CONFIG = {
 } as const;
 
 const BASE_BUTTON_CLASSES = [
-  'w-7', 'h-7', 'rounded-full', 'flex', 'items-center', 'justify-center', 
+  'w-8', 'h-8', 'md:w-7', 'md:h-7', 'rounded-full', 'flex', 'items-center', 'justify-center', 
   'text-xs', 'transition-all', 'duration-200', 'cursor-pointer', 'border', 'hover:scale-105'
 ];
 
