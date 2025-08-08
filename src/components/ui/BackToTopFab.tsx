@@ -42,7 +42,7 @@ export const BackToTopFab: React.FC<{
 				visible ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-2 pointer-events-none',
 				// Button look: circular, subtle shadow, hover/tap
 				'w-11 h-11 sm:w-12 sm:h-12 rounded-full',
-				'bg-slate-700 backdrop-blur border border-2 border-gray-100 shadow-md',
+				'bg-slate-700 backdrop-blur border-2 border-gray-100 shadow-md',
 				'text-gray-100 text-base sm:text-lg',
 				'flex items-center justify-center',
 				'hover:shadow-lg hover:bg-slate-600 hover:border-slate-600 cursor-pointer',
