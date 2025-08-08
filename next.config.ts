@@ -10,6 +10,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/cdn/**/img/champion/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'storage.ko-fi.com',
+        port: '',
+        pathname: '/cdn/**',
+      },
     ],
   },
 };
