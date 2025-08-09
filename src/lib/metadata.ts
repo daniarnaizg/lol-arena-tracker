@@ -80,7 +80,7 @@ export const defaultMetadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon-16x16.png",
-    apple: "/icon-192.png",
+    apple: "/apple-touch-icon.png",
   },
   category: "Gaming",
   classification: "Gaming Tool",
