@@ -42,7 +42,6 @@ export const SocialShare: React.FC<SocialShareProps> = ({ wins, total, className
     if (total > 0) return; // props already have data
     const stored = LocalStorageManager.getChampionData();
     if (stored?.champions) {
-      type MiniChampion = { checklist?: { win?: boolean } };
       const list = stored.champions as MiniChampion[];
       const totalCount = list.length;
       const winsCount = list.filter((c) => c?.checklist?.win === true).length;
