@@ -1,10 +1,13 @@
 User-agent: *
 Allow: /
 
-# Optimize crawl budget
+# Crawl-delay not supported by Google; keep rules lean
 Disallow: /api/
 Disallow: /_next/
 Disallow: /_vercel/
+
+# Block search pages or query faceting if needed (uncomment when added)
+# Disallow: /*?q=
 
 # Sitemap
 Sitemap: https://arenatracker.app/sitemap.xml

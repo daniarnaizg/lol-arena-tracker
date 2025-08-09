@@ -6,7 +6,8 @@ export const SITE_CONFIG = {
   title: "League of Legends Arena Tracker",
   description: "Track your League of Legends Arena mode progress, discover champion synergies, and monitor your match history.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://arenatracker.app",
-  ogImage: "/og-image.jpg",
+  // Ensure this matches the actual file in /public
+  ogImage: "/og-image.png",
   creator: "@daniarnaizg",
   keywords: [
     "League of Legends",
@@ -79,7 +80,7 @@ export const defaultMetadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
+    apple: "/icon-192.png",
   },
   category: "Gaming",
   classification: "Gaming Tool",
