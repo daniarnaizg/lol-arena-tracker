@@ -31,7 +31,7 @@ const useOutsideClick = (ref: React.RefObject<Element>, onOutside: () => void) =
 export const SocialShare: React.FC<SocialShareProps> = ({ wins, total, className }) => {
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  useOutsideClick(containerRef as unknown as React.RefObject<Element>, () => setOpen(false));
+  useOutsideClick(containerRef, () => setOpen(false));
 
   // Fallback: derive progress from localStorage if props aren't ready yet
   const [lsWins, setLsWins] = useState<number>(0);
