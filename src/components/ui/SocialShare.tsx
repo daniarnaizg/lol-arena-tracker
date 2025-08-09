@@ -54,7 +54,7 @@ export const SocialShare: React.FC<SocialShareProps> = ({ wins, total, className
   const finalTotal = total > 0 ? total : lsTotal;
   const finalWins = total > 0 ? wins : lsWins;
   const percentage = finalTotal > 0 ? Math.round((finalWins / finalTotal) * 100) : 0;
-  const url = typeof window !== 'undefined' ? window.location.href : 'https://lol-arena-tracker.vercel.app';
+  const url = 'https://arenatracker.app';
   const text = useMemo(
     () => `I've won ${finalWins}/${finalTotal} champions in LoL Arena (${percentage}%) 🏆\nTrack your progress here:`,
     [finalWins, finalTotal, percentage]
