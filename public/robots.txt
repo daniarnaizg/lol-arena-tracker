@@ -7,4 +7,4 @@ Disallow: /_next/
 Disallow: /_vercel/
 
 # Sitemap
-Sitemap: https://lol-arena-tracker.vercel.app/sitemap.xml
+Sitemap: https://arenatracker.app/sitemap.xml

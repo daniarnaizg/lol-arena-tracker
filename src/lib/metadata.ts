@@ -5,7 +5,7 @@ export const SITE_CONFIG = {
   name: "LoL Arena Tracker",
   title: "League of Legends Arena Tracker",
   description: "Track your League of Legends Arena mode progress, discover champion synergies, and monitor your match history.",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://lol-arena-tracker.vercel.app",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://arenatracker.app",
   ogImage: "/og-image.jpg",
   creator: "@daniarnaizg",
   keywords: [
@@ -80,11 +80,6 @@ export const defaultMetadata: Metadata = {
     icon: "/favicon.ico",
     shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png",
-  },
-  verification: {
-    google: "your-google-verification-code", // Add your Google Search Console verification
-    // yandex: "your-yandex-verification-code",
-    // yahoo: "your-yahoo-verification-code",
   },
   category: "Gaming",
   classification: "Gaming Tool",
