@@ -19,7 +19,6 @@ const Header = ({ search, setSearch, wins = 0, total = 0 }: HeaderProps) => {
     if (total > 0) return; // props already have data
     const stored = LocalStorageManager.getChampionData();
     if (stored?.champions) {
-      type MiniChampion = { checklist?: { win?: boolean } };
       const list = stored.champions as MiniChampion[];
       setLsTotal(list.length);
       setLsWins(list.filter((c) => c?.checklist?.win === true).length);
