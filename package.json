@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tabler/icons-react": "^3.34.1",
     "@use-gesture/react": "^10.3.1",
     "@vercel/analytics": "^1.5.0",
     "canvas-confetti": "^1.9.3",

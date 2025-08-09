@@ -41,9 +41,12 @@ export default function Home() {
     setSearch(normalizedName);
   };
 
+  const totalChampions = champions.length;
+  const winsCount = champions.filter(c => c.checklist?.win === true).length;
+
   return (
     <VersionInitializer>
-      <Header search={search} setSearch={setSearch} />
+      <Header search={search} setSearch={setSearch} wins={winsCount} total={totalChampions} />
   <div className="flex-1 w-full max-w-7xl mx-auto px-4 py-4 md:px-6 md:py-6 space-y-6 md:space-y-8">
         <MatchHistory onChampionSearch={handleChampionSearch} />
         <ProgressCounter champions={champions} />
