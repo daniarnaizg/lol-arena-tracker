@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SearchBar from './SearchBar';
 import { SocialShare } from './ui';
 import { LocalStorageManager } from '@/utils/localStorage';
@@ -11,6 +11,7 @@ interface HeaderProps {
 }
 
 const Header = ({ search, setSearch, wins = 0, total = 0 }: HeaderProps) => {
+  type MiniChampion = { checklist?: { win?: boolean } };
   // Fallback to localStorage so mobile header can render real progress immediately
   const [lsWins, setLsWins] = useState(0);
   const [lsTotal, setLsTotal] = useState(0);
@@ -19,7 +20,7 @@ const Header = ({ search, setSearch, wins = 0, total = 0 }: HeaderProps) => {
     if (total > 0) return; // props already have data
     const stored = LocalStorageManager.getChampionData();
     if (stored?.champions) {
-      const list = stored.champions as MiniChampion[];
+  const list = stored.champions as MiniChampion[];
       setLsTotal(list.length);
       setLsWins(list.filter((c) => c?.checklist?.win === true).length);
     }
@@ -27,17 +28,8 @@ const Header = ({ search, setSearch, wins = 0, total = 0 }: HeaderProps) => {
 
   const finalTotal = total > 0 ? total : lsTotal;
   const finalWins = total > 0 ? wins : lsWins;
-  const percent = useMemo(() => (
-    finalTotal > 0 ? Math.round((finalWins / finalTotal) * 100) : 0
-  ), [finalWins, finalTotal]);
 
-  // Mobile progress bar width without inline styles
-  const mobileBarRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    if (mobileBarRef.current) {
-      mobileBarRef.current.style.width = `${percent}%`;
-    }
-  }, [percent]);
+  // (mobile progress bar removed) percent remains for potential future use
 
   return (
     <header className="w-full py-3 md:py-8 px-3 md:px-6 bg-slate-900 text-white shadow">
