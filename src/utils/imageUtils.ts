@@ -1,21 +1,37 @@
 // utils/imageUtils.ts
 import { ddragonService } from '@/services/ddragon';
 
+// Keep track of images that failed to load so we stop retrying
+const blockedImages = new Set<string>();
+
+export function markImageBlocked(key: string) {
+  blockedImages.add(key);
+}
+
+export function isImageBlocked(key: string): boolean {
+  return blockedImages.has(key);
+}
+
 export function createChampionImageUrl(championKey: string, version?: string): string {
+  if (isImageBlocked(championKey)) {
+    // Return empty string so callers can conditionally skip rendering
+    return '';
+  }
   return ddragonService.getChampionImageUrlSync(championKey, version);
 }
 
-export function createImageErrorHandler(championName: string) {
+export function createImageErrorHandler(championKey: string) {
   return (e: React.SyntheticEvent<HTMLImageElement>) => {
-    // First fallback: try with a different version
-    const currentSrc = e.currentTarget.src;
-    if (!currentSrc.includes('15.15.1') && !currentSrc.includes('via.placeholder')) {
-      e.currentTarget.src = ddragonService.getChampionImageUrlSync(championName, '15.15.1');
-      return;
+    // Mark this key as blocked to prevent further fetch attempts on rerenders
+    markImageBlocked(championKey);
+    // Prevent any further error loops
+    const imgEl = e.currentTarget as HTMLImageElement;
+    if (imgEl) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (imgEl as any).onerror = null;
     }
-    
-    // Final fallback: placeholder image
-    e.currentTarget.src = `https://via.placeholder.com/64x64/6b7280/ffffff?text=${championName.charAt(0)}`;
+    // Swap to a 1x1 transparent pixel to visually hide without network calls
+    e.currentTarget.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
   };
 }
 

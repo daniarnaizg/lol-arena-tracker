@@ -72,14 +72,17 @@ export const ArenaMatchCard: React.FC<ArenaMatchCardProps> = ({
     >
       {/* Champion Image Container */}
       <div className={`w-16 h-16 rounded-lg overflow-hidden border-2 relative transition-transform duration-200 ${placementStyle.border} ${onChampionSearch ? 'group-hover:scale-110' : ''}`}>
-        <Image
-          src={championImageUrl}
-          alt={championName}
-          width={64}
-          height={64}
-          className="w-full h-full object-cover"
-          onError={handleImageError}
-        />
+        {championImageUrl ? (
+          <Image
+            src={championImageUrl}
+            alt={championName}
+            width={64}
+            height={64}
+            className="w-full h-full object-cover"
+            onError={handleImageError}
+            unoptimized
+          />
+        ) : null}
       </div>
       
       {/* Placement Badge - positioned outside the image in top-right corner */}

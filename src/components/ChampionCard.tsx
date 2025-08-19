@@ -108,7 +108,7 @@ export const ChampionCard: React.FC<ChampionCardProps> = ({
       data-champion-id={champion.id}
     >
       <div className="relative w-full aspect-square overflow-hidden rounded-lg group">
-        {imgUrl && (
+  {imgUrl ? (
           <Image
             src={imgUrl}
             alt={champion.name}
@@ -118,7 +118,7 @@ export const ChampionCard: React.FC<ChampionCardProps> = ({
             unoptimized
             onError={handleImageError}
           />
-        )}
+  ) : null}
       </div>
       
       <div className="flex flex-col items-center gap-1.5 md:gap-2 w-full flex-1">

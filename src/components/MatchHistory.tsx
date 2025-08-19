@@ -3,6 +3,9 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArenaMatchCard } from './ui/ArenaMatchCard';
 import { LocalStorageManager, StoredPlayerData } from '@/utils/localStorage';
+import { normalizeChampionName } from '@/utils/championUtils';
+import type { Champion } from '@/services/ddragon';
+import { ConfirmationModal } from './ui/ConfirmationModal';
 
 interface RiotAccount {
   puuid: string;
@@ -46,9 +49,11 @@ interface ArenaMatchesData {
 interface MatchHistoryProps {
   className?: string;
   onChampionSearch?: (championName: string) => void;
+  // Allows applying match-history-derived improvements to champion checklist
+  onApplyChampionUpdates?: React.Dispatch<React.SetStateAction<Champion[]>>;
 }
 
-export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onChampionSearch }) => {
+export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onChampionSearch, onApplyChampionUpdates }) => {
   const [gameName, setGameName] = useState('');
   const [tagLine, setTagLine] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -58,6 +63,14 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
   const [showInputs, setShowInputs] = useState(true);
   const [isExpanded, setIsExpanded] = useState(false);
   const [hasAutoSearched, setHasAutoSearched] = useState(false);
+  // Apply from history UX state
+  const [isApplying, setIsApplying] = useState(false);
+  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
+  const [previewSummary, setPreviewSummary] = useState<null | { total: number; played: number; top4: number; win: number }>(null);
+  const [previewDetails, setPreviewDetails] = useState<null | Array<{ name: string; from: number; to: number }>>(
+    null
+  );
+  const [btnState, setBtnState] = useState<'idle' | 'nochange' | 'applied'>('idle');
 
   const performSearch = useCallback(async (playerData?: StoredPlayerData) => {
     const searchGameName = playerData?.gameName || gameName.trim();
@@ -115,7 +128,7 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
         LocalStorageManager.setPlayerData(playerDataToSave);
       }
       
-      // Step 2: Fetch match history (increased to 50 matches to find more Arena games)
+    // Step 2: Fetch match history (check up to 50 overall matches for more Arena hits)
       const matchResponse = await fetch('/api/match-history', {
         method: 'POST',
         headers: {
@@ -123,7 +136,7 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
         },
         body: JSON.stringify({
           puuid: accountData.account.puuid,
-          count: 50, // Increased from 20 to 50 to get more matches
+      count: 50, // Request up to 50 recent matches overall
         }),
       });
 
@@ -133,7 +146,7 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
         throw new Error(matchData.error || 'Failed to fetch match history');
       }
       
-      // Step 3: Fetch Arena match details (get up to 15 Arena matches from the 50 recent matches)
+  // Step 3: Fetch Arena match details (return up to 30 Arena matches, scanning up to 50 recent matches)
       if (matchData.matchIds && matchData.matchIds.length > 0) {
         const arenaResponse = await fetch('/api/arena-matches', {
           method: 'POST',
@@ -142,7 +155,7 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
           },
           body: JSON.stringify({
             matchIds: matchData.matchIds,
-            maxMatches: 13, // Get up to 13 Arena matches
+    maxMatches: 30, // Return up to 30 Arena matches
             puuid: accountData.account.puuid,
           }),
         });
@@ -216,6 +229,101 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
     setGameName('');
     setTagLine('');
     setHasAutoSearched(false);
+  };
+
+  // Build the best result per champion from arena matches
+  const buildBestByChampion = (): Map<string, number> => {
+    const bestByChampion = new Map<string, number>();
+    if (!arenaMatches || !account) return bestByChampion;
+    for (const match of arenaMatches.arenaMatches) {
+      const userP = match.info.participants.find(p => p.puuid === account.puuid);
+      if (!userP) continue;
+      const nameKey = normalizeChampionName(userP.championName);
+      let level = 1; // played baseline if present in history
+      // Only count placement === 1 as Win; placements 2-4 as Top 4
+      if (userP.placement === 1) level = 3;
+      else if (userP.placement <= 4) level = 2;
+      const prev = bestByChampion.get(nameKey) ?? 0;
+      if (level > prev) bestByChampion.set(nameKey, level);
+    }
+    return bestByChampion;
+  };
+
+  // Open confirm modal with a simple summary and detailed list
+  const openConfirmApply = () => {
+    if (!arenaMatches || !account || !onApplyChampionUpdates) return;
+    const best = buildBestByChampion();
+    if (best.size === 0) {
+      // brief button feedback for no changes
+      setBtnState('nochange');
+      setTimeout(() => setBtnState('idle'), 1500);
+      return;
+    }
+    const stored = LocalStorageManager.getChampionData();
+    const champions: Champion[] = stored?.champions || [];
+    let total = 0, win = 0, top4 = 0, played = 0;
+    const details: Array<{ name: string; from: number; to: number }> = [];
+    for (const champ of champions) {
+      const key = normalizeChampionName(champ.name);
+      const target = best.get(key) ?? 0;
+      const currentLevel = champ.checklist?.win ? 3 : champ.checklist?.top4 ? 2 : champ.checklist?.played ? 1 : 0;
+      if (target > currentLevel) {
+        total += 1;
+        if (target === 3) win += 1;
+        else if (target === 2) top4 += 1;
+        else if (target === 1) played += 1;
+        details.push({ name: champ.name, from: currentLevel, to: target });
+      }
+    }
+
+    if (total === 0) {
+      setBtnState('nochange');
+      setTimeout(() => setBtnState('idle'), 1500);
+      return;
+    }
+
+    setPreviewSummary({ total, win, top4, played });
+    setPreviewDetails(details);
+    setIsConfirmOpen(true);
+  };
+
+  // Apply the improvements after confirmation
+  const handleApplyFromHistory = async () => {
+    if (!arenaMatches || !account || !onApplyChampionUpdates || isApplying) return;
+    setIsApplying(true);
+    try {
+      const bestByChampion = buildBestByChampion();
+      if (bestByChampion.size === 0) {
+        setBtnState('nochange');
+        setTimeout(() => setBtnState('idle'), 1500);
+        return;
+      }
+      onApplyChampionUpdates(prev => {
+        const next = prev.map(champ => {
+          const key = normalizeChampionName(champ.name);
+          const target = bestByChampion.get(key);
+          if (!target) return champ;
+          const currentLevel = champ.checklist?.win ? 3 : champ.checklist?.top4 ? 2 : champ.checklist?.played ? 1 : 0;
+          if (target <= currentLevel) return champ; // only improve
+          const improved =
+            target === 3
+              ? { played: true, top4: true, win: true }
+              : target === 2
+              ? { played: true, top4: true, win: false }
+              : { played: true, top4: false, win: false };
+          return { ...champ, checklist: improved };
+        });
+        return next;
+      });
+      // brief success button feedback
+      setBtnState('applied');
+      setTimeout(() => setBtnState('idle'), 1500);
+    } finally {
+      setIsApplying(false);
+      setIsConfirmOpen(false);
+      setPreviewSummary(null);
+      setPreviewDetails(null);
+    }
   };
 
   const formatDate = (timestamp: number) => {
@@ -352,27 +460,51 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
                 </button>
-                <h2 className="flex-1 text-center text-lg font-bold text-gray-300 px-2 truncate">MATCH HISTORY</h2>
-                <button
-                  onClick={handleRefresh}
-                  disabled={isLoading}
-                  title="Refresh match history"
-                  className={`
-                    w-10 h-10 rounded-lg flex items-center justify-center transition-colors
-                    ${isLoading 
-                      ? 'bg-blue-500 cursor-not-allowed' 
-                      : 'bg-gray-700 hover:bg-blue-600'
-                    }
-                  `}
-                >
-                  {isLoading ? (
-                    <div className="w-5 h-5 border-2 border-blue-200 border-t-transparent rounded-full animate-spin" />
-                  ) : (
-                    <svg className="w-5 h-5 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                    </svg>
-                  )}
-                </button>
+                <div className="flex-1 flex items-center justify-center gap-2">
+                  <h2 className="text-lg font-bold text-gray-300 px-2 truncate">MATCH HISTORY</h2>
+                  <button
+                    onClick={handleRefresh}
+                    disabled={isLoading}
+                    title="Refresh match history"
+                    className={`
+                      w-10 h-10 rounded-lg flex items-center justify-center transition-colors
+                      ${isLoading 
+                        ? 'bg-blue-500 cursor-not-allowed' 
+                        : 'bg-gray-700 hover:bg-blue-600'
+                      }
+                    `}
+                  >
+                    {isLoading ? (
+                      <div className="w-5 h-5 border-2 border-blue-200 border-t-transparent rounded-full animate-spin" />
+                    ) : (
+                      <svg className="w-5 h-5 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                      </svg>
+                    )}
+                  </button>
+                </div>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={openConfirmApply}
+                    disabled={isLoading || isApplying || !arenaMatches || !account}
+                    title="Apply from history: upgrade champion status"
+                    className={`
+                      h-10 rounded-lg flex items-center justify-center transition-colors px-3 gap-1 relative
+                      ${isLoading || isApplying || !arenaMatches || !account ? 'bg-gray-600 cursor-not-allowed' : btnState === 'nochange' ? 'bg-red-600 animate-shake' : btnState === 'applied' ? 'bg-green-600 animate-pulse' : 'bg-gray-700 hover:bg-green-600'}
+                    `}
+                  >
+                    {isApplying ? (
+                      <div className="w-5 h-5 border-2 border-green-200 border-t-transparent rounded-full animate-spin" />
+                    ) : (
+                      <>
+                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span className="text-white text-sm">Apply</span>
+                      </>
+                    )}
+                  </button>
+                </div>
               </div>
               {account && (
                 <p className="mt-1 text-xs font-semibold text-gray-500 uppercase text-center truncate">
@@ -381,7 +513,7 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
               )}
             </div>
 
-            {/* Desktop/tablet header (unchanged) */}
+            {/* Desktop/tablet header */}
             <div className="hidden md:flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
                 <button
@@ -393,39 +525,67 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
                 </button>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3">
                   <h2 className="text-xl font-bold text-gray-300">MATCH HISTORY</h2>
                   {account && (
-                    <p className="text-m font-semibold text-gray-500 uppercase">{account.gameName}#{account.tagLine}</p>
+                    <div className="flex items-center gap-2">
+                      <p className="text-m font-semibold text-gray-500 uppercase">{account.gameName}#{account.tagLine}</p>
+                      <button
+                        onClick={handleRefresh}
+                        disabled={isLoading}
+                        title="Refresh match history"
+                        className={`
+                          w-8 h-8 rounded-lg flex items-center justify-center transition-colors
+                          ${isLoading 
+                            ? 'bg-blue-500 cursor-not-allowed' 
+                            : 'bg-gray-700 hover:bg-blue-200'
+                          }
+                        `}
+                      >
+                        {isLoading ? (
+                          <div className="w-4 h-4 border-2 border-blue-200 border-t-transparent rounded-full animate-spin" />
+                        ) : (
+                          <svg className="w-4 h-4 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                          </svg>
+                        )}
+                      </button>
+                    </div>
                   )}
                 </div>
               </div>
-              
-              <button
-                onClick={handleRefresh}
-                disabled={isLoading}
-                title="Refresh match history"
-                className={`
-                  w-8 h-8 rounded-lg flex items-center justify-center transition-colors
-                  ${isLoading 
-                    ? 'bg-blue-500 cursor-not-allowed' 
-                    : 'bg-gray-700 hover:bg-blue-200'
-                  }
-                `}
-              >
-                {isLoading ? (
-                  <div className="w-4 h-4 border-2 border-blue-200 border-t-transparent rounded-full animate-spin" />
-                ) : (
-                  <svg className="w-4 h-4 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                  </svg>
-                )}
-              </button>
+              <div className="flex items-center gap-2">
+                <div className="relative group">
+                  <button
+                    onClick={openConfirmApply}
+                    disabled={isLoading || isApplying || !arenaMatches || !account}
+                    title="Apply from history"
+                    className={`
+                      h-8 rounded-lg flex items-center justify-center transition-colors px-2 gap-1
+                      ${isLoading || isApplying || !arenaMatches || !account ? 'bg-gray-600 cursor-not-allowed' : btnState === 'nochange' ? 'bg-red-600 animate-shake' : btnState === 'applied' ? 'bg-green-600 animate-pulse' : 'bg-gray-700 hover:bg-green-200'}
+                    `}
+                  >
+                    {isApplying ? (
+                      <div className="w-4 h-4 border-2 border-green-200 border-t-transparent rounded-full animate-spin" />
+                    ) : (
+                      <>
+                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span className="text-white text-sm">Apply</span>
+                      </>
+                    )}
+                  </button>
+                  <div className="hidden sm:block absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10">
+                    Upgrade champion status from match history
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Match history horizontal scroll */}
-            {arenaMatches && (
-                <div className="overflow-x-auto flex items-center min-h-[90px]">
+      {arenaMatches && (
+        <div className="overflow-x-auto flex items-center min-h-[90px] scrollbar-white">
                 <div className="flex gap-3 min-w-max">
                   {arenaMatches.arenaMatches.length > 0 ? (
                     arenaMatches.arenaMatches.map((match, index) => {
@@ -448,13 +608,57 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
                   ) : (
                     <div className="flex items-center justify-center py-8 text-gray-500 w-full">
                       <div className="text-center">
-                        <p className="text-sm">No Arena matches found in the last 50 games</p>
+                        <p className="text-sm">No Arena matches found</p>
                       </div>
                     </div>
                   )}
                 </div>
               </div>
             )}
+            {/* Removed below-list text feedback in favor of button feedback + modal */}
+
+            {/* Confirmation modal */}
+            <ConfirmationModal
+              isOpen={isConfirmOpen}
+              title="Apply from match history"
+              message={(
+                <div>
+                  {previewSummary && (
+                    <div className="text-sm text-gray-700 mb-2">
+                      <span>Will update {previewSummary.total} champion{previewSummary.total === 1 ? '' : 's'}:</span>
+                      <div className="mt-1 flex gap-2 text-xs">
+                        <span className="text-yellow-700">Wins: {previewSummary.win}</span>
+                        <span className="text-gray-700">Top 4: {previewSummary.top4}</span>
+                        <span className="text-amber-700">Played: {previewSummary.played}</span>
+                      </div>
+                    </div>
+                  )}
+                  {previewDetails && previewDetails.length > 0 && (
+                    <ul className="max-h-48 overflow-auto pr-1 text-sm space-y-1">
+                      {previewDetails.map((d) => {
+                        const levelToLabel = (n: number) => (n === 3 ? 'Win' : n === 2 ? 'Top 4' : n === 1 ? 'Played' : 'Unplayed');
+                        const colorFrom = d.from === 3 ? 'text-yellow-700' : d.from === 2 ? 'text-gray-700' : d.from === 1 ? 'text-amber-700' : 'text-gray-500';
+                        const colorTo = d.to === 3 ? 'text-yellow-700' : d.to === 2 ? 'text-gray-700' : d.to === 1 ? 'text-amber-700' : 'text-gray-500';
+                        return (
+                          <li key={`${d.name}-${d.from}-${d.to}`} className="flex items-center justify-between gap-2">
+                            <span className="font-medium text-gray-900 truncate">{d.name}</span>
+                            <span className="text-xs">
+                              <span className={`${colorFrom}`}>{levelToLabel(d.from)}</span>
+                              <span className="mx-1 text-gray-500">→</span>
+                              <span className={`${colorTo} font-semibold`}>{levelToLabel(d.to)}</span>
+                            </span>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  )}
+                </div>
+              )}
+              confirmText="Apply"
+              cancelText="Cancel"
+              onConfirm={handleApplyFromHistory}
+              onCancel={() => { setIsConfirmOpen(false); setPreviewSummary(null); setPreviewDetails(null); }}
+            />
           </motion.div>
         )}
       </AnimatePresence>

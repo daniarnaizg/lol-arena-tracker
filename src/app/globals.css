@@ -17,3 +17,39 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Minimal white horizontal scrollbar without arrows/background */
+/* Apply via className="scrollbar-white" on a scroll container */
+.scrollbar-white { contain: content; }
+.animate-shake {
+  animation: shake 0.4s ease-in-out 0s 1;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-3px); }
+  40% { transform: translateX(3px); }
+  60% { transform: translateX(-2px); }
+  80% { transform: translateX(2px); }
+  100% { transform: translateX(0); }
+}
+
+.scrollbar-white::-webkit-scrollbar {
+  height: 8px; /* horizontal bar thickness */
+  background: transparent; /* no track background */
+}
+
+.scrollbar-white::-webkit-scrollbar-thumb {
+  background-color: #ffffff; /* white bar */
+  border-radius: 9999px;
+}
+
+.scrollbar-white::-webkit-scrollbar-track {
+  background: transparent; /* no background */
+}
+
+.scrollbar-white::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
+  display: none; /* no arrows */
+}
