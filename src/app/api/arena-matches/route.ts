@@ -4,7 +4,7 @@ import { riotApiService } from '@/services/riotApi';
 export async function POST(request: NextRequest) {
   try {
     console.log('=== ARENA MATCHES API CALLED ===');
-    const { matchIds, maxMatches = 15, puuid } = await request.json();
+  const { matchIds, maxMatches = 30, puuid } = await request.json();
     
     console.log('Received request data:', { matchIds, maxMatches, puuid });
     console.log('Region cache status:', riotApiService.getRegionCacheStatus());
@@ -33,17 +33,17 @@ export async function POST(request: NextRequest) {
     try {
       console.log(`Fetching match details for ${matchIds.length} matches...`);
       
-      // We'll check up to 50 matches to find the requested number of Arena matches
-      // But we'll process them in batches to avoid rate limits and return early when we have enough
-      const maxArenaMatches = maxMatches || 15;
-      const maxMatchesToCheck = Math.min(matchIds.length, 50);
+    // We'll check up to 50 recent matches to find up to maxArenaMatches Arena matches
+    // Return early when we have enough; also reuse detected region for performance
+  const maxArenaMatches = Math.min(maxMatches || 30, 30);
+  const maxMatchesToCheck = Math.min(matchIds.length, 50);
       
-      console.log(`Looking for ${maxArenaMatches} Arena matches from ${maxMatchesToCheck} total matches`);
+  console.log(`Looking for up to ${maxArenaMatches} Arena matches from ${maxMatchesToCheck} total matches`);
       
       // Get Arena matches only - the service will stop early when we have enough
       const result = await riotApiService.getArenaMatchDetails(
-        matchIds.slice(0, maxMatchesToCheck), 
-        puuid, 
+        matchIds.slice(0, maxMatchesToCheck),
+        puuid,
         maxArenaMatches
       );
       

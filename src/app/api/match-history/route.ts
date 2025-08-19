@@ -13,13 +13,13 @@ export async function POST(request: NextRequest) {
     }
 
     try {
-      console.log(`Fetching match history for PUUID: ${puuid}`);
-      console.log(`Parameters: start=0, count=${Math.min(count, 20)}, queue=${queue || 'all'}`);
+  console.log(`Fetching match history for PUUID: ${puuid}`);
+  console.log(`Parameters: start=0, count=${Math.min(count, 50)}, queue=${queue || 'all'}`);
       
       const matchIds = await riotApiService.getMatchHistory({
         puuid,
         start: 0,
-        count: Math.min(count, 20), // Limit to 20 matches max
+  count: Math.min(count, 50), // Cap to 50 overall matches
         queue, // Optional queue filter (1700 for Arena)
       });
       

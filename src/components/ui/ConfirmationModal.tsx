@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from 'react';
 interface ConfirmationModalProps {
   isOpen: boolean;
   title: string;
-  message: string;
+  message: React.ReactNode;
   confirmText?: string;
   cancelText?: string;
   onConfirm: () => void;
@@ -72,9 +72,9 @@ export const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
         </h2>
         
         {/* Message */}
-        <p className="text-gray-600 mb-6 leading-relaxed">
+        <div className="text-gray-700 mb-6 leading-relaxed space-y-3">
           {message}
-        </p>
+        </div>
         
         {/* Buttons */}
         <div className="flex flex-col-reverse md:flex-row gap-3 md:justify-end">
@@ -93,9 +93,9 @@ export const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
             ref={confirmButtonRef}
             onClick={onConfirm}
             className="
-              w-full md:w-auto px-4 py-2 text-white bg-red-600 hover:bg-red-700
+              w-full md:w-auto px-4 py-2 text-white bg-blue-600 hover:bg-blue-700
               rounded-lg font-medium transition-colors duration-200
-              focus:outline-none focus:ring-2 focus:ring-red-300
+              focus:outline-none focus:ring-2 focus:ring-blue-300
             "
           >
             {confirmText}
