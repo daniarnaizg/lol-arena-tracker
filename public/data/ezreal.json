@@ -1,6 +1,6 @@
 {
   "name": "Ezreal Arena Build 25.16 LoL",
-  "tier": "D",
+  "tier": "C",
   "stats": {
     "winRate": "Unknown"
   },
@@ -19,7 +19,7 @@
         "tier": "S"
       },
       {
-        "name": "Omni Soul",
+        "name": "Doomsayer",
         "tier": "S"
       }
     ],
@@ -37,7 +37,7 @@
         "tier": "S"
       },
       {
-        "name": "Shrink Ray",
+        "name": "Transmute: Prismatic",
         "tier": "S"
       }
     ],
@@ -139,7 +139,7 @@
         "tier": "Unknown"
       },
       {
-        "name": "Blade of The Ruined King",
+        "name": "Hextech Gunblade",
         "tier": "Unknown"
       }
     ],
@@ -158,5 +158,5 @@
       }
     ]
   },
-  "lastUpdated": "2025-08-20T20:40:35.397Z"
+  "lastUpdated": "2025-08-20T21:57:39.237Z"
 }

@@ -11,15 +11,15 @@
         "tier": "S"
       },
       {
-        "name": "Infernal Conduit",
-        "tier": "S"
-      },
-      {
         "name": "Quest: Wooglet's Witchcap",
         "tier": "S"
       },
       {
-        "name": "Wisdom of Ages",
+        "name": "Infernal Conduit",
+        "tier": "S"
+      },
+      {
+        "name": "Eureka",
         "tier": "S"
       }
     ],
@@ -158,5 +158,5 @@
       }
     ]
   },
-  "lastUpdated": "2025-08-20T20:40:42.903Z"
+  "lastUpdated": "2025-08-20T21:57:44.461Z"
 }

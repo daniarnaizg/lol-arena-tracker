@@ -119,11 +119,11 @@
     ],
     "situational": [
       {
-        "name": "Void Staff",
+        "name": "Zhonya's Hourglass",
         "tier": "Unknown"
       },
       {
-        "name": "Zhonya's Hourglass",
+        "name": "Void Staff",
         "tier": "Unknown"
       },
       {
@@ -158,5 +158,5 @@
       }
     ]
   },
-  "lastUpdated": "2025-08-20T20:37:42.865Z"
+  "lastUpdated": "2025-08-20T21:55:39.412Z"
 }

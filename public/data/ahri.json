@@ -7,11 +7,11 @@
   "augments": {
     "prismatic": [
       {
-        "name": "Jeweled Gauntlet",
+        "name": "Eureka",
         "tier": "S"
       },
       {
-        "name": "Eureka",
+        "name": "Jeweled Gauntlet",
         "tier": "S"
       },
       {
@@ -55,7 +55,7 @@
         "tier": "S"
       },
       {
-        "name": "Executioner",
+        "name": "Firefox",
         "tier": "S"
       }
     ]
@@ -158,5 +158,5 @@
       }
     ]
   },
-  "lastUpdated": "2025-08-20T20:36:52.306Z"
+  "lastUpdated": "2025-08-20T21:55:05.230Z"
 }

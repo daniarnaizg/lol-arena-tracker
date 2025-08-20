@@ -1,0 +1,162 @@
+{
+  "name": "Taric Arena Build 25.16 LoL",
+  "tier": "C",
+  "stats": {
+    "winRate": "Unknown"
+  },
+  "augments": {
+    "prismatic": [
+      {
+        "name": "Circle of Death",
+        "tier": "S"
+      },
+      {
+        "name": "Dreadbringer",
+        "tier": "S"
+      },
+      {
+        "name": "Spirit Link",
+        "tier": "S"
+      },
+      {
+        "name": "Courage of the Colossus",
+        "tier": "S"
+      }
+    ],
+    "gold": [
+      {
+        "name": "Quest: Angel of Retribution",
+        "tier": "S"
+      },
+      {
+        "name": "Holy Fire",
+        "tier": "S"
+      },
+      {
+        "name": "Dark Blessing",
+        "tier": "S"
+      },
+      {
+        "name": "Apex Inventor",
+        "tier": "S"
+      }
+    ],
+    "silver": [
+      {
+        "name": "Sonic Boom",
+        "tier": "S"
+      },
+      {
+        "name": "Desecrator",
+        "tier": "S"
+      },
+      {
+        "name": "First-Aid Kit",
+        "tier": "S"
+      },
+      {
+        "name": "Tank Engine",
+        "tier": "S"
+      }
+    ]
+  },
+  "items": {
+    "core": [
+      {
+        "name": "Guardian's Horn",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Black Hole Gauntlet",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Heartsteel",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Sword of Blossoming Dawn",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Sunfire Aegis",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Thornmail",
+        "tier": "Unknown"
+      }
+    ],
+    "boots": [
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Plated Steelcaps",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ionian Boots of Lucidity",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Berserker's Greaves",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ghostcrawlers",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Boots of Swiftness",
+        "tier": "Unknown"
+      }
+    ],
+    "situational": [
+      {
+        "name": "Spirit Visage",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Knight's Vow",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Jak'Sho, The Protean",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Redemption",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Moonstone Renewer",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Locket of the Iron Solari",
+        "tier": "Unknown"
+      }
+    ],
+    "juices": [
+      {
+        "name": "Juice of Vitality",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Haste",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Power",
+        "tier": "Unknown"
+      }
+    ]
+  },
+  "lastUpdated": "2025-08-20T22:05:37.060Z"
+}

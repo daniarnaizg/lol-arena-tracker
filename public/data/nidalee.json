@@ -1,0 +1,162 @@
+{
+  "name": "Nidalee Arena Build 25.16 LoL",
+  "tier": "D",
+  "stats": {
+    "winRate": "Unknown"
+  },
+  "augments": {
+    "prismatic": [
+      {
+        "name": "Jeweled Gauntlet",
+        "tier": "S"
+      },
+      {
+        "name": "Trueshot Prodigy",
+        "tier": "S"
+      },
+      {
+        "name": "Quest: Wooglet's Witchcap",
+        "tier": "S"
+      },
+      {
+        "name": "Eureka",
+        "tier": "S"
+      }
+    ],
+    "gold": [
+      {
+        "name": "Marksmage",
+        "tier": "S"
+      },
+      {
+        "name": "Skilled Sniper",
+        "tier": "S"
+      },
+      {
+        "name": "Big Brain",
+        "tier": "S"
+      },
+      {
+        "name": "Symbiotic Mutation",
+        "tier": "S"
+      }
+    ],
+    "silver": [
+      {
+        "name": "Witchful Thinking",
+        "tier": "S"
+      },
+      {
+        "name": "ADAPt",
+        "tier": "S"
+      },
+      {
+        "name": "Mind to Matter",
+        "tier": "S"
+      },
+      {
+        "name": "Overflow",
+        "tier": "S"
+      }
+    ]
+  },
+  "items": {
+    "core": [
+      {
+        "name": "Guardian's Orb",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Sorcerer's Shoes",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Runecarver",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Lich Bane",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Rabadon's Deathcap",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Shadowflame",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Void Staff",
+        "tier": "Unknown"
+      }
+    ],
+    "boots": [
+      {
+        "name": "Sorcerer's Shoes",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ionian Boots of Lucidity",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Plated Steelcaps",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Berserker's Greaves",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ghostcrawlers",
+        "tier": "Unknown"
+      }
+    ],
+    "situational": [
+      {
+        "name": "Zhonya's Hourglass",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Morellonomicon",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Rite Of Ruin",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Liandry's Anguish",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Stormsurge",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Hextech Gunblade",
+        "tier": "Unknown"
+      }
+    ],
+    "juices": [
+      {
+        "name": "Juice of Power",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Vitality",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Haste",
+        "tier": "Unknown"
+      }
+    ]
+  },
+  "lastUpdated": "2025-08-20T22:02:23.078Z"
+}

@@ -43,11 +43,11 @@
     ],
     "silver": [
       {
-        "name": "Typhoon",
+        "name": "Light 'em Up!",
         "tier": "S"
       },
       {
-        "name": "Light 'em Up!",
+        "name": "Typhoon",
         "tier": "S"
       },
       {
@@ -158,5 +158,5 @@
       }
     ]
   },
-  "lastUpdated": "2025-08-20T20:37:06.401Z"
+  "lastUpdated": "2025-08-20T21:55:14.400Z"
 }

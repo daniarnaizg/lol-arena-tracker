@@ -37,7 +37,7 @@
         "tier": "S"
       },
       {
-        "name": "And My Axe!",
+        "name": "Thread the Needle",
         "tier": "S"
       }
     ],
@@ -47,11 +47,11 @@
         "tier": "S"
       },
       {
-        "name": "Shadow Runner",
+        "name": "ADAPt",
         "tier": "S"
       },
       {
-        "name": "ADAPt",
+        "name": "Shadow Runner",
         "tier": "S"
       },
       {
@@ -139,7 +139,7 @@
         "tier": "Unknown"
       },
       {
-        "name": "Perplexity",
+        "name": "Liandry's Anguish",
         "tier": "Unknown"
       }
     ],
@@ -158,5 +158,5 @@
       }
     ]
   },
-  "lastUpdated": "2025-08-20T20:36:59.226Z"
+  "lastUpdated": "2025-08-20T21:55:08.453Z"
 }

@@ -1,0 +1,162 @@
+{
+  "name": "Zeri Arena Build 25.16 LoL",
+  "tier": "D",
+  "stats": {
+    "winRate": "Unknown"
+  },
+  "augments": {
+    "prismatic": [
+      {
+        "name": "Tap Dancer",
+        "tier": "S"
+      },
+      {
+        "name": "Fan the Hammer",
+        "tier": "S"
+      },
+      {
+        "name": "Fey Magic",
+        "tier": "S"
+      },
+      {
+        "name": "Symphony of War",
+        "tier": "S"
+      }
+    ],
+    "gold": [
+      {
+        "name": "Scopier Weapons",
+        "tier": "S"
+      },
+      {
+        "name": "Firebrand",
+        "tier": "S"
+      },
+      {
+        "name": "Slow and Steady",
+        "tier": "S"
+      },
+      {
+        "name": "Shrink Ray",
+        "tier": "S"
+      }
+    ],
+    "silver": [
+      {
+        "name": "Deft",
+        "tier": "S"
+      },
+      {
+        "name": "Typhoon",
+        "tier": "S"
+      },
+      {
+        "name": "escAPADe",
+        "tier": "S"
+      },
+      {
+        "name": "Goredrink",
+        "tier": "S"
+      }
+    ]
+  },
+  "items": {
+    "core": [
+      {
+        "name": "Guardian's Hammer",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Berserker's Greaves",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Hamstringer",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Infinity Edge",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Mortal Reminder",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Immortal Shieldbow",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Bloodthirster",
+        "tier": "Unknown"
+      }
+    ],
+    "boots": [
+      {
+        "name": "Berserker's Greaves",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Boots of Swiftness",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Plated Steelcaps",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ghostcrawlers",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Sorcerer's Shoes",
+        "tier": "Unknown"
+      }
+    ],
+    "situational": [
+      {
+        "name": "Lord Dominik's Regards",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Blade of The Ruined King",
+        "tier": "Unknown"
+      },
+      {
+        "name": "The Collector",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Yun Tal Wildarrows",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Guardian Angel",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Runaan's Hurricane",
+        "tier": "Unknown"
+      }
+    ],
+    "juices": [
+      {
+        "name": "Juice of Power",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Vitality",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Haste",
+        "tier": "Unknown"
+      }
+    ]
+  },
+  "lastUpdated": "2025-08-20T22:08:09.995Z"
+}

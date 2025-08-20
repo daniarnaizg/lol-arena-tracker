@@ -51,7 +51,7 @@
         "tier": "S"
       },
       {
-        "name": "Serve Beyond Death",
+        "name": "Stackosaurus Rex",
         "tier": "S"
       },
       {
@@ -119,11 +119,11 @@
     ],
     "situational": [
       {
-        "name": "Kraken Slayer",
+        "name": "Guinsoo's Rageblade",
         "tier": "Unknown"
       },
       {
-        "name": "Guinsoo's Rageblade",
+        "name": "Kraken Slayer",
         "tier": "Unknown"
       },
       {
@@ -158,5 +158,5 @@
       }
     ]
   },
-  "lastUpdated": "2025-08-20T20:44:39.678Z"
+  "lastUpdated": "2025-08-20T22:00:25.937Z"
 }

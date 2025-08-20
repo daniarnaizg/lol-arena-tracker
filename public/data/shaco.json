@@ -1,0 +1,162 @@
+{
+  "name": "Shaco Arena Build 25.16 LoL",
+  "tier": "S",
+  "stats": {
+    "winRate": "Unknown"
+  },
+  "augments": {
+    "prismatic": [
+      {
+        "name": "Eureka",
+        "tier": "S"
+      },
+      {
+        "name": "Infernal Conduit",
+        "tier": "S"
+      },
+      {
+        "name": "Circle of Death",
+        "tier": "S"
+      },
+      {
+        "name": "Jeweled Gauntlet",
+        "tier": "S"
+      }
+    ],
+    "gold": [
+      {
+        "name": "Magic Missile",
+        "tier": "S"
+      },
+      {
+        "name": "Bread And Jam",
+        "tier": "S"
+      },
+      {
+        "name": "Trickster Demon",
+        "tier": "S"
+      },
+      {
+        "name": "Transmute: Prismatic",
+        "tier": "S"
+      }
+    ],
+    "silver": [
+      {
+        "name": "Tank Engine",
+        "tier": "S"
+      },
+      {
+        "name": "Shadow Runner",
+        "tier": "S"
+      },
+      {
+        "name": "Witchful Thinking",
+        "tier": "S"
+      },
+      {
+        "name": "ADAPt",
+        "tier": "S"
+      }
+    ]
+  },
+  "items": {
+    "core": [
+      {
+        "name": "Guardian's Orb",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ionian Boots of Lucidity",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Pyromancer's Cloak",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Liandry's Anguish",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Blackfire Torch",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Rabadon's Deathcap",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Morellonomicon",
+        "tier": "Unknown"
+      }
+    ],
+    "boots": [
+      {
+        "name": "Ionian Boots of Lucidity",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Sorcerer's Shoes",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Berserker's Greaves",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Boots of Swiftness",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ghostcrawlers",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      }
+    ],
+    "situational": [
+      {
+        "name": "Shadowflame",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Infinity Edge",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Malignance",
+        "tier": "Unknown"
+      },
+      {
+        "name": "The Collector",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Zhonya's Hourglass",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Voltaic Cyclosword",
+        "tier": "Unknown"
+      }
+    ],
+    "juices": [
+      {
+        "name": "Juice of Power",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Haste",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Vitality",
+        "tier": "Unknown"
+      }
+    ]
+  },
+  "lastUpdated": "2025-08-20T22:04:23.755Z"
+}

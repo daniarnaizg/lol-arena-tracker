@@ -1,0 +1,162 @@
+{
+  "name": "Sett Arena Build 25.16 LoL",
+  "tier": "S+",
+  "stats": {
+    "winRate": "Unknown"
+  },
+  "augments": {
+    "prismatic": [
+      {
+        "name": "Goliath",
+        "tier": "S"
+      },
+      {
+        "name": "Dreadbringer",
+        "tier": "S"
+      },
+      {
+        "name": "Symphony of War",
+        "tier": "S"
+      },
+      {
+        "name": "Raid Boss",
+        "tier": "S"
+      }
+    ],
+    "gold": [
+      {
+        "name": "Celestial Body",
+        "tier": "S"
+      },
+      {
+        "name": "Quest: Steel Your Heart",
+        "tier": "S"
+      },
+      {
+        "name": "Transmute: Prismatic",
+        "tier": "S"
+      },
+      {
+        "name": "Perseverance",
+        "tier": "S"
+      }
+    ],
+    "silver": [
+      {
+        "name": "Tank Engine",
+        "tier": "S"
+      },
+      {
+        "name": "Heavy Hitter",
+        "tier": "S"
+      },
+      {
+        "name": "Blunt Force",
+        "tier": "S"
+      },
+      {
+        "name": "Castle",
+        "tier": "S"
+      }
+    ]
+  },
+  "items": {
+    "core": [
+      {
+        "name": "Guardian's Blade",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Warmog's Armor",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Heartsteel",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Overlord's Bloodmail",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Titanic Hydra",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Sterak's Gage",
+        "tier": "Unknown"
+      }
+    ],
+    "boots": [
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Plated Steelcaps",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Berserker's Greaves",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Boots of Swiftness",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ghostcrawlers",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ionian Boots of Lucidity",
+        "tier": "Unknown"
+      }
+    ],
+    "situational": [
+      {
+        "name": "Atma's Reckoning",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Spear of Shojin",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Sundered Sky",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Black Cleaver",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Stridebreaker",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Hullbreaker",
+        "tier": "Unknown"
+      }
+    ],
+    "juices": [
+      {
+        "name": "Juice of Vitality",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Power",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Haste",
+        "tier": "Unknown"
+      }
+    ]
+  },
+  "lastUpdated": "2025-08-20T22:04:18.614Z"
+}

@@ -1,0 +1,162 @@
+{
+  "name": "Sylas Arena Build 25.16 LoL",
+  "tier": "S",
+  "stats": {
+    "winRate": "Unknown"
+  },
+  "augments": {
+    "prismatic": [
+      {
+        "name": "Dashing",
+        "tier": "S"
+      },
+      {
+        "name": "Jeweled Gauntlet",
+        "tier": "S"
+      },
+      {
+        "name": "Eureka",
+        "tier": "S"
+      },
+      {
+        "name": "Gamba Anvil",
+        "tier": "S"
+      }
+    ],
+    "gold": [
+      {
+        "name": "Marksmage",
+        "tier": "S"
+      },
+      {
+        "name": "Outlaw's Grit",
+        "tier": "S"
+      },
+      {
+        "name": "And My Axe!",
+        "tier": "S"
+      },
+      {
+        "name": "Big Brain",
+        "tier": "S"
+      }
+    ],
+    "silver": [
+      {
+        "name": "Witchful Thinking",
+        "tier": "S"
+      },
+      {
+        "name": "Trailblazer",
+        "tier": "S"
+      },
+      {
+        "name": "Goredrink",
+        "tier": "S"
+      },
+      {
+        "name": "ADAPt",
+        "tier": "S"
+      }
+    ]
+  },
+  "items": {
+    "core": [
+      {
+        "name": "Guardian's Shroud",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Sorcerer's Shoes",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Runecarver",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Shadowflame",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Rabadon's Deathcap",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Riftmaker",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Rod of Ages",
+        "tier": "Unknown"
+      }
+    ],
+    "boots": [
+      {
+        "name": "Sorcerer's Shoes",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ionian Boots of Lucidity",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Plated Steelcaps",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Berserker's Greaves",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ghostcrawlers",
+        "tier": "Unknown"
+      }
+    ],
+    "situational": [
+      {
+        "name": "Rite Of Ruin",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Zhonya's Hourglass",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Morellonomicon",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Void Staff",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Lich Bane",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Infinity Edge",
+        "tier": "Unknown"
+      }
+    ],
+    "juices": [
+      {
+        "name": "Juice of Power",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Vitality",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Haste",
+        "tier": "Unknown"
+      }
+    ]
+  },
+  "lastUpdated": "2025-08-20T22:05:13.468Z"
+}

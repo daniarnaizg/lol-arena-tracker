@@ -37,7 +37,7 @@
         "tier": "S"
       },
       {
-        "name": "Stats on Stats!",
+        "name": "Flashy",
         "tier": "S"
       }
     ],
@@ -71,7 +71,7 @@
         "tier": "Unknown"
       },
       {
-        "name": "Runecarver",
+        "name": "Pyromancer's Cloak",
         "tier": "Unknown"
       },
       {
@@ -101,11 +101,11 @@
         "tier": "Unknown"
       },
       {
-        "name": "Ghostcrawlers",
+        "name": "Mercury's Treads",
         "tier": "Unknown"
       },
       {
-        "name": "Mercury's Treads",
+        "name": "Ghostcrawlers",
         "tier": "Unknown"
       },
       {
@@ -158,5 +158,5 @@
       }
     ]
   },
-  "lastUpdated": "2025-08-20T20:42:05.571Z"
+  "lastUpdated": "2025-08-20T21:58:41.799Z"
 }

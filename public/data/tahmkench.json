@@ -1,0 +1,162 @@
+{
+  "name": "Tahm Kench Arena Build 25.16 LoL",
+  "tier": "B",
+  "stats": {
+    "winRate": "Unknown"
+  },
+  "augments": {
+    "prismatic": [
+      {
+        "name": "Goliath",
+        "tier": "S"
+      },
+      {
+        "name": "Fan the Hammer",
+        "tier": "S"
+      },
+      {
+        "name": "Dreadbringer",
+        "tier": "S"
+      },
+      {
+        "name": "Spirit Link",
+        "tier": "S"
+      }
+    ],
+    "gold": [
+      {
+        "name": "Quest: Steel Your Heart",
+        "tier": "S"
+      },
+      {
+        "name": "Celestial Body",
+        "tier": "S"
+      },
+      {
+        "name": "Apex Inventor",
+        "tier": "S"
+      },
+      {
+        "name": "Bread And Butter",
+        "tier": "S"
+      }
+    ],
+    "silver": [
+      {
+        "name": "Tank Engine",
+        "tier": "S"
+      },
+      {
+        "name": "Heavy Hitter",
+        "tier": "S"
+      },
+      {
+        "name": "Mind to Matter",
+        "tier": "S"
+      },
+      {
+        "name": "Firefox",
+        "tier": "S"
+      }
+    ]
+  },
+  "items": {
+    "core": [
+      {
+        "name": "Guardian's Horn",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Black Hole Gauntlet",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Heartsteel",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Sunfire Aegis",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Riftmaker",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Thornmail",
+        "tier": "Unknown"
+      }
+    ],
+    "boots": [
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Plated Steelcaps",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Sorcerer's Shoes",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ionian Boots of Lucidity",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Boots of Swiftness",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Berserker's Greaves",
+        "tier": "Unknown"
+      }
+    ],
+    "situational": [
+      {
+        "name": "Rabadon's Deathcap",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Unending Despair",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Spirit Visage",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Jak'Sho, The Protean",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Rod of Ages",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Randuin's Omen",
+        "tier": "Unknown"
+      }
+    ],
+    "juices": [
+      {
+        "name": "Juice of Vitality",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Power",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Haste",
+        "tier": "Unknown"
+      }
+    ]
+  },
+  "lastUpdated": "2025-08-20T22:05:25.050Z"
+}

@@ -1,0 +1,162 @@
+{
+  "name": "Urgot Arena Build 25.16 LoL",
+  "tier": "A",
+  "stats": {
+    "winRate": "Unknown"
+  },
+  "augments": {
+    "prismatic": [
+      {
+        "name": "Draw Your Sword",
+        "tier": "S"
+      },
+      {
+        "name": "Blade Waltz",
+        "tier": "S"
+      },
+      {
+        "name": "Goliath",
+        "tier": "S"
+      },
+      {
+        "name": "Fan the Hammer",
+        "tier": "S"
+      }
+    ],
+    "gold": [
+      {
+        "name": "Firebrand",
+        "tier": "S"
+      },
+      {
+        "name": "Apex Inventor",
+        "tier": "S"
+      },
+      {
+        "name": "Slow and Steady",
+        "tier": "S"
+      },
+      {
+        "name": "The Brutalizer",
+        "tier": "S"
+      }
+    ],
+    "silver": [
+      {
+        "name": "Heavy Hitter",
+        "tier": "S"
+      },
+      {
+        "name": "Tank Engine",
+        "tier": "S"
+      },
+      {
+        "name": "Typhoon",
+        "tier": "S"
+      },
+      {
+        "name": "escAPADe",
+        "tier": "S"
+      }
+    ]
+  },
+  "items": {
+    "core": [
+      {
+        "name": "Guardian's Blade",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Black Hole Gauntlet",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Heartsteel",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Black Cleaver",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Titanic Hydra",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Overlord's Bloodmail",
+        "tier": "Unknown"
+      }
+    ],
+    "boots": [
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Plated Steelcaps",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Boots of Swiftness",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ghostcrawlers",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Berserker's Greaves",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ionian Boots of Lucidity",
+        "tier": "Unknown"
+      }
+    ],
+    "situational": [
+      {
+        "name": "Sterak's Gage",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Chempunk Chainsword",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Jak'Sho, The Protean",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Thornmail",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Unending Despair",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Spirit Visage",
+        "tier": "Unknown"
+      }
+    ],
+    "juices": [
+      {
+        "name": "Juice of Vitality",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Power",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Haste",
+        "tier": "Unknown"
+      }
+    ]
+  },
+  "lastUpdated": "2025-08-20T22:06:24.249Z"
+}

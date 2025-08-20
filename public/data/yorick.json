@@ -1,0 +1,162 @@
+{
+  "name": "Yorick Arena Build 25.16 LoL",
+  "tier": "B",
+  "stats": {
+    "winRate": "Unknown"
+  },
+  "augments": {
+    "prismatic": [
+      {
+        "name": "Goliath",
+        "tier": "S"
+      },
+      {
+        "name": "Gamba Anvil",
+        "tier": "S"
+      },
+      {
+        "name": "Symphony of War",
+        "tier": "S"
+      },
+      {
+        "name": "Master of Duality",
+        "tier": "S"
+      }
+    ],
+    "gold": [
+      {
+        "name": "Scopier Weapons",
+        "tier": "S"
+      },
+      {
+        "name": "Minionmancer",
+        "tier": "S"
+      },
+      {
+        "name": "Transmute: Prismatic",
+        "tier": "S"
+      },
+      {
+        "name": "Apex Inventor",
+        "tier": "S"
+      }
+    ],
+    "silver": [
+      {
+        "name": "Tank Engine",
+        "tier": "S"
+      },
+      {
+        "name": "Heavy Hitter",
+        "tier": "S"
+      },
+      {
+        "name": "Desecrator",
+        "tier": "S"
+      },
+      {
+        "name": "Goredrink",
+        "tier": "S"
+      }
+    ]
+  },
+  "items": {
+    "core": [
+      {
+        "name": "Guardian's Blade",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Divine Sunderer",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Heartsteel",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Black Cleaver",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Sundered Sky",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Overlord's Bloodmail",
+        "tier": "Unknown"
+      }
+    ],
+    "boots": [
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Plated Steelcaps",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ionian Boots of Lucidity",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ghostcrawlers",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Boots of Swiftness",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Berserker's Greaves",
+        "tier": "Unknown"
+      }
+    ],
+    "situational": [
+      {
+        "name": "Trinity Force",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Chempunk Chainsword",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Sterak's Gage",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Thornmail",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Eclipse",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Spear of Shojin",
+        "tier": "Unknown"
+      }
+    ],
+    "juices": [
+      {
+        "name": "Juice of Power",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Vitality",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Haste",
+        "tier": "Unknown"
+      }
+    ]
+  },
+  "lastUpdated": "2025-08-20T22:07:44.651Z"
+}

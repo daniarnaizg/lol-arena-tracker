@@ -1,0 +1,162 @@
+{
+  "name": "Singed Arena Build 25.16 LoL",
+  "tier": "A",
+  "stats": {
+    "winRate": "Unknown"
+  },
+  "augments": {
+    "prismatic": [
+      {
+        "name": "Infernal Conduit",
+        "tier": "S"
+      },
+      {
+        "name": "Center of the Universe",
+        "tier": "S"
+      },
+      {
+        "name": "Giant Slayer",
+        "tier": "S"
+      },
+      {
+        "name": "Jeweled Gauntlet",
+        "tier": "S"
+      }
+    ],
+    "gold": [
+      {
+        "name": "Magic Missile",
+        "tier": "S"
+      },
+      {
+        "name": "Restless Restoration",
+        "tier": "S"
+      },
+      {
+        "name": "Transmute: Prismatic",
+        "tier": "S"
+      },
+      {
+        "name": "Perseverance",
+        "tier": "S"
+      }
+    ],
+    "silver": [
+      {
+        "name": "Tank Engine",
+        "tier": "S"
+      },
+      {
+        "name": "Desecrator",
+        "tier": "S"
+      },
+      {
+        "name": "Erosion",
+        "tier": "S"
+      },
+      {
+        "name": "Slap Around",
+        "tier": "S"
+      }
+    ]
+  },
+  "items": {
+    "core": [
+      {
+        "name": "Guardian's Shroud",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Pyromancer's Cloak",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Liandry's Anguish",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Rylai's Crystal Scepter",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Riftmaker",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Rabadon's Deathcap",
+        "tier": "Unknown"
+      }
+    ],
+    "boots": [
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Boots of Swiftness",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Plated Steelcaps",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ghostcrawlers",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Sorcerer's Shoes",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ionian Boots of Lucidity",
+        "tier": "Unknown"
+      }
+    ],
+    "situational": [
+      {
+        "name": "Rod of Ages",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Jak'Sho, The Protean",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Bloodletter's Curse",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Blackfire Torch",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Morellonomicon",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Sunfire Aegis",
+        "tier": "Unknown"
+      }
+    ],
+    "juices": [
+      {
+        "name": "Juice of Power",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Vitality",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Haste",
+        "tier": "Unknown"
+      }
+    ]
+  },
+  "lastUpdated": "2025-08-20T22:04:34.158Z"
+}

@@ -19,13 +19,13 @@
         "tier": "S"
       },
       {
-        "name": "Dreadbringer",
+        "name": "Omni Soul",
         "tier": "S"
       }
     ],
     "gold": [
       {
-        "name": "Transmute: Prismatic",
+        "name": "Trickster Demon",
         "tier": "S"
       },
       {
@@ -33,7 +33,7 @@
         "tier": "S"
       },
       {
-        "name": "Trickster Demon",
+        "name": "Transmute: Prismatic",
         "tier": "S"
       },
       {
@@ -51,11 +51,11 @@
         "tier": "S"
       },
       {
-        "name": "escAPADe",
+        "name": "Tank It Or Leave It",
         "tier": "S"
       },
       {
-        "name": "Tank It Or Leave It",
+        "name": "escAPADe",
         "tier": "S"
       }
     ]
@@ -79,11 +79,11 @@
         "tier": "Unknown"
       },
       {
-        "name": "Titanic Hydra",
+        "name": "Blade of The Ruined King",
         "tier": "Unknown"
       },
       {
-        "name": "Blade of The Ruined King",
+        "name": "Titanic Hydra",
         "tier": "Unknown"
       },
       {
@@ -158,5 +158,5 @@
       }
     ]
   },
-  "lastUpdated": "2025-08-20T20:44:47.219Z"
+  "lastUpdated": "2025-08-20T22:00:30.488Z"
 }

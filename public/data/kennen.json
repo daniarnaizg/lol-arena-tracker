@@ -15,11 +15,11 @@
         "tier": "S"
       },
       {
-        "name": "Dreadbringer",
+        "name": "Giant Slayer",
         "tier": "S"
       },
       {
-        "name": "Eureka",
+        "name": "Dreadbringer",
         "tier": "S"
       }
     ],
@@ -29,11 +29,11 @@
         "tier": "S"
       },
       {
-        "name": "Marksmage",
+        "name": "Big Brain",
         "tier": "S"
       },
       {
-        "name": "Big Brain",
+        "name": "Marksmage",
         "tier": "S"
       },
       {
@@ -158,5 +158,5 @@
       }
     ]
   },
-  "lastUpdated": "2025-08-20T20:44:25.679Z"
+  "lastUpdated": "2025-08-20T22:00:16.566Z"
 }

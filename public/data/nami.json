@@ -1,0 +1,162 @@
+{
+  "name": "Nami Arena Build 25.16 LoL",
+  "tier": "A",
+  "stats": {
+    "winRate": "Unknown"
+  },
+  "augments": {
+    "prismatic": [
+      {
+        "name": "Circle of Death",
+        "tier": "S"
+      },
+      {
+        "name": "Quest: Wooglet's Witchcap",
+        "tier": "S"
+      },
+      {
+        "name": "Eureka",
+        "tier": "S"
+      },
+      {
+        "name": "Doomsayer",
+        "tier": "S"
+      }
+    ],
+    "gold": [
+      {
+        "name": "All For You",
+        "tier": "S"
+      },
+      {
+        "name": "Holy Fire",
+        "tier": "S"
+      },
+      {
+        "name": "Critical Healing",
+        "tier": "S"
+      },
+      {
+        "name": "Dark Blessing",
+        "tier": "S"
+      }
+    ],
+    "silver": [
+      {
+        "name": "Sonic Boom",
+        "tier": "S"
+      },
+      {
+        "name": "First-Aid Kit",
+        "tier": "S"
+      },
+      {
+        "name": "Desecrator",
+        "tier": "S"
+      },
+      {
+        "name": "Witchful Thinking",
+        "tier": "S"
+      }
+    ]
+  },
+  "items": {
+    "core": [
+      {
+        "name": "Guardian's Amulet",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ionian Boots of Lucidity",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Empyrean Promise",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Moonstone Renewer",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Rabadon's Deathcap",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ardent Censer",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Dawncore",
+        "tier": "Unknown"
+      }
+    ],
+    "boots": [
+      {
+        "name": "Ionian Boots of Lucidity",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Sorcerer's Shoes",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ghostcrawlers",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Plated Steelcaps",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Boots of Swiftness",
+        "tier": "Unknown"
+      }
+    ],
+    "situational": [
+      {
+        "name": "Redemption",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Wordless Promise",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Morellonomicon",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Rite Of Ruin",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Staff of Flowing Water",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Archangel's Staff",
+        "tier": "Unknown"
+      }
+    ],
+    "juices": [
+      {
+        "name": "Juice of Power",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Vitality",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Haste",
+        "tier": "Unknown"
+      }
+    ]
+  },
+  "lastUpdated": "2025-08-20T22:02:05.145Z"
+}

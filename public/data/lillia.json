@@ -15,11 +15,11 @@
         "tier": "S"
       },
       {
-        "name": "Giant Slayer",
+        "name": "Quest: Wooglet's Witchcap",
         "tier": "S"
       },
       {
-        "name": "Quest: Wooglet's Witchcap",
+        "name": "Giant Slayer",
         "tier": "S"
       }
     ],
@@ -29,11 +29,11 @@
         "tier": "S"
       },
       {
-        "name": "Phenomenal Evil",
+        "name": "Big Brain",
         "tier": "S"
       },
       {
-        "name": "Big Brain",
+        "name": "Phenomenal Evil",
         "tier": "S"
       },
       {
@@ -158,5 +158,5 @@
       }
     ]
   },
-  "lastUpdated": "2025-08-20T20:45:24.871Z"
+  "lastUpdated": "2025-08-20T22:00:55.433Z"
 }

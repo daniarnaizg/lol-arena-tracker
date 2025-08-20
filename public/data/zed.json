@@ -1,0 +1,162 @@
+{
+  "name": "Zed Arena Build 25.16 LoL",
+  "tier": "S",
+  "stats": {
+    "winRate": "Unknown"
+  },
+  "augments": {
+    "prismatic": [
+      {
+        "name": "Jeweled Gauntlet",
+        "tier": "S"
+      },
+      {
+        "name": "Earthwake",
+        "tier": "S"
+      },
+      {
+        "name": "Blade Waltz",
+        "tier": "S"
+      },
+      {
+        "name": "Giant Slayer",
+        "tier": "S"
+      }
+    ],
+    "gold": [
+      {
+        "name": "The Brutalizer",
+        "tier": "S"
+      },
+      {
+        "name": "Quest: Angel of Retribution",
+        "tier": "S"
+      },
+      {
+        "name": "It's Killing Time",
+        "tier": "S"
+      },
+      {
+        "name": "Thread the Needle",
+        "tier": "S"
+      }
+    ],
+    "silver": [
+      {
+        "name": "Tank Engine",
+        "tier": "S"
+      },
+      {
+        "name": "Infernal Soul",
+        "tier": "S"
+      },
+      {
+        "name": "Executioner",
+        "tier": "S"
+      },
+      {
+        "name": "escAPADe",
+        "tier": "S"
+      }
+    ]
+  },
+  "items": {
+    "core": [
+      {
+        "name": "Guardian's Dirk",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ionian Boots of Lucidity",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Duskblade of Draktharr",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Voltaic Cyclosword",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Hellfire Hatchet",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Serylda's Grudge",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Axiom Arc",
+        "tier": "Unknown"
+      }
+    ],
+    "boots": [
+      {
+        "name": "Ionian Boots of Lucidity",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Plated Steelcaps",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ghostcrawlers",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Boots of Swiftness",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Berserker's Greaves",
+        "tier": "Unknown"
+      }
+    ],
+    "situational": [
+      {
+        "name": "Serpent's Fang",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Edge of Night",
+        "tier": "Unknown"
+      },
+      {
+        "name": "The Collector",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Eclipse",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Youmuu's Ghostblade",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Opportunity",
+        "tier": "Unknown"
+      }
+    ],
+    "juices": [
+      {
+        "name": "Juice of Power",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Vitality",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Haste",
+        "tier": "Unknown"
+      }
+    ]
+  },
+  "lastUpdated": "2025-08-20T22:08:03.882Z"
+}

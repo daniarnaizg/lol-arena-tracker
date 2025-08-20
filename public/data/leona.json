@@ -29,15 +29,15 @@
         "tier": "S"
       },
       {
-        "name": "Apex Inventor",
-        "tier": "S"
-      },
-      {
         "name": "Rabble Rousing",
         "tier": "S"
       },
       {
-        "name": "Transmute: Prismatic",
+        "name": "Apex Inventor",
+        "tier": "S"
+      },
+      {
+        "name": "Celestial Body",
         "tier": "S"
       }
     ],
@@ -71,7 +71,7 @@
         "tier": "Unknown"
       },
       {
-        "name": "Cruelty",
+        "name": "Black Hole Gauntlet",
         "tier": "Unknown"
       },
       {
@@ -139,7 +139,7 @@
         "tier": "Unknown"
       },
       {
-        "name": "Kaenic Rookern",
+        "name": "Knight's Vow",
         "tier": "Unknown"
       }
     ],
@@ -149,14 +149,14 @@
         "tier": "Unknown"
       },
       {
-        "name": "Juice of Power",
+        "name": "Juice of Haste",
         "tier": "Unknown"
       },
       {
-        "name": "Juice of Haste",
+        "name": "Juice of Power",
         "tier": "Unknown"
       }
     ]
   },
-  "lastUpdated": "2025-08-20T20:45:16.615Z"
+  "lastUpdated": "2025-08-20T22:00:51.879Z"
 }

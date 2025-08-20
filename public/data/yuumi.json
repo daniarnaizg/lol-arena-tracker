@@ -1,0 +1,162 @@
+{
+  "name": "Yuumi Arena Build 25.16 LoL",
+  "tier": "A",
+  "stats": {
+    "winRate": "Unknown"
+  },
+  "augments": {
+    "prismatic": [
+      {
+        "name": "Circle of Death",
+        "tier": "S"
+      },
+      {
+        "name": "Spirit Link",
+        "tier": "S"
+      },
+      {
+        "name": "Feel the Burn",
+        "tier": "S"
+      },
+      {
+        "name": "Eureka",
+        "tier": "S"
+      }
+    ],
+    "gold": [
+      {
+        "name": "All For You",
+        "tier": "S"
+      },
+      {
+        "name": "Holy Fire",
+        "tier": "S"
+      },
+      {
+        "name": "Critical Healing",
+        "tier": "S"
+      },
+      {
+        "name": "Willing Sacrifice",
+        "tier": "S"
+      }
+    ],
+    "silver": [
+      {
+        "name": "Now You See Me",
+        "tier": "S"
+      },
+      {
+        "name": "First-Aid Kit",
+        "tier": "S"
+      },
+      {
+        "name": "Sonic Boom",
+        "tier": "S"
+      },
+      {
+        "name": "Witchful Thinking",
+        "tier": "S"
+      }
+    ]
+  },
+  "items": {
+    "core": [
+      {
+        "name": "Guardian's Amulet",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ionian Boots of Lucidity",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Empyrean Promise",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Moonstone Renewer",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ardent Censer",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Staff of Flowing Water",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Dawncore",
+        "tier": "Unknown"
+      }
+    ],
+    "boots": [
+      {
+        "name": "Ionian Boots of Lucidity",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Sorcerer's Shoes",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ghostcrawlers",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Boots of Swiftness",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Berserker's Greaves",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      }
+    ],
+    "situational": [
+      {
+        "name": "Redemption",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Mikael's Blessing",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Wordless Promise",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Locket of the Iron Solari",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Morellonomicon",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Rabadon's Deathcap",
+        "tier": "Unknown"
+      }
+    ],
+    "juices": [
+      {
+        "name": "Juice of Power",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Haste",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Vitality",
+        "tier": "Unknown"
+      }
+    ]
+  },
+  "lastUpdated": "2025-08-20T22:07:53.317Z"
+}

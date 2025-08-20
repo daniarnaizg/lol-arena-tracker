@@ -19,7 +19,7 @@
         "tier": "S"
       },
       {
-        "name": "Stats on Stats on Stats!",
+        "name": "Eureka",
         "tier": "S"
       }
     ],
@@ -29,15 +29,15 @@
         "tier": "S"
       },
       {
-        "name": "Big Brain",
-        "tier": "S"
-      },
-      {
         "name": "All For You",
         "tier": "S"
       },
       {
-        "name": "With Haste",
+        "name": "Big Brain",
+        "tier": "S"
+      },
+      {
+        "name": "Combo Master",
         "tier": "S"
       }
     ],
@@ -127,11 +127,11 @@
         "tier": "Unknown"
       },
       {
-        "name": "Liandry's Anguish",
+        "name": "Stormsurge",
         "tier": "Unknown"
       },
       {
-        "name": "Stormsurge",
+        "name": "Liandry's Anguish",
         "tier": "Unknown"
       },
       {
@@ -158,5 +158,5 @@
       }
     ]
   },
-  "lastUpdated": "2025-08-20T20:40:21.904Z"
+  "lastUpdated": "2025-08-20T21:57:28.106Z"
 }

@@ -1,0 +1,162 @@
+{
+  "name": "Senna Arena Build 25.16 LoL",
+  "tier": "B",
+  "stats": {
+    "winRate": "Unknown"
+  },
+  "augments": {
+    "prismatic": [
+      {
+        "name": "Dual Wield",
+        "tier": "S"
+      },
+      {
+        "name": "Fan the Hammer",
+        "tier": "S"
+      },
+      {
+        "name": "Scopiest Weapons",
+        "tier": "S"
+      },
+      {
+        "name": "Tap Dancer",
+        "tier": "S"
+      }
+    ],
+    "gold": [
+      {
+        "name": "Quest: Angel of Retribution",
+        "tier": "S"
+      },
+      {
+        "name": "Scopier Weapons",
+        "tier": "S"
+      },
+      {
+        "name": "Soul Siphon",
+        "tier": "S"
+      },
+      {
+        "name": "Lightning Strikes",
+        "tier": "S"
+      }
+    ],
+    "silver": [
+      {
+        "name": "Deft",
+        "tier": "S"
+      },
+      {
+        "name": "Tank It Or Leave It",
+        "tier": "S"
+      },
+      {
+        "name": "Scoped Weapons",
+        "tier": "S"
+      },
+      {
+        "name": "escAPADe",
+        "tier": "S"
+      }
+    ]
+  },
+  "items": {
+    "core": [
+      {
+        "name": "Guardian's Hammer",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Berserker's Greaves",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Hamstringer",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Infinity Edge",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Rapid Firecannon",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Mortal Reminder",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Bloodthirster",
+        "tier": "Unknown"
+      }
+    ],
+    "boots": [
+      {
+        "name": "Berserker's Greaves",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Boots of Swiftness",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ghostcrawlers",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ionian Boots of Lucidity",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Plated Steelcaps",
+        "tier": "Unknown"
+      }
+    ],
+    "situational": [
+      {
+        "name": "The Collector",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Lord Dominik's Regards",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Blade of The Ruined King",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Guardian Angel",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Kraken Slayer",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Hellfire Hatchet",
+        "tier": "Unknown"
+      }
+    ],
+    "juices": [
+      {
+        "name": "Juice of Power",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Vitality",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Haste",
+        "tier": "Unknown"
+      }
+    ]
+  },
+  "lastUpdated": "2025-08-20T22:04:11.036Z"
+}

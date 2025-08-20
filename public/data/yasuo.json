@@ -1,0 +1,162 @@
+{
+  "name": "Yasuo Arena Build 25.16 LoL",
+  "tier": "S+",
+  "stats": {
+    "winRate": "Unknown"
+  },
+  "augments": {
+    "prismatic": [
+      {
+        "name": "Dual Wield",
+        "tier": "S"
+      },
+      {
+        "name": "Mystic Punch",
+        "tier": "S"
+      },
+      {
+        "name": "Symphony of War",
+        "tier": "S"
+      },
+      {
+        "name": "Giant Slayer",
+        "tier": "S"
+      }
+    ],
+    "gold": [
+      {
+        "name": "Lightning Strikes",
+        "tier": "S"
+      },
+      {
+        "name": "Scopier Weapons",
+        "tier": "S"
+      },
+      {
+        "name": "Soul Siphon",
+        "tier": "S"
+      },
+      {
+        "name": "Shrink Ray",
+        "tier": "S"
+      }
+    ],
+    "silver": [
+      {
+        "name": "Deft",
+        "tier": "S"
+      },
+      {
+        "name": "Goredrink",
+        "tier": "S"
+      },
+      {
+        "name": "Tank Engine",
+        "tier": "S"
+      },
+      {
+        "name": "First-Aid Kit",
+        "tier": "S"
+      }
+    ]
+  },
+  "items": {
+    "core": [
+      {
+        "name": "Guardian's Hammer",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Berserker's Greaves",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Hamstringer",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Infinity Edge",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Blade of The Ruined King",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Mortal Reminder",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Bloodthirster",
+        "tier": "Unknown"
+      }
+    ],
+    "boots": [
+      {
+        "name": "Berserker's Greaves",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Plated Steelcaps",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Boots of Swiftness",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ghostcrawlers",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ionian Boots of Lucidity",
+        "tier": "Unknown"
+      }
+    ],
+    "situational": [
+      {
+        "name": "Lord Dominik's Regards",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Immortal Shieldbow",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Guardian Angel",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Wit's End",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Rite Of Ruin",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Kraken Slayer",
+        "tier": "Unknown"
+      }
+    ],
+    "juices": [
+      {
+        "name": "Juice of Power",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Vitality",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Haste",
+        "tier": "Unknown"
+      }
+    ]
+  },
+  "lastUpdated": "2025-08-20T22:07:37.056Z"
+}

@@ -15,11 +15,11 @@
         "tier": "S"
       },
       {
-        "name": "Goliath",
+        "name": "Slow Cooker",
         "tier": "S"
       },
       {
-        "name": "Slow Cooker",
+        "name": "Goliath",
         "tier": "S"
       }
     ],
@@ -33,21 +33,21 @@
         "tier": "S"
       },
       {
-        "name": "Apex Inventor",
+        "name": "Rabble Rousing",
         "tier": "S"
       },
       {
-        "name": "Rabble Rousing",
+        "name": "Apex Inventor",
         "tier": "S"
       }
     ],
     "silver": [
       {
-        "name": "Tank Engine",
+        "name": "Guilty Pleasure",
         "tier": "S"
       },
       {
-        "name": "Guilty Pleasure",
+        "name": "Tank Engine",
         "tier": "S"
       },
       {
@@ -158,5 +158,5 @@
       }
     ]
   },
-  "lastUpdated": "2025-08-20T20:46:16.840Z"
+  "lastUpdated": "2025-08-20T22:01:28.041Z"
 }

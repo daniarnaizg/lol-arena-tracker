@@ -11,11 +11,11 @@
         "tier": "S"
       },
       {
-        "name": "Courage of the Colossus",
+        "name": "Center of the Universe",
         "tier": "S"
       },
       {
-        "name": "Center of the Universe",
+        "name": "Courage of the Colossus",
         "tier": "S"
       },
       {
@@ -33,21 +33,21 @@
         "tier": "S"
       },
       {
-        "name": "Transmute: Prismatic",
+        "name": "Apex Inventor",
         "tier": "S"
       },
       {
-        "name": "Quest: Steel Your Heart",
+        "name": "Transmute: Prismatic",
         "tier": "S"
       }
     ],
     "silver": [
       {
-        "name": "Slap Around",
+        "name": "Tank Engine",
         "tier": "S"
       },
       {
-        "name": "Tank Engine",
+        "name": "Slap Around",
         "tier": "S"
       },
       {
@@ -55,7 +55,7 @@
         "tier": "S"
       },
       {
-        "name": "Clothesline",
+        "name": "Witchful Thinking",
         "tier": "S"
       }
     ]
@@ -158,5 +158,5 @@
       }
     ]
   },
-  "lastUpdated": "2025-08-20T20:37:28.883Z"
+  "lastUpdated": "2025-08-20T21:55:28.768Z"
 }

@@ -11,11 +11,11 @@
         "tier": "S"
       },
       {
-        "name": "Giant Slayer",
+        "name": "Goliath",
         "tier": "S"
       },
       {
-        "name": "Goliath",
+        "name": "Giant Slayer",
         "tier": "S"
       },
       {
@@ -33,11 +33,11 @@
         "tier": "S"
       },
       {
-        "name": "Combo Master",
+        "name": "It's Killing Time",
         "tier": "S"
       },
       {
-        "name": "It's Killing Time",
+        "name": "Combo Master",
         "tier": "S"
       }
     ],
@@ -158,5 +158,5 @@
       }
     ]
   },
-  "lastUpdated": "2025-08-20T20:44:32.187Z"
+  "lastUpdated": "2025-08-20T22:00:20.764Z"
 }

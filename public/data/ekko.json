@@ -29,15 +29,15 @@
         "tier": "S"
       },
       {
-        "name": "And My Axe!",
-        "tier": "S"
-      },
-      {
         "name": "Big Brain",
         "tier": "S"
       },
       {
         "name": "Holy Fire",
+        "tier": "S"
+      },
+      {
+        "name": "Outlaw's Grit",
         "tier": "S"
       }
     ],
@@ -158,5 +158,5 @@
       }
     ]
   },
-  "lastUpdated": "2025-08-20T20:40:13.781Z"
+  "lastUpdated": "2025-08-20T21:57:22.280Z"
 }
