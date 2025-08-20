@@ -1,0 +1,162 @@
+{
+  "name": "Janna Arena Build 25.16 LoL",
+  "tier": "C",
+  "stats": {
+    "winRate": "Unknown"
+  },
+  "augments": {
+    "prismatic": [
+      {
+        "name": "Circle of Death",
+        "tier": "S"
+      },
+      {
+        "name": "Eureka",
+        "tier": "S"
+      },
+      {
+        "name": "Giant Slayer",
+        "tier": "S"
+      },
+      {
+        "name": "Doomsayer",
+        "tier": "S"
+      }
+    ],
+    "gold": [
+      {
+        "name": "Quest: Angel of Retribution",
+        "tier": "S"
+      },
+      {
+        "name": "All For You",
+        "tier": "S"
+      },
+      {
+        "name": "Holy Fire",
+        "tier": "S"
+      },
+      {
+        "name": "Dark Blessing",
+        "tier": "S"
+      }
+    ],
+    "silver": [
+      {
+        "name": "Sonic Boom",
+        "tier": "S"
+      },
+      {
+        "name": "First-Aid Kit",
+        "tier": "S"
+      },
+      {
+        "name": "404 Augment Not Found",
+        "tier": "S"
+      },
+      {
+        "name": "Slap Around",
+        "tier": "S"
+      }
+    ]
+  },
+  "items": {
+    "core": [
+      {
+        "name": "Guardian's Amulet",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ionian Boots of Lucidity",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Empyrean Promise",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Moonstone Renewer",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Sword of Blossoming Dawn",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ardent Censer",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Dawncore",
+        "tier": "Unknown"
+      }
+    ],
+    "boots": [
+      {
+        "name": "Ionian Boots of Lucidity",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Sorcerer's Shoes",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Boots of Swiftness",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Berserker's Greaves",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ghostcrawlers",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      }
+    ],
+    "situational": [
+      {
+        "name": "Redemption",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Rabadon's Deathcap",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Wordless Promise",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Staff of Flowing Water",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Locket of the Iron Solari",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Rite Of Ruin",
+        "tier": "Unknown"
+      }
+    ],
+    "juices": [
+      {
+        "name": "Juice of Power",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Vitality",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Haste",
+        "tier": "Unknown"
+      }
+    ]
+  },
+  "lastUpdated": "2025-08-20T20:42:33.296Z"
+}

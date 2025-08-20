@@ -1,0 +1,162 @@
+{
+  "name": "Leona Arena Build 25.16 LoL",
+  "tier": "B",
+  "stats": {
+    "winRate": "Unknown"
+  },
+  "augments": {
+    "prismatic": [
+      {
+        "name": "Courage of the Colossus",
+        "tier": "S"
+      },
+      {
+        "name": "Goliath",
+        "tier": "S"
+      },
+      {
+        "name": "Omni Soul",
+        "tier": "S"
+      },
+      {
+        "name": "Doomsayer",
+        "tier": "S"
+      }
+    ],
+    "gold": [
+      {
+        "name": "Quest: Steel Your Heart",
+        "tier": "S"
+      },
+      {
+        "name": "Apex Inventor",
+        "tier": "S"
+      },
+      {
+        "name": "Rabble Rousing",
+        "tier": "S"
+      },
+      {
+        "name": "Transmute: Prismatic",
+        "tier": "S"
+      }
+    ],
+    "silver": [
+      {
+        "name": "Guilty Pleasure",
+        "tier": "S"
+      },
+      {
+        "name": "Heavy Hitter",
+        "tier": "S"
+      },
+      {
+        "name": "Tank Engine",
+        "tier": "S"
+      },
+      {
+        "name": "Tormentor",
+        "tier": "S"
+      }
+    ]
+  },
+  "items": {
+    "core": [
+      {
+        "name": "Guardian's Horn",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Cruelty",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Heartsteel",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Sunfire Aegis",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Thornmail",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Unending Despair",
+        "tier": "Unknown"
+      }
+    ],
+    "boots": [
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Plated Steelcaps",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ionian Boots of Lucidity",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ghostcrawlers",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Berserker's Greaves",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Boots of Swiftness",
+        "tier": "Unknown"
+      }
+    ],
+    "situational": [
+      {
+        "name": "Jak'Sho, The Protean",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Spirit Visage",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Force of Nature",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Randuin's Omen",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Atma's Reckoning",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Kaenic Rookern",
+        "tier": "Unknown"
+      }
+    ],
+    "juices": [
+      {
+        "name": "Juice of Vitality",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Power",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Haste",
+        "tier": "Unknown"
+      }
+    ]
+  },
+  "lastUpdated": "2025-08-20T20:45:16.615Z"
+}

@@ -1,0 +1,162 @@
+{
+  "name": "Braum Arena Build 25.16 LoL",
+  "tier": "A",
+  "stats": {
+    "winRate": "Unknown"
+  },
+  "augments": {
+    "prismatic": [
+      {
+        "name": "Goliath",
+        "tier": "S"
+      },
+      {
+        "name": "Spirit Link",
+        "tier": "S"
+      },
+      {
+        "name": "Dreadbringer",
+        "tier": "S"
+      },
+      {
+        "name": "Center of the Universe",
+        "tier": "S"
+      }
+    ],
+    "gold": [
+      {
+        "name": "Celestial Body",
+        "tier": "S"
+      },
+      {
+        "name": "Quest: Steel Your Heart",
+        "tier": "S"
+      },
+      {
+        "name": "Willing Sacrifice",
+        "tier": "S"
+      },
+      {
+        "name": "Apex Inventor",
+        "tier": "S"
+      }
+    ],
+    "silver": [
+      {
+        "name": "Tank Engine",
+        "tier": "S"
+      },
+      {
+        "name": "Heavy Hitter",
+        "tier": "S"
+      },
+      {
+        "name": "Frost Wraith",
+        "tier": "S"
+      },
+      {
+        "name": "Desecrator",
+        "tier": "S"
+      }
+    ]
+  },
+  "items": {
+    "core": [
+      {
+        "name": "Guardian's Horn",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Black Hole Gauntlet",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Heartsteel",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Sunfire Aegis",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Jak'Sho, The Protean",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Thornmail",
+        "tier": "Unknown"
+      }
+    ],
+    "boots": [
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Plated Steelcaps",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Berserker's Greaves",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ionian Boots of Lucidity",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ghostcrawlers",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Boots of Swiftness",
+        "tier": "Unknown"
+      }
+    ],
+    "situational": [
+      {
+        "name": "Unending Despair",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Knight's Vow",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Locket of the Iron Solari",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Force of Nature",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Randuin's Omen",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Frozen Heart",
+        "tier": "Unknown"
+      }
+    ],
+    "juices": [
+      {
+        "name": "Juice of Vitality",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Power",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Haste",
+        "tier": "Unknown"
+      }
+    ]
+  },
+  "lastUpdated": "2025-08-20T20:38:51.241Z"
+}

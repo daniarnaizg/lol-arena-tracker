@@ -1,0 +1,162 @@
+{
+  "name": "Aurelion Sol Arena Build 25.16 LoL",
+  "tier": "B",
+  "stats": {
+    "winRate": "Unknown"
+  },
+  "augments": {
+    "prismatic": [
+      {
+        "name": "Jeweled Gauntlet",
+        "tier": "S"
+      },
+      {
+        "name": "Infernal Conduit",
+        "tier": "S"
+      },
+      {
+        "name": "Spellwake",
+        "tier": "S"
+      },
+      {
+        "name": "Doomsayer",
+        "tier": "S"
+      }
+    ],
+    "gold": [
+      {
+        "name": "Big Brain",
+        "tier": "S"
+      },
+      {
+        "name": "Trickster Demon",
+        "tier": "S"
+      },
+      {
+        "name": "Magic Missile",
+        "tier": "S"
+      },
+      {
+        "name": "Phenomenal Evil",
+        "tier": "S"
+      }
+    ],
+    "silver": [
+      {
+        "name": "Overflow",
+        "tier": "S"
+      },
+      {
+        "name": "Witchful Thinking",
+        "tier": "S"
+      },
+      {
+        "name": "Mind to Matter",
+        "tier": "S"
+      },
+      {
+        "name": "ADAPt",
+        "tier": "S"
+      }
+    ]
+  },
+  "items": {
+    "core": [
+      {
+        "name": "Guardian's Orb",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Sorcerer's Shoes",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Pyromancer's Cloak",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Liandry's Anguish",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Rylai's Crystal Scepter",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Rabadon's Deathcap",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Void Staff",
+        "tier": "Unknown"
+      }
+    ],
+    "boots": [
+      {
+        "name": "Sorcerer's Shoes",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Plated Steelcaps",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ionian Boots of Lucidity",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ghostcrawlers",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Boots of Swiftness",
+        "tier": "Unknown"
+      }
+    ],
+    "situational": [
+      {
+        "name": "Zhonya's Hourglass",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Shadowflame",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Rod of Ages",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Morellonomicon",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Archangel's Staff",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Blackfire Torch",
+        "tier": "Unknown"
+      }
+    ],
+    "juices": [
+      {
+        "name": "Juice of Power",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Vitality",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Haste",
+        "tier": "Unknown"
+      }
+    ]
+  },
+  "lastUpdated": "2025-08-20T20:38:02.855Z"
+}

@@ -1,0 +1,162 @@
+{
+  "name": "Hecarim Arena Build 25.16 LoL",
+  "tier": "C",
+  "stats": {
+    "winRate": "Unknown"
+  },
+  "augments": {
+    "prismatic": [
+      {
+        "name": "Accelerating Sorcery",
+        "tier": "S"
+      },
+      {
+        "name": "Goliath",
+        "tier": "S"
+      },
+      {
+        "name": "Infernal Conduit",
+        "tier": "S"
+      },
+      {
+        "name": "Mystic Punch",
+        "tier": "S"
+      }
+    ],
+    "gold": [
+      {
+        "name": "Rabble Rousing",
+        "tier": "S"
+      },
+      {
+        "name": "Dark Blessing",
+        "tier": "S"
+      },
+      {
+        "name": "Bread And Butter",
+        "tier": "S"
+      },
+      {
+        "name": "Transmute: Prismatic",
+        "tier": "S"
+      }
+    ],
+    "silver": [
+      {
+        "name": "Goredrink",
+        "tier": "S"
+      },
+      {
+        "name": "Tank Engine",
+        "tier": "S"
+      },
+      {
+        "name": "escAPADe",
+        "tier": "S"
+      },
+      {
+        "name": "Infernal Soul",
+        "tier": "S"
+      }
+    ]
+  },
+  "items": {
+    "core": [
+      {
+        "name": "Guardian's Blade",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Divine Sunderer",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Spear of Shojin",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Black Cleaver",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Overlord's Bloodmail",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Muramana",
+        "tier": "Unknown"
+      }
+    ],
+    "boots": [
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ionian Boots of Lucidity",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Plated Steelcaps",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Boots of Swiftness",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ghostcrawlers",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Berserker's Greaves",
+        "tier": "Unknown"
+      }
+    ],
+    "situational": [
+      {
+        "name": "Manamune",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Eclipse",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Death's Dance",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Trinity Force",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Chempunk Chainsword",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Spirit Visage",
+        "tier": "Unknown"
+      }
+    ],
+    "juices": [
+      {
+        "name": "Juice of Power",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Vitality",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Haste",
+        "tier": "Unknown"
+      }
+    ]
+  },
+  "lastUpdated": "2025-08-20T20:41:52.297Z"
+}

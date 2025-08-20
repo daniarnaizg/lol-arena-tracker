@@ -1,0 +1,162 @@
+{
+  "name": "Ambessa Arena Build 25.16 LoL",
+  "tier": "S+",
+  "stats": {
+    "winRate": "Unknown"
+  },
+  "augments": {
+    "prismatic": [
+      {
+        "name": "Earthwake",
+        "tier": "S"
+      },
+      {
+        "name": "Jeweled Gauntlet",
+        "tier": "S"
+      },
+      {
+        "name": "Master of Duality",
+        "tier": "S"
+      },
+      {
+        "name": "Gamba Anvil",
+        "tier": "S"
+      }
+    ],
+    "gold": [
+      {
+        "name": "Outlaw's Grit",
+        "tier": "S"
+      },
+      {
+        "name": "Trickster Demon",
+        "tier": "S"
+      },
+      {
+        "name": "The Brutalizer",
+        "tier": "S"
+      },
+      {
+        "name": "Thread the Needle",
+        "tier": "S"
+      }
+    ],
+    "silver": [
+      {
+        "name": "Trailblazer",
+        "tier": "S"
+      },
+      {
+        "name": "Shadow Runner",
+        "tier": "S"
+      },
+      {
+        "name": "Goredrink",
+        "tier": "S"
+      },
+      {
+        "name": "Tank Engine",
+        "tier": "S"
+      }
+    ]
+  },
+  "items": {
+    "core": [
+      {
+        "name": "Guardian's Blade",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ionian Boots of Lucidity",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Duskblade of Draktharr",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Eclipse",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Voltaic Cyclosword",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Spear of Shojin",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Black Cleaver",
+        "tier": "Unknown"
+      }
+    ],
+    "boots": [
+      {
+        "name": "Ionian Boots of Lucidity",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Plated Steelcaps",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ghostcrawlers",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Boots of Swiftness",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Berserker's Greaves",
+        "tier": "Unknown"
+      }
+    ],
+    "situational": [
+      {
+        "name": "Hellfire Hatchet",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Death's Dance",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Serylda's Grudge",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ravenous Hydra",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Serpent's Fang",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Chempunk Chainsword",
+        "tier": "Unknown"
+      }
+    ],
+    "juices": [
+      {
+        "name": "Juice of Power",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Vitality",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Haste",
+        "tier": "Unknown"
+      }
+    ]
+  },
+  "lastUpdated": "2025-08-20T20:37:20.704Z"
+}

@@ -1,0 +1,162 @@
+{
+  "name": "Darius Arena Build 25.16 LoL",
+  "tier": "B",
+  "stats": {
+    "winRate": "Unknown"
+  },
+  "augments": {
+    "prismatic": [
+      {
+        "name": "Goliath",
+        "tier": "S"
+      },
+      {
+        "name": "Blade Waltz",
+        "tier": "S"
+      },
+      {
+        "name": "Wisdom of Ages",
+        "tier": "S"
+      },
+      {
+        "name": "Jeweled Gauntlet",
+        "tier": "S"
+      }
+    ],
+    "gold": [
+      {
+        "name": "The Brutalizer",
+        "tier": "S"
+      },
+      {
+        "name": "Transmute: Prismatic",
+        "tier": "S"
+      },
+      {
+        "name": "Thread the Needle",
+        "tier": "S"
+      },
+      {
+        "name": "Demon's Dance",
+        "tier": "S"
+      }
+    ],
+    "silver": [
+      {
+        "name": "Tank Engine",
+        "tier": "S"
+      },
+      {
+        "name": "Executioner",
+        "tier": "S"
+      },
+      {
+        "name": "Heavy Hitter",
+        "tier": "S"
+      },
+      {
+        "name": "Frost Wraith",
+        "tier": "S"
+      }
+    ]
+  },
+  "items": {
+    "core": [
+      {
+        "name": "Guardian's Blade",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Divine Sunderer",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Black Cleaver",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Sterak's Gage",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Sundered Sky",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Overlord's Bloodmail",
+        "tier": "Unknown"
+      }
+    ],
+    "boots": [
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Plated Steelcaps",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Boots of Swiftness",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ghostcrawlers",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ionian Boots of Lucidity",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Berserker's Greaves",
+        "tier": "Unknown"
+      }
+    ],
+    "situational": [
+      {
+        "name": "Trinity Force",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Heartsteel",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Infinity Edge",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Death's Dance",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Stridebreaker",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Chempunk Chainsword",
+        "tier": "Unknown"
+      }
+    ],
+    "juices": [
+      {
+        "name": "Juice of Power",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Vitality",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Haste",
+        "tier": "Unknown"
+      }
+    ]
+  },
+  "lastUpdated": "2025-08-20T20:39:43.600Z"
+}

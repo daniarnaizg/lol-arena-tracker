@@ -1,0 +1,162 @@
+{
+  "name": "Mordekaiser Arena Build 25.16 LoL",
+  "tier": "A",
+  "stats": {
+    "winRate": "Unknown"
+  },
+  "augments": {
+    "prismatic": [
+      {
+        "name": "Goliath",
+        "tier": "S"
+      },
+      {
+        "name": "Infernal Conduit",
+        "tier": "S"
+      },
+      {
+        "name": "Jeweled Gauntlet",
+        "tier": "S"
+      },
+      {
+        "name": "Center of the Universe",
+        "tier": "S"
+      }
+    ],
+    "gold": [
+      {
+        "name": "Marksmage",
+        "tier": "S"
+      },
+      {
+        "name": "Stats on Stats!",
+        "tier": "S"
+      },
+      {
+        "name": "Apex Inventor",
+        "tier": "S"
+      },
+      {
+        "name": "Critical Healing",
+        "tier": "S"
+      }
+    ],
+    "silver": [
+      {
+        "name": "Tank Engine",
+        "tier": "S"
+      },
+      {
+        "name": "Transmute: Gold",
+        "tier": "S"
+      },
+      {
+        "name": "ADAPt",
+        "tier": "S"
+      },
+      {
+        "name": "Desecrator",
+        "tier": "S"
+      }
+    ]
+  },
+  "items": {
+    "core": [
+      {
+        "name": "Guardian's Shroud",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Sorcerer's Shoes",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Pyromancer's Cloak",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Riftmaker",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Rylai's Crystal Scepter",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Liandry's Anguish",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Rabadon's Deathcap",
+        "tier": "Unknown"
+      }
+    ],
+    "boots": [
+      {
+        "name": "Sorcerer's Shoes",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Plated Steelcaps",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ionian Boots of Lucidity",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ghostcrawlers",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Boots of Swiftness",
+        "tier": "Unknown"
+      }
+    ],
+    "situational": [
+      {
+        "name": "Spirit Visage",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Hextech Gunblade",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Morellonomicon",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Heartsteel",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Rite Of Ruin",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Jak'Sho, The Protean",
+        "tier": "Unknown"
+      }
+    ],
+    "juices": [
+      {
+        "name": "Juice of Power",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Vitality",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Haste",
+        "tier": "Unknown"
+      }
+    ]
+  },
+  "lastUpdated": "2025-08-20T20:46:53.561Z"
+}
