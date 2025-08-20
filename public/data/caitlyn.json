@@ -1,0 +1,162 @@
+{
+  "name": "Caitlyn Arena Build 25.16 LoL",
+  "tier": "S",
+  "stats": {
+    "winRate": "Unknown"
+  },
+  "augments": {
+    "prismatic": [
+      {
+        "name": "Dual Wield",
+        "tier": "S"
+      },
+      {
+        "name": "Scopiest Weapons",
+        "tier": "S"
+      },
+      {
+        "name": "Fan the Hammer",
+        "tier": "S"
+      },
+      {
+        "name": "Giant Slayer",
+        "tier": "S"
+      }
+    ],
+    "gold": [
+      {
+        "name": "Scopier Weapons",
+        "tier": "S"
+      },
+      {
+        "name": "Lightning Strikes",
+        "tier": "S"
+      },
+      {
+        "name": "Soul Siphon",
+        "tier": "S"
+      },
+      {
+        "name": "Firebrand",
+        "tier": "S"
+      }
+    ],
+    "silver": [
+      {
+        "name": "Deft",
+        "tier": "S"
+      },
+      {
+        "name": "Typhoon",
+        "tier": "S"
+      },
+      {
+        "name": "Scoped Weapons",
+        "tier": "S"
+      },
+      {
+        "name": "Goredrink",
+        "tier": "S"
+      }
+    ]
+  },
+  "items": {
+    "core": [
+      {
+        "name": "Guardian's Hammer",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Berserker's Greaves",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Hamstringer",
+        "tier": "Unknown"
+      },
+      {
+        "name": "The Collector",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Infinity Edge",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Lord Dominik's Regards",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Bloodthirster",
+        "tier": "Unknown"
+      }
+    ],
+    "boots": [
+      {
+        "name": "Berserker's Greaves",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Boots of Swiftness",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ghostcrawlers",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Plated Steelcaps",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ionian Boots of Lucidity",
+        "tier": "Unknown"
+      }
+    ],
+    "situational": [
+      {
+        "name": "Mortal Reminder",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Rapid Firecannon",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Blade of The Ruined King",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Guardian Angel",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Yun Tal Wildarrows",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Immortal Shieldbow",
+        "tier": "Unknown"
+      }
+    ],
+    "juices": [
+      {
+        "name": "Juice of Power",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Vitality",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Haste",
+        "tier": "Unknown"
+      }
+    ]
+  },
+  "lastUpdated": "2025-08-20T20:39:06.046Z"
+}

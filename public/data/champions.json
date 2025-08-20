@@ -1,0 +1,776 @@
+{
+  "champions": [
+    {
+      "name": "Ambessa Arena Build 25.16 LoL",
+      "tier": "S+",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Bel'Veth Arena Build 25.16 LoL",
+      "tier": "S+",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Brand Arena Build 25.16 LoL",
+      "tier": "S+",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Cho'Gath Arena Build 25.16 LoL",
+      "tier": "S+",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Dr. Mundo Arena Build 25.16 LoL",
+      "tier": "S+",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Galio Arena Build 25.16 LoL",
+      "tier": "S+",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Jhin Arena Build 25.16 LoL",
+      "tier": "S+",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Master Yi Arena Build 25.16 LoL",
+      "tier": "S+",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Ahri Arena Build 25.16 LoL",
+      "tier": "S",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Alistar Arena Build 25.16 LoL",
+      "tier": "S",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Amumu Arena Build 25.16 LoL",
+      "tier": "S",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Annie Arena Build 25.16 LoL",
+      "tier": "S",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Blitzcrank Arena Build 25.16 LoL",
+      "tier": "S",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Caitlyn Arena Build 25.16 LoL",
+      "tier": "S",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Jax Arena Build 25.16 LoL",
+      "tier": "S",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Malphite Arena Build 25.16 LoL",
+      "tier": "S",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Malzahar Arena Build 25.16 LoL",
+      "tier": "S",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Aphelios Arena Build 25.16 LoL",
+      "tier": "A",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Ashe Arena Build 25.16 LoL",
+      "tier": "A",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Aurora Arena Build 25.16 LoL",
+      "tier": "A",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Braum Arena Build 25.16 LoL",
+      "tier": "A",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Briar Arena Build 25.16 LoL",
+      "tier": "A",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Corki Arena Build 25.16 LoL",
+      "tier": "A",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Diana Arena Build 25.16 LoL",
+      "tier": "A",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Evelynn Arena Build 25.16 LoL",
+      "tier": "A",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Fizz Arena Build 25.16 LoL",
+      "tier": "A",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Graves Arena Build 25.16 LoL",
+      "tier": "A",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Gwen Arena Build 25.16 LoL",
+      "tier": "A",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Jinx Arena Build 25.16 LoL",
+      "tier": "A",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Kai'Sa Arena Build 25.16 LoL",
+      "tier": "A",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Karma Arena Build 25.16 LoL",
+      "tier": "A",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Karthus Arena Build 25.16 LoL",
+      "tier": "A",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Kassadin Arena Build 25.16 LoL",
+      "tier": "A",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Kayle Arena Build 25.16 LoL",
+      "tier": "A",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Kennen Arena Build 25.16 LoL",
+      "tier": "A",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Lee Sin Arena Build 25.16 LoL",
+      "tier": "A",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Lillia Arena Build 25.16 LoL",
+      "tier": "A",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Lucian Arena Build 25.16 LoL",
+      "tier": "A",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Lux Arena Build 25.16 LoL",
+      "tier": "A",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Mel Arena Build 25.16 LoL",
+      "tier": "A",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Mordekaiser Arena Build 25.16 LoL",
+      "tier": "A",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Akshan Arena Build 25.16 LoL",
+      "tier": "B",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Aurelion Sol Arena Build 25.16 LoL",
+      "tier": "B",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Azir Arena Build 25.16 LoL",
+      "tier": "B",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Cassiopeia Arena Build 25.16 LoL",
+      "tier": "B",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Darius Arena Build 25.16 LoL",
+      "tier": "B",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Draven Arena Build 25.16 LoL",
+      "tier": "B",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Elise Arena Build 25.16 LoL",
+      "tier": "B",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Fiddlesticks Arena Build 25.16 LoL",
+      "tier": "B",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Fiora Arena Build 25.16 LoL",
+      "tier": "B",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Garen Arena Build 25.16 LoL",
+      "tier": "B",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Kayn Arena Build 25.16 LoL",
+      "tier": "B",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Kha'Zix Arena Build 25.16 LoL",
+      "tier": "B",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Kindred Arena Build 25.16 LoL",
+      "tier": "B",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Kog'Maw Arena Build 25.16 LoL",
+      "tier": "B",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Leona Arena Build 25.16 LoL",
+      "tier": "B",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Lulu Arena Build 25.16 LoL",
+      "tier": "B",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Maokai Arena Build 25.16 LoL",
+      "tier": "B",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Milio Arena Build 25.16 LoL",
+      "tier": "B",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Miss Fortune Arena Build 25.16 LoL",
+      "tier": "B",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Aatrox Arena Build 25.16 LoL",
+      "tier": "C",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Anivia Arena Build 25.16 LoL",
+      "tier": "C",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Ekko Arena Build 25.16 LoL",
+      "tier": "C",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Gangplank Arena Build 25.16 LoL",
+      "tier": "C",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Gragas Arena Build 25.16 LoL",
+      "tier": "C",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Hecarim Arena Build 25.16 LoL",
+      "tier": "C",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Illaoi Arena Build 25.16 LoL",
+      "tier": "C",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Ivern Arena Build 25.16 LoL",
+      "tier": "C",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Janna Arena Build 25.16 LoL",
+      "tier": "C",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Jarvan IV Arena Build 25.16 LoL",
+      "tier": "C",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "K'Sante Arena Build 25.16 LoL",
+      "tier": "C",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Kalista Arena Build 25.16 LoL",
+      "tier": "C",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Kled Arena Build 25.16 LoL",
+      "tier": "C",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Lissandra Arena Build 25.16 LoL",
+      "tier": "C",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Akali Arena Build 25.16 LoL",
+      "tier": "D",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Bard Arena Build 25.16 LoL",
+      "tier": "D",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Camille Arena Build 25.16 LoL",
+      "tier": "D",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Ezreal Arena Build 25.16 LoL",
+      "tier": "D",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Gnar Arena Build 25.16 LoL",
+      "tier": "D",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Heimerdinger Arena Build 25.16 LoL",
+      "tier": "D",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Hwei Arena Build 25.16 LoL",
+      "tier": "D",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Irelia Arena Build 25.16 LoL",
+      "tier": "D",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Jayce Arena Build 25.16 LoL",
+      "tier": "D",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "Katarina Arena Build 25.16 LoL",
+      "tier": "D",
+      "winRate": "Unknown"
+    },
+    {
+      "name": "LeBlanc Arena Build 25.16 LoL",
+      "tier": "D",
+      "winRate": "Unknown"
+    }
+  ],
+  "lastUpdated": "2025-08-20T21:29:59.771Z",
+  "errors": [
+    {
+      "champion": "morgana",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "naafiri",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "nami",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "nasus",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "nautilus",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "neeko",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "nidalee",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "nilah",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "nocturne",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "nunu",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "olaf",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "orianna",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "ornn",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "pantheon",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "poppy",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "pyke",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "qiyana",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "quinn",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "rakan",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "rammus",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "reksai",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "rell",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "renata",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "renekton",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "rengar",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "riven",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "rumble",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "ryze",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "samira",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "sejuani",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "senna",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "seraphine",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "sett",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "shaco",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "shen",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "shyvana",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "singed",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "sion",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "sivir",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "skarner",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "smolder",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "sona",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "soraka",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "swain",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "sylas",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "syndra",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "tahmkench",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "taliyah",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "talon",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "taric",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "teemo",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "thresh",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "tristana",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "trundle",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "tryndamere",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "twistedfate",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "twitch",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "udyr",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "urgot",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "varus",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "vayne",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "veigar",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "velkoz",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "vex",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "vi",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "viego",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "viktor",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "vladimir",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "volibear",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "warwick",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "wukong",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "xayah",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "xerath",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "xinzhao",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "yasuo",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "yone",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "yorick",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "yunara",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "yuumi",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "zac",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "zed",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "zeri",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "ziggs",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "zilean",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "zoe",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    },
+    {
+      "champion": "zyra",
+      "error": "Navigation timeout of 30000 ms exceeded"
+    }
+  ]
+}

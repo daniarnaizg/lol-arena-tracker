@@ -1,0 +1,162 @@
+{
+  "name": "Akshan Arena Build 25.16 LoL",
+  "tier": "B",
+  "stats": {
+    "winRate": "Unknown"
+  },
+  "augments": {
+    "prismatic": [
+      {
+        "name": "Dual Wield",
+        "tier": "S"
+      },
+      {
+        "name": "Fan the Hammer",
+        "tier": "S"
+      },
+      {
+        "name": "Draw Your Sword",
+        "tier": "S"
+      },
+      {
+        "name": "Wisdom of Ages",
+        "tier": "S"
+      }
+    ],
+    "gold": [
+      {
+        "name": "Minionmancer",
+        "tier": "S"
+      },
+      {
+        "name": "Twice Thrice",
+        "tier": "S"
+      },
+      {
+        "name": "Scopier Weapons",
+        "tier": "S"
+      },
+      {
+        "name": "Lightning Strikes",
+        "tier": "S"
+      }
+    ],
+    "silver": [
+      {
+        "name": "Typhoon",
+        "tier": "S"
+      },
+      {
+        "name": "Light 'em Up!",
+        "tier": "S"
+      },
+      {
+        "name": "Deft",
+        "tier": "S"
+      },
+      {
+        "name": "escAPADe",
+        "tier": "S"
+      }
+    ]
+  },
+  "items": {
+    "core": [
+      {
+        "name": "Guardian's Hammer",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Berserker's Greaves",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Hamstringer",
+        "tier": "Unknown"
+      },
+      {
+        "name": "The Collector",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Infinity Edge",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Blade of The Ruined King",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Lord Dominik's Regards",
+        "tier": "Unknown"
+      }
+    ],
+    "boots": [
+      {
+        "name": "Berserker's Greaves",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Mercury's Treads",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Boots of Swiftness",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Plated Steelcaps",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ionian Boots of Lucidity",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Ghostcrawlers",
+        "tier": "Unknown"
+      }
+    ],
+    "situational": [
+      {
+        "name": "Mortal Reminder",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Kraken Slayer",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Guinsoo's Rageblade",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Axiom Arc",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Bloodthirster",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Hellfire Hatchet",
+        "tier": "Unknown"
+      }
+    ],
+    "juices": [
+      {
+        "name": "Juice of Power",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Vitality",
+        "tier": "Unknown"
+      },
+      {
+        "name": "Juice of Haste",
+        "tier": "Unknown"
+      }
+    ]
+  },
+  "lastUpdated": "2025-08-20T20:37:06.401Z"
+}
