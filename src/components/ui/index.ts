@@ -11,6 +11,7 @@ export { EffectsToggle } from './EffectsToggle';
 export { KofiButton } from './KofiButton';
 export { BackToTopFab } from './BackToTopFab';
 export { SocialShare } from './SocialShare';
+export { ChampionInfoModal } from './ChampionInfoModal';
 
 // Shared utilities and components
 export * from './shared';
