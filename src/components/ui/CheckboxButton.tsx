@@ -11,7 +11,7 @@ export interface ChampionChecklist {
 interface CheckboxButtonProps {
   type: keyof ChampionChecklist;
   isChecked: boolean;
-  onClick: () => void;
+  onClick: (e: React.MouseEvent) => void;
   championName: string;
   effectsEnabled?: boolean;
 }
@@ -140,7 +140,10 @@ export const CheckboxButton: React.FC<CheckboxButtonProps> = ({
   
   const buttonContent = (
     <button
-      onClick={onClick}
+      onClick={(e) => {
+        onClick(e);
+        e.stopPropagation(); // Stop event from bubbling up to the card
+      }}
       className={buttonClass}
       title={`${config.label} for ${championName}`}
       aria-label={`${config.label} for ${championName}`}

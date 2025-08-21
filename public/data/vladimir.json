@@ -1,0 +1,327 @@
+{
+  "name": "Vladimir Arena Build 25.16 LoL",
+  "tier": "S+",
+  "stats": {
+    "winRate": "Unknown"
+  },
+  "augments": {
+    "prismatic": [
+      {
+        "name": "Eureka",
+        "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/eureka_large.png"
+      },
+      {
+        "name": "Infernal Conduit",
+        "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/infernalconduit_large.png"
+      },
+      {
+        "name": "Jeweled Gauntlet",
+        "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/jeweledgauntlet_large.png"
+      },
+      {
+        "name": "Doomsayer",
+        "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/doomsayer_large.png"
+      }
+    ],
+    "gold": [
+      {
+        "name": "Critical Healing",
+        "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/criticalhealing_large.png"
+      },
+      {
+        "name": "Big Brain",
+        "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/bigbrain_large.png"
+      },
+      {
+        "name": "Phenomenal Evil",
+        "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/phenomenalevil_large.png"
+      },
+      {
+        "name": "Transmute: Prismatic",
+        "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/transmuteprismatic_large.png"
+      }
+    ],
+    "silver": [
+      {
+        "name": "Witchful Thinking",
+        "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/witchfulthinking_large.png"
+      },
+      {
+        "name": "Tank Engine",
+        "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/tankengine_large.png"
+      },
+      {
+        "name": "ADAPt",
+        "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/adapt_large.png"
+      },
+      {
+        "name": "Dematerialize",
+        "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/dematerialize_large.png"
+      }
+    ]
+  },
+  "items": {
+    "core": [
+      {
+        "name": "Guardian's Shroud",
+        "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/2050.png"
+      },
+      {
+        "name": "Ionian Boots of Lucidity",
+        "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/223158.png"
+      },
+      {
+        "name": "Demonic Embrace",
+        "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/444637.png"
+      },
+      {
+        "name": "Riftmaker",
+        "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/224633.png"
+      },
+      {
+        "name": "Liandry's Anguish",
+        "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/226653.png"
+      },
+      {
+        "name": "Rabadon's Deathcap",
+        "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/223089.png"
+      },
+      {
+        "name": "Morellonomicon",
+        "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/223165.png"
+      }
+    ],
+    "boots": [
+      {
+        "name": "Ionian Boots of Lucidity",
+        "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/223158.png"
+      },
+      {
+        "name": "Sorcerer's Shoes",
+        "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/223020.png"
+      },
+      {
+        "name": "Mercury's Treads",
+        "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/223111.png"
+      },
+      {
+        "name": "Boots of Swiftness",
+        "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/223009.png"
+      },
+      {
+        "name": "Plated Steelcaps",
+        "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/223047.png"
+      },
+      {
+        "name": "Ghostcrawlers",
+        "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/223005.png"
+      }
+    ],
+    "situational": [
+      {
+        "name": "Void Staff",
+        "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/223135.png"
+      },
+      {
+        "name": "Cosmic Drive",
+        "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/224629.png"
+      },
+      {
+        "name": "Zhonya's Hourglass",
+        "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/223157.png"
+      },
+      {
+        "name": "Shadowflame",
+        "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/224645.png"
+      },
+      {
+        "name": "Rite Of Ruin",
+        "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/3430.png"
+      },
+      {
+        "name": "Spirit Visage",
+        "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/223065.png"
+      }
+    ]
+  },
+  "prismaticItemTierList": [
+    {
+      "name": "Demonic Embrace",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/444637.png",
+      "tier": "S"
+    },
+    {
+      "name": "Pyromancer's Cloak",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447118.png",
+      "tier": "S"
+    },
+    {
+      "name": "Runecarver",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447108.png",
+      "tier": "S"
+    },
+    {
+      "name": "Innervating Locket",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447104.png",
+      "tier": "S"
+    },
+    {
+      "name": "Dragonheart",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447106.png",
+      "tier": "S"
+    },
+    {
+      "name": "Demon King's Crown",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443056.png",
+      "tier": "S"
+    },
+    {
+      "name": "Sanguine Gift",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443062.png",
+      "tier": "S"
+    },
+    {
+      "name": "Twin Mask",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443080.png",
+      "tier": "S"
+    },
+    {
+      "name": "Night Harvester",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/444636.png",
+      "tier": "A"
+    },
+    {
+      "name": "Detonation Orb",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447113.png",
+      "tier": "A"
+    },
+    {
+      "name": "Lightning Rod",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447119.png",
+      "tier": "A"
+    },
+    {
+      "name": "Eleisa's Miracle",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443063.png",
+      "tier": "A"
+    },
+    {
+      "name": "Flesheater",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447112.png",
+      "tier": "A"
+    },
+    {
+      "name": "Gargoyle Stoneplate",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443193.png",
+      "tier": "A"
+    },
+    {
+      "name": "Shield of Molten Stone",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443058.png",
+      "tier": "A"
+    },
+    {
+      "name": "Kinkou Jitte",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447116.png",
+      "tier": "A"
+    },
+    {
+      "name": "Warmog's Armor",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443083.png",
+      "tier": "A"
+    },
+    {
+      "name": "Cloak of Starry Night",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443059.png",
+      "tier": "B"
+    },
+    {
+      "name": "Radiant Virtue",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/446667.png",
+      "tier": "B"
+    },
+    {
+      "name": "Empyrean Promise",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447105.png",
+      "tier": "B"
+    },
+    {
+      "name": "Turbo Chemtank",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443079.png",
+      "tier": "B"
+    },
+    {
+      "name": "Reality Fracture",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447102.png",
+      "tier": "B"
+    },
+    {
+      "name": "Black Hole Gauntlet",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447122.png",
+      "tier": "B"
+    },
+    {
+      "name": "Sword of the Divine",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443060.png",
+      "tier": "B"
+    },
+    {
+      "name": "Hemomancer's Helm",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447103.png",
+      "tier": "B"
+    },
+    {
+      "name": "Moonflair Spellblade",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447110.png",
+      "tier": "B"
+    },
+    {
+      "name": "Diamond-Tipped Spear",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447120.png",
+      "tier": "C"
+    },
+    {
+      "name": "Talisman Of Ascension",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443064.png",
+      "tier": "C"
+    },
+    {
+      "name": "Decapitator",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447107.png",
+      "tier": "C"
+    },
+    {
+      "name": "Twilight's Edge",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447121.png",
+      "tier": "C"
+    },
+    {
+      "name": "Goredrinker",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/226630.png",
+      "tier": "C"
+    },
+    {
+      "name": "Reaper's Toll",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443090.png",
+      "tier": "D"
+    },
+    {
+      "name": "Puppeteer",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447123.png",
+      "tier": "D"
+    },
+    {
+      "name": "Fulmination",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443055.png",
+      "tier": "D"
+    },
+    {
+      "name": "Gambler's Blade",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447101.png",
+      "tier": "D"
+    }
+  ],
+  "lastUpdated": "2025-08-21T15:08:23.762Z",
+  "imageUrl": "https://cdn.mobalytics.gg/assets/lol/images/dd/champions/icons/Vladimir.png",
+  "slug": "vladimir"
+}

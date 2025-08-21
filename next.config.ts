@@ -16,6 +16,18 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/cdn/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'img.metasrc.com',
+        port: '',
+        pathname: '/cdn/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'raw.communitydragon.org',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
   async headers() {
