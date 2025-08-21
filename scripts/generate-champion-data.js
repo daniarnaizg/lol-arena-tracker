@@ -94,10 +94,10 @@ async function getChampionBuildData(browser, championName) {
     const page = await browser.newPage();
     
     try {
-      // Set random user agent
+      // Set random user agent (without logging the details)
       const userAgent = getRandomUserAgent();
       await page.setUserAgent(userAgent);
-      console.log(`Attempt ${attempts} for ${championName} with UA: ${userAgent.slice(0, 20)}...`);
+      console.log(`Attempt ${attempts} for ${championName}...`);
       
       // Navigate to champion page with increased timeout
       await page.goto(`https://www.metasrc.com/lol/arena/build/${championName}`, {
@@ -108,7 +108,31 @@ async function getChampionBuildData(browser, championName) {
       // Wait for content
       await page.waitForSelector("h1, h2, h3", { timeout: 15000 }).catch(() => {});
       
-      // Extract champion data using the existing logic
+      // Wait for images to load (they might be lazy loaded)
+      await page.evaluate(() => {
+        return new Promise((resolve) => {
+          // Allow a reasonable time for images to load
+          setTimeout(resolve, 2000);
+          
+          // Check if most images have loaded
+          const images = document.querySelectorAll('img');
+          if (images.length > 0) {
+            let loadedCount = 0;
+            const totalImages = images.length;
+            
+            images.forEach(img => {
+              if (img.complete) loadedCount++;
+            });
+            
+            // If most images are loaded, resolve early
+            if (loadedCount / totalImages > 0.7) {
+              resolve();
+            }
+          }
+        });
+      });
+      
+      // Extract champion data using the enhanced logic
       const data = await page.evaluate(() => {
         const getText = (el) => (el && el.textContent ? el.textContent.trim() : "");
         
@@ -137,8 +161,9 @@ async function getChampionBuildData(browser, championName) {
           const m = (winRateHost.textContent || "").match(/Win Rate:\s*([\d.]+%)/i);
           if (m) winRate = m[1];
         }
-        
-        function extractSectionEntries(headingPart) {
+
+        // Enhanced function to extract entries with images and descriptions
+        function extractSectionEntries(headingPart, includeTier = false) {
           const headings = Array.from(document.querySelectorAll("h2, h3, h4, .heading, .section-title"));
           const heading = headings.find((h) =>
             (h.textContent || "").toLowerCase().includes(headingPart.toLowerCase())
@@ -150,7 +175,7 @@ async function getChampionBuildData(browser, championName) {
           if (!searchArea || !searchArea.querySelector("img, a")) {
             searchArea = document.createElement("div");
             let sibling = heading.nextElementSibling;
-            let maxSiblings = 10;
+            let maxSiblings = 15; // Increased to capture more content
             
             while (sibling && maxSiblings > 0) {
               searchArea.appendChild(sibling.cloneNode(true));
@@ -178,13 +203,54 @@ async function getChampionBuildData(browser, championName) {
             const cleanName = name.replace(/\s*\(.+?\)$/, "").trim();
             if (!cleanName || cleanName.length < 2) continue;
             
+            // Extract tier if needed
             let itemTier = "Unknown";
-            const block = el.closest("li, .row, .grid, .grid-item, .media, .card, div");
-            const txt = (block ? block.textContent : el.textContent) || "";
-            const tm = txt.match(/\b(S\+|S|A|B|C|D|F)\b/);
-            if (tm) itemTier = tm[1].toUpperCase();
+            if (includeTier) {
+              const block = el.closest("li, .row, .grid, .grid-item, .media, .card, div");
+              const txt = (block ? block.textContent : el.textContent) || "";
+              const tm = txt.match(/\b(S\+|S|A|B|C|D|F)\b/);
+              if (tm) itemTier = tm[1].toUpperCase();
+            }
             
-            entries.push({ name: cleanName, tier: itemTier });
+            // Get image URL
+            let imageUrl = "";
+            const imgElement = el.tagName === "IMG" ? el : el.querySelector("img");
+            if (imgElement) {
+              // Check for data-src which might contain the actual image URL 
+              // (some sites use lazy loading)
+              imageUrl = imgElement.getAttribute("data-src") || 
+                         imgElement.getAttribute("src") || 
+                         "";
+              
+              // Fix relative URLs by adding domain if needed
+              if (imageUrl && imageUrl.startsWith("/")) {
+                imageUrl = "https://www.metasrc.com" + imageUrl;
+              }
+            }
+            
+            // Try to find description
+            let description = "";
+            // Look for title or tooltip attributes
+            description = el.getAttribute("title") || 
+                         el.getAttribute("data-tooltip") || 
+                         el.getAttribute("aria-label") || 
+                         "";
+                         
+            // If no direct description, try to find nearby paragraphs or spans
+            if (!description) {
+              const nearbyDesc = el.closest("div")?.querySelector("p, .description, [role='tooltip']");
+              if (nearbyDesc) description = getText(nearbyDesc);
+            }
+            
+            const entry = { name: cleanName, imageUrl };
+            
+            // Only add tier if requested
+            if (includeTier) entry.tier = itemTier;
+            
+            // Only add description if found
+            if (description) entry.description = description;
+            
+            entries.push(entry);
           }
           
           const seen = new Set();
@@ -195,6 +261,18 @@ async function getChampionBuildData(browser, championName) {
             out.push(e);
           }
           return out;
+        }
+        
+        // Extract prismatic item tier list separately
+        function extractPrismaticItemTierList() {
+          const items = extractSectionEntries("Prismatic Item Tier List", true);
+          
+          // Sort by tier with S+ at top
+          const tierOrder = { "S+": 6, "S": 5, "A": 4, "B": 3, "C": 2, "D": 1, "F": 0, "Unknown": -1 };
+          
+          return items.sort((a, b) => {
+            return (tierOrder[b.tier] || -1) - (tierOrder[a.tier] || -1);
+          });
         }
         
         return {
@@ -212,9 +290,9 @@ async function getChampionBuildData(browser, championName) {
             core: extractSectionEntries("Core Items").length ? 
               extractSectionEntries("Core Items") : extractSectionEntries("Items by Round"),
             boots: extractSectionEntries("Boots"),
-            situational: extractSectionEntries("Situational Items"),
-            juices: extractSectionEntries("Juices")
+            situational: extractSectionEntries("Situational Items")
           },
+          prismaticItemTierList: extractPrismaticItemTierList(),
           lastUpdated: new Date().toISOString()
         };
       });
@@ -225,11 +303,11 @@ async function getChampionBuildData(browser, championName) {
     } catch (err) {
       await page.close();
       lastError = err;
-      console.error(`Attempt ${attempts}/${CONFIG.maxRetries} for ${championName} failed: ${err.message}`);
+      console.error(`Attempt ${attempts}/${CONFIG.maxRetries} for ${championName} failed.`);
       
       if (attempts < CONFIG.maxRetries) {
         const waitTime = getRandomDelay();
-        console.log(`Waiting ${waitTime}ms before retrying...`);
+        console.log(`Retrying in ${Math.round(waitTime/1000)}s...`);
         await delay(waitTime);
       }
     }
@@ -246,10 +324,7 @@ async function main() {
   const DATA_DIR = path.join(__dirname, "../public/data");
   await fs.mkdir(DATA_DIR, { recursive: true });
   
-  console.log(`Starting data generation with config:
-  - Max retries: ${CONFIG.maxRetries}
-  - Delay between requests: ${CONFIG.minDelay}-${CONFIG.maxDelay}ms
-  - Page timeout: ${CONFIG.timeout}ms`);
+  console.log("Starting champion data generation...");
   
   const browser = await puppeteer.launch({
     headless: "new",
@@ -265,8 +340,7 @@ async function main() {
   });
   
   try {
-    console.log("Browser launched successfully. Starting data collection...");
-    const allData = [];
+    console.log("Browser launched successfully.");
     const errors = [];
     
     const champions = await loadChampionSlugs();
@@ -274,8 +348,15 @@ async function main() {
     
     for (const { slug, imageKey } of champions) {
       try {
-        console.log(`Processing ${slug} (from imageKey: ${imageKey})...`);
+        // Simple progress counter
+        const index = champions.findIndex(c => c.slug === slug) + 1;
+        console.log(`[${index}/${champions.length}] Processing ${slug}...`);
+        
         const data = await getChampionBuildData(browser, slug);
+        
+        // Add champion image URL and slug to the data
+        data.imageUrl = `https://cdn.mobalytics.gg/assets/lol/images/dd/champions/icons/${imageKey}.png`;
+        data.slug = slug;
         
         // Save individual champion data
         await fs.writeFile(
@@ -283,48 +364,34 @@ async function main() {
           JSON.stringify(data, null, 2)
         );
         
-        // Add to combined data
-        allData.push({
-          name: data.name,
-          tier: data.tier,
-          winRate: data.stats.winRate
-        });
-        
         // Random delay between requests
         const waitTime = getRandomDelay();
-        console.log(`Successfully processed ${slug}. Waiting ${waitTime}ms before next champion...`);
+        const delaySeconds = Math.round(waitTime/1000);
+        console.log(`✓ ${slug} completed. Waiting ${delaySeconds}s before next champion...`);
         await delay(waitTime);
         
       } catch (err) {
-        console.error(`Error processing ${slug}: ${err.message}`);
-        errors.push({ champion: slug, error: err.message });
+        console.error(`✗ Failed to process ${slug}`);
+        errors.push({ champion: slug });
         
         // Still wait before continuing to next champion after an error
-        await delay(CONFIG.minDelay);
+        const waitTime = CONFIG.minDelay;
+        console.log(`Continuing in ${Math.round(waitTime/1000)}s...`);
+        await delay(waitTime);
       }
     }
     
-    // Sort by tier
-    allData.sort((a, b) => {
-      const tierValues = {
-        "S+": 7, "S": 6, "A": 5, "B": 4, "C": 3, "D": 2, "F": 1, "Unknown": 0
-      };
-      return (tierValues[b.tier] || 0) - (tierValues[a.tier] || 0);
-    });
+    // Log completion message
+    const successCount = champions.length - errors.length;
+    console.log(`\n✅ Data generation completed!`);
+    console.log(`   ✓ ${successCount} champions processed successfully`);
     
-    // Create index file with minimal data for all champions
-    await fs.writeFile(
-      path.join(DATA_DIR, "champions.json"),
-      JSON.stringify({
-        champions: allData,
-        lastUpdated: new Date().toISOString(),
-        errors: errors.length > 0 ? errors : undefined
-      }, null, 2)
-    );
-    
-    console.log(`Generated data for ${allData.length} champions`);
+    // Log any errors that occurred
     if (errors.length > 0) {
-      console.log(`Failed to generate data for ${errors.length} champions`);
+      console.log(`   ✗ ${errors.length} champions failed`);
+      if (errors.length <= 5) {
+        console.log(`     Failed champions: ${errors.map(e => e.champion).join(', ')}`);
+      }
     }
   } finally {
     await browser.close();
