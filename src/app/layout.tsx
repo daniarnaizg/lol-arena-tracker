@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Analytics } from '@vercel/analytics/react';
 import { defaultMetadata, siteConfig } from '@/lib/metadata';
 import { KofiOverlayWidget } from '@/components/KofiOverlayWidget';
@@ -65,6 +66,11 @@ export default function RootLayout({
         {children}
   <BackToTopFab />
         <Analytics />
+        <Script 
+          src="https://cloud.umami.is/script.js" 
+          data-website-id="4d347230-cdc7-4930-8bf9-ca5cd56c3f27"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
