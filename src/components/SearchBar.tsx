@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconSearch } from '@tabler/icons-react';
+import { IconSearch, IconX } from '@tabler/icons-react';
 
 interface SearchBarProps {
   search: string;
@@ -7,11 +7,24 @@ interface SearchBarProps {
 }
 
 const SearchBar = ({ search, setSearch }: SearchBarProps) => {
+  const handleClearSearch = () => {
+    setSearch('');
+  };
+
   return (
     <div className="relative w-full max-w-xl">
       <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
         <IconSearch size={24} stroke={2} aria-hidden />
       </div>
+      {search && (
+        <button
+          onClick={handleClearSearch}
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white focus:outline-none"
+          aria-label="Clear search"
+        >
+          <IconX size={24} stroke={2} />
+        </button>
+      )}
       <input
         type="text"
         placeholder="Search champions..."
