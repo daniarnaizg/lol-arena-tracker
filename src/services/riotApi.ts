@@ -16,6 +16,7 @@ export interface MatchDetails {
     participants: string[];
   };
   info: {
+    gameCreation: number;
     gameMode: string;
     gameType: string;
     queueId: number;
@@ -59,6 +60,28 @@ const RIOT_API_REGIONS = {
 
 const ARENA_GAME_MODE = 'CHERRY';
 const DEFAULT_REGION = 'americas';
+
+// Read Arena season start date from environment variable (e.g., "2025-08-01")
+const getSeasonStartTimestamp = (): number => {
+  const dateStr = process.env.ARENA_SEASON_START_DATE;
+  if (!dateStr) {
+    console.warn('ARENA_SEASON_START_DATE env variable not set. Using default: 2023-01-01.');
+    // Default to a safe, far-past date to include all matches if not specified
+    return new Date('2023-01-01T00:00:00Z').getTime();
+  }
+  // Append time and timezone to ensure parsing in UTC
+  const timestamp = new Date(`${dateStr}T00:00:00Z`).getTime();
+
+  if (isNaN(timestamp)) {
+    console.warn(`Invalid date format for ARENA_SEASON_START_DATE: "${dateStr}". Using default: 2023-01-01.`);
+    return new Date('2023-01-01T00:00:00Z').getTime();
+  }
+  
+  console.log(`Filtering Arena matches after: ${dateStr}`);
+  return timestamp;
+};
+
+const CURRENT_ARENA_SEASON_START_TIMESTAMP = getSeasonStartTimestamp();
 
 // Region priority order for trying to find match data
 // Order based on player distribution: Americas, Europe, Asia, SEA
@@ -292,9 +315,10 @@ export class RiotApiService {
         totalChecked++;
         const matchDetails = await this.getMatchDetails(matchId, detectedRegion);
         
-        if (RiotApiService.isArenaMatch(matchDetails)) {
+        // Check if it's an Arena match from the current season
+        if (RiotApiService.isArenaMatch(matchDetails) && matchDetails.info.gameCreation >= CURRENT_ARENA_SEASON_START_TIMESTAMP) {
           arenaMatches.push(matchDetails);
-          console.log(`🎯 Arena match found: ${matchId} (${arenaMatches.length}/${limit})`);
+          console.log(`🎯 Current season Arena match found: ${matchId} (${arenaMatches.length}/${limit})`);
         }
       } catch (error) {
         // Log error but continue processing other matches
