@@ -19,8 +19,8 @@
         "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/symphonyofwar_large.png"
       },
       {
-        "name": "Giant Slayer",
-        "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/giantslayer_large.png"
+        "name": "Fan the Hammer",
+        "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/fanthehammer_large.png"
       }
     ],
     "gold": [
@@ -33,12 +33,12 @@
         "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/scopierweapons_large.png"
       },
       {
-        "name": "Soul Siphon",
-        "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/soulsiphon_large.png"
-      },
-      {
         "name": "Firebrand",
         "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/firebrand_large.png"
+      },
+      {
+        "name": "Soul Siphon",
+        "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/soulsiphon_large.png"
       }
     ],
     "silver": [
@@ -51,12 +51,12 @@
         "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/goredrink_large.png"
       },
       {
-        "name": "Contract Killer",
-        "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/contractkiller_large.png"
-      },
-      {
         "name": "Tank Engine",
         "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/tankengine_large.png"
+      },
+      {
+        "name": "Tank It Or Leave It",
+        "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/tankitorleaveit_large.png"
       }
     ]
   },
@@ -131,12 +131,12 @@
         "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/223026.png"
       },
       {
-        "name": "Wit's End",
-        "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/223091.png"
-      },
-      {
         "name": "Rite Of Ruin",
         "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/3430.png"
+      },
+      {
+        "name": "Wit's End",
+        "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/223091.png"
       },
       {
         "name": "Kraken Slayer",
@@ -176,13 +176,13 @@
       "tier": "S"
     },
     {
-      "name": "Cloak of Starry Night",
-      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443059.png",
+      "name": "Twin Mask",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443080.png",
       "tier": "S"
     },
     {
-      "name": "Twin Mask",
-      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443080.png",
+      "name": "Cloak of Starry Night",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443059.png",
       "tier": "S"
     },
     {
@@ -191,13 +191,13 @@
       "tier": "S"
     },
     {
-      "name": "Moonflair Spellblade",
-      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447110.png",
+      "name": "Turbo Chemtank",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443079.png",
       "tier": "A"
     },
     {
-      "name": "Turbo Chemtank",
-      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443079.png",
+      "name": "Moonflair Spellblade",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447110.png",
       "tier": "A"
     },
     {
@@ -206,18 +206,13 @@
       "tier": "A"
     },
     {
-      "name": "Hemomancer's Helm",
-      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447103.png",
-      "tier": "A"
-    },
-    {
       "name": "Gargoyle Stoneplate",
       "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443193.png",
       "tier": "A"
     },
     {
-      "name": "Reverberation",
-      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447114.png",
+      "name": "Hemomancer's Helm",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447103.png",
       "tier": "A"
     },
     {
@@ -226,13 +221,18 @@
       "tier": "A"
     },
     {
+      "name": "Reverberation",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447114.png",
+      "tier": "A"
+    },
+    {
       "name": "Eleisa's Miracle",
       "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443063.png",
       "tier": "A"
     },
     {
-      "name": "Radiant Virtue",
-      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/446667.png",
+      "name": "Flesheater",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447112.png",
       "tier": "A"
     },
     {
@@ -241,8 +241,8 @@
       "tier": "A"
     },
     {
-      "name": "Flesheater",
-      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447112.png",
+      "name": "Lightning Rod",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447119.png",
       "tier": "B"
     },
     {
@@ -251,18 +251,23 @@
       "tier": "B"
     },
     {
-      "name": "Lightning Rod",
-      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447119.png",
-      "tier": "B"
-    },
-    {
       "name": "Divine Sunderer",
       "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/446632.png",
       "tier": "B"
     },
     {
+      "name": "Radiant Virtue",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/446667.png",
+      "tier": "B"
+    },
+    {
       "name": "Talisman Of Ascension",
       "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443064.png",
+      "tier": "B"
+    },
+    {
+      "name": "Hexbolt Companion",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443081.png",
       "tier": "B"
     },
     {
@@ -273,11 +278,6 @@
     {
       "name": "Force Of Entropy",
       "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443061.png",
-      "tier": "B"
-    },
-    {
-      "name": "Hexbolt Companion",
-      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443081.png",
       "tier": "B"
     },
     {
@@ -306,13 +306,8 @@
       "tier": "C"
     },
     {
-      "name": "Mirage Blade",
-      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447100.png",
-      "tier": "C"
-    },
-    {
-      "name": "Reality Fracture",
-      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447102.png",
+      "name": "Decapitator",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447107.png",
       "tier": "C"
     },
     {
@@ -321,8 +316,18 @@
       "tier": "C"
     },
     {
-      "name": "Decapitator",
-      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447107.png",
+      "name": "Mirage Blade",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447100.png",
+      "tier": "C"
+    },
+    {
+      "name": "Empyrean Promise",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447105.png",
+      "tier": "D"
+    },
+    {
+      "name": "Reality Fracture",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447102.png",
       "tier": "D"
     },
     {
@@ -331,17 +336,12 @@
       "tier": "D"
     },
     {
-      "name": "Empyrean Promise",
-      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447105.png",
-      "tier": "D"
-    },
-    {
       "name": "Gambler's Blade",
       "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447101.png",
       "tier": "D"
     }
   ],
-  "lastUpdated": "2025-08-21T15:09:31.310Z",
+  "lastUpdated": "2025-08-24T06:38:46.289Z",
   "imageUrl": "https://cdn.mobalytics.gg/assets/lol/images/dd/champions/icons/Yasuo.png",
   "slug": "yasuo"
 }

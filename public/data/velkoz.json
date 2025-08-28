@@ -37,8 +37,8 @@
         "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/skilledsniper_large.png"
       },
       {
-        "name": "Vulnerability",
-        "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/vulnerability_large.png"
+        "name": "From Beginning to End",
+        "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/frombeginningtoend_large.png"
       }
     ],
     "silver": [
@@ -135,12 +135,12 @@
         "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/222503.png"
       },
       {
-        "name": "Rite Of Ruin",
-        "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/3430.png"
-      },
-      {
         "name": "Archangel's Staff",
         "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/223003.png"
+      },
+      {
+        "name": "Rite Of Ruin",
+        "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/3430.png"
       }
     ]
   },
@@ -181,8 +181,8 @@
       "tier": "S"
     },
     {
-      "name": "Demon King's Crown",
-      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443056.png",
+      "name": "Fulmination",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443055.png",
       "tier": "S"
     },
     {
@@ -191,8 +191,23 @@
       "tier": "A"
     },
     {
+      "name": "Demon King's Crown",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443056.png",
+      "tier": "A"
+    },
+    {
       "name": "Crown of the Shattered Queen",
       "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/444644.png",
+      "tier": "A"
+    },
+    {
+      "name": "Radiant Virtue",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/446667.png",
+      "tier": "A"
+    },
+    {
+      "name": "Cloak of Starry Night",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443059.png",
       "tier": "A"
     },
     {
@@ -201,8 +216,8 @@
       "tier": "A"
     },
     {
-      "name": "Cloak of Starry Night",
-      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443059.png",
+      "name": "Empyrean Promise",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447105.png",
       "tier": "A"
     },
     {
@@ -216,19 +231,14 @@
       "tier": "A"
     },
     {
-      "name": "Empyrean Promise",
-      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447105.png",
-      "tier": "A"
-    },
-    {
       "name": "Gargoyle Stoneplate",
       "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443193.png",
-      "tier": "A"
+      "tier": "B"
     },
     {
       "name": "Reality Fracture",
       "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447102.png",
-      "tier": "A"
+      "tier": "B"
     },
     {
       "name": "Turbo Chemtank",
@@ -246,18 +256,13 @@
       "tier": "B"
     },
     {
-      "name": "Sanguine Gift",
-      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443062.png",
-      "tier": "B"
-    },
-    {
       "name": "Cruelty",
       "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447109.png",
       "tier": "B"
     },
     {
-      "name": "Sword of the Divine",
-      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443060.png",
+      "name": "Sanguine Gift",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443062.png",
       "tier": "B"
     },
     {
@@ -271,28 +276,23 @@
       "tier": "B"
     },
     {
-      "name": "Warmog's Armor",
-      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443083.png",
-      "tier": "B"
-    },
-    {
-      "name": "Radiant Virtue",
-      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/446667.png",
-      "tier": "C"
-    },
-    {
       "name": "Moonflair Spellblade",
       "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447110.png",
       "tier": "C"
     },
     {
-      "name": "Fulmination",
-      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443055.png",
+      "name": "Twilight's Edge",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447121.png",
       "tier": "C"
     },
     {
-      "name": "Twilight's Edge",
-      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447121.png",
+      "name": "Sword of the Divine",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443060.png",
+      "tier": "C"
+    },
+    {
+      "name": "Warmog's Armor",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443083.png",
       "tier": "C"
     },
     {
@@ -326,7 +326,7 @@
       "tier": "D"
     }
   ],
-  "lastUpdated": "2025-08-21T15:07:36.563Z",
+  "lastUpdated": "2025-08-24T06:36:40.507Z",
   "imageUrl": "https://cdn.mobalytics.gg/assets/lol/images/dd/champions/icons/Velkoz.png",
   "slug": "velkoz"
 }

@@ -15,12 +15,12 @@
         "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/masterofduality_large.png"
       },
       {
-        "name": "Giant Slayer",
-        "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/giantslayer_large.png"
+        "name": "Can't Touch This",
+        "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/canttouchthis_large.png"
       },
       {
-        "name": "Mystic Punch",
-        "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/mysticpunch_large.png"
+        "name": "Giant Slayer",
+        "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/giantslayer_large.png"
       }
     ],
     "gold": [
@@ -51,12 +51,12 @@
         "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/tankengine_large.png"
       },
       {
-        "name": "Infernal Soul",
-        "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/infernalsoul_large.png"
+        "name": "Spin To Win",
+        "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/spintowin_large.png"
       },
       {
-        "name": "Contract Killer",
-        "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/contractkiller_large.png"
+        "name": "Infernal Soul",
+        "imageUrl": "https://raw.communitydragon.org/15.16/game/assets/ux/cherry/augments/icons/infernalsoul_large.png"
       }
     ]
   },
@@ -123,20 +123,20 @@
         "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/223115.png"
       },
       {
-        "name": "Riftmaker",
-        "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/224633.png"
+        "name": "Terminus",
+        "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/223302.png"
       },
       {
         "name": "Zhonya's Hourglass",
         "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/223157.png"
       },
       {
-        "name": "Void Staff",
-        "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/223135.png"
+        "name": "Riftmaker",
+        "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/224633.png"
       },
       {
-        "name": "Terminus",
-        "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/223302.png"
+        "name": "Void Staff",
+        "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/223135.png"
       },
       {
         "name": "Perplexity",
@@ -166,18 +166,13 @@
       "tier": "S"
     },
     {
-      "name": "Flesheater",
-      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447112.png",
-      "tier": "S"
-    },
-    {
       "name": "Shield of Molten Stone",
       "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443058.png",
       "tier": "S"
     },
     {
-      "name": "Cloak of Starry Night",
-      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443059.png",
+      "name": "Flesheater",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447112.png",
       "tier": "S"
     },
     {
@@ -186,13 +181,18 @@
       "tier": "S"
     },
     {
-      "name": "Moonflair Spellblade",
-      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447110.png",
+      "name": "Cloak of Starry Night",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443059.png",
       "tier": "S"
     },
     {
       "name": "Detonation Orb",
       "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447113.png",
+      "tier": "S"
+    },
+    {
+      "name": "Moonflair Spellblade",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447110.png",
       "tier": "S"
     },
     {
@@ -226,11 +226,6 @@
       "tier": "A"
     },
     {
-      "name": "Radiant Virtue",
-      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/446667.png",
-      "tier": "A"
-    },
-    {
       "name": "Night Harvester",
       "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/444636.png",
       "tier": "A"
@@ -241,18 +236,23 @@
       "tier": "A"
     },
     {
-      "name": "Darksteel Talons",
-      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443054.png",
-      "tier": "A"
-    },
-    {
       "name": "Reaper's Toll",
       "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443090.png",
       "tier": "A"
     },
     {
-      "name": "Fulmination",
-      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443055.png",
+      "name": "Turbo Chemtank",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443079.png",
+      "tier": "A"
+    },
+    {
+      "name": "Darksteel Talons",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443054.png",
+      "tier": "A"
+    },
+    {
+      "name": "Radiant Virtue",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/446667.png",
       "tier": "B"
     },
     {
@@ -266,8 +266,8 @@
       "tier": "B"
     },
     {
-      "name": "Turbo Chemtank",
-      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443079.png",
+      "name": "Fulmination",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443055.png",
       "tier": "B"
     },
     {
@@ -296,6 +296,11 @@
       "tier": "B"
     },
     {
+      "name": "Kinkou Jitte",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447116.png",
+      "tier": "B"
+    },
+    {
       "name": "Empyrean Promise",
       "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447105.png",
       "tier": "B"
@@ -303,11 +308,6 @@
     {
       "name": "Sanguine Gift",
       "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443062.png",
-      "tier": "B"
-    },
-    {
-      "name": "Kinkou Jitte",
-      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447116.png",
       "tier": "C"
     },
     {
@@ -321,6 +321,11 @@
       "tier": "C"
     },
     {
+      "name": "Galeforce",
+      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/446671.png",
+      "tier": "C"
+    },
+    {
       "name": "Warmog's Armor",
       "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/443083.png",
       "tier": "C"
@@ -328,11 +333,6 @@
     {
       "name": "Mirage Blade",
       "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/447100.png",
-      "tier": "C"
-    },
-    {
-      "name": "Galeforce",
-      "imageUrl": "https://img.metasrc.com/cdn/15.16.1/img/item/446671.png",
       "tier": "C"
     },
     {
@@ -361,7 +361,7 @@
       "tier": "D"
     }
   ],
-  "lastUpdated": "2025-08-21T14:53:10.301Z",
+  "lastUpdated": "2025-08-24T06:22:41.312Z",
   "imageUrl": "https://cdn.mobalytics.gg/assets/lol/images/dd/champions/icons/Katarina.png",
   "slug": "katarina"
 }
