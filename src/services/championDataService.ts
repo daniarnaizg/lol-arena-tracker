@@ -47,8 +47,13 @@ export const fetchChampionArenaData = async (championKey: string): Promise<Champ
 
   try {
     // Convert the key to lowercase for the filename and remove any special characters
-    const normalizedKey = championKey.toLowerCase()
+    let normalizedKey = championKey.toLowerCase()
       .replace(/[^a-z0-9]/g, ''); // Remove special characters
+    
+    // Handle special champion key mappings
+    if (normalizedKey === 'monkeyking') {
+      normalizedKey = 'wukong';
+    }
     
     // Fetch the JSON data from the public directory
     const response = await fetch(`/data/${normalizedKey}.json`, {
