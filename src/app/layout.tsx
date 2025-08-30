@@ -32,20 +32,81 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const jsonLd = {
+const jsonLd = [
+  {
     '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: siteConfig.name,
+    '@type': ['WebSite', 'WebApplication'],
+    name: 'LoL Arena Win Tracker',
     url: siteConfig.url,
-    description: siteConfig.description,
-    alternateName: ['League of Legends Arena Tracker', 'LoL Arena Tracker'],
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: `${siteConfig.url}/?q={search_term_string}`,
-      'query-input': 'required name=search_term_string'
+    description:
+      'Track your League of Legends Arena mode wins, champions, tierlist, builds, and augments with this simple web app.',
+    alternateName: [
+      'League of Legends Arena Tracker',
+      'LoL Arena Tracker',
+      'LoL Arena Win Tracker',
+      'LoL Arena Champion Tracker'
+    ],
+    applicationCategory: 'GameApplication',
+    operatingSystem: 'Web',
+    inLanguage: 'en-US',
+    keywords: [
+      'LoL Arena win tracker',
+      'League of Legends Arena champions',
+      'LoL Arena tierlist',
+      'LoL Arena builds',
+      'LoL Arena augments'
+    ],
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD'
     },
-    inLanguage: 'en-US'
-  } as const;
+    creator: {
+      '@type': 'Organization',
+      name: 'LoL Arena Tracker',
+      url: siteConfig.url
+    }
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What is LoL Arena Win Tracker?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'LoL Arena Win Tracker is a free web app to track your wins, champions, builds, tierlist, and augments in League of Legends Arena mode.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'Is LoL Arena Win Tracker free to use?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes, the tracker is completely free to use. You can log your Arena wins, review tierlists, and explore builds and augments without cost.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I use LoL Arena Win Tracker to find the best champions?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. The tracker helps you review champion performance, compare tierlists, and discover effective builds and augments to improve your Arena gameplay.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'How can I track LoL Arena wins?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'You can track your LoL Arena wins by just searching for your match history and applying the results or manually importing them.'
+        }
+      }
+    ]
+  }
+] as const;
+
 
   const orgLd = {
     '@context': 'https://schema.org',

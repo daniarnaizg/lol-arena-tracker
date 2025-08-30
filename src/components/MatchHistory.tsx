@@ -347,7 +347,8 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
           >
             <div className={`flex items-center justify-between ${isExpanded ? 'mb-4' : ''}`}>
               <div className="flex items-center gap-3">
-                <h2 className="text-lg md:text-xl font-semibold text-gray-300 truncate">MATCH HISTORY</h2>
+                <h2 className="text-lg md:text-xl font-semibold text-gray-300 truncate">ARENA MATCH HISTORY</h2>
+                <span className="text-gray-400 text-sm pl-8 hidden md:inline">Search for your last 30 arena matches and apply the results to the tracker</span>
               </div>
               <button
                 onClick={() => setIsExpanded(!isExpanded)}
@@ -615,7 +616,6 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
                 </div>
               </div>
             )}
-            {/* Removed below-list text feedback in favor of button feedback + modal */}
 
             {/* Confirmation modal */}
             <ConfirmationModal

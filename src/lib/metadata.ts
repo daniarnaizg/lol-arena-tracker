@@ -1,30 +1,27 @@
 import { Metadata } from 'next';
 
-// Site configuration constants
 export const SITE_CONFIG = {
-  name: "LoL Arena Tracker",
-  title: "League of Legends Arena Tracker",
-  description: "Track your League of Legends Arena mode progress, discover champion synergies, and monitor your match history.",
+  name: "LoL Arena Win Tracker",
+  title: "LoL Arena Win Tracker | League of Legends Arena Tracker",
+  description:
+    "Track your League of Legends Arena mode wins, champions, tierlist, builds, and augments with this simple web app.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://arenatracker.app",
-  // Ensure this matches the actual file in /public
   ogImage: "/og-image.png",
   creator: "@daniarnaizg",
   keywords: [
-    "League of Legends",
-    "LoL Arena",
-    "Arena Mode",
-    "Champion Tracker",
-    "Match History",
-    "2v2v2v2",
-    "League Tracker",
-    "LoL Stats",
-    "Champion Synergies",
-    "Riot Games",
-    "Gaming Tracker"
+    "LoL Arena win tracker",
+    "League of Legends Arena tracker",
+    "LoL Arena champions",
+    "LoL Arena tierlist",
+    "LoL Arena builds",
+    "LoL Arena augments",
+    "League Arena stats",
+    "LoL Arena match history",
+    "League of Legends Arena mode",
+    "Arena 2v2v2v2 tracker"
   ]
 } as const;
 
-// For backward compatibility
 export const siteConfig = SITE_CONFIG;
 
 export const defaultMetadata: Metadata = {
@@ -92,6 +89,7 @@ export const defaultMetadata: Metadata = {
   },
   metadataBase: new URL(siteConfig.url),
   alternates: {
-    canonical: "/",
-  }
+    canonical: siteConfig.url,
+  },
+  themeColor: "#212f47"
 };

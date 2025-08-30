@@ -17,7 +17,10 @@ const Footer = () => {
           <div className="text-center md:text-left flex-shrink-0">
             <h3 className="text-lg font-bold text-yellow-400 mb-2">LoL Arena Tracker</h3>
             <p className="text-gray-300 text-sm">
-              Track your League of Legends Arena mode champions and progress
+              LoL Arena Tracker is a simple web app to follow your League of Legends Arena mode champions, match history, and progress.
+            </p>
+            <p className="text-gray-300 text-sm">
+              Stay updated and improve your performance.
             </p>
           </div>
 
