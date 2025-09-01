@@ -50,6 +50,21 @@ export interface RiotIdComponents {
   tagLine: string;
 }
 
+// Simplified Arena match data - only what we actually use
+export interface ArenaMatch {
+  metadata: {
+    matchId: string;
+  };
+  info: {
+    gameCreation: number;
+    gameEndTimestamp: number;
+    // User's match data (already filtered to the requesting user)
+    championName: string;
+    placement: number;
+    win: boolean;
+  };
+}
+
 // Constants
 const RIOT_API_REGIONS = {
   americas: 'https://americas.api.riotgames.com',
@@ -58,7 +73,7 @@ const RIOT_API_REGIONS = {
   sea: 'https://sea.api.riotgames.com',
 } as const;
 
-const ARENA_GAME_MODE = 'CHERRY';
+const ARENA_QUEUE_ID = 1700;
 const DEFAULT_REGION = 'americas';
 
 // Read Arena season start date from environment variable (e.g., "2025-08-01")
@@ -145,38 +160,24 @@ export class RiotApiService {
       return cachedRegion;
     }
 
-    const validRegions: { region: RiotRegion; matchCount: number }[] = [];
-
-    // Try all regions and collect successful responses
+    // Try all regions and find one with matches
     for (const region of REGION_PRIORITY) {
       try {
         console.log(`🌍 Trying region: ${region} for PUUID: ${puuid}`);
         const baseUrl = this.getRegionalUrl(region);
-        const endpoint = `/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=10`;
+        const endpoint = `/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=1`;
         const url = `${baseUrl}${endpoint}`;
         
         const matches = await this.makeRequest<string[]>(url);
         
-        if (matches !== null && matches !== undefined && Array.isArray(matches)) {
-          console.log(`📊 Region ${region} response for ${puuid}: ${matches.length} matches`);
-          validRegions.push({ region, matchCount: matches.length });
+        if (matches !== null && matches !== undefined && Array.isArray(matches) && matches.length > 0) {
+          console.log(`✅ Selected region for ${puuid}: ${region}`);
+          this.regionCache.set(puuid, region);
+          return region;
         }
       } catch (error) {
         console.log(`❌ Region ${region} failed for PUUID ${puuid}:`, error instanceof Error ? error.message : error);
       }
-    }
-
-    // Choose the best region based on match count
-    if (validRegions.length > 0) {
-      // Sort by match count (descending) and take the region with most matches
-      validRegions.sort((a, b) => b.matchCount - a.matchCount);
-      const bestRegion = validRegions[0].region;
-      
-      console.log(`✅ Selected region for ${puuid}: ${bestRegion} (${validRegions[0].matchCount} matches)`);
-      console.log(`📈 All valid regions:`, validRegions);
-      
-      this.regionCache.set(puuid, bestRegion);
-      return bestRegion;
     }
 
     // If all regions fail, default to americas
@@ -242,6 +243,32 @@ export class RiotApiService {
   }
 
   /**
+   * Get Arena match history directly using queue filter
+   * This is more efficient than getting all matches and filtering later
+   */
+  async getArenaMatchHistory(params: {
+    puuid: string;
+    start?: number;
+    count?: number;
+  }): Promise<string[]> {
+    const { puuid, start = 0, count = 30 } = params;
+    
+    console.log(`🎯 Fetching Arena matches directly for PUUID: ${puuid} (queue=${ARENA_QUEUE_ID})`);
+    
+    // Detect the correct region for this player's match data
+    const matchRegion = await this.detectMatchRegion(puuid);
+    const baseUrl = this.getRegionalUrl(matchRegion);
+    
+    const endpoint = `/lol/match/v5/matches/by-puuid/${puuid}/ids?start=${start}&count=${count}&queue=${ARENA_QUEUE_ID}`;
+    const url = `${baseUrl}${endpoint}`;
+    
+    const arenaMatchIds = await this.makeRequest<string[]>(url);
+    console.log(`✅ Found ${arenaMatchIds.length} Arena match IDs directly from API`);
+    
+    return arenaMatchIds;
+  }
+
+  /**
    * Get detailed information for a specific match
    */
   async getMatchDetails(matchId: string, region?: RiotRegion): Promise<MatchDetails> {
@@ -273,61 +300,93 @@ export class RiotApiService {
   }
 
   /**
-   * Check if a match is an Arena match
+   * Get Arena queue ID constant
    */
-  static isArenaMatch(matchDetails: MatchDetails): boolean {
-    return matchDetails.info.gameMode === ARENA_GAME_MODE;
+  static getArenaQueueId(): number {
+    return ARENA_QUEUE_ID;
   }
 
   /**
-   * Get Arena match details from a list of match IDs
-   * Filters out non-Arena matches and returns only Arena game data
-   * Optimized to use the same region for all matches from the same player
-   * Now supports early stopping when desired number of Arena matches is found
+   * Get Arena match details using direct queue filtering
+   * Uses queue=1700 to get Arena matches directly - no filtering needed!
+   * Returns simplified match data with only essential information
    */
-  async getArenaMatchDetails(
-    matchIds: string[], 
-    puuid?: string, 
-    maxArenaMatches?: number
-  ): Promise<{ arenaMatches: MatchDetails[]; totalChecked: number }> {
-    const arenaMatches: MatchDetails[] = [];
-    const limit = maxArenaMatches || matchIds.length;
-    let totalChecked = 0;
+  async getArenaMatchDetails(params: {
+    puuid: string;
+    start?: number;
+    count?: number;
+  }): Promise<{ arenaMatches: ArenaMatch[]; totalChecked: number }> {
+    const { puuid, start = 0, count = 30 } = params;
     
-    // If we have a PUUID, detect the region once and reuse it
-    let detectedRegion: RiotRegion | undefined;
-    if (puuid) {
-      try {
-        detectedRegion = await this.detectMatchRegion(puuid);
-      } catch {
-        console.warn('Failed to detect region for PUUID, will try all regions per match');
-      }
-    }
+    console.log(`🚀 Getting Arena matches for PUUID: ${puuid}`);
+    console.time('ArenaMatches');
     
-    for (const matchId of matchIds) {
-      // Stop early if we've found enough Arena matches
-      if (arenaMatches.length >= limit) {
-        console.log(`✅ Found ${limit} Arena matches, stopping early (checked ${totalChecked} matches)`);
-        break;
+    try {
+      // Step 1: Get Arena match IDs directly using queue filter
+      const arenaMatchIds = await this.getArenaMatchHistory({ puuid, start, count });
+      
+      if (arenaMatchIds.length === 0) {
+        console.log('🚫 No Arena matches found');
+        console.timeEnd('ArenaMatches');
+        return { arenaMatches: [], totalChecked: 0 };
       }
       
-      try {
-        totalChecked++;
-        const matchDetails = await this.getMatchDetails(matchId, detectedRegion);
-        
-        // Check if it's an Arena match from the current season
-        if (RiotApiService.isArenaMatch(matchDetails) && matchDetails.info.gameCreation >= CURRENT_ARENA_SEASON_START_TIMESTAMP) {
-          arenaMatches.push(matchDetails);
-          console.log(`🎯 Current season Arena match found: ${matchId} (${arenaMatches.length}/${limit})`);
+      // Step 2: Get match details for all Arena matches and simplify data
+      const detectedRegion = await this.detectMatchRegion(puuid);
+      const arenaMatches: ArenaMatch[] = [];
+      
+      console.log(`📥 Fetching details for ${arenaMatchIds.length} Arena matches...`);
+      
+      for (const matchId of arenaMatchIds) {
+        try {
+          const matchDetails = await this.getMatchDetails(matchId, detectedRegion);
+          
+          // Only filter by season start date - all matches are already Arena matches due to queue filter
+          if (matchDetails.info.gameCreation >= CURRENT_ARENA_SEASON_START_TIMESTAMP) {
+            // Find the user's participant data
+            const userParticipant = matchDetails.info.participants.find(p => p.puuid === puuid);
+            
+            if (userParticipant) {
+              // Create simplified arena match data
+              const simplifiedMatch: ArenaMatch = {
+                metadata: {
+                  matchId: matchDetails.metadata.matchId,
+                },
+                info: {
+                  gameCreation: matchDetails.info.gameCreation,
+                  gameEndTimestamp: matchDetails.info.gameEndTimestamp,
+                  championName: userParticipant.championName,
+                  placement: userParticipant.placement,
+                  win: userParticipant.placement === 1,
+                }
+              };
+              
+              arenaMatches.push(simplifiedMatch);
+              console.log(`✅ Arena match ${arenaMatches.length}/${arenaMatchIds.length}: ${matchId} (${userParticipant.championName}, place ${userParticipant.placement})`);
+            } else {
+              console.warn(`⚠️ User not found in match ${matchId} participants`);
+            }
+          } else {
+            console.log(`⏰ Skipped old Arena match: ${matchId} (before season start)`);
+          }
+        } catch (error) {
+          console.warn(`⚠️ Failed to fetch details for Arena match ${matchId}:`, error);
         }
-      } catch (error) {
-        // Log error but continue processing other matches
-        console.warn(`Failed to fetch details for match ${matchId}:`, error);
       }
+      
+      console.log(`🏁 Final result: ${arenaMatches.length} current season Arena matches`);
+      console.timeEnd('ArenaMatches');
+      
+      return { 
+        arenaMatches, 
+        totalChecked: arenaMatchIds.length // All checked matches were Arena matches
+      };
+      
+    } catch (error) {
+      console.error('❌ Error in Arena match fetching:', error);
+      console.timeEnd('ArenaMatches');
+      throw error;
     }
-    
-    console.log(`📊 Final result: ${arenaMatches.length} Arena matches found after checking ${totalChecked} matches`);
-    return { arenaMatches, totalChecked };
   }
 
   /**

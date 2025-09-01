@@ -13,31 +13,19 @@ interface RiotAccount {
   tagLine: string;
 }
 
+// Simplified Arena match data - only what we actually use
 interface ArenaMatch {
   metadata: {
     matchId: string;
-    participants: string[];
   };
   info: {
-    gameMode: string;
-    gameType: string;
-    queueId: number;
-    gameDuration: number;
+    gameCreation: number;
     gameEndTimestamp: number;
-    participants: ArenaParticipant[];
+    // User's match data (already filtered to the requesting user)
+    championName: string;
+    placement: number;
+    win: boolean;
   };
-}
-
-interface ArenaParticipant {
-  puuid: string;
-  riotIdGameName: string;
-  riotIdTagline: string;
-  championId: number;
-  championName: string;
-  placement: number;
-  playerSubteamId: number;
-  teamEarlySurrendered: boolean;
-  win: boolean;
 }
 
 interface ArenaMatchesData {
@@ -128,51 +116,34 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
         LocalStorageManager.setPlayerData(playerDataToSave);
       }
       
-    // Step 2: Fetch match history (check up to 50 overall matches for more Arena hits)
-      const matchResponse = await fetch('/api/match-history', {
+      
+      // Step 2: Fetch Arena matches directly using queue=1700 (no filtering needed!)
+      console.log('🚀 Fetching Arena matches directly using queue=1700');
+      
+      const arenaResponse = await fetch('/api/arena-matches', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           puuid: accountData.account.puuid,
-      count: 50, // Request up to 50 recent matches overall
+          maxMatches: 30, // Get up to 30 Arena matches directly
         }),
       });
 
-      const matchData = await matchResponse.json();
+      const arenaData = await arenaResponse.json();
 
-      if (!matchResponse.ok) {
-        throw new Error(matchData.error || 'Failed to fetch match history');
+      if (!arenaResponse.ok) {
+        throw new Error(arenaData.error || 'Failed to fetch Arena matches');
       }
-      
-  // Step 3: Fetch Arena match details (return up to 30 Arena matches, scanning up to 50 recent matches)
-      if (matchData.matchIds && matchData.matchIds.length > 0) {
-        const arenaResponse = await fetch('/api/arena-matches', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            matchIds: matchData.matchIds,
-    maxMatches: 30, // Return up to 30 Arena matches
-            puuid: accountData.account.puuid,
-          }),
-        });
 
-        const arenaData = await arenaResponse.json();
-
-        if (!arenaResponse.ok) {
-          throw new Error(arenaData.error || 'Failed to fetch Arena match details');
-        }
-
+      if (arenaData.arenaCount > 0) {
         setArenaMatches(arenaData);
         setShowInputs(false);
+        console.log(`✅ Found ${arenaData.arenaCount} Arena matches directly from API`);
       } else {
-        throw new Error('No matches found for this account');
-      }
-      
-    } catch (err) {
+        throw new Error('No Arena matches found for this account');
+      }    } catch (err) {
       console.error('Error fetching data:', err);
       setError(err instanceof Error ? err.message : 'Failed to fetch data');
       
@@ -235,14 +206,14 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
   const buildBestByChampion = (): Map<string, number> => {
     const bestByChampion = new Map<string, number>();
     if (!arenaMatches || !account) return bestByChampion;
+    
     for (const match of arenaMatches.arenaMatches) {
-      const userP = match.info.participants.find(p => p.puuid === account.puuid);
-      if (!userP) continue;
-      const nameKey = normalizeChampionName(userP.championName);
+      // Data is already filtered to the user - no need to find participant
+      const nameKey = normalizeChampionName(match.info.championName);
       let level = 1; // played baseline if present in history
       // Only count placement === 1 as Win; placements 2-4 as Top 4
-      if (userP.placement === 1) level = 3;
-      else if (userP.placement <= 4) level = 2;
+      if (match.info.placement === 1) level = 3;
+      else if (match.info.placement <= 4) level = 2;
       const prev = bestByChampion.get(nameKey) ?? 0;
       if (level > prev) bestByChampion.set(nameKey, level);
     }
@@ -590,16 +561,14 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
                 <div className="flex gap-3 min-w-max">
                   {arenaMatches.arenaMatches.length > 0 ? (
                     arenaMatches.arenaMatches.map((match, index) => {
-                      const userParticipant = match.info.participants.find(p => p.puuid === account?.puuid);
+                      // Data is already filtered to the user - no need to find participant
                       const matchDate = formatDate(match.info.gameEndTimestamp);
-                      
-                      if (!userParticipant) return null;
                       
                       return (
                         <ArenaMatchCard
                           key={match.metadata.matchId}
-                          championName={userParticipant.championName}
-                          placement={userParticipant.placement}
+                          championName={match.info.championName}
+                          placement={match.info.placement}
                           matchDate={matchDate}
                           index={index}
                           onChampionSearch={onChampionSearch}

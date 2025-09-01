@@ -143,6 +143,28 @@ Provides match history functionality for tracked champions.
 ### `/api/riot-account`
 Manages Riot account information and validation.
 
+## External APIs Used
+
+The app talks to two Riot-operated services:
+
+- DDragon (static game data, no auth required)
+  - Versions: `https://ddragon.leagueoflegends.com/api/versions.json`
+  - Champions (per version): `https://ddragon.leagueoflegends.com/cdn/{version}/data/en_US/champion.json`
+  - Champion images: `https://ddragon.leagueoflegends.com/cdn/{version}/img/champion/{imageKey}.png`
+  - Behavior: Latest version is auto-detected at runtime. Requests are cached client-side and server-side to minimize traffic.
+
+- Riot Games API (authenticated, used for match history)
+  - Account by Riot ID: `{regionBase}/riot/account/v1/accounts/by-riot-id/{gameName}/{tagLine}`
+    - Default region base: `https://americas.api.riotgames.com`
+  - Match IDs by PUUID: `{regionBase}/lol/match/v5/matches/by-puuid/{puuid}/ids?start=0&count=20`
+  - Match details: `{regionBase}/lol/match/v5/matches/{matchId}`
+  - Arena filter: only matches with `info.gameMode === "CHERRY"` are treated as Arena
+  - Region selection: the app auto-detects the best regional API (americas, europe, asia, sea) per player and caches that choice.
+  - Auth: requires `RIOT_API_KEY` in server environment (not needed for DDragon).
+  - Optional: `ARENA_SEASON_START_DATE` can be set (e.g., `2025-08-01`) to filter out older Arena matches.
+
+For implementation details, see `DDRAGON_INTEGRATION.md` and `MATCH_HISTORY_IMPLEMENTATION.md`.
+
 ## Environment Variables
 
 | Variable | Description | Default | Required |
@@ -150,19 +172,23 @@ Manages Riot account information and validation.
 | `RIOT_API_KEY` | Riot API key (optional for DDragon) | - | No |
 | `DDRAGON_BASE_URL` | DDragon API base URL | `https://ddragon.leagueoflegends.com` | No |
 | `RIOT_API_CACHE_TTL` | Cache duration in seconds | `3600` | No |
+| `ARENA_SEASON_START_DATE` | Optional cutoff date (UTC, YYYY-MM-DD) to filter older Arena matches | - | No |
 
 **Note**: `CURRENT_PATCH` is automatically fetched from DDragon API and no longer needs manual configuration!
 
 ## Deployment
 
 ### Vercel (Recommended)
+
 1. Push your code to GitHub
 2. Connect your repository to Vercel
 3. Add environment variables in Vercel dashboard
 4. Deploy automatically
 
 ### Other Platforms
+
 The application works on any platform that supports Next.js:
+
 - Netlify
 - Railway
 - AWS Amplify
@@ -171,17 +197,58 @@ The application works on any platform that supports Next.js:
 ## Architecture
 
 ### Services
+
 - **DDragonService**: Handles API communication with Riot's DDragon
 - **ChampionService**: Manages champion data fetching and caching
 - **LocalStorageManager**: Handles client-side data persistence
 
+## Browser Storage and Privacy
+
+All user data is stored locally in your browser via `localStorage`. No personal data is persisted on the server.
+
+What is stored locally:
+
+- Champion progress and cached champion list
+- The game version the data corresponds to
+- Timestamp of last update
+- Optional: the last looked-up Riot account (to prefill forms)
+
+Storage keys and schemas:
+
+- `champions` (array) — cached champion list including your progress
+  - Champion item shape: `{ id: number, name: string, imageKey: string, checklist: { played: boolean, top4: boolean, win: boolean } }`
+- `champions_version` (string) — DDragon version (e.g., `15.15.1`)
+- `champions_last_update` (number) — Unix ms timestamp of last successful update
+- `last_player` (object) — last selected account for convenience
+  - Shape: `{ gameName: string, tagLine: string, puuid: string, region?: string, savedAt: number }`
+
+Update and retention policy:
+
+- Local cache does not expire automatically, but the app checks if data is older than 24 hours and refreshes as needed.
+- Server-side champion cache (API route) is refreshed approximately every 1 hour.
+- DDragon version lookups are cached for ~10 minutes client-side.
+
+Privacy notes:
+
+- Riot account details (gameName, tagLine, puuid, optional region) are stored only in your browser under `last_player` to streamline future lookups.
+- You can remove all locally stored data via the app’s Clear Data controls or by clearing the keys above from your browser storage.
+- No cookies are used for this data; `localStorage` is used exclusively.
+
+Data migration and backups:
+
+- Legacy data (older formats) is automatically migrated on load when possible.
+- Import/Export lets you backup or restore your progress safely as JSON.
+
 ### Components
+
 - **ChampionsGrid**: Main grid display with filtering and tracking
 - **ChampionCard**: Individual champion card with progress tracking
 - **ControlPanel**: Controls for filtering, refreshing, clearing data, and import/export functionality
 
 ### Data Migration
+
 The application automatically handles:
+
 - Legacy data format migration
 - Version updates
 - Champion additions/removals
@@ -191,7 +258,8 @@ The application automatically handles:
 ## Development
 
 ### Project Structure
-```
+
+```text
 src/
 ├── app/
 │   ├── api/
@@ -243,6 +311,7 @@ src/
 ```
 
 ### Adding New Features
+
 1. Champion data is automatically updated from DDragon
 2. User progress is preserved across all updates
 3. Add new tracking fields to the `Champion` interface

@@ -4,58 +4,39 @@ import { riotApiService } from '@/services/riotApi';
 export async function POST(request: NextRequest) {
   try {
     console.log('=== ARENA MATCHES API CALLED ===');
-  const { matchIds, maxMatches = 30, puuid } = await request.json();
+    const { puuid, maxMatches = 30, start = 0 } = await request.json();
     
-    console.log('Received request data:', { matchIds, maxMatches, puuid });
-    console.log('Region cache status:', riotApiService.getRegionCacheStatus());
-    console.log('Match IDs type:', typeof matchIds);
-    console.log('Match IDs is array:', Array.isArray(matchIds));
-    console.log('Match IDs length:', matchIds ? matchIds.length : 'N/A');
+    console.log('Request params:', { puuid, maxMatches, start });
 
-    if (!matchIds || !Array.isArray(matchIds)) {
-      console.error('Invalid matchIds:', matchIds);
+    if (!puuid) {
+      console.error('Missing required parameter: puuid');
       return NextResponse.json(
-        { error: 'Match IDs array is required' },
+        { error: 'PUUID is required' },
         { status: 400 }
       );
     }
 
-    if (matchIds.length === 0) {
-      console.log('Empty match IDs array, returning empty result');
-      return NextResponse.json({
-        success: true,
-        arenaMatches: [],
-        totalChecked: 0,
-        arenaCount: 0,
-      });
-    }
+    const maxCount = Math.min(maxMatches, 50); // Cap at 50 for safety
+    console.log(`🚀 Fetching up to ${maxCount} Arena matches directly for PUUID: ${puuid}`);
 
     try {
-      console.log(`Fetching match details for ${matchIds.length} matches...`);
-      
-    // We'll check up to 50 recent matches to find up to maxArenaMatches Arena matches
-    // Return early when we have enough; also reuse detected region for performance
-  const maxArenaMatches = Math.min(maxMatches || 30, 30);
-  const maxMatchesToCheck = Math.min(matchIds.length, 50);
-      
-  console.log(`Looking for up to ${maxArenaMatches} Arena matches from ${maxMatchesToCheck} total matches`);
-      
-      // Get Arena matches only - the service will stop early when we have enough
-      const result = await riotApiService.getArenaMatchDetails(
-        matchIds.slice(0, maxMatchesToCheck),
+      // Use the optimized method that gets Arena matches directly using queue=1700
+      const result = await riotApiService.getArenaMatchDetails({
         puuid,
-        maxArenaMatches
-      );
+        start,
+        count: maxCount
+      });
       
-      console.log(`Found ${result.arenaMatches.length} Arena matches out of ${result.totalChecked} checked matches`);
+      console.log(`✅ Fetch complete: ${result.arenaMatches.length} Arena matches found`);
       
-      // Log Arena match details
+      // Log Arena match details for debugging (simplified structure)
       result.arenaMatches.forEach((match, index) => {
         console.log(`Arena Match ${index + 1}:`, {
           matchId: match.metadata.matchId,
-          gameMode: match.info.gameMode,
-          duration: Math.round(match.info.gameDuration / 60), // Convert to minutes
-          participants: match.info.participants.length,
+          championName: match.info.championName,
+          placement: match.info.placement,
+          win: match.info.win,
+          gameDate: new Date(match.info.gameCreation).toLocaleDateString(),
         });
       });
       
@@ -65,8 +46,9 @@ export async function POST(request: NextRequest) {
         totalChecked: result.totalChecked,
         arenaCount: result.arenaMatches.length,
       });
+      
     } catch (riotError) {
-      console.error('Riot Arena Matches API Error:', riotError);
+      console.error('Riot API Error:', riotError);
       
       if (riotError instanceof Error && riotError.message.includes('403')) {
         return NextResponse.json(
@@ -82,11 +64,19 @@ export async function POST(request: NextRequest) {
         );
       }
       
+      if (riotError instanceof Error && riotError.message.includes('404')) {
+        return NextResponse.json(
+          { error: 'No Arena matches found for this account' },
+          { status: 404 }
+        );
+      }
+      
       return NextResponse.json(
-        { error: 'Failed to fetch match details from Riot API' },
+        { error: 'Failed to fetch Arena matches from Riot API' },
         { status: 500 }
       );
     }
+    
   } catch (error) {
     console.error('Arena matches API route error:', error);
     return NextResponse.json(
