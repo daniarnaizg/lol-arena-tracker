@@ -22,6 +22,7 @@ export interface MatchDetails {
     queueId: number;
     gameDuration: number;
     gameEndTimestamp: number;
+    gameVersion: string;
     participants: MatchParticipant[];
   };
 }
@@ -58,6 +59,7 @@ export interface ArenaMatch {
   info: {
     gameCreation: number;
     gameEndTimestamp: number;
+    gameVersion: string;
     // User's match data (already filtered to the requesting user)
     championName: string;
     placement: number;
@@ -355,6 +357,7 @@ export class RiotApiService {
                 info: {
                   gameCreation: matchDetails.info.gameCreation,
                   gameEndTimestamp: matchDetails.info.gameEndTimestamp,
+                  gameVersion: matchDetails.info.gameVersion,
                   championName: userParticipant.championName,
                   placement: userParticipant.placement,
                   win: userParticipant.placement === 1,

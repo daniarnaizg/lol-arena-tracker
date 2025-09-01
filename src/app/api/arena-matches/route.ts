@@ -33,6 +33,7 @@ export async function POST(request: NextRequest) {
       result.arenaMatches.forEach((match, index) => {
         console.log(`Arena Match ${index + 1}:`, {
           matchId: match.metadata.matchId,
+          gameVersion: match.info.gameVersion,
           championName: match.info.championName,
           placement: match.info.placement,
           win: match.info.win,
