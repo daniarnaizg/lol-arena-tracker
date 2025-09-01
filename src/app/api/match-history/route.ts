@@ -4,7 +4,7 @@ import { databaseService } from '@/services/database';
 
 export async function POST(request: NextRequest) {
   try {
-    const { puuid, count = 10, queue, arenaOnly = false, forceRefresh = false } = await request.json();
+    const { puuid, count = 10, forceRefresh = false } = await request.json();
 
     if (!puuid) {
       return NextResponse.json(
@@ -26,8 +26,8 @@ export async function POST(request: NextRequest) {
       // Continue to Riot API if database fails
     }
 
-    // Check for cached arena matches if user exists and we want arena only
-    if (dbUser && arenaOnly && !forceRefresh) {
+    // Check for cached arena matches if user exists (always Arena only)
+    if (dbUser && !forceRefresh) {
       try {
         const cachedMatches = await databaseService.findArenaMatches(dbUser.id, count);
         
@@ -44,11 +44,10 @@ export async function POST(request: NextRequest) {
             // We'll fetch a smaller number since we expect mostly incremental updates
             const checkCount = lastMatchTimestamp ? 10 : 30; // Fewer if we have a timestamp
             
-            const recentMatchIds = await riotApiService.getMatchHistory({
+            const recentMatchIds = await riotApiService.getArenaMatchHistory({
               puuid,
               start: 0,
-              count: checkCount, 
-              queue: RiotApiService.getArenaQueueId(),
+              count: checkCount,
             });
             
             console.log(`Found ${recentMatchIds.length} recent matches from API for incremental check`);
@@ -102,21 +101,19 @@ export async function POST(request: NextRequest) {
     }
 
     // Fetch from Riot API
-    const actualQueue = arenaOnly ? RiotApiService.getArenaQueueId() : queue;
     const maxCount = Math.min(count, 100);
 
     try {
-      console.log(`Fetching match history from Riot API for PUUID: ${puuid}`);
-      console.log(`Parameters: start=0, count=${maxCount}, queue=${actualQueue || 'all'}${arenaOnly ? ' (Arena only)' : ''}`);
+      console.log(`Fetching Arena matches from Riot API for PUUID: ${puuid}`);
+      console.log(`Parameters: start=0, count=${maxCount} (Arena only)`);
       
-      const matchIds = await riotApiService.getMatchHistory({
+      const matchIds = await riotApiService.getArenaMatchHistory({
         puuid,
         start: 0,
         count: maxCount,
-        queue: actualQueue,
       });
       
-      console.log(`Found ${matchIds.length} match IDs from Riot API${arenaOnly ? ' (Arena only)' : ''}:`, matchIds);
+      console.log(`Found ${matchIds.length} Arena match IDs from Riot API:`, matchIds);
       
       // If we have a database user and we're fetching arena matches, 
       // we could potentially fetch match details and save them to database
@@ -127,8 +124,8 @@ export async function POST(request: NextRequest) {
         matchIds,
         count: matchIds.length,
         puuid,
-        queue: actualQueue,
-        arenaOnly,
+        queue: RiotApiService.getArenaQueueId(),
+        arenaOnly: true,
         fromDatabase: false,
         userId: dbUser?.id || null,
       });
