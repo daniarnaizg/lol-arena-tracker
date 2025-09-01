@@ -45,17 +45,21 @@ const Header = ({ search, setSearch, wins = 0, total = 0 }: HeaderProps) => {
           </div>
 
           <div className="flex items-center justify-end min-w-[48px] mr-1">
-            <SocialShare wins={finalWins} total={finalTotal} />
+            <div className="flex gap-3">
+              <SocialShare wins={finalWins} total={finalTotal} />
+            </div>
           </div>
         </div>
 
-        {/* Mobile header: search bar + share button */}
+        {/* Mobile header: search bar + sync + share button */}
         <div className="md:hidden flex items-center gap-2">
           <div className="flex-1">
             <SearchBar search={search} setSearch={setSearch} />
           </div>
           <div className="shrink-0">
-            <SocialShare wins={finalWins} total={finalTotal} />
+            <div className="flex gap-2">
+              <SocialShare wins={finalWins} total={finalTotal} />
+            </div>
           </div>
         </div>
       </div>

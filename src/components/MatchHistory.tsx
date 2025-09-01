@@ -5,7 +5,15 @@ import { ArenaMatchCard } from './ui/ArenaMatchCard';
 import { LocalStorageManager, StoredPlayerData } from '@/utils/localStorage';
 import { normalizeChampionName } from '@/utils/championUtils';
 import type { Champion } from '@/services/ddragon';
-import { ConfirmationModal } from './ui/ConfirmationModal';
+import { QuickFilters } from './ui/QuickFilters';
+
+interface FilterType {
+  startDate?: number | null;
+  endDate?: number | null;
+  patch?: string | null;
+  season?: number | null;
+  limit?: number;
+}
 
 interface RiotAccount {
   puuid: string;
@@ -25,6 +33,22 @@ interface ArenaMatch {
     championName: string;
     placement: number;
     win: boolean;
+  };
+}
+
+interface ChampionState {
+  championName: string;
+  bestPlacement: number;
+  win: boolean;
+  top4: boolean;
+  played: boolean;
+}
+
+interface ChecklistData {
+  success: boolean;
+  championData: {
+    playedChampions: number;
+    championStates?: ChampionState[];
   };
 }
 
@@ -51,14 +75,148 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
   const [showInputs, setShowInputs] = useState(true);
   const [isExpanded, setIsExpanded] = useState(false);
   const [hasAutoSearched, setHasAutoSearched] = useState(false);
-  // Apply from history UX state
-  const [isApplying, setIsApplying] = useState(false);
-  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
-  const [previewSummary, setPreviewSummary] = useState<null | { total: number; played: number; top4: number; win: number }>(null);
-  const [previewDetails, setPreviewDetails] = useState<null | Array<{ name: string; from: number; to: number }>>(
-    null
-  );
-  const [btnState, setBtnState] = useState<'idle' | 'nochange' | 'applied'>('idle');
+  
+  // Filter state
+  const [isFiltering, setIsFiltering] = useState(false);
+  const [currentFilters, setCurrentFilters] = useState<FilterType>({});
+  const [isAutoSearching, setIsAutoSearching] = useState(false);
+
+  // Auto-sync checklist with current match history
+  const autoSyncChecklist = useCallback((matches: ArenaMatchesData) => {
+    if (!onApplyChampionUpdates || !matches.arenaMatches.length) {
+      return;
+    }
+
+    console.log('🔄 Auto-syncing checklist with filtered matches...');
+    
+    // Build the best result per champion from current filtered matches
+    const bestByChampion = new Map<string, number>();
+    
+    for (const match of matches.arenaMatches) {
+      const nameKey = normalizeChampionName(match.info.championName);
+      let level = 1; // played baseline if present in history
+      // Only count placement === 1 as Win; placements 2-4 as Top 4
+      if (match.info.placement === 1) level = 3;
+      else if (match.info.placement <= 4) level = 2;
+      const prev = bestByChampion.get(nameKey) ?? 0;
+      if (level > prev) bestByChampion.set(nameKey, level);
+    }
+
+    // Update champions based on filtered match history
+    onApplyChampionUpdates(prev => {
+      return prev.map(champ => {
+        const key = normalizeChampionName(champ.name);
+        const target = bestByChampion.get(key) ?? 0;
+        
+        // Set checklist based on best achievement in filtered matches
+        const checklist = { 
+          played: target >= 1, 
+          top4: target >= 2, 
+          win: target >= 3 
+        };
+        
+        return { ...champ, checklist };
+      });
+    });
+
+    console.log(`✅ Auto-synced checklist: ${bestByChampion.size} champions from filtered matches`);
+  }, [onApplyChampionUpdates]);
+
+  // Handle filtered match search
+  const handleFilteredSearch = useCallback(async (filters: FilterType) => {
+    if (!account?.puuid) return;
+
+    setIsFiltering(true);
+    setError(null);
+
+    try {
+      console.log('🔍 Applying filters:', filters);
+      
+      // Check if filters are essentially empty (only limit specified)
+      const hasActiveFilters = Boolean(
+        filters.startDate || filters.endDate || filters.patch || filters.season
+      );
+      
+      if (!hasActiveFilters) {
+        // If no active filters, load all matches from database
+        console.log('📄 No active filters, loading all matches from database...');
+        
+        try {
+          const response = await fetch('/api/filtered-matches', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              puuid: account.puuid,
+              limit: 100, // Load more matches when no filters
+            }),
+          });
+
+          const data = await response.json();
+
+          if (response.ok && data.success && data.matches) {
+            const transformedMatches = {
+              arenaMatches: data.matches,
+              totalChecked: data.totalMatches || 0,
+              arenaCount: data.totalMatches || 0
+            };
+
+            setArenaMatches(transformedMatches);
+            
+            // Auto-sync checklist with all matches
+            autoSyncChecklist(transformedMatches);
+            
+            console.log(`✅ Loaded ${data.totalMatches} matches without filters`);
+          }
+        } catch (error) {
+          console.error('❌ Error loading unfiltered matches:', error);
+        }
+        
+        setCurrentFilters({});
+        return;
+      }
+      
+      const response = await fetch('/api/filtered-matches', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          puuid: account.puuid,
+          ...filters,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to fetch filtered matches');
+      }
+
+      if (data.success && data.matches) {
+        const transformedMatches = {
+          arenaMatches: data.matches,
+          totalChecked: data.totalMatches || 0,
+          arenaCount: data.totalMatches || 0
+        };
+
+        setArenaMatches(transformedMatches);
+        setCurrentFilters(filters);
+        
+        // Auto-sync checklist with filtered matches
+        autoSyncChecklist(transformedMatches);
+        
+        console.log(`✅ Found ${data.totalMatches} filtered matches`);
+      }
+
+    } catch (error) {
+      console.error('❌ Filter search error:', error);
+      setError(error instanceof Error ? error.message : 'Failed to apply filters');
+    } finally {
+      setIsFiltering(false);
+    }
+  }, [account?.puuid, autoSyncChecklist]); // Dependencies: puuid and autoSyncChecklist
 
   const performSearch = useCallback(async (playerData?: StoredPlayerData) => {
     const searchGameName = playerData?.gameName || gameName.trim();
@@ -117,30 +275,90 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
       }
       
       
-      // Step 2: Fetch Arena matches directly using queue=1700 (no filtering needed!)
-      console.log('🚀 Fetching Arena matches directly using queue=1700');
+      // Step 2: Fetch match history and save Arena matches to database
+      console.log('🚀 Fetching match history and saving Arena matches to database');
       
-      const arenaResponse = await fetch('/api/arena-matches', {
+      // First get match history
+      const historyResponse = await fetch('/api/match-history', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           puuid: accountData.account.puuid,
-          maxMatches: 30, // Get up to 30 Arena matches directly
+          count: 30,
         }),
       });
 
-      const arenaData = await arenaResponse.json();
+      const historyData = await historyResponse.json();
 
-      if (!arenaResponse.ok) {
-        throw new Error(arenaData.error || 'Failed to fetch Arena matches');
+      if (!historyResponse.ok) {
+        throw new Error(historyData.error || 'Failed to fetch match history');
       }
 
-      if (arenaData.arenaCount > 0) {
-        setArenaMatches(arenaData);
+      // Then get and save Arena match details
+      // Check if this should be an incremental update based on database cache
+      const shouldUseIncremental = historyData.fromDatabase && historyData.lastMatchTimestamp;
+      
+      const detailsResponse = await fetch('/api/match-details', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          puuid: accountData.account.puuid,
+          matchIds: historyData.matchIds, // Use the match IDs from history
+          incrementalUpdate: shouldUseIncremental,
+        }),
+      });
+
+      const detailsData = await detailsResponse.json();
+
+      if (!detailsResponse.ok) {
+        throw new Error(detailsData.error || 'Failed to process match details');
+      }
+
+      // Log incremental update info
+      if (shouldUseIncremental && detailsData.incrementalUpdate) {
+        console.log(`🔄 Incremental update completed: ${detailsData.newMatches || 0} new matches found`);
+        if (detailsData.latestTimestamp) {
+          console.log(`📅 Latest match timestamp updated to: ${new Date(detailsData.latestTimestamp * 1000).toISOString()}`);
+        }
+      }
+
+      // Transform the saved matches into the format expected by the UI
+      if (detailsData.success && detailsData.matches && detailsData.matches.length > 0) {
+        const transformedMatches = {
+          arenaMatches: detailsData.matches.map((match: {
+            matchId: string;
+            gameCreation: number;
+            gameEndTimestamp?: number;
+            championName: string;
+            placement: number;
+            win: boolean;
+          }) => ({
+            metadata: {
+              matchId: match.matchId
+            },
+            info: {
+              gameCreation: match.gameCreation,
+              gameEndTimestamp: match.gameEndTimestamp || match.gameCreation + 1000000, // Fallback
+              championName: match.championName,
+              placement: match.placement,
+              win: match.win
+            }
+          })),
+          totalChecked: detailsData.processed || 0,
+          arenaCount: detailsData.arenaMatches || 0
+        };
+
+        setArenaMatches(transformedMatches);
         setShowInputs(false);
-        console.log(`✅ Found ${arenaData.arenaCount} Arena matches directly from API`);
+        
+        // Auto-sync checklist with initial matches
+        autoSyncChecklist(transformedMatches);
+        
+        console.log(`✅ Found and saved ${detailsData.arenaMatches} Arena matches to database`);
       } else {
         throw new Error('No Arena matches found for this account');
       }    } catch (err) {
@@ -156,13 +374,14 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
     } finally {
       setIsLoading(false);
     }
-  }, [gameName, tagLine]);
+  }, [gameName, tagLine, autoSyncChecklist]);
 
   // Load saved player data on component mount
   useEffect(() => {
     const loadSavedPlayer = async () => {
       const savedPlayer = LocalStorageManager.getPlayerData();
-      if (savedPlayer && !hasAutoSearched) {
+      if (savedPlayer && !hasAutoSearched && !isAutoSearching && !isLoading) {
+        setIsAutoSearching(true);
         setGameName(savedPlayer.gameName);
         setTagLine(savedPlayer.tagLine);
         setAccount({
@@ -173,13 +392,114 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
         setIsExpanded(true); // Start expanded when there's a saved player
         setHasAutoSearched(true);
         
-        // Auto-search for the saved player
-        await performSearch(savedPlayer);
+        // Auto-search for the saved player - use the function directly
+        const searchGameName = savedPlayer.gameName;
+        const searchTagLine = savedPlayer.tagLine;
+        
+        if (!searchGameName || !searchTagLine) {
+          setError('Please enter both Game Name and Tag Line');
+          setIsAutoSearching(false);
+          return;
+        }
+
+        setIsLoading(true);
+        setError(null);
+
+        try {
+          // Use saved player data directly
+          const accountData = {
+            account: {
+              puuid: savedPlayer.puuid,
+              gameName: savedPlayer.gameName,
+              tagLine: savedPlayer.tagLine,
+            }
+          };
+          setAccount(accountData.account);
+          
+          // Step 2: Fetch match history and save Arena matches to database
+          console.log('🚀 Auto-fetching match history for saved player:', savedPlayer.gameName);
+          
+          // First get match history
+          const historyResponse = await fetch('/api/match-history', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              puuid: accountData.account.puuid,
+              count: 30,
+            }),
+          });
+
+          const historyData = await historyResponse.json();
+
+          if (!historyResponse.ok) {
+            throw new Error(historyData.error || 'Failed to fetch match history');
+          }
+
+          // Then get and save Arena match details
+          const shouldUseIncremental = historyData.fromDatabase && historyData.lastMatchTimestamp;
+          
+          const detailsResponse = await fetch('/api/match-details', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              puuid: accountData.account.puuid,
+              matchIds: historyData.matchIds,
+              incrementalUpdate: shouldUseIncremental,
+            }),
+          });
+
+          const detailsData = await detailsResponse.json();
+
+          if (!detailsResponse.ok) {
+            throw new Error(detailsData.error || 'Failed to process match details');
+          }
+
+          // Transform the saved matches into the format expected by the UI
+          if (detailsData.success && detailsData.matches && detailsData.matches.length > 0) {
+            const transformedMatches = {
+              arenaMatches: detailsData.matches.map((match: {
+                matchId: string;
+                gameCreation: number;
+                gameEndTimestamp?: number;
+                championName: string;
+                placement: number;
+                win: boolean;
+              }) => ({
+                metadata: {
+                  matchId: match.matchId
+                },
+                info: {
+                  gameCreation: match.gameCreation,
+                  gameEndTimestamp: match.gameEndTimestamp || match.gameCreation + 1000000,
+                  championName: match.championName,
+                  placement: match.placement,
+                  win: match.win
+                }
+              })),
+              totalChecked: detailsData.processed || 0,
+              arenaCount: detailsData.arenaMatches || 0
+            };
+
+            setArenaMatches(transformedMatches);
+            setShowInputs(false);
+            console.log(`✅ Auto-loaded ${detailsData.arenaMatches} Arena matches for ${savedPlayer.gameName}`);
+          }
+        } catch (error) {
+          console.error('❌ Auto-search error:', error);
+          setError(error instanceof Error ? error.message : 'Failed to fetch data');
+        } finally {
+          setIsLoading(false);
+          setIsAutoSearching(false);
+        }
       }
     };
 
     loadSavedPlayer();
-  }, [hasAutoSearched, performSearch]);
+  }, [hasAutoSearched, isAutoSearching, isLoading]); // Only depend on state flags
 
   const handleSubmit = async (e?: React.FormEvent) => {
     e?.preventDefault();
@@ -200,101 +520,6 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
     setGameName('');
     setTagLine('');
     setHasAutoSearched(false);
-  };
-
-  // Build the best result per champion from arena matches
-  const buildBestByChampion = (): Map<string, number> => {
-    const bestByChampion = new Map<string, number>();
-    if (!arenaMatches || !account) return bestByChampion;
-    
-    for (const match of arenaMatches.arenaMatches) {
-      // Data is already filtered to the user - no need to find participant
-      const nameKey = normalizeChampionName(match.info.championName);
-      let level = 1; // played baseline if present in history
-      // Only count placement === 1 as Win; placements 2-4 as Top 4
-      if (match.info.placement === 1) level = 3;
-      else if (match.info.placement <= 4) level = 2;
-      const prev = bestByChampion.get(nameKey) ?? 0;
-      if (level > prev) bestByChampion.set(nameKey, level);
-    }
-    return bestByChampion;
-  };
-
-  // Open confirm modal with a simple summary and detailed list
-  const openConfirmApply = () => {
-    if (!arenaMatches || !account || !onApplyChampionUpdates) return;
-    const best = buildBestByChampion();
-    if (best.size === 0) {
-      // brief button feedback for no changes
-      setBtnState('nochange');
-      setTimeout(() => setBtnState('idle'), 1500);
-      return;
-    }
-    const stored = LocalStorageManager.getChampionData();
-    const champions: Champion[] = stored?.champions || [];
-    let total = 0, win = 0, top4 = 0, played = 0;
-    const details: Array<{ name: string; from: number; to: number }> = [];
-    for (const champ of champions) {
-      const key = normalizeChampionName(champ.name);
-      const target = best.get(key) ?? 0;
-      const currentLevel = champ.checklist?.win ? 3 : champ.checklist?.top4 ? 2 : champ.checklist?.played ? 1 : 0;
-      if (target > currentLevel) {
-        total += 1;
-        if (target === 3) win += 1;
-        else if (target === 2) top4 += 1;
-        else if (target === 1) played += 1;
-        details.push({ name: champ.name, from: currentLevel, to: target });
-      }
-    }
-
-    if (total === 0) {
-      setBtnState('nochange');
-      setTimeout(() => setBtnState('idle'), 1500);
-      return;
-    }
-
-    setPreviewSummary({ total, win, top4, played });
-    setPreviewDetails(details);
-    setIsConfirmOpen(true);
-  };
-
-  // Apply the improvements after confirmation
-  const handleApplyFromHistory = async () => {
-    if (!arenaMatches || !account || !onApplyChampionUpdates || isApplying) return;
-    setIsApplying(true);
-    try {
-      const bestByChampion = buildBestByChampion();
-      if (bestByChampion.size === 0) {
-        setBtnState('nochange');
-        setTimeout(() => setBtnState('idle'), 1500);
-        return;
-      }
-      onApplyChampionUpdates(prev => {
-        const next = prev.map(champ => {
-          const key = normalizeChampionName(champ.name);
-          const target = bestByChampion.get(key);
-          if (!target) return champ;
-          const currentLevel = champ.checklist?.win ? 3 : champ.checklist?.top4 ? 2 : champ.checklist?.played ? 1 : 0;
-          if (target <= currentLevel) return champ; // only improve
-          const improved =
-            target === 3
-              ? { played: true, top4: true, win: true }
-              : target === 2
-              ? { played: true, top4: true, win: false }
-              : { played: true, top4: false, win: false };
-          return { ...champ, checklist: improved };
-        });
-        return next;
-      });
-      // brief success button feedback
-      setBtnState('applied');
-      setTimeout(() => setBtnState('idle'), 1500);
-    } finally {
-      setIsApplying(false);
-      setIsConfirmOpen(false);
-      setPreviewSummary(null);
-      setPreviewDetails(null);
-    }
   };
 
   const formatDate = (timestamp: number) => {
@@ -426,13 +651,14 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
                 <button
                   onClick={handleBack}
                   title="Go back to search"
-                  className="w-10 h-10 bg-gray-700 hover:bg-gray-600 rounded-lg flex items-center justify-center transition-colors"
+                  className="w-10 h-10 bg-gray-700 hover:bg-gray-600 rounded-lg flex items-center justify-center transition-colors flex-shrink-0"
                 >
                   <svg className="w-5 h-5 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
                 </button>
-                <div className="flex-1 flex items-center justify-center gap-2">
+                
+                <div className="flex-1 flex items-center justify-center">
                   <h2 className="text-lg font-bold text-gray-300 px-2 truncate">MATCH HISTORY</h2>
                   <button
                     onClick={handleRefresh}
@@ -455,28 +681,17 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
                     )}
                   </button>
                 </div>
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={openConfirmApply}
-                    disabled={isLoading || isApplying || !arenaMatches || !account}
-                    title="Apply from history: upgrade champion status"
-                    className={`
-                      h-10 rounded-lg flex items-center justify-center transition-colors px-3 gap-1 relative
-                      ${isLoading || isApplying || !arenaMatches || !account ? 'bg-gray-600 cursor-not-allowed' : btnState === 'nochange' ? 'bg-red-600 animate-shake' : btnState === 'applied' ? 'bg-green-600 animate-pulse' : 'bg-gray-700 hover:bg-green-600'}
-                    `}
-                  >
-                    {isApplying ? (
-                      <div className="w-5 h-5 border-2 border-green-200 border-t-transparent rounded-full animate-spin" />
-                    ) : (
-                      <>
-                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        <span className="text-white text-sm">Apply</span>
-                      </>
-                    )}
-                  </button>
-                </div>
+
+                {/* Quick Filters for mobile */}
+                {arenaMatches && account && (
+                  <div className="flex-shrink-0">
+                    <QuickFilters
+                      onFiltersChange={handleFilteredSearch}
+                      isLoading={isFiltering}
+                      puuid={account.puuid}
+                    />
+                  </div>
+                )}
               </div>
               {account && (
                 <p className="mt-1 text-xs font-semibold text-gray-500 uppercase text-center truncate">
@@ -526,33 +741,15 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
                   )}
                 </div>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="relative group">
-                  <button
-                    onClick={openConfirmApply}
-                    disabled={isLoading || isApplying || !arenaMatches || !account}
-                    title="Apply from history"
-                    className={`
-                      h-8 rounded-lg flex items-center justify-center transition-colors px-2 gap-1
-                      ${isLoading || isApplying || !arenaMatches || !account ? 'bg-gray-600 cursor-not-allowed' : btnState === 'nochange' ? 'bg-red-600 animate-shake' : btnState === 'applied' ? 'bg-green-600 animate-pulse' : 'bg-gray-700 hover:bg-green-200'}
-                    `}
-                  >
-                    {isApplying ? (
-                      <div className="w-4 h-4 border-2 border-green-200 border-t-transparent rounded-full animate-spin" />
-                    ) : (
-                      <>
-                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        <span className="text-white text-sm">Apply</span>
-                      </>
-                    )}
-                  </button>
-                  <div className="hidden sm:block absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10">
-                    Upgrade champion status from match history
-                  </div>
-                </div>
-              </div>
+
+              {/* Quick Filters for desktop */}
+              {arenaMatches && account && (
+                <QuickFilters
+                  onFiltersChange={handleFilteredSearch}
+                  isLoading={isFiltering}
+                  puuid={account.puuid}
+                />
+              )}
             </div>
 
             {/* Match history horizontal scroll */}
@@ -586,48 +783,6 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
               </div>
             )}
 
-            {/* Confirmation modal */}
-            <ConfirmationModal
-              isOpen={isConfirmOpen}
-              title="Apply from match history"
-              message={(
-                <div>
-                  {previewSummary && (
-                    <div className="text-sm text-gray-700 mb-2">
-                      <span>Will update {previewSummary.total} champion{previewSummary.total === 1 ? '' : 's'}:</span>
-                      <div className="mt-1 flex gap-2 text-xs">
-                        <span className="text-yellow-700">Wins: {previewSummary.win}</span>
-                        <span className="text-gray-700">Top 4: {previewSummary.top4}</span>
-                        <span className="text-amber-700">Played: {previewSummary.played}</span>
-                      </div>
-                    </div>
-                  )}
-                  {previewDetails && previewDetails.length > 0 && (
-                    <ul className="max-h-48 overflow-auto pr-1 text-sm space-y-1">
-                      {previewDetails.map((d) => {
-                        const levelToLabel = (n: number) => (n === 3 ? 'Win' : n === 2 ? 'Top 4' : n === 1 ? 'Played' : 'Unplayed');
-                        const colorFrom = d.from === 3 ? 'text-yellow-700' : d.from === 2 ? 'text-gray-700' : d.from === 1 ? 'text-amber-700' : 'text-gray-500';
-                        const colorTo = d.to === 3 ? 'text-yellow-700' : d.to === 2 ? 'text-gray-700' : d.to === 1 ? 'text-amber-700' : 'text-gray-500';
-                        return (
-                          <li key={`${d.name}-${d.from}-${d.to}`} className="flex items-center justify-between gap-2">
-                            <span className="font-medium text-gray-900 truncate">{d.name}</span>
-                            <span className="text-xs">
-                              <span className={`${colorFrom}`}>{levelToLabel(d.from)}</span>
-                              <span className="mx-1 text-gray-500">→</span>
-                              <span className={`${colorTo} font-semibold`}>{levelToLabel(d.to)}</span>
-                            </span>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  )}
-                </div>
-              )}
-              confirmText="Apply"
-              cancelText="Cancel"
-              onConfirm={handleApplyFromHistory}
-              onCancel={() => { setIsConfirmOpen(false); setPreviewSummary(null); setPreviewDetails(null); }}
-            />
           </motion.div>
         )}
       </AnimatePresence>
