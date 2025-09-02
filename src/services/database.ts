@@ -235,12 +235,16 @@ export class DatabaseService {
     region: string;
   }): Promise<DbUser | null> {
     try {
+      // Set last_synced_at to Arena season start date so new users fetch all their Arena matches
+      const arenaSeasonStart = process.env.ARENA_SEASON_START_DATE || '2023-01-01';
+      const arenaSeasonStartTimestamp = `${arenaSeasonStart}T00:00:00Z`;
+      
       const result = await this.sql`
-        INSERT INTO users (puuid, game_name, tag_line, region)
-        VALUES (${userData.puuid}, ${userData.gameName}, ${userData.tagLine}, ${userData.region})
+        INSERT INTO users (puuid, game_name, tag_line, region, last_synced_at)
+        VALUES (${userData.puuid}, ${userData.gameName}, ${userData.tagLine}, ${userData.region}, ${arenaSeasonStartTimestamp})
         RETURNING *
       `;
-      console.log(`💾 Created new user: ${userData.gameName}#${userData.tagLine}`);
+      console.log(`💾 Created new user: ${userData.gameName}#${userData.tagLine} (last_synced_at: ${arenaSeasonStartTimestamp})`);
       return result[0] as DbUser;
     } catch (error) {
       console.error('Error creating user:', error);
