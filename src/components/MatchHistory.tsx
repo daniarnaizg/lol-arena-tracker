@@ -6,19 +6,10 @@ import { ArenaMatchCard } from './ui/ArenaMatchCard';
 import { LocalStorageManager, StoredPlayerData } from '@/utils/localStorage';
 import { normalizeChampionName } from '@/utils/championUtils';
 import type { Champion } from '@/services/ddragon';
-import { QuickFilters } from './ui/QuickFilters';
 
 // =============================================================================
 // Types and Interfaces
 // =============================================================================
-
-interface FilterOptions {
-  startDate?: number | null;
-  endDate?: number | null;
-  patch?: string | null;
-  season?: number | null;
-  limit?: number;
-}
 
 interface RiotAccount {
   puuid: string;
@@ -59,7 +50,6 @@ const API_ENDPOINTS = {
   RIOT_ACCOUNT: '/api/riot-account',
   MATCH_HISTORY: '/api/match-history',
   MATCH_DETAILS: '/api/match-details',
-  FILTERED_MATCHES: '/api/filtered-matches',
 } as const;
 
 // Achievement levels for champion progress tracking
@@ -88,7 +78,6 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({
   
   // Loading and error state
   const [isLoading, setIsLoading] = useState(false);
-  const [isFiltering, setIsFiltering] = useState(false);
   const [isAutoSearching, setIsAutoSearching] = useState(false);
   const [error, setError] = useState<string | null>(null);
   
@@ -146,21 +135,6 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({
     if (!response.ok) {
       const errorData = await response.json();
       throw new Error(errorData.error || 'Failed to fetch match details');
-    }
-
-    return response.json();
-  }, []);
-
-  const fetchFilteredMatches = useCallback(async (puuid: string, filters: FilterOptions = {}) => {
-    const response = await fetch(API_ENDPOINTS.FILTERED_MATCHES, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ puuid, ...filters }),
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.error || 'Failed to fetch filtered matches');
     }
 
     return response.json();
@@ -226,74 +200,6 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({
 
     console.log(`✅ Auto-synced checklist: ${bestByChampion.size} champions from filtered matches`);
   }, [onApplyChampionUpdates, buildChampionBestResults]);
-
-  // Handle filtered match search
-  const handleFilteredSearch = useCallback(async (filters: FilterOptions) => {
-    if (!account?.puuid) return;
-
-    setIsFiltering(true);
-    setError(null);
-
-    try {
-      console.log('🔍 Applying filters:', filters);
-      
-      // Check if filters are essentially empty (only limit specified)
-      const hasActiveFilters = Boolean(
-        filters.startDate || filters.endDate || filters.patch || filters.season
-      );
-      
-      if (!hasActiveFilters) {
-        // If no active filters, load all matches from database
-        console.log('📄 No active filters, loading all matches from database...');
-        
-        try {
-          const data = await fetchFilteredMatches(account.puuid, {});
-
-          if (data.success && data.matches) {
-            const transformedMatches = {
-              arenaMatches: data.matches,
-              totalChecked: data.totalMatches || 0,
-              arenaCount: data.totalMatches || 0
-            };
-
-            setArenaMatches(transformedMatches);
-            
-            // Auto-sync checklist with all matches
-            autoSyncChecklist(transformedMatches);
-            
-            console.log(`✅ Loaded ${data.totalMatches} matches without filters`);
-          }
-        } catch (error) {
-          console.error('❌ Error loading unfiltered matches:', error);
-        }
-        
-        return;
-      }
-      
-      const data = await fetchFilteredMatches(account.puuid, filters);
-
-      if (data.success && data.matches) {
-        const transformedMatches = {
-          arenaMatches: data.matches,
-          totalChecked: data.totalMatches || 0,
-          arenaCount: data.totalMatches || 0
-        };
-
-        setArenaMatches(transformedMatches);
-        
-        // Auto-sync checklist with filtered matches
-        autoSyncChecklist(transformedMatches);
-        
-        console.log(`✅ Found ${data.totalMatches} filtered matches`);
-      }
-
-    } catch (error) {
-      console.error('❌ Filter search error:', error);
-      setError(error instanceof Error ? error.message : 'Failed to apply filters');
-    } finally {
-      setIsFiltering(false);
-    }
-  }, [account?.puuid, autoSyncChecklist, fetchFilteredMatches]);
 
   const performSearch = useCallback(async (playerData?: StoredPlayerData) => {
     const searchGameName = playerData?.gameName || gameName.trim();
@@ -634,6 +540,15 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({
                 
                 <div className="flex-1 flex items-center justify-center">
                   <h2 className="text-lg font-bold text-gray-300 px-2 truncate">MATCH HISTORY</h2>
+                </div>
+
+                {/* Player name and refresh button */}
+                <div className="flex items-center gap-2 flex-shrink-0">
+                  {account && (
+                    <p className="text-xs font-semibold text-gray-500 uppercase truncate max-w-20">
+                      {account.gameName}#{account.tagLine}
+                    </p>
+                  )}
                   <button
                     onClick={handleRefresh}
                     disabled={isLoading}
@@ -655,23 +570,7 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({
                     )}
                   </button>
                 </div>
-
-                {/* Quick Filters for mobile */}
-                {arenaMatches && account && (
-                  <div className="flex-shrink-0">
-                    <QuickFilters
-                      onFiltersChange={handleFilteredSearch}
-                      isLoading={isFiltering}
-                      puuid={account.puuid}
-                    />
-                  </div>
-                )}
               </div>
-              {account && (
-                <p className="mt-1 text-xs font-semibold text-gray-500 uppercase text-center truncate">
-                  {account.gameName}#{account.tagLine}
-                </p>
-              )}
             </div>
 
             {/* Desktop/tablet header */}
@@ -686,43 +585,34 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
                 </button>
-                <div className="flex items-center gap-3">
-                  <h2 className="text-xl font-bold text-gray-300">MATCH HISTORY</h2>
-                  {account && (
-                    <div className="flex items-center gap-2">
-                      <p className="text-m font-semibold text-gray-500 uppercase">{account.gameName}#{account.tagLine}</p>
-                      <button
-                        onClick={handleRefresh}
-                        disabled={isLoading}
-                        title="Refresh match history"
-                        className={`
-                          w-8 h-8 rounded-lg flex items-center justify-center transition-colors
-                          ${isLoading 
-                            ? 'bg-blue-500 cursor-not-allowed' 
-                            : 'bg-gray-700 hover:bg-blue-200'
-                          }
-                        `}
-                      >
-                        {isLoading ? (
-                          <div className="w-4 h-4 border-2 border-blue-200 border-t-transparent rounded-full animate-spin" />
-                        ) : (
-                          <svg className="w-4 h-4 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                          </svg>
-                        )}
-                      </button>
-                    </div>
-                  )}
-                </div>
+                <h2 className="text-xl font-bold text-gray-300">MATCH HISTORY</h2>
               </div>
 
-              {/* Quick Filters for desktop */}
-              {arenaMatches && account && (
-                <QuickFilters
-                  onFiltersChange={handleFilteredSearch}
-                  isLoading={isFiltering}
-                  puuid={account.puuid}
-                />
+              {/* Player name and refresh button */}
+              {account && (
+                <div className="flex items-center gap-3">
+                  <p className="text-m font-semibold text-gray-500 uppercase">{account.gameName}#{account.tagLine}</p>
+                  <button
+                    onClick={handleRefresh}
+                    disabled={isLoading}
+                    title="Refresh match history"
+                    className={`
+                      w-8 h-8 rounded-lg flex items-center justify-center transition-colors
+                      ${isLoading 
+                        ? 'bg-blue-500 cursor-not-allowed' 
+                        : 'bg-gray-700 hover:bg-blue-200'
+                      }
+                    `}
+                  >
+                    {isLoading ? (
+                      <div className="w-4 h-4 border-2 border-blue-200 border-t-transparent rounded-full animate-spin" />
+                    ) : (
+                      <svg className="w-4 h-4 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                      </svg>
+                    )}
+                  </button>
+                </div>
               )}
             </div>
 
