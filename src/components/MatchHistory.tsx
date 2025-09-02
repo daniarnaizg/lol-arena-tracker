@@ -62,9 +62,6 @@ const API_ENDPOINTS = {
   FILTERED_MATCHES: '/api/filtered-matches',
 } as const;
 
-const DEFAULT_MATCH_COUNT = 30;
-const MAX_UNFILTERED_MATCHES = 100;
-
 // Achievement levels for champion progress tracking
 const ACHIEVEMENT_LEVELS = {
   PLAYED: 1,
@@ -124,11 +121,11 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({
     return data.account;
   }, []);
 
-  const fetchMatchHistory = useCallback(async (puuid: string, count: number = DEFAULT_MATCH_COUNT) => {
+  const fetchMatchHistory = useCallback(async (puuid: string) => {
     const response = await fetch(API_ENDPOINTS.MATCH_HISTORY, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ puuid, count }),
+      body: JSON.stringify({ puuid }),
     });
 
     if (!response.ok) {
@@ -154,11 +151,11 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({
     return response.json();
   }, []);
 
-  const fetchFilteredMatches = useCallback(async (puuid: string, filters: FilterOptions = {}, limit: number = MAX_UNFILTERED_MATCHES) => {
+  const fetchFilteredMatches = useCallback(async (puuid: string, filters: FilterOptions = {}) => {
     const response = await fetch(API_ENDPOINTS.FILTERED_MATCHES, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ puuid, limit, ...filters }),
+      body: JSON.stringify({ puuid, ...filters }),
     });
 
     if (!response.ok) {
@@ -250,7 +247,7 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({
         console.log('📄 No active filters, loading all matches from database...');
         
         try {
-          const data = await fetchFilteredMatches(account.puuid, {}, MAX_UNFILTERED_MATCHES);
+          const data = await fetchFilteredMatches(account.puuid, {});
 
           if (data.success && data.matches) {
             const transformedMatches = {
@@ -343,7 +340,7 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({
       console.log(`🚀 ${searchType}: Fetching match history for ${currentAccount.gameName}#${currentAccount.tagLine}`);
       
       // First get match history
-      const historyData = await fetchMatchHistory(currentAccount.puuid, DEFAULT_MATCH_COUNT);
+      const historyData = await fetchMatchHistory(currentAccount.puuid);
 
       // Check if we have new matches to process
       let detailsData;
@@ -521,7 +518,7 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({
             <div className={`flex items-center justify-between ${isExpanded ? 'mb-4' : ''}`}>
               <div className="flex items-center gap-3">
                 <h2 className="text-lg md:text-xl font-semibold text-gray-300 truncate">ARENA MATCH HISTORY</h2>
-                <span className="text-gray-400 text-sm pl-8 hidden md:inline">Search for your last {DEFAULT_MATCH_COUNT} arena matches and apply the results to the tracker</span>
+                <span className="text-gray-400 text-sm pl-8 hidden md:inline">Search for all available arena matches and apply the results to the tracker</span>
               </div>
               <button
                 onClick={() => setIsExpanded(!isExpanded)}

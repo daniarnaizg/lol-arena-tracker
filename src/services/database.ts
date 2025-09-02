@@ -305,15 +305,26 @@ export class DatabaseService {
   /**
    * Find arena matches for a user
    */
-  async findArenaMatches(userId: number, limit: number = 20): Promise<DbArenaMatch[]> {
+  async findArenaMatches(userId: number, limit?: number): Promise<DbArenaMatch[]> {
     try {
-      const result = await this.sql`
-        SELECT * FROM arena_matches 
-        WHERE user_id = ${userId} 
-        ORDER BY created_at DESC 
-        LIMIT ${limit}
-      `;
-      return result as DbArenaMatch[];
+      if (limit && limit > 0) {
+        // If a specific limit is provided, use it
+        const result = await this.sql`
+          SELECT * FROM arena_matches 
+          WHERE user_id = ${userId} 
+          ORDER BY game_creation_timestamp DESC 
+          LIMIT ${limit}
+        `;
+        return result as DbArenaMatch[];
+      } else {
+        // If no limit or limit is 0, return all matches
+        const result = await this.sql`
+          SELECT * FROM arena_matches 
+          WHERE user_id = ${userId} 
+          ORDER BY game_creation_timestamp DESC
+        `;
+        return result as DbArenaMatch[];
+      }
     } catch (error) {
       console.error('Error finding arena matches:', error);
       return [];
@@ -332,17 +343,14 @@ export class DatabaseService {
   } = {}): Promise<DbArenaMatch[]> {
     try {
       const { 
-        limit = 50, 
+        limit, 
         startDate, 
         endDate, 
         patch, 
         season 
       } = filters;
 
-      // Ensure reasonable bounds for limit
-      const safeLimit = Math.min(Math.max(limit, 1), 500);
-
-      console.log('🔍 Database query with filters:', { userId, startDate, endDate, patch, season, limit: safeLimit });
+      console.log('🔍 Database query with filters:', { userId, startDate, endDate, patch, season, limit });
 
       // Execute query based on conditions
       if (startDate !== undefined && endDate !== undefined && patch && season !== undefined) {
@@ -353,8 +361,8 @@ export class DatabaseService {
             AND game_creation_timestamp <= ${endDate}
             AND patch_version = ${patch}
             AND season_year = ${season}
-          ORDER BY game_creation_timestamp DESC 
-          LIMIT ${safeLimit}
+          ORDER BY game_creation_timestamp DESC
+          ${limit && limit > 0 ? this.sql`LIMIT ${Math.min(Math.max(limit, 1), 500)}` : this.sql``}
         `;
         return result as DbArenaMatch[];
       } else if (startDate !== undefined && endDate !== undefined && patch) {
@@ -364,8 +372,8 @@ export class DatabaseService {
             AND game_creation_timestamp >= ${startDate}
             AND game_creation_timestamp <= ${endDate}
             AND patch_version = ${patch}
-          ORDER BY game_creation_timestamp DESC 
-          LIMIT ${safeLimit}
+          ORDER BY game_creation_timestamp DESC
+          ${limit && limit > 0 ? this.sql`LIMIT ${Math.min(Math.max(limit, 1), 500)}` : this.sql``}
         `;
         return result as DbArenaMatch[];
       } else if (startDate !== undefined && endDate !== undefined) {
@@ -374,8 +382,8 @@ export class DatabaseService {
           WHERE user_id = ${userId} 
             AND game_creation_timestamp >= ${startDate}
             AND game_creation_timestamp <= ${endDate}
-          ORDER BY game_creation_timestamp DESC 
-          LIMIT ${safeLimit}
+          ORDER BY game_creation_timestamp DESC
+          ${limit && limit > 0 ? this.sql`LIMIT ${Math.min(Math.max(limit, 1), 500)}` : this.sql``}
         `;
         return result as DbArenaMatch[];
       } else if (patch && season !== undefined) {
@@ -384,8 +392,8 @@ export class DatabaseService {
           WHERE user_id = ${userId} 
             AND patch_version = ${patch}
             AND season_year = ${season}
-          ORDER BY game_creation_timestamp DESC 
-          LIMIT ${safeLimit}
+          ORDER BY game_creation_timestamp DESC
+          ${limit && limit > 0 ? this.sql`LIMIT ${Math.min(Math.max(limit, 1), 500)}` : this.sql``}
         `;
         return result as DbArenaMatch[];
       } else if (patch) {
@@ -393,8 +401,8 @@ export class DatabaseService {
           SELECT * FROM arena_matches 
           WHERE user_id = ${userId} 
             AND patch_version = ${patch}
-          ORDER BY game_creation_timestamp DESC 
-          LIMIT ${safeLimit}
+          ORDER BY game_creation_timestamp DESC
+          ${limit && limit > 0 ? this.sql`LIMIT ${Math.min(Math.max(limit, 1), 500)}` : this.sql``}
         `;
         return result as DbArenaMatch[];
       } else if (season !== undefined) {
@@ -402,8 +410,8 @@ export class DatabaseService {
           SELECT * FROM arena_matches 
           WHERE user_id = ${userId} 
             AND season_year = ${season}
-          ORDER BY game_creation_timestamp DESC 
-          LIMIT ${safeLimit}
+          ORDER BY game_creation_timestamp DESC
+          ${limit && limit > 0 ? this.sql`LIMIT ${Math.min(Math.max(limit, 1), 500)}` : this.sql``}
         `;
         return result as DbArenaMatch[];
       } else if (startDate !== undefined) {
@@ -411,8 +419,8 @@ export class DatabaseService {
           SELECT * FROM arena_matches 
           WHERE user_id = ${userId} 
             AND game_creation_timestamp >= ${startDate}
-          ORDER BY game_creation_timestamp DESC 
-          LIMIT ${safeLimit}
+          ORDER BY game_creation_timestamp DESC
+          ${limit && limit > 0 ? this.sql`LIMIT ${Math.min(Math.max(limit, 1), 500)}` : this.sql``}
         `;
         return result as DbArenaMatch[];
       } else if (endDate !== undefined) {
@@ -420,17 +428,17 @@ export class DatabaseService {
           SELECT * FROM arena_matches 
           WHERE user_id = ${userId} 
             AND game_creation_timestamp <= ${endDate}
-          ORDER BY game_creation_timestamp DESC 
-          LIMIT ${safeLimit}
+          ORDER BY game_creation_timestamp DESC
+          ${limit && limit > 0 ? this.sql`LIMIT ${Math.min(Math.max(limit, 1), 500)}` : this.sql``}
         `;
         return result as DbArenaMatch[];
       } else {
-        // No filters, just return recent matches
+        // No filters, return all matches (no limit by default)
         const result = await this.sql`
           SELECT * FROM arena_matches 
           WHERE user_id = ${userId}
-          ORDER BY game_creation_timestamp DESC 
-          LIMIT ${safeLimit}
+          ORDER BY game_creation_timestamp DESC
+          ${limit && limit > 0 ? this.sql`LIMIT ${Math.min(Math.max(limit, 1), 500)}` : this.sql``}
         `;
         return result as DbArenaMatch[];
       }

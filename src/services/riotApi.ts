@@ -324,7 +324,7 @@ export class RiotApiService {
     startTime?: number; // Unix timestamp in seconds
     endTime?: number;   // Unix timestamp in seconds
   }): Promise<string[]> {
-    const { puuid, start = 0, count = 30, startTime, endTime } = params;
+    const { puuid, start = 0, count, startTime, endTime } = params;
     
     if (!puuid?.trim()) {
       throw new RiotApiError('PUUID is required', 400);
@@ -336,9 +336,13 @@ export class RiotApiService {
     // Build query parameters
     const queryParams = new URLSearchParams({
       start: start.toString(),
-      count: count.toString(),
       queue: ARENA_QUEUE_ID.toString(),
     });
+    
+    // Add count if provided (Riot API default is 20, max is 100)
+    if (count !== undefined) {
+      queryParams.append('count', count.toString());
+    }
     
     // Add time filters if provided
     if (startTime) {
@@ -403,7 +407,7 @@ export class RiotApiService {
     start?: number;
     count?: number;
   }): Promise<ArenaMatchResult> {
-    const { puuid, start = 0, count = 30 } = params;
+    const { puuid, start = 0, count } = params;
     
     if (!puuid?.trim()) {
       throw new RiotApiError('PUUID is required', 400);
@@ -412,10 +416,49 @@ export class RiotApiService {
     const startTime = process.env.NODE_ENV === 'development' ? Date.now() : 0;
 
     try {
-      // Step 1: Get Arena match IDs directly using queue filter
-      const arenaMatchIds = await this.getArenaMatchHistory({ puuid, start, count });
+      let allArenaMatchIds: string[] = [];
       
-      if (arenaMatchIds.length === 0) {
+      if (count === undefined) {
+        // Fetch all available matches using pagination
+        console.log('🔄 Fetching all available Arena matches using pagination...');
+        let currentStart = start;
+        const batchSize = 100; // Riot API maximum
+        
+        while (true) {
+          const batchIds = await this.getArenaMatchHistory({ 
+            puuid, 
+            start: currentStart, 
+            count: batchSize 
+          });
+          
+          if (batchIds.length === 0) {
+            console.log(`✅ Pagination complete. Found ${allArenaMatchIds.length} total Arena matches.`);
+            break;
+          }
+          
+          allArenaMatchIds.push(...batchIds);
+          console.log(`📦 Batch ${Math.floor(currentStart / batchSize) + 1}: Found ${batchIds.length} matches (total: ${allArenaMatchIds.length})`);
+          
+          // If we got fewer matches than requested, we've reached the end
+          if (batchIds.length < batchSize) {
+            console.log(`✅ Reached end of matches. Final count: ${allArenaMatchIds.length}`);
+            break;
+          }
+          
+          currentStart += batchSize;
+          
+          // Safety break to prevent infinite loops (adjust as needed)
+          if (allArenaMatchIds.length > 10000) {
+            console.warn(`⚠️ Safety limit reached: ${allArenaMatchIds.length} matches. Stopping pagination.`);
+            break;
+          }
+        }
+      } else {
+        // Use specified count
+        allArenaMatchIds = await this.getArenaMatchHistory({ puuid, start, count });
+      }
+      
+      if (allArenaMatchIds.length === 0) {
         return { arenaMatches: [], totalChecked: 0 };
       }
       
@@ -424,10 +467,10 @@ export class RiotApiService {
       const arenaMatches: ArenaMatch[] = [];
       
       if (process.env.NODE_ENV === 'development') {
-        console.log(`Fetching details for ${arenaMatchIds.length} Arena matches...`);
+        console.log(`Fetching details for ${allArenaMatchIds.length} Arena matches...`);
       }
       
-      for (const matchId of arenaMatchIds) {
+      for (const matchId of allArenaMatchIds) {
         try {
           const matchDetails = await this.getMatchDetails(matchId, detectedRegion);
           
@@ -439,7 +482,7 @@ export class RiotApiService {
               arenaMatches.push(arenaMatch);
               
               if (process.env.NODE_ENV === 'development') {
-                console.log(`Arena match ${arenaMatches.length}/${arenaMatchIds.length}: ${matchId} (${arenaMatch.info.championName}, place ${arenaMatch.info.placement})`);
+                console.log(`Arena match ${arenaMatches.length}/${allArenaMatchIds.length}: ${matchId} (${arenaMatch.info.championName}, place ${arenaMatch.info.placement})`);
               }
             } else {
               console.warn(`User not found in match ${matchId} participants`);
@@ -461,7 +504,7 @@ export class RiotApiService {
       
       return { 
         arenaMatches, 
-        totalChecked: arenaMatchIds.length
+        totalChecked: allArenaMatchIds.length
       };
       
     } catch (error) {

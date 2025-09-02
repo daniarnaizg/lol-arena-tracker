@@ -9,7 +9,7 @@ export async function POST(request: NextRequest) {
       endDate, 
       patch, 
       season, 
-      limit = 50 
+      limit 
     } = await request.json();
 
     if (!puuid) {
@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
 
     // Build filters object
     const filters = {
-      limit: Math.min(Math.max(limit, 1), 500), // Limit between 1 and 500
+      ...(limit !== undefined && { limit: Math.min(Math.max(limit, 1), 500) }), // Limit between 1 and 500 if provided
       ...(startDate && { startDate: startDate * 1000 }), // Convert seconds to milliseconds
       ...(endDate && { endDate: endDate * 1000 }), // Convert seconds to milliseconds
       ...(patch && { patch }),

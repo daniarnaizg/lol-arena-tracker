@@ -5,7 +5,7 @@ interface FilterOptions {
   endDate: number | null;
   patch: string | null;
   season: number | null;
-  limit: number;
+  limit?: number;
 }
 
 interface QuickFiltersProps {
@@ -71,8 +71,7 @@ export function QuickFilters({ onFiltersChange, isLoading, puuid }: QuickFilters
       startDate: null,
       endDate: null,
       patch: null,
-      season: null,
-      limit: 100
+      season: null
     });
   };
 
@@ -114,8 +113,7 @@ export function QuickFilters({ onFiltersChange, isLoading, puuid }: QuickFilters
               startDate: null,
               endDate: null,
               patch: null,
-              season: availableSeasons[0],
-              limit: 100
+              season: availableSeasons[0]
             });
           }}
           className={`px-2.5 py-1 rounded-md text-xs font-medium transition-colors whitespace-nowrap ${
@@ -138,8 +136,7 @@ export function QuickFilters({ onFiltersChange, isLoading, puuid }: QuickFilters
               startDate: null,
               endDate: null,
               patch: patch,
-              season: null,
-              limit: 100
+              season: null
             });
           }}
           className={`px-2.5 py-1 rounded-md text-xs font-medium transition-colors whitespace-nowrap ${

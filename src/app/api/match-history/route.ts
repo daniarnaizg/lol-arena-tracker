@@ -8,7 +8,6 @@ import { databaseService } from '@/services/database';
 
 interface MatchHistoryRequest {
   puuid: string;
-  count?: number;
   forceRefresh?: boolean;
 }
 
@@ -64,14 +63,10 @@ function validateRequest(body: unknown): { isValid: boolean; error?: string; dat
   }
 
   const requestBody = body as Record<string, unknown>;
-  const { puuid, count = 10, forceRefresh = false } = requestBody;
+  const { puuid, forceRefresh = false } = requestBody;
 
   if (!puuid || typeof puuid !== 'string' || !puuid.trim()) {
     return { isValid: false, error: 'PUUID is required and must be a non-empty string' };
-  }
-
-  if (typeof count !== 'number' || count < 1 || count > 100) {
-    return { isValid: false, error: 'Count must be a number between 1 and 100' };
   }
 
   if (typeof forceRefresh !== 'boolean') {
@@ -82,7 +77,6 @@ function validateRequest(body: unknown): { isValid: boolean; error?: string; dat
     isValid: true,
     data: {
       puuid: puuid.trim(),
-      count,
       forceRefresh
     }
   };
@@ -109,34 +103,50 @@ async function getUserFromDatabase(puuid: string): Promise<{ user: DatabaseUser 
 }
 
 /**
- * Gets match history using smart timestamp filtering - no complex caching logic needed
+ * Gets match history from ARENA_SEASON_START_DATE onwards - simple and straightforward
  */
 async function getMatchHistoryWithTimestampFilter(
   user: DatabaseUser, 
-  count: number, 
   puuid: string
 ): Promise<MatchHistoryResponse> {
   const lastMatchTimestamp = databaseService.getUserLastMatchTimestamp(user);
   
   try {
-    // Simply fetch matches using the Riot API's built-in timestamp filtering
+    // Get the arena season start date from environment variable
+    const arenaSeasonStart = process.env.ARENA_SEASON_START_DATE || '2025-01-01';
+    const seasonStartDate = new Date(arenaSeasonStart);
+    const seasonStartTimestamp = Math.floor(seasonStartDate.getTime() / 1000);
+    
+    console.log(`🎯 Fetching matches from Arena season start: ${arenaSeasonStart} (${seasonStartDate.toISOString()})`);
+    
+    // For existing users with matches, use their last match timestamp
+    // For new users, use the season start date
+    const existingMatches = await databaseService.findArenaMatches(user.id);
+    const hasExistingMatches = existingMatches.length > 0;
+    
+    const startTime = hasExistingMatches 
+      ? lastMatchTimestamp || seasonStartTimestamp 
+      : seasonStartTimestamp;
+    
+    console.log(`📅 Using startTime: ${new Date(startTime * 1000).toISOString()} (${hasExistingMatches ? 'last match' : 'season start'})`);
+    
+    // Fetch matches from the start time onwards with maximum count
     const matchIds = await riotApiService.getArenaMatchHistory({
       puuid,
       start: 0,
-      count,
-      startTime: lastMatchTimestamp || undefined, // Let Riot API handle the filtering
+      count: 100, // Use maximum count instead of default 20
+      startTime: startTime,
     });
     
+    console.log(`📥 Found ${matchIds.length} matches since ${new Date(startTime * 1000).toISOString()}`);
+    
     if (matchIds.length > 0) {
-      // We have new matches - combine them with existing cached matches
-      console.log(`📥 Found ${matchIds.length} new matches since ${lastMatchTimestamp ? new Date(lastMatchTimestamp * 1000).toISOString() : 'beginning'}`);
+      // Get ALL existing matches from database (both old and new)
+      const allCachedMatches = await databaseService.findArenaMatches(user.id);
+      const allCachedMatchIds = allCachedMatches.map(match => match.match_id);
       
-      // Get existing cached matches and combine with new ones
-      const cachedMatches = await databaseService.findArenaMatches(user.id, count);
-      const cachedMatchIds = cachedMatches.map(match => match.match_id);
-      
-      // Transform cached matches to the format expected by the UI
-      const cachedMatchData = cachedMatches.map(match => ({
+      // Transform ALL cached matches to the format expected by the UI
+      const allCachedMatchData = allCachedMatches.map(match => ({
         matchId: match.match_id,
         championName: match.champion_name,
         placement: match.placement,
@@ -145,28 +155,25 @@ async function getMatchHistoryWithTimestampFilter(
         gameEndTimestamp: match.game_end_timestamp,
       }));
       
-      // Combine new matches with cached ones, removing duplicates and limiting to requested count
-      const allUniqueMatchIds = [...new Set([...matchIds, ...cachedMatchIds])];
-      const finalMatchIds = allUniqueMatchIds.slice(0, count);
-      
+      // Return new matches for processing AND all matches for display
       return {
         success: true,
-        matchIds: finalMatchIds, // Return ALL matches (new + cached)
-        count: finalMatchIds.length,
+        matchIds: allCachedMatchIds, // All match IDs (for fallback)
+        count: allCachedMatchIds.length, // Total count including existing
         puuid,
         queue: RiotApiService.getArenaQueueId(),
         arenaOnly: true,
         fromDatabase: false,
         userId: user.id,
         lastMatchTimestamp,
-        newMatchIds: matchIds, // Only the truly new match IDs for processing
-        matches: cachedMatchData, // Return complete cached match data to avoid second API call
+        newMatchIds: matchIds, // These are the new matches to process
+        matches: allCachedMatchData, // ALL matches for UI display (existing + new)
       };
     } else {
-      // No new matches - return cached data with complete match details
-      console.log(`✅ No new matches found since ${lastMatchTimestamp ? new Date(lastMatchTimestamp * 1000).toISOString() : 'beginning'}`);
+      // No new matches - return cached data
+      console.log(`✅ No new matches found since ${new Date(startTime * 1000).toISOString()}`);
       
-      const cachedMatches = await databaseService.findArenaMatches(user.id, count);
+      const cachedMatches = await databaseService.findArenaMatches(user.id);
       const cachedMatchIds = cachedMatches.map(match => match.match_id);
       
       // Transform cached matches to the format expected by the UI
@@ -204,29 +211,34 @@ async function getMatchHistoryWithTimestampFilter(
 // =============================================================================
 
 /**
- * Fetches fresh match data from Riot API
+ * Fetches fresh match data from ARENA_SEASON_START_DATE onwards
  */
 async function getFreshMatchData(
   puuid: string, 
-  count: number, 
   userId?: number | null
 ): Promise<MatchHistoryResponse> {
-  const maxCount = Math.min(count, 100);
-
   try {
+    // Get the arena season start date from environment variable
+    const arenaSeasonStart = process.env.ARENA_SEASON_START_DATE || '2025-01-01';
+    const seasonStartDate = new Date(arenaSeasonStart);
+    const seasonStartTimestamp = Math.floor(seasonStartDate.getTime() / 1000);
+    
+    console.log(`� Fetching fresh match data from Arena season start: ${arenaSeasonStart} (${seasonStartDate.toISOString()})`);
+    
+    // Fetch all matches from season start
     const matchIds = await riotApiService.getArenaMatchHistory({
       puuid,
       start: 0,
-      count: maxCount,
+      startTime: seasonStartTimestamp,
     });
     
     if (process.env.NODE_ENV === 'development') {
-      console.log(`Found ${matchIds.length} Arena match IDs from Riot API`);
+      console.log(`Found ${matchIds.length} Arena matches since season start for new user`);
     }
     
     return {
       success: true,
-      matchIds,
+      matchIds: matchIds,
       count: matchIds.length,
       puuid,
       queue: RiotApiService.getArenaQueueId(),
@@ -301,7 +313,7 @@ export async function POST(request: NextRequest) {
       );
     }
     
-    const { puuid, count, forceRefresh } = validation.data!;
+    const { puuid, forceRefresh } = validation.data!;
 
     // Attempt to find user in database
     const { user: dbUser, error: dbError } = await getUserFromDatabase(puuid);
@@ -316,14 +328,14 @@ export async function POST(request: NextRequest) {
       
       if (dbUser && !forceRefresh) {
         // Use timestamp filtering for existing users
-        response = await getMatchHistoryWithTimestampFilter(dbUser, count!, puuid);
+        response = await getMatchHistoryWithTimestampFilter(dbUser, puuid);
         
         if (process.env.NODE_ENV === 'development') {
           console.log(`Fetched ${response.matchIds.length} matches using timestamp filter for user ${dbUser.id}`);
         }
       } else {
         // Fresh data for new users or forced refresh
-        response = await getFreshMatchData(puuid, count!, dbUser?.id);
+        response = await getFreshMatchData(puuid, dbUser?.id);
         
         if (process.env.NODE_ENV === 'development') {
           console.log(`Fetched fresh match data: ${response.matchIds.length} matches`);
