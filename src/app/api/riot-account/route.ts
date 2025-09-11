@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { riotApiService, RiotApiService } from '@/services/riotApi';
+import { databaseService } from '@/services/database';
 
 export async function POST(request: NextRequest) {
   try {
@@ -21,13 +22,50 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // First, check if user exists in database
+    try {
+      const existingUser = await databaseService.findUserByRiotId(gameName, tagLine);
+      
+      if (existingUser) {
+        console.log(`User found in database: ${gameName}#${tagLine}`);
+        
+        return NextResponse.json({
+          success: true,
+          fromDatabase: true,
+          account: {
+            puuid: existingUser.puuid,
+            gameName: existingUser.game_name,
+            tagLine: existingUser.tag_line,
+          }
+        });
+      }
+    } catch (dbError) {
+      console.error('Database lookup error:', dbError);
+      // Continue to Riot API if database fails
+    }
+
+    // If not in database, fetch from Riot API
     try {
       const account = await riotApiService.getAccountByRiotId(gameName, tagLine);
       
-      console.log(`PUUID found for ${gameName}#${tagLine}:`, account.puuid);
+      console.log(`PUUID found from Riot API for ${gameName}#${tagLine}:`, account.puuid);
       
-      return NextResponse.json({
+        // Save user to database
+        try {
+          await databaseService.createUser({
+            puuid: account.puuid,
+            gameName: account.gameName,
+            tagLine: account.tagLine,
+            region: 'americas', // Default region, could be enhanced later
+          });
+          
+          console.log(`User saved to database: ${gameName}#${tagLine}`);
+        } catch (saveError) {
+          console.error('Failed to save user to database:', saveError);
+          // Continue anyway - the API call succeeded
+        }      return NextResponse.json({
         success: true,
+        fromDatabase: false,
         account: {
           puuid: account.puuid,
           gameName: account.gameName,
