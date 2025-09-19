@@ -11,16 +11,16 @@
         "imageUrl": "https://raw.communitydragon.org/15.17/game/assets/ux/cherry/augments/icons/infernalconduit_large.png"
       },
       {
-        "name": "Doomsayer",
-        "imageUrl": "https://raw.communitydragon.org/15.17/game/assets/ux/cherry/augments/icons/doomsayer_large.png"
+        "name": "Goliath",
+        "imageUrl": "https://raw.communitydragon.org/15.17/game/assets/ux/cherry/augments/icons/goliath_large.png"
       },
       {
         "name": "Giant Slayer",
         "imageUrl": "https://raw.communitydragon.org/15.17/game/assets/ux/cherry/augments/icons/giantslayer_large.png"
       },
       {
-        "name": "Center of the Universe",
-        "imageUrl": "https://raw.communitydragon.org/15.17/game/assets/ux/cherry/augments/icons/centeroftheuniverse_large.png"
+        "name": "Mad Scientist",
+        "imageUrl": "https://raw.communitydragon.org/15.17/game/assets/ux/cherry/augments/icons/madscientist_large.png"
       }
     ],
     "gold": [
@@ -29,12 +29,12 @@
         "imageUrl": "https://raw.communitydragon.org/15.17/game/assets/ux/cherry/augments/icons/magicmissile_large.png"
       },
       {
-        "name": "Transmute: Prismatic",
-        "imageUrl": "https://raw.communitydragon.org/15.17/game/assets/ux/cherry/augments/icons/transmuteprismatic_large.png"
-      },
-      {
         "name": "Tank Engine",
         "imageUrl": "https://raw.communitydragon.org/15.17/game/assets/ux/cherry/augments/icons/tank_engine_large.png"
+      },
+      {
+        "name": "Transmute: Prismatic",
+        "imageUrl": "https://raw.communitydragon.org/15.17/game/assets/ux/cherry/augments/icons/transmuteprismatic_large.png"
       },
       {
         "name": "Perseverance",
@@ -51,8 +51,8 @@
         "imageUrl": "https://raw.communitydragon.org/15.17/game/assets/ux/cherry/augments/icons/slaparound_large.png"
       },
       {
-        "name": "Tormentor",
-        "imageUrl": "https://raw.communitydragon.org/15.17/game/assets/ux/cherry/augments/icons/tormentor_large.png"
+        "name": "Don't Chase",
+        "imageUrl": "https://raw.communitydragon.org/15.17/game/assets/ux/cherry/augments/icons/dontchase_large.png"
       },
       {
         "name": "Clothesline",
@@ -119,12 +119,12 @@
     ],
     "situational": [
       {
-        "name": "Rod of Ages",
-        "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/226657.png"
-      },
-      {
         "name": "Jak'Sho, The Protean",
         "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/226665.png"
+      },
+      {
+        "name": "Rod of Ages",
+        "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/226657.png"
       },
       {
         "name": "Bloodletter's Curse",
@@ -151,11 +151,6 @@
       "tier": "S"
     },
     {
-      "name": "Demonic Embrace",
-      "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/444637.png",
-      "tier": "S"
-    },
-    {
       "name": "Dragonheart",
       "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/447106.png",
       "tier": "S"
@@ -163,6 +158,11 @@
     {
       "name": "Runecarver",
       "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/447108.png",
+      "tier": "S"
+    },
+    {
+      "name": "Demonic Embrace",
+      "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/444637.png",
       "tier": "S"
     },
     {
@@ -176,13 +176,13 @@
       "tier": "S"
     },
     {
-      "name": "Lightning Rod",
-      "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/447119.png",
+      "name": "Twin Mask",
+      "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/443080.png",
       "tier": "S"
     },
     {
-      "name": "Twin Mask",
-      "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/443080.png",
+      "name": "Lightning Rod",
+      "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/447119.png",
       "tier": "S"
     },
     {
@@ -196,13 +196,8 @@
       "tier": "A"
     },
     {
-      "name": "Warmog's Armor",
-      "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/443083.png",
-      "tier": "A"
-    },
-    {
-      "name": "Innervating Locket",
-      "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/447104.png",
+      "name": "Fulmination",
+      "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/443055.png",
       "tier": "A"
     },
     {
@@ -221,13 +216,18 @@
       "tier": "A"
     },
     {
+      "name": "Warmog's Armor",
+      "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/443083.png",
+      "tier": "A"
+    },
+    {
       "name": "Reality Fracture",
       "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/447102.png",
       "tier": "A"
     },
     {
-      "name": "Fulmination",
-      "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/443055.png",
+      "name": "Empyrean Promise",
+      "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/447105.png",
       "tier": "A"
     },
     {
@@ -241,13 +241,8 @@
       "tier": "A"
     },
     {
-      "name": "Empyrean Promise",
-      "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/447105.png",
-      "tier": "B"
-    },
-    {
-      "name": "Puppeteer",
-      "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/447123.png",
+      "name": "Innervating Locket",
+      "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/447104.png",
       "tier": "B"
     },
     {
@@ -271,18 +266,13 @@
       "tier": "B"
     },
     {
-      "name": "Talisman Of Ascension",
-      "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/443064.png",
-      "tier": "B"
-    },
-    {
-      "name": "Kinkou Jitte",
-      "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/447116.png",
-      "tier": "B"
-    },
-    {
       "name": "Everfrost",
       "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/446656.png",
+      "tier": "B"
+    },
+    {
+      "name": "Goredrinker",
+      "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/226630.png",
       "tier": "B"
     },
     {
@@ -291,13 +281,33 @@
       "tier": "B"
     },
     {
+      "name": "Talisman Of Ascension",
+      "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/443064.png",
+      "tier": "B"
+    },
+    {
       "name": "Twilight's Edge",
       "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/447121.png",
+      "tier": "B"
+    },
+    {
+      "name": "Reaper's Toll",
+      "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/443090.png",
       "tier": "C"
     },
     {
       "name": "Force Of Entropy",
       "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/443061.png",
+      "tier": "C"
+    },
+    {
+      "name": "Kinkou Jitte",
+      "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/447116.png",
+      "tier": "C"
+    },
+    {
+      "name": "Puppeteer",
+      "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/447123.png",
       "tier": "C"
     },
     {
@@ -313,16 +323,11 @@
     {
       "name": "Hemomancer's Helm",
       "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/447103.png",
-      "tier": "C"
+      "tier": "D"
     },
     {
       "name": "Darksteel Talons",
       "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/443054.png",
-      "tier": "C"
-    },
-    {
-      "name": "Reaper's Toll",
-      "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/443090.png",
       "tier": "D"
     },
     {
@@ -336,12 +341,12 @@
       "tier": "D"
     },
     {
-      "name": "Goredrinker",
-      "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/226630.png",
+      "name": "Hexbolt Companion",
+      "imageUrl": "https://img.metasrc.com/cdn/15.17.1/img/item/443081.png",
       "tier": "D"
     }
   ],
-  "lastUpdated": "2025-08-31T06:25:42.108Z",
+  "lastUpdated": "2025-09-07T06:25:57.424Z",
   "imageUrl": "https://cdn.mobalytics.gg/assets/lol/images/dd/champions/icons/Singed.png",
   "slug": "singed"
 }

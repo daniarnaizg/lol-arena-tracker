@@ -4,9 +4,9 @@ import { riotApiService } from '@/services/riotApi';
 export async function POST(request: NextRequest) {
   try {
     console.log('=== ARENA MATCHES API CALLED ===');
-    const { puuid, maxMatches = 30, start = 0 } = await request.json();
+    const { puuid, start = 0 } = await request.json();
     
-    console.log('Request params:', { puuid, maxMatches, start });
+    console.log('Request params:', { puuid, start });
 
     if (!puuid) {
       console.error('Missing required parameter: puuid');
@@ -16,15 +16,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const maxCount = Math.min(maxMatches, 50); // Cap at 50 for safety
-    console.log(`🚀 Fetching up to ${maxCount} Arena matches directly for PUUID: ${puuid}`);
+    console.log(`🚀 Fetching all available Arena matches for PUUID: ${puuid}`);
 
     try {
       // Use the optimized method that gets Arena matches directly using queue=1700
+      // Without count parameter to get all available matches
       const result = await riotApiService.getArenaMatchDetails({
         puuid,
-        start,
-        count: maxCount
+        start
       });
       
       console.log(`✅ Fetch complete: ${result.arenaMatches.length} Arena matches found`);

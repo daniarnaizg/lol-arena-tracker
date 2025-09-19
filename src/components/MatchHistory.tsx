@@ -1,11 +1,15 @@
-"use client"
+"use client";
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArenaMatchCard } from './ui/ArenaMatchCard';
 import { LocalStorageManager, StoredPlayerData } from '@/utils/localStorage';
 import { normalizeChampionName } from '@/utils/championUtils';
 import type { Champion } from '@/services/ddragon';
-import { ConfirmationModal } from './ui/ConfirmationModal';
+
+// =============================================================================
+// Types and Interfaces
+// =============================================================================
 
 interface RiotAccount {
   puuid: string;
@@ -13,7 +17,6 @@ interface RiotAccount {
   tagLine: string;
 }
 
-// Simplified Arena match data - only what we actually use
 interface ArenaMatch {
   metadata: {
     matchId: string;
@@ -21,7 +24,6 @@ interface ArenaMatch {
   info: {
     gameCreation: number;
     gameEndTimestamp: number;
-    // User's match data (already filtered to the requesting user)
     championName: string;
     placement: number;
     win: boolean;
@@ -37,28 +39,167 @@ interface ArenaMatchesData {
 interface MatchHistoryProps {
   className?: string;
   onChampionSearch?: (championName: string) => void;
-  // Allows applying match-history-derived improvements to champion checklist
   onApplyChampionUpdates?: React.Dispatch<React.SetStateAction<Champion[]>>;
 }
 
-export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onChampionSearch, onApplyChampionUpdates }) => {
+// =============================================================================
+// Constants and Configuration
+// =============================================================================
+
+const API_ENDPOINTS = {
+  RIOT_ACCOUNT: '/api/riot-account',
+  MATCH_HISTORY: '/api/match-history',
+  MATCH_DETAILS: '/api/match-details',
+} as const;
+
+// Achievement levels for champion progress tracking
+const ACHIEVEMENT_LEVELS = {
+  PLAYED: 1,
+  TOP4: 2,
+  WIN: 3,
+} as const;
+
+// =============================================================================
+// Main Component
+// =============================================================================
+
+export const MatchHistory: React.FC<MatchHistoryProps> = ({ 
+  className = '', 
+  onChampionSearch, 
+  onApplyChampionUpdates 
+}) => {
+  // =============================================================================
+  // State Management
+  // =============================================================================
+  
+  // User input state
   const [gameName, setGameName] = useState('');
   const [tagLine, setTagLine] = useState('');
+  
+  // Loading and error state
   const [isLoading, setIsLoading] = useState(false);
+  const [isAutoSearching, setIsAutoSearching] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  
+  // Data state
   const [account, setAccount] = useState<RiotAccount | null>(null);
   const [arenaMatches, setArenaMatches] = useState<ArenaMatchesData | null>(null);
+  
+  // UI state
   const [showInputs, setShowInputs] = useState(true);
   const [isExpanded, setIsExpanded] = useState(false);
   const [hasAutoSearched, setHasAutoSearched] = useState(false);
-  // Apply from history UX state
-  const [isApplying, setIsApplying] = useState(false);
-  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
-  const [previewSummary, setPreviewSummary] = useState<null | { total: number; played: number; top4: number; win: number }>(null);
-  const [previewDetails, setPreviewDetails] = useState<null | Array<{ name: string; from: number; to: number }>>(
-    null
-  );
-  const [btnState, setBtnState] = useState<'idle' | 'nochange' | 'applied'>('idle');
+
+  // =============================================================================
+  // API Utility Functions
+  // =============================================================================
+  
+  const fetchRiotAccount = useCallback(async (gameName: string, tagLine: string): Promise<RiotAccount> => {
+    const response = await fetch(API_ENDPOINTS.RIOT_ACCOUNT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ gameName, tagLine }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || 'Failed to fetch account information');
+    }
+
+    const data = await response.json();
+    return data.account;
+  }, []);
+
+  const fetchMatchHistory = useCallback(async (puuid: string) => {
+    const response = await fetch(API_ENDPOINTS.MATCH_HISTORY, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ puuid }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || 'Failed to fetch match history');
+    }
+
+    return response.json();
+  }, []);
+
+  const fetchMatchDetails = useCallback(async (puuid: string, matchIds: string[], incrementalUpdate = false) => {
+    const response = await fetch(API_ENDPOINTS.MATCH_DETAILS, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ puuid, matchIds, incrementalUpdate }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || 'Failed to fetch match details');
+    }
+
+    return response.json();
+  }, []);
+
+  // =============================================================================
+  // Champion Progress Utility Functions
+  // =============================================================================
+  
+  const calculateChampionLevel = (placement: number): number => {
+    if (placement === 1) return ACHIEVEMENT_LEVELS.WIN;
+    if (placement <= 4) return ACHIEVEMENT_LEVELS.TOP4;
+    return ACHIEVEMENT_LEVELS.PLAYED;
+  };
+
+  const buildChampionBestResults = useCallback((matches: ArenaMatch[]): Map<string, number> => {
+    const bestByChampion = new Map<string, number>();
+    
+    for (const match of matches) {
+      const nameKey = normalizeChampionName(match.info.championName);
+      const level = calculateChampionLevel(match.info.placement);
+      const previousLevel = bestByChampion.get(nameKey) ?? 0;
+      
+      if (level > previousLevel) {
+        bestByChampion.set(nameKey, level);
+      }
+    }
+    
+    return bestByChampion;
+  }, []);
+
+  // =============================================================================
+  // Component Event Handlers
+  // =============================================================================
+
+  // Auto-sync checklist with current match history
+  const autoSyncChecklist = useCallback((matches: ArenaMatchesData) => {
+    if (!onApplyChampionUpdates || !matches.arenaMatches.length) {
+      return;
+    }
+
+    console.log('🔄 Auto-syncing checklist with filtered matches...');
+    
+    // Build the best result per champion from current filtered matches
+    const bestByChampion = buildChampionBestResults(matches.arenaMatches);
+
+    // Update champions based on filtered match history
+    onApplyChampionUpdates(prev => {
+      return prev.map(champ => {
+        const key = normalizeChampionName(champ.name);
+        const target = bestByChampion.get(key) ?? 0;
+        
+        // Set checklist based on best achievement in filtered matches
+        const checklist = { 
+          played: target >= ACHIEVEMENT_LEVELS.PLAYED, 
+          top4: target >= ACHIEVEMENT_LEVELS.TOP4, 
+          win: target >= ACHIEVEMENT_LEVELS.WIN
+        };
+        
+        return { ...champ, checklist };
+      });
+    });
+
+    console.log(`✅ Auto-synced checklist: ${bestByChampion.size} champions from filtered matches`);
+  }, [onApplyChampionUpdates, buildChampionBestResults]);
 
   const performSearch = useCallback(async (playerData?: StoredPlayerData) => {
     const searchGameName = playerData?.gameName || gameName.trim();
@@ -73,74 +214,121 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
     setError(null);
 
     try {
-      let accountData;
+      let currentAccount: RiotAccount;
       
       // If we have saved player data with puuid, use it directly
       if (playerData?.puuid) {
-        accountData = {
-          account: {
-            puuid: playerData.puuid,
-            gameName: playerData.gameName,
-            tagLine: playerData.tagLine,
-          }
+        currentAccount = {
+          puuid: playerData.puuid,
+          gameName: playerData.gameName,
+          tagLine: playerData.tagLine,
         };
-        setAccount(accountData.account);
+        setAccount(currentAccount);
       } else {
         // Step 1: Get PUUID from Riot ID
-        const accountResponse = await fetch('/api/riot-account', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            gameName: searchGameName,
-            tagLine: searchTagLine,
-          }),
-        });
-
-        accountData = await accountResponse.json();
-
-        if (!accountResponse.ok) {
-          throw new Error(accountData.error || 'Failed to fetch account');
-        }
+        currentAccount = await fetchRiotAccount(searchGameName, searchTagLine);
         
-        setAccount(accountData.account);
+        setAccount(currentAccount);
         
         // Save player data for future visits
         const playerDataToSave: StoredPlayerData = {
-          gameName: accountData.account.gameName,
-          tagLine: accountData.account.tagLine,
-          puuid: accountData.account.puuid,
+          gameName: currentAccount.gameName,
+          tagLine: currentAccount.tagLine,
+          puuid: currentAccount.puuid,
           savedAt: Date.now(),
         };
         LocalStorageManager.setPlayerData(playerDataToSave);
       }
       
       
-      // Step 2: Fetch Arena matches directly using queue=1700 (no filtering needed!)
-      console.log('🚀 Fetching Arena matches directly using queue=1700');
+      // Step 2: Fetch match history and save Arena matches to database
+      const searchType = playerData ? 'Auto-search' : 'Manual search';
+      console.log(`🚀 ${searchType}: Fetching match history for ${currentAccount.gameName}#${currentAccount.tagLine}`);
       
-      const arenaResponse = await fetch('/api/arena-matches', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          puuid: accountData.account.puuid,
-          maxMatches: 30, // Get up to 30 Arena matches directly
-        }),
-      });
+      // First get match history
+      const historyData = await fetchMatchHistory(currentAccount.puuid);
 
-      const arenaData = await arenaResponse.json();
-
-      if (!arenaResponse.ok) {
-        throw new Error(arenaData.error || 'Failed to fetch Arena matches');
+      // Check if we have new matches to process
+      let detailsData;
+      if (historyData.newMatchIds && historyData.newMatchIds.length > 0) {
+        console.log(`📥 Processing ${historyData.newMatchIds.length} new matches only`);
+        
+        // Only fetch details for NEW matches to avoid "already exists" messages
+        await fetchMatchDetails(currentAccount.puuid, historyData.newMatchIds, true);
+        
+        console.log(`✅ Successfully processed ${historyData.newMatchIds.length} new matches`);
+        
+        // Check if we have cached match data to avoid second API call
+        if (historyData.matches && historyData.matches.length > 0) {
+          console.log(`✅ Using ${historyData.matches.length} cached matches from API response`);
+          detailsData = {
+            success: true,
+            matches: historyData.matches,
+            processed: historyData.matches.length,
+            arenaMatches: historyData.matches.length
+          };
+        } else {
+          // Fallback: fetch ALL match details (new + cached) for UI display
+          console.log(`🔄 Fetching all ${historyData.matchIds.length} matches for UI display`);
+          detailsData = await fetchMatchDetails(currentAccount.puuid, historyData.matchIds);
+        }
+      } else if (historyData.matches && historyData.matches.length > 0) {
+        // We have complete cached match data, no need to fetch details
+        console.log(`✅ Using ${historyData.matches.length} cached matches with complete data.`);
+        detailsData = {
+          success: true,
+          matches: historyData.matches,
+          processed: historyData.matches.length,
+          arenaMatches: historyData.matches.length
+        };
+      } else if (historyData.matchIds && historyData.matchIds.length > 0) {
+        // Fetch match details for the matches (fallback case)
+        console.log(`🔄 Fetching match details for ${historyData.matchIds.length} matches`);
+        detailsData = await fetchMatchDetails(currentAccount.puuid, historyData.matchIds, true);
+      } else {
+        // No matches found
+        console.log(`ℹ️ No Arena matches found for this account`);
+        detailsData = {
+          success: false,
+          matches: [],
+          processed: 0,
+          arenaMatches: 0
+        };
       }
 
-      if (arenaData.arenaCount > 0) {
-        setArenaMatches(arenaData);
+      // Transform the saved matches into the format expected by the UI
+      if (detailsData.success && detailsData.matches && detailsData.matches.length > 0) {
+        const transformedMatches = {
+          arenaMatches: detailsData.matches.map((match: {
+            matchId: string;
+            gameCreation: number;
+            gameEndTimestamp?: number;
+            championName: string;
+            placement: number;
+            win: boolean;
+          }) => ({
+            metadata: {
+              matchId: match.matchId
+            },
+            info: {
+              gameCreation: match.gameCreation,
+              gameEndTimestamp: match.gameEndTimestamp || match.gameCreation + 1000000, // Fallback
+              championName: match.championName,
+              placement: match.placement,
+              win: match.win
+            }
+          })),
+          totalChecked: detailsData.processed || 0,
+          arenaCount: detailsData.arenaMatches || 0
+        };
+
+        setArenaMatches(transformedMatches);
         setShowInputs(false);
-        console.log(`✅ Found ${arenaData.arenaCount} Arena matches directly from API`);
+        
+        // Auto-sync checklist with initial matches
+        autoSyncChecklist(transformedMatches);
+        
+        console.log(`✅ Found and saved ${detailsData.arenaMatches} Arena matches to database`);
       } else {
         throw new Error('No Arena matches found for this account');
       }    } catch (err) {
@@ -156,13 +344,14 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
     } finally {
       setIsLoading(false);
     }
-  }, [gameName, tagLine]);
+  }, [gameName, tagLine, autoSyncChecklist, fetchRiotAccount, fetchMatchHistory, fetchMatchDetails]);
 
   // Load saved player data on component mount
   useEffect(() => {
     const loadSavedPlayer = async () => {
       const savedPlayer = LocalStorageManager.getPlayerData();
-      if (savedPlayer && !hasAutoSearched) {
+      if (savedPlayer && !hasAutoSearched && !isAutoSearching && !isLoading) {
+        setIsAutoSearching(true);
         setGameName(savedPlayer.gameName);
         setTagLine(savedPlayer.tagLine);
         setAccount({
@@ -173,13 +362,24 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
         setIsExpanded(true); // Start expanded when there's a saved player
         setHasAutoSearched(true);
         
-        // Auto-search for the saved player
-        await performSearch(savedPlayer);
+        try {
+          // Use the same performSearch function for consistency
+          await performSearch(savedPlayer);
+        } catch (err) {
+          console.error('Auto-search failed:', err);
+          setError(err instanceof Error ? err.message : 'Auto-search failed');
+          // If auto-search fails, show inputs and clear saved data
+          setShowInputs(true);
+          setIsExpanded(true);
+          LocalStorageManager.clearPlayerData();
+        } finally {
+          setIsAutoSearching(false);
+        }
       }
     };
 
     loadSavedPlayer();
-  }, [hasAutoSearched, performSearch]);
+  }, [hasAutoSearched, isAutoSearching, isLoading, performSearch]); // Include performSearch dependency
 
   const handleSubmit = async (e?: React.FormEvent) => {
     e?.preventDefault();
@@ -200,101 +400,6 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
     setGameName('');
     setTagLine('');
     setHasAutoSearched(false);
-  };
-
-  // Build the best result per champion from arena matches
-  const buildBestByChampion = (): Map<string, number> => {
-    const bestByChampion = new Map<string, number>();
-    if (!arenaMatches || !account) return bestByChampion;
-    
-    for (const match of arenaMatches.arenaMatches) {
-      // Data is already filtered to the user - no need to find participant
-      const nameKey = normalizeChampionName(match.info.championName);
-      let level = 1; // played baseline if present in history
-      // Only count placement === 1 as Win; placements 2-4 as Top 4
-      if (match.info.placement === 1) level = 3;
-      else if (match.info.placement <= 4) level = 2;
-      const prev = bestByChampion.get(nameKey) ?? 0;
-      if (level > prev) bestByChampion.set(nameKey, level);
-    }
-    return bestByChampion;
-  };
-
-  // Open confirm modal with a simple summary and detailed list
-  const openConfirmApply = () => {
-    if (!arenaMatches || !account || !onApplyChampionUpdates) return;
-    const best = buildBestByChampion();
-    if (best.size === 0) {
-      // brief button feedback for no changes
-      setBtnState('nochange');
-      setTimeout(() => setBtnState('idle'), 1500);
-      return;
-    }
-    const stored = LocalStorageManager.getChampionData();
-    const champions: Champion[] = stored?.champions || [];
-    let total = 0, win = 0, top4 = 0, played = 0;
-    const details: Array<{ name: string; from: number; to: number }> = [];
-    for (const champ of champions) {
-      const key = normalizeChampionName(champ.name);
-      const target = best.get(key) ?? 0;
-      const currentLevel = champ.checklist?.win ? 3 : champ.checklist?.top4 ? 2 : champ.checklist?.played ? 1 : 0;
-      if (target > currentLevel) {
-        total += 1;
-        if (target === 3) win += 1;
-        else if (target === 2) top4 += 1;
-        else if (target === 1) played += 1;
-        details.push({ name: champ.name, from: currentLevel, to: target });
-      }
-    }
-
-    if (total === 0) {
-      setBtnState('nochange');
-      setTimeout(() => setBtnState('idle'), 1500);
-      return;
-    }
-
-    setPreviewSummary({ total, win, top4, played });
-    setPreviewDetails(details);
-    setIsConfirmOpen(true);
-  };
-
-  // Apply the improvements after confirmation
-  const handleApplyFromHistory = async () => {
-    if (!arenaMatches || !account || !onApplyChampionUpdates || isApplying) return;
-    setIsApplying(true);
-    try {
-      const bestByChampion = buildBestByChampion();
-      if (bestByChampion.size === 0) {
-        setBtnState('nochange');
-        setTimeout(() => setBtnState('idle'), 1500);
-        return;
-      }
-      onApplyChampionUpdates(prev => {
-        const next = prev.map(champ => {
-          const key = normalizeChampionName(champ.name);
-          const target = bestByChampion.get(key);
-          if (!target) return champ;
-          const currentLevel = champ.checklist?.win ? 3 : champ.checklist?.top4 ? 2 : champ.checklist?.played ? 1 : 0;
-          if (target <= currentLevel) return champ; // only improve
-          const improved =
-            target === 3
-              ? { played: true, top4: true, win: true }
-              : target === 2
-              ? { played: true, top4: true, win: false }
-              : { played: true, top4: false, win: false };
-          return { ...champ, checklist: improved };
-        });
-        return next;
-      });
-      // brief success button feedback
-      setBtnState('applied');
-      setTimeout(() => setBtnState('idle'), 1500);
-    } finally {
-      setIsApplying(false);
-      setIsConfirmOpen(false);
-      setPreviewSummary(null);
-      setPreviewDetails(null);
-    }
   };
 
   const formatDate = (timestamp: number) => {
@@ -319,7 +424,7 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
             <div className={`flex items-center justify-between ${isExpanded ? 'mb-4' : ''}`}>
               <div className="flex items-center gap-3">
                 <h2 className="text-lg md:text-xl font-semibold text-gray-300 truncate">ARENA MATCH HISTORY</h2>
-                <span className="text-gray-400 text-sm pl-8 hidden md:inline">Search for your last 30 arena matches and apply the results to the tracker</span>
+                <span className="text-gray-400 text-sm pl-8 hidden md:inline">Search for all available arena matches and apply the results to the tracker</span>
               </div>
               <button
                 onClick={() => setIsExpanded(!isExpanded)}
@@ -426,14 +531,24 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
                 <button
                   onClick={handleBack}
                   title="Go back to search"
-                  className="w-10 h-10 bg-gray-700 hover:bg-gray-600 rounded-lg flex items-center justify-center transition-colors"
+                  className="w-10 h-10 bg-gray-700 hover:bg-gray-600 rounded-lg flex items-center justify-center transition-colors flex-shrink-0"
                 >
                   <svg className="w-5 h-5 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
                 </button>
-                <div className="flex-1 flex items-center justify-center gap-2">
+                
+                <div className="flex-1 flex items-center justify-center">
                   <h2 className="text-lg font-bold text-gray-300 px-2 truncate">MATCH HISTORY</h2>
+                </div>
+
+                {/* Player name and refresh button */}
+                <div className="flex items-center gap-2 flex-shrink-0">
+                  {account && (
+                    <p className="text-xs font-semibold text-gray-500 uppercase truncate max-w-20">
+                      {account.gameName}#{account.tagLine}
+                    </p>
+                  )}
                   <button
                     onClick={handleRefresh}
                     disabled={isLoading}
@@ -455,34 +570,7 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
                     )}
                   </button>
                 </div>
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={openConfirmApply}
-                    disabled={isLoading || isApplying || !arenaMatches || !account}
-                    title="Apply from history: upgrade champion status"
-                    className={`
-                      h-10 rounded-lg flex items-center justify-center transition-colors px-3 gap-1 relative
-                      ${isLoading || isApplying || !arenaMatches || !account ? 'bg-gray-600 cursor-not-allowed' : btnState === 'nochange' ? 'bg-red-600 animate-shake' : btnState === 'applied' ? 'bg-green-600 animate-pulse' : 'bg-gray-700 hover:bg-green-600'}
-                    `}
-                  >
-                    {isApplying ? (
-                      <div className="w-5 h-5 border-2 border-green-200 border-t-transparent rounded-full animate-spin" />
-                    ) : (
-                      <>
-                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        <span className="text-white text-sm">Apply</span>
-                      </>
-                    )}
-                  </button>
-                </div>
               </div>
-              {account && (
-                <p className="mt-1 text-xs font-semibold text-gray-500 uppercase text-center truncate">
-                  {account.gameName}#{account.tagLine}
-                </p>
-              )}
             </div>
 
             {/* Desktop/tablet header */}
@@ -497,62 +585,35 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
                 </button>
-                <div className="flex items-center gap-3">
-                  <h2 className="text-xl font-bold text-gray-300">MATCH HISTORY</h2>
-                  {account && (
-                    <div className="flex items-center gap-2">
-                      <p className="text-m font-semibold text-gray-500 uppercase">{account.gameName}#{account.tagLine}</p>
-                      <button
-                        onClick={handleRefresh}
-                        disabled={isLoading}
-                        title="Refresh match history"
-                        className={`
-                          w-8 h-8 rounded-lg flex items-center justify-center transition-colors
-                          ${isLoading 
-                            ? 'bg-blue-500 cursor-not-allowed' 
-                            : 'bg-gray-700 hover:bg-blue-200'
-                          }
-                        `}
-                      >
-                        {isLoading ? (
-                          <div className="w-4 h-4 border-2 border-blue-200 border-t-transparent rounded-full animate-spin" />
-                        ) : (
-                          <svg className="w-4 h-4 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                          </svg>
-                        )}
-                      </button>
-                    </div>
-                  )}
-                </div>
+                <h2 className="text-xl font-bold text-gray-300">MATCH HISTORY</h2>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="relative group">
+
+              {/* Player name and refresh button */}
+              {account && (
+                <div className="flex items-center gap-3">
+                  <p className="text-m font-semibold text-gray-500 uppercase">{account.gameName}#{account.tagLine}</p>
                   <button
-                    onClick={openConfirmApply}
-                    disabled={isLoading || isApplying || !arenaMatches || !account}
-                    title="Apply from history"
+                    onClick={handleRefresh}
+                    disabled={isLoading}
+                    title="Refresh match history"
                     className={`
-                      h-8 rounded-lg flex items-center justify-center transition-colors px-2 gap-1
-                      ${isLoading || isApplying || !arenaMatches || !account ? 'bg-gray-600 cursor-not-allowed' : btnState === 'nochange' ? 'bg-red-600 animate-shake' : btnState === 'applied' ? 'bg-green-600 animate-pulse' : 'bg-gray-700 hover:bg-green-200'}
+                      w-8 h-8 rounded-lg flex items-center justify-center transition-colors
+                      ${isLoading 
+                        ? 'bg-blue-500 cursor-not-allowed' 
+                        : 'bg-gray-700 hover:bg-blue-200'
+                      }
                     `}
                   >
-                    {isApplying ? (
-                      <div className="w-4 h-4 border-2 border-green-200 border-t-transparent rounded-full animate-spin" />
+                    {isLoading ? (
+                      <div className="w-4 h-4 border-2 border-blue-200 border-t-transparent rounded-full animate-spin" />
                     ) : (
-                      <>
-                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        <span className="text-white text-sm">Apply</span>
-                      </>
+                      <svg className="w-4 h-4 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                      </svg>
                     )}
                   </button>
-                  <div className="hidden sm:block absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10">
-                    Upgrade champion status from match history
-                  </div>
                 </div>
-              </div>
+              )}
             </div>
 
             {/* Match history horizontal scroll */}
@@ -586,48 +647,6 @@ export const MatchHistory: React.FC<MatchHistoryProps> = ({ className = '', onCh
               </div>
             )}
 
-            {/* Confirmation modal */}
-            <ConfirmationModal
-              isOpen={isConfirmOpen}
-              title="Apply from match history"
-              message={(
-                <div>
-                  {previewSummary && (
-                    <div className="text-sm text-gray-700 mb-2">
-                      <span>Will update {previewSummary.total} champion{previewSummary.total === 1 ? '' : 's'}:</span>
-                      <div className="mt-1 flex gap-2 text-xs">
-                        <span className="text-yellow-700">Wins: {previewSummary.win}</span>
-                        <span className="text-gray-700">Top 4: {previewSummary.top4}</span>
-                        <span className="text-amber-700">Played: {previewSummary.played}</span>
-                      </div>
-                    </div>
-                  )}
-                  {previewDetails && previewDetails.length > 0 && (
-                    <ul className="max-h-48 overflow-auto pr-1 text-sm space-y-1">
-                      {previewDetails.map((d) => {
-                        const levelToLabel = (n: number) => (n === 3 ? 'Win' : n === 2 ? 'Top 4' : n === 1 ? 'Played' : 'Unplayed');
-                        const colorFrom = d.from === 3 ? 'text-yellow-700' : d.from === 2 ? 'text-gray-700' : d.from === 1 ? 'text-amber-700' : 'text-gray-500';
-                        const colorTo = d.to === 3 ? 'text-yellow-700' : d.to === 2 ? 'text-gray-700' : d.to === 1 ? 'text-amber-700' : 'text-gray-500';
-                        return (
-                          <li key={`${d.name}-${d.from}-${d.to}`} className="flex items-center justify-between gap-2">
-                            <span className="font-medium text-gray-900 truncate">{d.name}</span>
-                            <span className="text-xs">
-                              <span className={`${colorFrom}`}>{levelToLabel(d.from)}</span>
-                              <span className="mx-1 text-gray-500">→</span>
-                              <span className={`${colorTo} font-semibold`}>{levelToLabel(d.to)}</span>
-                            </span>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  )}
-                </div>
-              )}
-              confirmText="Apply"
-              cancelText="Cancel"
-              onConfirm={handleApplyFromHistory}
-              onCancel={() => { setIsConfirmOpen(false); setPreviewSummary(null); setPreviewDetails(null); }}
-            />
           </motion.div>
         )}
       </AnimatePresence>
