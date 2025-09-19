@@ -1,7 +1,12 @@
 /* eslint-disable */
-const puppeteer = require("puppeteer");
-const fs = require("fs/promises");
-const path = require("path");
+import puppeteer from "puppeteer";
+import fs from "fs/promises";
+import path from "path";
+import { fileURLToPath } from "url";
+
+// Get __dirname equivalent for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Load champion list from src/data/champions.json and derive metasrc slugs from imageKey
 const CHAMPIONS_FILE = path.resolve(process.cwd(), "src/data/champions.json");
