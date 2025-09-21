@@ -51,12 +51,12 @@
         "imageUrl": "https://raw.communitydragon.org/15.18/game/assets/ux/cherry/augments/icons/adapt_large.png"
       },
       {
-        "name": "Stats!",
-        "imageUrl": "https://raw.communitydragon.org/15.18/game/assets/ux/cherry/augments/icons/stats_large.png"
-      },
-      {
         "name": "Executioner",
         "imageUrl": "https://raw.communitydragon.org/15.18/game/assets/ux/cherry/augments/icons/executioner_large.png"
+      },
+      {
+        "name": "Repulsor",
+        "imageUrl": "https://raw.communitydragon.org/15.18/game/assets/ux/cherry/augments/icons/repulsor_large.png"
       }
     ]
   },
@@ -166,13 +166,13 @@
       "tier": "S"
     },
     {
-      "name": "Twin Mask",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443080.png",
+      "name": "Radiant Virtue",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/446667.png",
       "tier": "S"
     },
     {
-      "name": "Radiant Virtue",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/446667.png",
+      "name": "Twin Mask",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443080.png",
       "tier": "S"
     },
     {
@@ -201,23 +201,23 @@
       "tier": "A"
     },
     {
-      "name": "Lightning Rod",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447119.png",
-      "tier": "A"
-    },
-    {
       "name": "Night Harvester",
       "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/444636.png",
       "tier": "A"
     },
     {
-      "name": "Gargoyle Stoneplate",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443193.png",
+      "name": "Shield of Molten Stone",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443058.png",
       "tier": "A"
     },
     {
-      "name": "Shield of Molten Stone",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443058.png",
+      "name": "Lightning Rod",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447119.png",
+      "tier": "A"
+    },
+    {
+      "name": "Gargoyle Stoneplate",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443193.png",
       "tier": "A"
     },
     {
@@ -236,18 +236,13 @@
       "tier": "A"
     },
     {
-      "name": "Turbo Chemtank",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443079.png",
-      "tier": "B"
-    },
-    {
       "name": "Warmog's Armor",
       "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443083.png",
       "tier": "B"
     },
     {
-      "name": "Talisman Of Ascension",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443064.png",
+      "name": "Turbo Chemtank",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443079.png",
       "tier": "B"
     },
     {
@@ -256,18 +251,8 @@
       "tier": "B"
     },
     {
-      "name": "Reality Fracture",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447102.png",
-      "tier": "B"
-    },
-    {
-      "name": "Fulmination",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443055.png",
-      "tier": "B"
-    },
-    {
-      "name": "Sanguine Gift",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443062.png",
+      "name": "Talisman Of Ascension",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443064.png",
       "tier": "B"
     },
     {
@@ -276,14 +261,29 @@
       "tier": "B"
     },
     {
-      "name": "Force Of Entropy",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443061.png",
+      "name": "Reality Fracture",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447102.png",
+      "tier": "B"
+    },
+    {
+      "name": "Sanguine Gift",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443062.png",
       "tier": "B"
     },
     {
       "name": "Twilight's Edge",
       "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447121.png",
-      "tier": "C"
+      "tier": "B"
+    },
+    {
+      "name": "Force Of Entropy",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443061.png",
+      "tier": "B"
+    },
+    {
+      "name": "Fulmination",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443055.png",
+      "tier": "B"
     },
     {
       "name": "Decapitator",
@@ -311,6 +311,11 @@
       "tier": "C"
     },
     {
+      "name": "Reverberation",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447114.png",
+      "tier": "C"
+    },
+    {
       "name": "Reaper's Toll",
       "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443090.png",
       "tier": "D"
@@ -321,17 +326,17 @@
       "tier": "D"
     },
     {
-      "name": "Reverberation",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447114.png",
-      "tier": "D"
-    },
-    {
       "name": "Gambler's Blade",
       "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447101.png",
       "tier": "D"
+    },
+    {
+      "name": "Hexbolt Companion",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443081.png",
+      "tier": "D"
     }
   ],
-  "lastUpdated": "2025-09-19T07:38:58.273Z",
+  "lastUpdated": "2025-09-21T06:30:31.167Z",
   "imageUrl": "https://cdn.mobalytics.gg/assets/lol/images/dd/champions/icons/Velkoz.png",
   "slug": "velkoz"
 }

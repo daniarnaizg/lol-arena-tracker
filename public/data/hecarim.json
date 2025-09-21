@@ -19,8 +19,8 @@
         "imageUrl": "https://raw.communitydragon.org/15.18/game/assets/ux/cherry/augments/icons/goliath_large.png"
       },
       {
-        "name": "Infernal Conduit",
-        "imageUrl": "https://raw.communitydragon.org/15.18/game/assets/ux/cherry/augments/icons/infernalconduit_large.png"
+        "name": "Jeweled Gauntlet",
+        "imageUrl": "https://raw.communitydragon.org/15.18/game/assets/ux/cherry/augments/icons/jeweledgauntlet_large.png"
       }
     ],
     "gold": [
@@ -43,20 +43,20 @@
     ],
     "silver": [
       {
-        "name": "Desecrator",
-        "imageUrl": "https://raw.communitydragon.org/15.18/game/assets/ux/cherry/augments/icons/desecrator_large.png"
-      },
-      {
         "name": "Goredrink",
         "imageUrl": "https://raw.communitydragon.org/15.18/game/assets/ux/cherry/augments/icons/goredrink_large.png"
+      },
+      {
+        "name": "Desecrator",
+        "imageUrl": "https://raw.communitydragon.org/15.18/game/assets/ux/cherry/augments/icons/desecrator_large.png"
       },
       {
         "name": "escAPADe",
         "imageUrl": "https://raw.communitydragon.org/15.18/game/assets/ux/cherry/augments/icons/escapade_large.png"
       },
       {
-        "name": "Infernal Soul",
-        "imageUrl": "https://raw.communitydragon.org/15.18/game/assets/ux/cherry/augments/icons/infernalsoul_large.png"
+        "name": "Transmute: Gold",
+        "imageUrl": "https://raw.communitydragon.org/15.18/game/assets/ux/cherry/augments/icons/transmutegold_large.png"
       }
     ]
   },
@@ -181,18 +181,18 @@
       "tier": "S"
     },
     {
-      "name": "Innervating Locket",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447104.png",
-      "tier": "S"
-    },
-    {
       "name": "Sanguine Gift",
       "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443062.png",
       "tier": "S"
     },
     {
-      "name": "Gargoyle Stoneplate",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443193.png",
+      "name": "Runecarver",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447108.png",
+      "tier": "S"
+    },
+    {
+      "name": "Innervating Locket",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447104.png",
       "tier": "S"
     },
     {
@@ -201,8 +201,8 @@
       "tier": "A"
     },
     {
-      "name": "Runecarver",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447108.png",
+      "name": "Gargoyle Stoneplate",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443193.png",
       "tier": "A"
     },
     {
@@ -246,28 +246,18 @@
       "tier": "A"
     },
     {
+      "name": "Sword of the Divine",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443060.png",
+      "tier": "A"
+    },
+    {
       "name": "Reaper's Toll",
       "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443090.png",
-      "tier": "A"
+      "tier": "B"
     },
     {
       "name": "Black Hole Gauntlet",
       "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447122.png",
-      "tier": "B"
-    },
-    {
-      "name": "Hamstringer",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443069.png",
-      "tier": "B"
-    },
-    {
-      "name": "Regicide",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447115.png",
-      "tier": "B"
-    },
-    {
-      "name": "Sword of the Divine",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443060.png",
       "tier": "B"
     },
     {
@@ -276,13 +266,13 @@
       "tier": "B"
     },
     {
-      "name": "Prowler's Claw",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/226693.png",
+      "name": "Regicide",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447115.png",
       "tier": "B"
     },
     {
-      "name": "Pyromancer's Cloak",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447118.png",
+      "name": "Prowler's Claw",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/226693.png",
       "tier": "B"
     },
     {
@@ -291,8 +281,13 @@
       "tier": "B"
     },
     {
-      "name": "Fulmination",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443055.png",
+      "name": "Hamstringer",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443069.png",
+      "tier": "B"
+    },
+    {
+      "name": "Pyromancer's Cloak",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447118.png",
       "tier": "B"
     },
     {
@@ -301,14 +296,14 @@
       "tier": "B"
     },
     {
-      "name": "Reality Fracture",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447102.png",
+      "name": "Fulmination",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443055.png",
       "tier": "B"
     },
     {
       "name": "Reverberation",
       "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447114.png",
-      "tier": "C"
+      "tier": "B"
     },
     {
       "name": "Force Of Entropy",
@@ -321,28 +316,33 @@
       "tier": "C"
     },
     {
-      "name": "Gambler's Blade",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447101.png",
-      "tier": "C"
-    },
-    {
-      "name": "Warmog's Armor",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443083.png",
-      "tier": "C"
-    },
-    {
       "name": "Talisman Of Ascension",
       "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443064.png",
       "tier": "C"
     },
     {
-      "name": "Empyrean Promise",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447105.png",
-      "tier": "D"
+      "name": "Gambler's Blade",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447101.png",
+      "tier": "C"
     },
     {
-      "name": "Night Harvester",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/444636.png",
+      "name": "Detonation Orb",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447113.png",
+      "tier": "C"
+    },
+    {
+      "name": "Empyrean Promise",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447105.png",
+      "tier": "C"
+    },
+    {
+      "name": "Reality Fracture",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447102.png",
+      "tier": "C"
+    },
+    {
+      "name": "Warmog's Armor",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443083.png",
       "tier": "D"
     },
     {
@@ -351,17 +351,22 @@
       "tier": "D"
     },
     {
+      "name": "Decapitator",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447107.png",
+      "tier": "D"
+    },
+    {
       "name": "Mirage Blade",
       "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447100.png",
       "tier": "D"
     },
     {
-      "name": "Decapitator",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447107.png",
+      "name": "Night Harvester",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/444636.png",
       "tier": "D"
     }
   ],
-  "lastUpdated": "2025-09-19T07:26:52.057Z",
+  "lastUpdated": "2025-09-21T06:17:58.653Z",
   "imageUrl": "https://cdn.mobalytics.gg/assets/lol/images/dd/champions/icons/Hecarim.png",
   "slug": "hecarim"
 }

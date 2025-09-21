@@ -1,6 +1,6 @@
 {
   "name": "Gwen Arena Build 25.18 LoL",
-  "tier": "A",
+  "tier": "B",
   "stats": {
     "winRate": "Unknown"
   },
@@ -33,12 +33,12 @@
         "imageUrl": "https://raw.communitydragon.org/15.18/game/assets/ux/cherry/augments/icons/scopierweapons_large.png"
       },
       {
-        "name": "And My Axe!",
-        "imageUrl": "https://raw.communitydragon.org/15.18/game/assets/ux/cherry/augments/icons/andmyaxe_large.png"
-      },
-      {
         "name": "Trickster Demon",
         "imageUrl": "https://raw.communitydragon.org/15.18/game/assets/ux/cherry/augments/icons/tricksterdemon_large.png"
+      },
+      {
+        "name": "And My Axe!",
+        "imageUrl": "https://raw.communitydragon.org/15.18/game/assets/ux/cherry/augments/icons/andmyaxe_large.png"
       }
     ],
     "silver": [
@@ -156,18 +156,18 @@
       "tier": "S"
     },
     {
-      "name": "Demon King's Crown",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443056.png",
-      "tier": "S"
-    },
-    {
       "name": "Flesheater",
       "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447112.png",
       "tier": "S"
     },
     {
-      "name": "Demonic Embrace",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/444637.png",
+      "name": "Demon King's Crown",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443056.png",
+      "tier": "S"
+    },
+    {
+      "name": "Twin Mask",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443080.png",
       "tier": "S"
     },
     {
@@ -176,8 +176,8 @@
       "tier": "S"
     },
     {
-      "name": "Twin Mask",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443080.png",
+      "name": "Demonic Embrace",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/444637.png",
       "tier": "S"
     },
     {
@@ -193,16 +193,11 @@
     {
       "name": "Gargoyle Stoneplate",
       "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443193.png",
-      "tier": "A"
+      "tier": "S"
     },
     {
       "name": "Cloak of Starry Night",
       "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443059.png",
-      "tier": "A"
-    },
-    {
-      "name": "Reality Fracture",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447102.png",
       "tier": "A"
     },
     {
@@ -211,8 +206,8 @@
       "tier": "A"
     },
     {
-      "name": "Innervating Locket",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447104.png",
+      "name": "Reality Fracture",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447102.png",
       "tier": "A"
     },
     {
@@ -221,13 +216,18 @@
       "tier": "A"
     },
     {
+      "name": "Innervating Locket",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447104.png",
+      "tier": "A"
+    },
+    {
       "name": "Darksteel Talons",
       "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443054.png",
       "tier": "A"
     },
     {
-      "name": "Sanguine Gift",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443062.png",
+      "name": "Galeforce",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/446671.png",
       "tier": "A"
     },
     {
@@ -236,9 +236,19 @@
       "tier": "A"
     },
     {
+      "name": "Sanguine Gift",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443062.png",
+      "tier": "A"
+    },
+    {
+      "name": "Twilight's Edge",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447121.png",
+      "tier": "A"
+    },
+    {
       "name": "Pyromancer's Cloak",
       "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447118.png",
-      "tier": "A"
+      "tier": "B"
     },
     {
       "name": "Hemomancer's Helm",
@@ -246,8 +256,8 @@
       "tier": "B"
     },
     {
-      "name": "Twilight's Edge",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447121.png",
+      "name": "Radiant Virtue",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/446667.png",
       "tier": "B"
     },
     {
@@ -263,16 +273,6 @@
     {
       "name": "Mirage Blade",
       "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447100.png",
-      "tier": "B"
-    },
-    {
-      "name": "Radiant Virtue",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/446667.png",
-      "tier": "B"
-    },
-    {
-      "name": "Empyrean Promise",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447105.png",
       "tier": "B"
     },
     {
@@ -293,11 +293,16 @@
     {
       "name": "Hexbolt Companion",
       "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443081.png",
-      "tier": "C"
+      "tier": "B"
     },
     {
       "name": "Everfrost",
       "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/446656.png",
+      "tier": "C"
+    },
+    {
+      "name": "Empyrean Promise",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447105.png",
       "tier": "C"
     },
     {
@@ -316,18 +321,13 @@
       "tier": "C"
     },
     {
-      "name": "Talisman Of Ascension",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443064.png",
+      "name": "Hamstringer",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443069.png",
       "tier": "C"
     },
     {
-      "name": "Hamstringer",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443069.png",
-      "tier": "D"
-    },
-    {
-      "name": "Black Hole Gauntlet",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447122.png",
+      "name": "Talisman Of Ascension",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443064.png",
       "tier": "D"
     },
     {
@@ -336,17 +336,22 @@
       "tier": "D"
     },
     {
-      "name": "Fulmination",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443055.png",
+      "name": "Black Hole Gauntlet",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447122.png",
       "tier": "D"
     },
     {
       "name": "Gambler's Blade",
       "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447101.png",
       "tier": "D"
+    },
+    {
+      "name": "Fulmination",
+      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443055.png",
+      "tier": "D"
     }
   ],
-  "lastUpdated": "2025-09-19T07:26:45.002Z",
+  "lastUpdated": "2025-09-21T06:17:51.513Z",
   "imageUrl": "https://cdn.mobalytics.gg/assets/lol/images/dd/champions/icons/Gwen.png",
   "slug": "gwen"
 }
