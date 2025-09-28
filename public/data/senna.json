@@ -1,5 +1,5 @@
 {
-  "name": "Senna Arena Build 25.18 LoL",
+  "name": "Senna Arena Build 25.19 LoL",
   "tier": "A",
   "stats": {
     "winRate": "Unknown"
@@ -7,56 +7,56 @@
   "augments": {
     "prismatic": [
       {
-        "name": "Dual Wield",
-        "imageUrl": "https://raw.communitydragon.org/15.18/game/assets/ux/cherry/augments/icons/dualwield_large.png"
-      },
-      {
         "name": "Fan the Hammer",
-        "imageUrl": "https://raw.communitydragon.org/15.18/game/assets/ux/cherry/augments/icons/fanthehammer_large.png"
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/fanthehammer_large.png"
       },
       {
-        "name": "Giant Slayer",
-        "imageUrl": "https://raw.communitydragon.org/15.18/game/assets/ux/cherry/augments/icons/giantslayer_large.png"
+        "name": "Dual Wield",
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/dualwield_large.png"
       },
       {
         "name": "Scopiest Weapons",
-        "imageUrl": "https://raw.communitydragon.org/15.18/game/assets/ux/cherry/augments/icons/scopiestweapons_large.png"
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/scopiestweapons_large.png"
+      },
+      {
+        "name": "Gamba Anvil",
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/thiefsgloves_large.png"
       }
     ],
     "gold": [
       {
+        "name": "Vulnerability",
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/vulnerability_large.png"
+      },
+      {
         "name": "Soul Siphon",
-        "imageUrl": "https://raw.communitydragon.org/15.18/game/assets/ux/cherry/augments/icons/soulsiphon_large.png"
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/soulsiphon_large.png"
       },
       {
         "name": "Scopier Weapons",
-        "imageUrl": "https://raw.communitydragon.org/15.18/game/assets/ux/cherry/augments/icons/scopierweapons_large.png"
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/scopierweapons_large.png"
       },
       {
-        "name": "Lightning Strikes",
-        "imageUrl": "https://raw.communitydragon.org/15.18/game/assets/ux/cherry/augments/icons/lightningstrikes_large.png"
-      },
-      {
-        "name": "Transmute: Prismatic",
-        "imageUrl": "https://raw.communitydragon.org/15.18/game/assets/ux/cherry/augments/icons/transmuteprismatic_large.png"
+        "name": "Stats on Stats!",
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/statsonstats_large.png"
       }
     ],
     "silver": [
       {
-        "name": "Deft",
-        "imageUrl": "https://raw.communitydragon.org/15.18/game/assets/ux/cherry/augments/icons/deft_large.png"
+        "name": "escAPADe",
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/escapade_large.png"
       },
       {
         "name": "Scoped Weapons",
-        "imageUrl": "https://raw.communitydragon.org/15.18/game/assets/ux/cherry/augments/icons/scopedweapons_large.png"
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/scopedweapons_large.png"
       },
       {
-        "name": "escAPADe",
-        "imageUrl": "https://raw.communitydragon.org/15.18/game/assets/ux/cherry/augments/icons/escapade_large.png"
+        "name": "Deft",
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/deft_large.png"
       },
       {
-        "name": "Tank It Or Leave It",
-        "imageUrl": "https://raw.communitydragon.org/15.18/game/assets/ux/cherry/augments/icons/tankitorleaveit_large.png"
+        "name": "Goredrink",
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/goredrink_large.png"
       }
     ]
   },
@@ -64,324 +64,314 @@
     "core": [
       {
         "name": "Guardian's Hammer",
-        "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/223184.png"
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223184.png"
       },
       {
         "name": "Berserker's Greaves",
-        "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/223006.png"
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223006.png"
       },
       {
         "name": "Hamstringer",
-        "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443069.png"
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443069.png"
       },
       {
         "name": "Infinity Edge",
-        "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/223031.png"
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223031.png"
+      },
+      {
+        "name": "The Collector",
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/226676.png"
       },
       {
         "name": "Rapid Firecannon",
-        "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/223094.png"
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223094.png"
       },
       {
         "name": "Mortal Reminder",
-        "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/223033.png"
-      },
-      {
-        "name": "Bloodthirster",
-        "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/223072.png"
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223033.png"
       }
     ],
     "boots": [
       {
         "name": "Berserker's Greaves",
-        "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/223006.png"
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223006.png"
       },
       {
         "name": "Boots of Swiftness",
-        "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/223009.png"
-      },
-      {
-        "name": "Mercury's Treads",
-        "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/223111.png"
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223009.png"
       },
       {
         "name": "Ionian Boots of Lucidity",
-        "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/223158.png"
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223158.png"
+      },
+      {
+        "name": "Mercury's Treads",
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223111.png"
       },
       {
         "name": "Ghostcrawlers",
-        "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/223005.png"
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223005.png"
       },
       {
         "name": "Plated Steelcaps",
-        "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/223047.png"
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223047.png"
       }
     ],
     "situational": [
       {
-        "name": "The Collector",
-        "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/226676.png"
+        "name": "Statikk Shiv",
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223087.png"
+      },
+      {
+        "name": "Bloodthirster",
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223072.png"
       },
       {
         "name": "Lord Dominik's Regards",
-        "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/223036.png"
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223036.png"
       },
       {
         "name": "Blade of The Ruined King",
-        "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/223153.png"
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223153.png"
       },
       {
         "name": "Guardian Angel",
-        "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/223026.png"
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223026.png"
       },
       {
         "name": "Kraken Slayer",
-        "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/226672.png"
-      },
-      {
-        "name": "Hellfire Hatchet",
-        "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/4017.png"
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/226672.png"
       }
     ]
   },
   "prismaticItemTierList": [
     {
       "name": "Hamstringer",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443069.png",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443069.png",
       "tier": "S"
     },
     {
       "name": "Sword of the Divine",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443060.png",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443060.png",
       "tier": "S"
     },
     {
       "name": "Diamond-Tipped Spear",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447120.png",
-      "tier": "S"
-    },
-    {
-      "name": "Demon King's Crown",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443056.png",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447120.png",
       "tier": "S"
     },
     {
       "name": "Reaper's Toll",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443090.png",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443090.png",
+      "tier": "S"
+    },
+    {
+      "name": "Demon King's Crown",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443056.png",
       "tier": "S"
     },
     {
       "name": "Dragonheart",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447106.png",
-      "tier": "S"
-    },
-    {
-      "name": "Galeforce",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/446671.png",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447106.png",
       "tier": "S"
     },
     {
       "name": "Fulmination",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443055.png",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443055.png",
       "tier": "S"
     },
     {
-      "name": "Twin Mask",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443080.png",
+      "name": "Galeforce",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/446671.png",
+      "tier": "S"
+    },
+    {
+      "name": "Puppeteer",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447123.png",
       "tier": "S"
     },
     {
       "name": "Cloak of Starry Night",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443059.png",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443059.png",
       "tier": "S"
     },
     {
-      "name": "Duskblade of Draktharr",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/446691.png",
+      "name": "Twin Mask",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443080.png",
       "tier": "S"
     },
     {
       "name": "Shield of Molten Stone",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443058.png",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443058.png",
       "tier": "A"
     },
     {
       "name": "Flesheater",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447112.png",
-      "tier": "A"
-    },
-    {
-      "name": "Crown of the Shattered Queen",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/444644.png",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447112.png",
       "tier": "A"
     },
     {
       "name": "Gargoyle Stoneplate",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443193.png",
-      "tier": "A"
-    },
-    {
-      "name": "Puppeteer",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447123.png",
-      "tier": "A"
-    },
-    {
-      "name": "Turbo Chemtank",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443079.png",
-      "tier": "A"
-    },
-    {
-      "name": "Lightning Rod",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447119.png",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443193.png",
       "tier": "A"
     },
     {
       "name": "Reverberation",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447114.png",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447114.png",
       "tier": "A"
     },
     {
-      "name": "Twilight's Edge",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447121.png",
-      "tier": "A"
-    },
-    {
-      "name": "Divine Sunderer",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/446632.png",
-      "tier": "A"
-    },
-    {
-      "name": "Hemomancer's Helm",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447103.png",
-      "tier": "A"
-    },
-    {
-      "name": "Darksteel Talons",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443054.png",
+      "name": "Duskblade of Draktharr",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/446691.png",
       "tier": "A"
     },
     {
       "name": "Hexbolt Companion",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443081.png",
-      "tier": "B"
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443081.png",
+      "tier": "A"
     },
     {
-      "name": "Talisman Of Ascension",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443064.png",
-      "tier": "B"
+      "name": "Hemomancer's Helm",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447103.png",
+      "tier": "A"
+    },
+    {
+      "name": "Turbo Chemtank",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443079.png",
+      "tier": "A"
+    },
+    {
+      "name": "Darksteel Talons",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443054.png",
+      "tier": "A"
     },
     {
       "name": "Moonflair Spellblade",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447110.png",
-      "tier": "B"
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447110.png",
+      "tier": "A"
     },
     {
-      "name": "Radiant Virtue",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/446667.png",
-      "tier": "B"
+      "name": "Talisman Of Ascension",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443064.png",
+      "tier": "A"
     },
     {
-      "name": "Warmog's Armor",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443083.png",
-      "tier": "B"
-    },
-    {
-      "name": "Runecarver",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447108.png",
+      "name": "Divine Sunderer",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/446632.png",
       "tier": "B"
     },
     {
       "name": "Kinkou Jitte",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447116.png",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447116.png",
       "tier": "B"
     },
     {
-      "name": "Demonic Embrace",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/444637.png",
+      "name": "Runecarver",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447108.png",
       "tier": "B"
     },
     {
-      "name": "Prowler's Claw",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/226693.png",
+      "name": "Twilight's Edge",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447121.png",
       "tier": "B"
     },
     {
-      "name": "Pyromancer's Cloak",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447118.png",
+      "name": "Lightning Rod",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447119.png",
       "tier": "B"
     },
     {
-      "name": "Empyrean Promise",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447105.png",
+      "name": "Reality Fracture",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447102.png",
       "tier": "B"
     },
     {
-      "name": "Decapitator",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447107.png",
+      "name": "Night Harvester",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/444636.png",
       "tier": "B"
     },
     {
       "name": "Eleisa's Miracle",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443063.png",
-      "tier": "C"
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443063.png",
+      "tier": "B"
+    },
+    {
+      "name": "Pyromancer's Cloak",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447118.png",
+      "tier": "B"
+    },
+    {
+      "name": "Crown of the Shattered Queen",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/444644.png",
+      "tier": "B"
     },
     {
       "name": "Sanguine Gift",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443062.png",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443062.png",
+      "tier": "B"
+    },
+    {
+      "name": "Empyrean Promise",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447105.png",
       "tier": "C"
     },
     {
-      "name": "Black Hole Gauntlet",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447122.png",
+      "name": "Warmog's Armor",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443083.png",
       "tier": "C"
     },
     {
-      "name": "Innervating Locket",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447104.png",
-      "tier": "C"
-    },
-    {
-      "name": "Reality Fracture",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447102.png",
-      "tier": "C"
-    },
-    {
-      "name": "Night Harvester",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/444636.png",
-      "tier": "C"
-    },
-    {
-      "name": "Goredrinker",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/226630.png",
+      "name": "Decapitator",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447107.png",
       "tier": "C"
     },
     {
       "name": "Force Of Entropy",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/443061.png",
-      "tier": "D"
-    },
-    {
-      "name": "Detonation Orb",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447113.png",
-      "tier": "D"
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443061.png",
+      "tier": "C"
     },
     {
       "name": "Gambler's Blade",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447101.png",
-      "tier": "D"
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447101.png",
+      "tier": "C"
+    },
+    {
+      "name": "Radiant Virtue",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/446667.png",
+      "tier": "C"
+    },
+    {
+      "name": "Black Hole Gauntlet",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447122.png",
+      "tier": "C"
     },
     {
       "name": "Cruelty",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/447109.png",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447109.png",
+      "tier": "D"
+    },
+    {
+      "name": "Goredrinker",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/226630.png",
+      "tier": "D"
+    },
+    {
+      "name": "Innervating Locket",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447104.png",
+      "tier": "D"
+    },
+    {
+      "name": "Prowler's Claw",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/226693.png",
       "tier": "D"
     },
     {
       "name": "Everfrost",
-      "imageUrl": "https://img.metasrc.com/cdn/15.18.1/img/item/446656.png",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/446656.png",
       "tier": "D"
     }
   ],
-  "lastUpdated": "2025-09-21T06:26:31.951Z",
+  "lastUpdated": "2025-09-28T06:26:50.376Z",
   "imageUrl": "https://cdn.mobalytics.gg/assets/lol/images/dd/champions/icons/Senna.png",
   "slug": "senna"
 }
