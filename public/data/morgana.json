@@ -19,26 +19,26 @@
         "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/eureka_large.png"
       },
       {
-        "name": "Quest: Wooglet's Witchcap",
-        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/quest_woogletswitchcap_large.png"
+        "name": "Gamba Anvil",
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/thiefsgloves_large.png"
       }
     ],
     "gold": [
       {
-        "name": "Bread And Butter",
-        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/breadandbutter_large.png"
+        "name": "Magic Missile",
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/magicmissile_large.png"
       },
       {
-        "name": "Skilled Sniper",
-        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/skilledsniper_large.png"
+        "name": "Bread And Butter",
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/breadandbutter_large.png"
       },
       {
         "name": "Transmute: Prismatic",
         "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/transmuteprismatic_large.png"
       },
       {
-        "name": "Magic Missile",
-        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/magicmissile_large.png"
+        "name": "Skilled Sniper",
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/skilledsniper_large.png"
       }
     ],
     "silver": [
@@ -47,12 +47,12 @@
         "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/nowyouseeme_large.png"
       },
       {
-        "name": "Witchful Thinking",
-        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/witchfulthinking_large.png"
-      },
-      {
         "name": "Slap Around",
         "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/slaparound_large.png"
+      },
+      {
+        "name": "Witchful Thinking",
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/witchfulthinking_large.png"
       },
       {
         "name": "ADAPt",
@@ -135,12 +135,12 @@
         "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223118.png"
       },
       {
-        "name": "Luden's Companion",
-        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/226655.png"
-      },
-      {
         "name": "Rite Of Ruin",
         "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/3430.png"
+      },
+      {
+        "name": "Rylai's Crystal Scepter",
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223116.png"
       }
     ]
   },
@@ -186,23 +186,23 @@
       "tier": "S"
     },
     {
-      "name": "Cloak of Starry Night",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443059.png",
+      "name": "Twin Mask",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443080.png",
       "tier": "S"
     },
     {
-      "name": "Twin Mask",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443080.png",
-      "tier": "A"
-    },
-    {
-      "name": "Innervating Locket",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447104.png",
+      "name": "Cloak of Starry Night",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443059.png",
       "tier": "A"
     },
     {
       "name": "Flesheater",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447112.png",
+      "tier": "A"
+    },
+    {
+      "name": "Innervating Locket",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447104.png",
       "tier": "A"
     },
     {
@@ -216,8 +216,8 @@
       "tier": "A"
     },
     {
-      "name": "Gargoyle Stoneplate",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443193.png",
+      "name": "Demonic Embrace",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/444637.png",
       "tier": "A"
     },
     {
@@ -226,8 +226,8 @@
       "tier": "A"
     },
     {
-      "name": "Demonic Embrace",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/444637.png",
+      "name": "Gargoyle Stoneplate",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443193.png",
       "tier": "A"
     },
     {
@@ -251,18 +251,8 @@
       "tier": "B"
     },
     {
-      "name": "Kinkou Jitte",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447116.png",
-      "tier": "B"
-    },
-    {
       "name": "Eleisa's Miracle",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443063.png",
-      "tier": "B"
-    },
-    {
-      "name": "Force Of Entropy",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443061.png",
       "tier": "B"
     },
     {
@@ -271,8 +261,18 @@
       "tier": "B"
     },
     {
-      "name": "Fulmination",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443055.png",
+      "name": "Kinkou Jitte",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447116.png",
+      "tier": "B"
+    },
+    {
+      "name": "Talisman Of Ascension",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443064.png",
+      "tier": "B"
+    },
+    {
+      "name": "Force Of Entropy",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443061.png",
       "tier": "B"
     },
     {
@@ -281,18 +281,23 @@
       "tier": "B"
     },
     {
-      "name": "Sword of the Divine",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443060.png",
-      "tier": "B"
-    },
-    {
-      "name": "Turbo Chemtank",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443079.png",
+      "name": "Fulmination",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443055.png",
       "tier": "B"
     },
     {
       "name": "Warmog's Armor",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443083.png",
+      "tier": "B"
+    },
+    {
+      "name": "Sword of the Divine",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443060.png",
+      "tier": "C"
+    },
+    {
+      "name": "Twilight's Edge",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447121.png",
       "tier": "C"
     },
     {
@@ -301,33 +306,28 @@
       "tier": "C"
     },
     {
-      "name": "Moonflair Spellblade",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447110.png",
-      "tier": "C"
-    },
-    {
-      "name": "Talisman Of Ascension",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443064.png",
-      "tier": "C"
-    },
-    {
       "name": "Black Hole Gauntlet",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447122.png",
       "tier": "C"
     },
     {
-      "name": "Puppeteer",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447123.png",
+      "name": "Turbo Chemtank",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443079.png",
       "tier": "C"
     },
     {
-      "name": "Twilight's Edge",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447121.png",
-      "tier": "D"
+      "name": "Moonflair Spellblade",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447110.png",
+      "tier": "C"
     },
     {
       "name": "Reaper's Toll",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443090.png",
+      "tier": "D"
+    },
+    {
+      "name": "Puppeteer",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447123.png",
       "tier": "D"
     },
     {
@@ -346,7 +346,7 @@
       "tier": "D"
     }
   ],
-  "lastUpdated": "2025-09-28T06:23:08.699Z",
+  "lastUpdated": "2025-10-05T06:22:32.178Z",
   "imageUrl": "https://cdn.mobalytics.gg/assets/lol/images/dd/champions/icons/Morgana.png",
   "slug": "morgana"
 }

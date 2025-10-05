@@ -1,26 +1,26 @@
 {
   "name": "Akshan Arena Build 25.19 LoL",
-  "tier": "B",
+  "tier": "A",
   "stats": {
     "winRate": "Unknown"
   },
   "augments": {
     "prismatic": [
       {
-        "name": "Dual Wield",
-        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/dualwield_large.png"
-      },
-      {
         "name": "Fan the Hammer",
         "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/fanthehammer_large.png"
       },
       {
-        "name": "Gamba Anvil",
-        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/thiefsgloves_large.png"
+        "name": "Dual Wield",
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/dualwield_large.png"
       },
       {
         "name": "Draw Your Sword",
         "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/drawyoursword_large.png"
+      },
+      {
+        "name": "Gamba Anvil",
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/thiefsgloves_large.png"
       }
     ],
     "gold": [
@@ -33,12 +33,12 @@
         "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/lightningstrikes_large.png"
       },
       {
-        "name": "Slow and Steady",
-        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/slowandsteady_large.png"
-      },
-      {
         "name": "Twice Thrice",
         "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/twicethrice_large.png"
+      },
+      {
+        "name": "Slow and Steady",
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/slowandsteady_large.png"
       }
     ],
     "silver": [
@@ -123,24 +123,24 @@
         "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223036.png"
       },
       {
-        "name": "Kraken Slayer",
-        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/226672.png"
-      },
-      {
         "name": "Statikk Shiv",
         "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223087.png"
+      },
+      {
+        "name": "Kraken Slayer",
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/226672.png"
       },
       {
         "name": "Guinsoo's Rageblade",
         "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223124.png"
       },
       {
-        "name": "Bloodthirster",
-        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223072.png"
-      },
-      {
         "name": "Axiom Arc",
         "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/226696.png"
+      },
+      {
+        "name": "Bloodthirster",
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223072.png"
       }
     ]
   },
@@ -156,11 +156,6 @@
       "tier": "S"
     },
     {
-      "name": "Gargoyle Stoneplate",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443193.png",
-      "tier": "S"
-    },
-    {
       "name": "Galeforce",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/446671.png",
       "tier": "S"
@@ -171,6 +166,21 @@
       "tier": "S"
     },
     {
+      "name": "Gargoyle Stoneplate",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443193.png",
+      "tier": "S"
+    },
+    {
+      "name": "Dragonheart",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447106.png",
+      "tier": "S"
+    },
+    {
+      "name": "Twin Mask",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443080.png",
+      "tier": "S"
+    },
+    {
       "name": "Sword of the Divine",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443060.png",
       "tier": "S"
@@ -178,21 +188,11 @@
     {
       "name": "Shield of Molten Stone",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443058.png",
-      "tier": "S"
+      "tier": "A"
     },
     {
       "name": "Cloak of Starry Night",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443059.png",
-      "tier": "S"
-    },
-    {
-      "name": "Dragonheart",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447106.png",
-      "tier": "A"
-    },
-    {
-      "name": "Twin Mask",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443080.png",
       "tier": "A"
     },
     {
@@ -201,18 +201,13 @@
       "tier": "A"
     },
     {
-      "name": "Turbo Chemtank",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443079.png",
-      "tier": "A"
-    },
-    {
-      "name": "Hemomancer's Helm",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447103.png",
-      "tier": "A"
-    },
-    {
       "name": "Flesheater",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447112.png",
+      "tier": "A"
+    },
+    {
+      "name": "Turbo Chemtank",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443079.png",
       "tier": "A"
     },
     {
@@ -226,19 +221,14 @@
       "tier": "A"
     },
     {
-      "name": "Kinkou Jitte",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447116.png",
+      "name": "Diamond-Tipped Spear",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447120.png",
       "tier": "A"
     },
     {
       "name": "Twilight's Edge",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447121.png",
-      "tier": "B"
-    },
-    {
-      "name": "Diamond-Tipped Spear",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447120.png",
-      "tier": "B"
+      "tier": "A"
     },
     {
       "name": "Darksteel Talons",
@@ -246,13 +236,13 @@
       "tier": "B"
     },
     {
-      "name": "Hexbolt Companion",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443081.png",
+      "name": "Hemomancer's Helm",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447103.png",
       "tier": "B"
     },
     {
-      "name": "Goredrinker",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/226630.png",
+      "name": "Kinkou Jitte",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447116.png",
       "tier": "B"
     },
     {
@@ -261,8 +251,8 @@
       "tier": "B"
     },
     {
-      "name": "Talisman Of Ascension",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443064.png",
+      "name": "Hexbolt Companion",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443081.png",
       "tier": "B"
     },
     {
@@ -271,13 +261,23 @@
       "tier": "B"
     },
     {
+      "name": "Talisman Of Ascension",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443064.png",
+      "tier": "B"
+    },
+    {
+      "name": "Goredrinker",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/226630.png",
+      "tier": "B"
+    },
+    {
       "name": "Lightning Rod",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447119.png",
       "tier": "B"
     },
     {
-      "name": "Pyromancer's Cloak",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447118.png",
+      "name": "Prowler's Claw",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/226693.png",
       "tier": "C"
     },
     {
@@ -291,18 +291,18 @@
       "tier": "C"
     },
     {
-      "name": "Prowler's Claw",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/226693.png",
-      "tier": "C"
-    },
-    {
       "name": "Runecarver",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447108.png",
       "tier": "C"
     },
     {
-      "name": "Gambler's Blade",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447101.png",
+      "name": "Moonflair Spellblade",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447110.png",
+      "tier": "C"
+    },
+    {
+      "name": "Pyromancer's Cloak",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447118.png",
       "tier": "D"
     },
     {
@@ -311,8 +311,8 @@
       "tier": "D"
     },
     {
-      "name": "Moonflair Spellblade",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447110.png",
+      "name": "Gambler's Blade",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447101.png",
       "tier": "D"
     },
     {
@@ -321,7 +321,7 @@
       "tier": "D"
     }
   ],
-  "lastUpdated": "2025-09-28T06:12:50.745Z",
+  "lastUpdated": "2025-10-05T06:12:24.279Z",
   "imageUrl": "https://cdn.mobalytics.gg/assets/lol/images/dd/champions/icons/Akshan.png",
   "slug": "akshan"
 }

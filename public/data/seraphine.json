@@ -1,6 +1,6 @@
 {
   "name": "Seraphine Arena Build 25.19 LoL",
-  "tier": "D",
+  "tier": "C",
   "stats": {
     "winRate": "Unknown"
   },
@@ -15,8 +15,8 @@
         "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/infernalconduit_large.png"
       },
       {
-        "name": "Chauffeur",
-        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/chauffeur_large.png"
+        "name": "Jeweled Gauntlet",
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/jeweledgauntlet_large.png"
       },
       {
         "name": "Spellwake",
@@ -25,20 +25,20 @@
     ],
     "gold": [
       {
-        "name": "Dark Blessing",
-        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/darkblessing_large.png"
-      },
-      {
         "name": "Magic Missile",
         "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/magicmissile_large.png"
       },
       {
-        "name": "Bread And Cheese",
-        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/breadandcheese_large.png"
+        "name": "Transmute: Prismatic",
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/transmuteprismatic_large.png"
       },
       {
-        "name": "Holy Fire",
-        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/holyfire_large.png"
+        "name": "Dark Blessing",
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/darkblessing_large.png"
+      },
+      {
+        "name": "Big Brain",
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/bigbrain_large.png"
       }
     ],
     "silver": [
@@ -47,16 +47,16 @@
         "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/witchfulthinking_large.png"
       },
       {
-        "name": "Desecrator",
-        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/desecrator_large.png"
-      },
-      {
         "name": "Sonic Boom",
         "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/sonicboom_large.png"
       },
       {
-        "name": "ADAPt",
-        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/adapt_large.png"
+        "name": "Transmute: Gold",
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/transmutegold_large.png"
+      },
+      {
+        "name": "Desecrator",
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/desecrator_large.png"
       }
     ]
   },
@@ -113,8 +113,8 @@
         "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223009.png"
       },
       {
-        "name": "Plated Steelcaps",
-        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223047.png"
+        "name": "Berserker's Greaves",
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223006.png"
       }
     ],
     "situational": [
@@ -131,16 +131,16 @@
         "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223157.png"
       },
       {
-        "name": "Shadowflame",
-        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/224645.png"
-      },
-      {
         "name": "Rite Of Ruin",
         "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/3430.png"
       },
       {
-        "name": "Void Staff",
-        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223135.png"
+        "name": "Shadowflame",
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/224645.png"
+      },
+      {
+        "name": "Redemption",
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223107.png"
       }
     ]
   },
@@ -166,13 +166,13 @@
       "tier": "S"
     },
     {
-      "name": "Cruelty",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447109.png",
+      "name": "Demon King's Crown",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443056.png",
       "tier": "S"
     },
     {
-      "name": "Everfrost",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/446656.png",
+      "name": "Cruelty",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447109.png",
       "tier": "S"
     },
     {
@@ -181,8 +181,8 @@
       "tier": "S"
     },
     {
-      "name": "Demon King's Crown",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443056.png",
+      "name": "Everfrost",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/446656.png",
       "tier": "S"
     },
     {
@@ -196,18 +196,18 @@
       "tier": "A"
     },
     {
-      "name": "Hexbolt Companion",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443081.png",
-      "tier": "A"
-    },
-    {
       "name": "Twin Mask",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443080.png",
       "tier": "A"
     },
     {
-      "name": "Kinkou Jitte",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447116.png",
+      "name": "Gargoyle Stoneplate",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443193.png",
+      "tier": "A"
+    },
+    {
+      "name": "Lightning Rod",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447119.png",
       "tier": "A"
     },
     {
@@ -216,8 +216,18 @@
       "tier": "A"
     },
     {
-      "name": "Lightning Rod",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447119.png",
+      "name": "Shield of Molten Stone",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443058.png",
+      "tier": "A"
+    },
+    {
+      "name": "Radiant Virtue",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/446667.png",
+      "tier": "A"
+    },
+    {
+      "name": "Turbo Chemtank",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443079.png",
       "tier": "A"
     },
     {
@@ -231,9 +241,9 @@
       "tier": "A"
     },
     {
-      "name": "Force Of Entropy",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443061.png",
-      "tier": "A"
+      "name": "Demonic Embrace",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/444637.png",
+      "tier": "B"
     },
     {
       "name": "Reality Fracture",
@@ -241,23 +251,13 @@
       "tier": "B"
     },
     {
-      "name": "Radiant Virtue",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/446667.png",
+      "name": "Force Of Entropy",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443061.png",
       "tier": "B"
     },
     {
-      "name": "Demonic Embrace",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/444637.png",
-      "tier": "B"
-    },
-    {
-      "name": "Gargoyle Stoneplate",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443193.png",
-      "tier": "B"
-    },
-    {
-      "name": "Shield of Molten Stone",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443058.png",
+      "name": "Twilight's Edge",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447121.png",
       "tier": "B"
     },
     {
@@ -271,8 +271,13 @@
       "tier": "B"
     },
     {
-      "name": "Twilight's Edge",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447121.png",
+      "name": "Puppeteer",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447123.png",
+      "tier": "B"
+    },
+    {
+      "name": "Kinkou Jitte",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447116.png",
       "tier": "B"
     },
     {
@@ -281,19 +286,9 @@
       "tier": "B"
     },
     {
-      "name": "Puppeteer",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447123.png",
-      "tier": "B"
-    },
-    {
       "name": "Moonflair Spellblade",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447110.png",
-      "tier": "C"
-    },
-    {
-      "name": "Turbo Chemtank",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443079.png",
-      "tier": "C"
+      "tier": "B"
     },
     {
       "name": "Reverberation",
@@ -301,13 +296,8 @@
       "tier": "C"
     },
     {
-      "name": "Reaper's Toll",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443090.png",
-      "tier": "C"
-    },
-    {
-      "name": "Sword of the Divine",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443060.png",
+      "name": "Fulmination",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443055.png",
       "tier": "C"
     },
     {
@@ -318,7 +308,17 @@
     {
       "name": "Black Hole Gauntlet",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447122.png",
-      "tier": "D"
+      "tier": "C"
+    },
+    {
+      "name": "Sword of the Divine",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443060.png",
+      "tier": "C"
+    },
+    {
+      "name": "Hexbolt Companion",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443081.png",
+      "tier": "C"
     },
     {
       "name": "Diamond-Tipped Spear",
@@ -331,12 +331,17 @@
       "tier": "D"
     },
     {
+      "name": "Reaper's Toll",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443090.png",
+      "tier": "D"
+    },
+    {
       "name": "Gambler's Blade",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447101.png",
       "tier": "D"
     }
   ],
-  "lastUpdated": "2025-09-28T06:26:56.459Z",
+  "lastUpdated": "2025-10-05T06:26:24.128Z",
   "imageUrl": "https://cdn.mobalytics.gg/assets/lol/images/dd/champions/icons/Seraphine.png",
   "slug": "seraphine"
 }

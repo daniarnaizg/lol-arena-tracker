@@ -1,6 +1,6 @@
 {
   "name": "Tryndamere Arena Build 25.19 LoL",
-  "tier": "S",
+  "tier": "S+",
   "stats": {
     "winRate": "Unknown"
   },
@@ -11,12 +11,12 @@
         "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/dualwield_large.png"
       },
       {
-        "name": "Scopiest Weapons",
-        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/scopiestweapons_large.png"
-      },
-      {
         "name": "Symphony of War",
         "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/symphonyofwar_large.png"
+      },
+      {
+        "name": "Scopiest Weapons",
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/scopiestweapons_large.png"
       },
       {
         "name": "Fan the Hammer",
@@ -71,8 +71,8 @@
         "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223006.png"
       },
       {
-        "name": "Hamstringer",
-        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443069.png"
+        "name": "Reaper's Toll",
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443090.png"
       },
       {
         "name": "Infinity Edge",
@@ -131,12 +131,12 @@
         "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/226675.png"
       },
       {
-        "name": "The Collector",
-        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/226676.png"
-      },
-      {
         "name": "Phantom Dancer",
         "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223046.png"
+      },
+      {
+        "name": "The Collector",
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/226676.png"
       },
       {
         "name": "Zephyr",
@@ -146,13 +146,13 @@
   },
   "prismaticItemTierList": [
     {
-      "name": "Hamstringer",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443069.png",
+      "name": "Reaper's Toll",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443090.png",
       "tier": "S"
     },
     {
-      "name": "Reaper's Toll",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443090.png",
+      "name": "Hamstringer",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443069.png",
       "tier": "S"
     },
     {
@@ -181,13 +181,18 @@
       "tier": "S"
     },
     {
+      "name": "Darksteel Talons",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443054.png",
+      "tier": "S"
+    },
+    {
       "name": "Shield of Molten Stone",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443058.png",
       "tier": "S"
     },
     {
-      "name": "Darksteel Talons",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443054.png",
+      "name": "Fulmination",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443055.png",
       "tier": "S"
     },
     {
@@ -196,28 +201,13 @@
       "tier": "A"
     },
     {
-      "name": "Gargoyle Stoneplate",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443193.png",
-      "tier": "A"
-    },
-    {
-      "name": "Fulmination",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443055.png",
-      "tier": "A"
-    },
-    {
       "name": "Cloak of Starry Night",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443059.png",
       "tier": "A"
     },
     {
-      "name": "Eleisa's Miracle",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443063.png",
-      "tier": "A"
-    },
-    {
-      "name": "Sanguine Gift",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443062.png",
+      "name": "Gargoyle Stoneplate",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443193.png",
       "tier": "A"
     },
     {
@@ -226,13 +216,13 @@
       "tier": "A"
     },
     {
-      "name": "Flesheater",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447112.png",
+      "name": "Puppeteer",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447123.png",
       "tier": "A"
     },
     {
-      "name": "Regicide",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447115.png",
+      "name": "Moonflair Spellblade",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447110.png",
       "tier": "A"
     },
     {
@@ -241,28 +231,23 @@
       "tier": "A"
     },
     {
-      "name": "Puppeteer",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447123.png",
-      "tier": "B"
-    },
-    {
-      "name": "Talisman Of Ascension",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443064.png",
-      "tier": "B"
-    },
-    {
-      "name": "Warmog's Armor",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443083.png",
-      "tier": "B"
+      "name": "Flesheater",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447112.png",
+      "tier": "A"
     },
     {
       "name": "Twilight's Edge",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447121.png",
-      "tier": "B"
+      "tier": "A"
     },
     {
-      "name": "Moonflair Spellblade",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447110.png",
+      "name": "Kinkou Jitte",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447116.png",
+      "tier": "A"
+    },
+    {
+      "name": "Regicide",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447115.png",
       "tier": "B"
     },
     {
@@ -271,18 +256,18 @@
       "tier": "B"
     },
     {
-      "name": "Demonic Embrace",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/444637.png",
+      "name": "Eleisa's Miracle",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443063.png",
+      "tier": "B"
+    },
+    {
+      "name": "Talisman Of Ascension",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443064.png",
       "tier": "B"
     },
     {
       "name": "Mirage Blade",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447100.png",
-      "tier": "B"
-    },
-    {
-      "name": "Runecarver",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447108.png",
       "tier": "B"
     },
     {
@@ -293,21 +278,26 @@
     {
       "name": "Prowler's Claw",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/226693.png",
-      "tier": "C"
+      "tier": "B"
+    },
+    {
+      "name": "Demonic Embrace",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/444637.png",
+      "tier": "B"
     },
     {
       "name": "Lightning Rod",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447119.png",
-      "tier": "C"
+      "tier": "B"
     },
     {
-      "name": "Kinkou Jitte",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447116.png",
-      "tier": "C"
+      "name": "Warmog's Armor",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443083.png",
+      "tier": "B"
     },
     {
-      "name": "Reality Fracture",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447102.png",
+      "name": "Pyromancer's Cloak",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447118.png",
       "tier": "C"
     },
     {
@@ -321,9 +311,19 @@
       "tier": "C"
     },
     {
-      "name": "Empyrean Promise",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447105.png",
-      "tier": "D"
+      "name": "Reality Fracture",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447102.png",
+      "tier": "C"
+    },
+    {
+      "name": "Runecarver",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447108.png",
+      "tier": "C"
+    },
+    {
+      "name": "Black Hole Gauntlet",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447122.png",
+      "tier": "C"
     },
     {
       "name": "Radiant Virtue",
@@ -331,13 +331,18 @@
       "tier": "D"
     },
     {
-      "name": "Pyromancer's Cloak",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447118.png",
+      "name": "Empyrean Promise",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447105.png",
       "tier": "D"
     },
     {
-      "name": "Black Hole Gauntlet",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447122.png",
+      "name": "Sanguine Gift",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443062.png",
+      "tier": "D"
+    },
+    {
+      "name": "Innervating Locket",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447104.png",
       "tier": "D"
     },
     {
@@ -346,7 +351,7 @@
       "tier": "D"
     }
   ],
-  "lastUpdated": "2025-09-28T06:29:52.056Z",
+  "lastUpdated": "2025-10-05T06:29:15.660Z",
   "imageUrl": "https://cdn.mobalytics.gg/assets/lol/images/dd/champions/icons/Tryndamere.png",
   "slug": "tryndamere"
 }

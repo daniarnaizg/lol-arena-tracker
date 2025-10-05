@@ -19,8 +19,8 @@
         "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/jeweledgauntlet_large.png"
       },
       {
-        "name": "Spirit Link",
-        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/spiritlink_large.png"
+        "name": "Doomsayer",
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/doomsayer_large.png"
       }
     ],
     "gold": [
@@ -29,12 +29,12 @@
         "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/magicmissile_large.png"
       },
       {
-        "name": "Big Brain",
-        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/bigbrain_large.png"
+        "name": "Quest: Mad Hatter",
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/mad_hatter_large.png"
       },
       {
-        "name": "Quest: Angel of Retribution",
-        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/quest_angelofretribution_large.png"
+        "name": "Big Brain",
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/bigbrain_large.png"
       },
       {
         "name": "Phenomenal Evil",
@@ -43,20 +43,20 @@
     ],
     "silver": [
       {
-        "name": "Witchful Thinking",
-        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/witchfulthinking_large.png"
-      },
-      {
         "name": "ADAPt",
         "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/adapt_large.png"
+      },
+      {
+        "name": "Witchful Thinking",
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/witchfulthinking_large.png"
       },
       {
         "name": "Desecrator",
         "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/desecrator_large.png"
       },
       {
-        "name": "Augmented Power",
-        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/augmented_power_large.png"
+        "name": "Don't Blink",
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/dontblink_large.png"
       }
     ]
   },
@@ -119,12 +119,12 @@
     ],
     "situational": [
       {
-        "name": "Riftmaker",
-        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/224633.png"
-      },
-      {
         "name": "Morellonomicon",
         "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223165.png"
+      },
+      {
+        "name": "Riftmaker",
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/224633.png"
       },
       {
         "name": "Rylai's Crystal Scepter",
@@ -161,6 +161,11 @@
       "tier": "S"
     },
     {
+      "name": "Demonic Embrace",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/444637.png",
+      "tier": "S"
+    },
+    {
       "name": "Dragonheart",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447106.png",
       "tier": "S"
@@ -171,13 +176,8 @@
       "tier": "S"
     },
     {
-      "name": "Demonic Embrace",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/444637.png",
-      "tier": "S"
-    },
-    {
-      "name": "Twin Mask",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443080.png",
+      "name": "Gargoyle Stoneplate",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443193.png",
       "tier": "S"
     },
     {
@@ -186,8 +186,8 @@
       "tier": "S"
     },
     {
-      "name": "Gargoyle Stoneplate",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443193.png",
+      "name": "Shield of Molten Stone",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443058.png",
       "tier": "A"
     },
     {
@@ -196,8 +196,8 @@
       "tier": "A"
     },
     {
-      "name": "Shield of Molten Stone",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443058.png",
+      "name": "Twin Mask",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443080.png",
       "tier": "A"
     },
     {
@@ -211,16 +211,6 @@
       "tier": "A"
     },
     {
-      "name": "Night Harvester",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/444636.png",
-      "tier": "A"
-    },
-    {
-      "name": "Lightning Rod",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447119.png",
-      "tier": "A"
-    },
-    {
       "name": "Fulmination",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443055.png",
       "tier": "A"
@@ -228,21 +218,16 @@
     {
       "name": "Turbo Chemtank",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443079.png",
-      "tier": "B"
+      "tier": "A"
+    },
+    {
+      "name": "Night Harvester",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/444636.png",
+      "tier": "A"
     },
     {
       "name": "Radiant Virtue",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/446667.png",
-      "tier": "B"
-    },
-    {
-      "name": "Crown of the Shattered Queen",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/444644.png",
-      "tier": "B"
-    },
-    {
-      "name": "Kinkou Jitte",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447116.png",
       "tier": "B"
     },
     {
@@ -251,18 +236,18 @@
       "tier": "B"
     },
     {
-      "name": "Warmog's Armor",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443083.png",
+      "name": "Kinkou Jitte",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447116.png",
       "tier": "B"
     },
     {
-      "name": "Reality Fracture",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447102.png",
+      "name": "Lightning Rod",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447119.png",
       "tier": "B"
     },
     {
-      "name": "Empyrean Promise",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447105.png",
+      "name": "Hemomancer's Helm",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447103.png",
       "tier": "B"
     },
     {
@@ -271,8 +256,23 @@
       "tier": "B"
     },
     {
+      "name": "Crown of the Shattered Queen",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/444644.png",
+      "tier": "B"
+    },
+    {
       "name": "Twilight's Edge",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447121.png",
+      "tier": "B"
+    },
+    {
+      "name": "Warmog's Armor",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443083.png",
+      "tier": "B"
+    },
+    {
+      "name": "Empyrean Promise",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447105.png",
       "tier": "C"
     },
     {
@@ -286,18 +286,18 @@
       "tier": "C"
     },
     {
-      "name": "Talisman Of Ascension",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443064.png",
-      "tier": "C"
-    },
-    {
-      "name": "Hemomancer's Helm",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447103.png",
+      "name": "Reality Fracture",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447102.png",
       "tier": "C"
     },
     {
       "name": "Puppeteer",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447123.png",
+      "tier": "C"
+    },
+    {
+      "name": "Talisman Of Ascension",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443064.png",
       "tier": "D"
     },
     {
@@ -316,7 +316,7 @@
       "tier": "D"
     }
   ],
-  "lastUpdated": "2025-09-28T06:21:32.013Z",
+  "lastUpdated": "2025-10-05T06:20:57.875Z",
   "imageUrl": "https://cdn.mobalytics.gg/assets/lol/images/dd/champions/icons/Lillia.png",
   "slug": "lillia"
 }

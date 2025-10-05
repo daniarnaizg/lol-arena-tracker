@@ -11,16 +11,16 @@
         "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/dualwield_large.png"
       },
       {
-        "name": "Circle of Death",
-        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/circleofdeath_large.png"
+        "name": "Gamba Anvil",
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/thiefsgloves_large.png"
       },
       {
         "name": "Fan the Hammer",
         "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/fanthehammer_large.png"
       },
       {
-        "name": "Gamba Anvil",
-        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/thiefsgloves_large.png"
+        "name": "Tap Dancer",
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/tapdancer_large.png"
       }
     ],
     "gold": [
@@ -51,12 +51,12 @@
         "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/lightemup_large.png"
       },
       {
-        "name": "Serve Beyond Death",
-        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/servebeyonddeath_large.png"
+        "name": "Sonic Boom",
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/sonicboom_large.png"
       },
       {
-        "name": "Desecrator",
-        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/desecrator_large.png"
+        "name": "Typhoon",
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/typhoon_large.png"
       }
     ]
   },
@@ -127,12 +127,12 @@
         "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223302.png"
       },
       {
-        "name": "Mortal Reminder",
-        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223033.png"
-      },
-      {
         "name": "Statikk Shiv",
         "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223087.png"
+      },
+      {
+        "name": "Mortal Reminder",
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223033.png"
       },
       {
         "name": "Wit's End",
@@ -166,8 +166,8 @@
       "tier": "S"
     },
     {
-      "name": "Galeforce",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/446671.png",
+      "name": "Dragonheart",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447106.png",
       "tier": "S"
     },
     {
@@ -176,8 +176,8 @@
       "tier": "S"
     },
     {
-      "name": "Dragonheart",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447106.png",
+      "name": "Galeforce",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/446671.png",
       "tier": "S"
     },
     {
@@ -196,6 +196,11 @@
       "tier": "S"
     },
     {
+      "name": "Gargoyle Stoneplate",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443193.png",
+      "tier": "A"
+    },
+    {
       "name": "Turbo Chemtank",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443079.png",
       "tier": "A"
@@ -211,8 +216,8 @@
       "tier": "A"
     },
     {
-      "name": "Gargoyle Stoneplate",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443193.png",
+      "name": "Moonflair Spellblade",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447110.png",
       "tier": "A"
     },
     {
@@ -221,13 +226,8 @@
       "tier": "A"
     },
     {
-      "name": "Moonflair Spellblade",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447110.png",
-      "tier": "A"
-    },
-    {
-      "name": "Diamond-Tipped Spear",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447120.png",
+      "name": "Hemomancer's Helm",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447103.png",
       "tier": "A"
     },
     {
@@ -236,8 +236,8 @@
       "tier": "A"
     },
     {
-      "name": "Hexbolt Companion",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443081.png",
+      "name": "Crown of the Shattered Queen",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/444644.png",
       "tier": "A"
     },
     {
@@ -246,23 +246,13 @@
       "tier": "A"
     },
     {
-      "name": "Hemomancer's Helm",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447103.png",
+      "name": "Diamond-Tipped Spear",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447120.png",
       "tier": "B"
     },
     {
-      "name": "Reality Fracture",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447102.png",
-      "tier": "B"
-    },
-    {
-      "name": "Demonic Embrace",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/444637.png",
-      "tier": "B"
-    },
-    {
-      "name": "Crown of the Shattered Queen",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/444644.png",
+      "name": "Kinkou Jitte",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447116.png",
       "tier": "B"
     },
     {
@@ -271,13 +261,33 @@
       "tier": "B"
     },
     {
-      "name": "Empyrean Promise",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447105.png",
+      "name": "Sanguine Gift",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443062.png",
       "tier": "B"
     },
     {
-      "name": "Kinkou Jitte",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447116.png",
+      "name": "Hexbolt Companion",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443081.png",
+      "tier": "B"
+    },
+    {
+      "name": "Demonic Embrace",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/444637.png",
+      "tier": "B"
+    },
+    {
+      "name": "Reality Fracture",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447102.png",
+      "tier": "B"
+    },
+    {
+      "name": "Talisman Of Ascension",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443064.png",
+      "tier": "B"
+    },
+    {
+      "name": "Goredrinker",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/226630.png",
       "tier": "B"
     },
     {
@@ -291,23 +301,13 @@
       "tier": "B"
     },
     {
-      "name": "Talisman Of Ascension",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443064.png",
-      "tier": "B"
-    },
-    {
       "name": "Gambler's Blade",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447101.png",
       "tier": "C"
     },
     {
-      "name": "Goredrinker",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/226630.png",
-      "tier": "C"
-    },
-    {
-      "name": "Divine Sunderer",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/446632.png",
+      "name": "Empyrean Promise",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447105.png",
       "tier": "C"
     },
     {
@@ -316,18 +316,23 @@
       "tier": "C"
     },
     {
+      "name": "Detonation Orb",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447113.png",
+      "tier": "C"
+    },
+    {
+      "name": "Radiant Virtue",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/446667.png",
+      "tier": "C"
+    },
+    {
       "name": "Black Hole Gauntlet",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447122.png",
       "tier": "C"
     },
     {
-      "name": "Sanguine Gift",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443062.png",
-      "tier": "C"
-    },
-    {
-      "name": "Detonation Orb",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447113.png",
+      "name": "Divine Sunderer",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/446632.png",
       "tier": "D"
     },
     {
@@ -351,7 +356,7 @@
       "tier": "D"
     }
   ],
-  "lastUpdated": "2025-09-28T06:19:30.114Z",
+  "lastUpdated": "2025-10-05T06:19:01.586Z",
   "imageUrl": "https://cdn.mobalytics.gg/assets/lol/images/dd/champions/icons/Kaisa.png",
   "slug": "kaisa"
 }

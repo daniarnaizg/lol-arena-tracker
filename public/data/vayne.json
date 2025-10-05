@@ -19,8 +19,8 @@
         "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/tapdancer_large.png"
       },
       {
-        "name": "Giant Slayer",
-        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/giantslayer_large.png"
+        "name": "Symphony of War",
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/symphonyofwar_large.png"
       }
     ],
     "gold": [
@@ -87,8 +87,8 @@
         "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/226672.png"
       },
       {
-        "name": "Infinity Edge",
-        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223031.png"
+        "name": "Wit's End",
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223091.png"
       }
     ],
     "boots": [
@@ -119,12 +119,16 @@
     ],
     "situational": [
       {
-        "name": "Wit's End",
-        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223091.png"
+        "name": "Infinity Edge",
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223031.png"
       },
       {
         "name": "Terminus",
         "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223302.png"
+      },
+      {
+        "name": "Statikk Shiv",
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223087.png"
       },
       {
         "name": "Zephyr",
@@ -133,10 +137,6 @@
       {
         "name": "Mortal Reminder",
         "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223033.png"
-      },
-      {
-        "name": "Statikk Shiv",
-        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223087.png"
       },
       {
         "name": "Phantom Dancer",
@@ -161,8 +161,8 @@
       "tier": "S"
     },
     {
-      "name": "Turbo Chemtank",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443079.png",
+      "name": "Twin Mask",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443080.png",
       "tier": "S"
     },
     {
@@ -176,8 +176,13 @@
       "tier": "S"
     },
     {
-      "name": "Shield of Molten Stone",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443058.png",
+      "name": "Fulmination",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443055.png",
+      "tier": "S"
+    },
+    {
+      "name": "Galeforce",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/446671.png",
       "tier": "S"
     },
     {
@@ -186,13 +191,18 @@
       "tier": "S"
     },
     {
-      "name": "Twin Mask",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443080.png",
-      "tier": "S"
+      "name": "Turbo Chemtank",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443079.png",
+      "tier": "A"
     },
     {
       "name": "Darksteel Talons",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443054.png",
+      "tier": "A"
+    },
+    {
+      "name": "Shield of Molten Stone",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443058.png",
       "tier": "A"
     },
     {
@@ -201,23 +211,13 @@
       "tier": "A"
     },
     {
-      "name": "Fulmination",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443055.png",
-      "tier": "A"
-    },
-    {
-      "name": "Galeforce",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/446671.png",
+      "name": "Hexbolt Companion",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443081.png",
       "tier": "A"
     },
     {
       "name": "Lightning Rod",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447119.png",
-      "tier": "A"
-    },
-    {
-      "name": "Hexbolt Companion",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443081.png",
       "tier": "A"
     },
     {
@@ -231,18 +231,18 @@
       "tier": "A"
     },
     {
-      "name": "Radiant Virtue",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/446667.png",
+      "name": "Eleisa's Miracle",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443063.png",
       "tier": "A"
-    },
-    {
-      "name": "Moonflair Spellblade",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447110.png",
-      "tier": "B"
     },
     {
       "name": "Flesheater",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447112.png",
+      "tier": "B"
+    },
+    {
+      "name": "Moonflair Spellblade",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447110.png",
       "tier": "B"
     },
     {
@@ -251,28 +251,18 @@
       "tier": "B"
     },
     {
-      "name": "Eleisa's Miracle",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443063.png",
-      "tier": "B"
-    },
-    {
-      "name": "Divine Sunderer",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/446632.png",
-      "tier": "B"
-    },
-    {
-      "name": "Warmog's Armor",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443083.png",
-      "tier": "B"
-    },
-    {
-      "name": "Talisman Of Ascension",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443064.png",
+      "name": "Radiant Virtue",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/446667.png",
       "tier": "B"
     },
     {
       "name": "Twilight's Edge",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447121.png",
+      "tier": "B"
+    },
+    {
+      "name": "Divine Sunderer",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/446632.png",
       "tier": "B"
     },
     {
@@ -286,6 +276,16 @@
       "tier": "B"
     },
     {
+      "name": "Reality Fracture",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447102.png",
+      "tier": "B"
+    },
+    {
+      "name": "Talisman Of Ascension",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443064.png",
+      "tier": "B"
+    },
+    {
       "name": "Force Of Entropy",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443061.png",
       "tier": "C"
@@ -296,18 +296,13 @@
       "tier": "C"
     },
     {
+      "name": "Black Hole Gauntlet",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447122.png",
+      "tier": "C"
+    },
+    {
       "name": "Kinkou Jitte",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447116.png",
-      "tier": "C"
-    },
-    {
-      "name": "Reality Fracture",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447102.png",
-      "tier": "C"
-    },
-    {
-      "name": "Pyromancer's Cloak",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447118.png",
       "tier": "C"
     },
     {
@@ -316,8 +311,13 @@
       "tier": "C"
     },
     {
-      "name": "Black Hole Gauntlet",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447122.png",
+      "name": "Warmog's Armor",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443083.png",
+      "tier": "C"
+    },
+    {
+      "name": "Goredrinker",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/226630.png",
       "tier": "D"
     },
     {
@@ -326,8 +326,8 @@
       "tier": "D"
     },
     {
-      "name": "Goredrinker",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/226630.png",
+      "name": "Pyromancer's Cloak",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447118.png",
       "tier": "D"
     },
     {
@@ -336,7 +336,7 @@
       "tier": "D"
     }
   ],
-  "lastUpdated": "2025-09-28T06:30:35.653Z",
+  "lastUpdated": "2025-10-05T06:30:01.245Z",
   "imageUrl": "https://cdn.mobalytics.gg/assets/lol/images/dd/champions/icons/Vayne.png",
   "slug": "vayne"
 }

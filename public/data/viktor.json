@@ -19,8 +19,8 @@
         "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/thiefsgloves_large.png"
       },
       {
-        "name": "Eureka",
-        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/eureka_large.png"
+        "name": "Doomsayer",
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/doomsayer_large.png"
       }
     ],
     "gold": [
@@ -47,12 +47,12 @@
         "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/sonicboom_large.png"
       },
       {
-        "name": "Witchful Thinking",
-        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/witchfulthinking_large.png"
-      },
-      {
         "name": "ADAPt",
         "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/adapt_large.png"
+      },
+      {
+        "name": "Witchful Thinking",
+        "imageUrl": "https://raw.communitydragon.org/15.19/game/assets/ux/cherry/augments/icons/witchfulthinking_large.png"
       },
       {
         "name": "Ice Cold",
@@ -87,8 +87,8 @@
         "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/224645.png"
       },
       {
-        "name": "Zhonya's Hourglass",
-        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223157.png"
+        "name": "Void Staff",
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223135.png"
       }
     ],
     "boots": [
@@ -119,28 +119,28 @@
     ],
     "situational": [
       {
-        "name": "Void Staff",
-        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223135.png"
+        "name": "Zhonya's Hourglass",
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223157.png"
       },
       {
         "name": "Morellonomicon",
         "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223165.png"
       },
       {
-        "name": "Lich Bane",
-        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223100.png"
-      },
-      {
         "name": "Rod of Ages",
         "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/226657.png"
       },
       {
-        "name": "Luden's Companion",
-        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/226655.png"
+        "name": "Lich Bane",
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/223100.png"
       },
       {
         "name": "Blackfire Torch",
         "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/222503.png"
+      },
+      {
+        "name": "Luden's Companion",
+        "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/226655.png"
       }
     ]
   },
@@ -156,18 +156,8 @@
       "tier": "S"
     },
     {
-      "name": "Cloak of Starry Night",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443059.png",
-      "tier": "S"
-    },
-    {
       "name": "Pyromancer's Cloak",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447118.png",
-      "tier": "S"
-    },
-    {
-      "name": "Shield of Molten Stone",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443058.png",
       "tier": "S"
     },
     {
@@ -176,8 +166,18 @@
       "tier": "S"
     },
     {
-      "name": "Fulmination",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443055.png",
+      "name": "Shield of Molten Stone",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443058.png",
+      "tier": "S"
+    },
+    {
+      "name": "Cloak of Starry Night",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443059.png",
+      "tier": "S"
+    },
+    {
+      "name": "Twin Mask",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443080.png",
       "tier": "S"
     },
     {
@@ -186,18 +186,8 @@
       "tier": "S"
     },
     {
-      "name": "Lightning Rod",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447119.png",
-      "tier": "A"
-    },
-    {
       "name": "Gargoyle Stoneplate",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443193.png",
-      "tier": "A"
-    },
-    {
-      "name": "Twin Mask",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443080.png",
       "tier": "A"
     },
     {
@@ -206,13 +196,13 @@
       "tier": "A"
     },
     {
-      "name": "Night Harvester",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/444636.png",
+      "name": "Fulmination",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443055.png",
       "tier": "A"
     },
     {
-      "name": "Innervating Locket",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447104.png",
+      "name": "Night Harvester",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/444636.png",
       "tier": "A"
     },
     {
@@ -221,18 +211,38 @@
       "tier": "A"
     },
     {
-      "name": "Flesheater",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447112.png",
+      "name": "Innervating Locket",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447104.png",
+      "tier": "A"
+    },
+    {
+      "name": "Lightning Rod",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447119.png",
+      "tier": "A"
+    },
+    {
+      "name": "Puppeteer",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447123.png",
       "tier": "A"
     },
     {
       "name": "Crown of the Shattered Queen",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/444644.png",
+      "tier": "A"
+    },
+    {
+      "name": "Flesheater",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447112.png",
       "tier": "B"
     },
     {
-      "name": "Sanguine Gift",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443062.png",
+      "name": "Turbo Chemtank",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443079.png",
+      "tier": "B"
+    },
+    {
+      "name": "Force Of Entropy",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443061.png",
       "tier": "B"
     },
     {
@@ -241,13 +251,8 @@
       "tier": "B"
     },
     {
-      "name": "Puppeteer",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447123.png",
-      "tier": "B"
-    },
-    {
-      "name": "Talisman Of Ascension",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443064.png",
+      "name": "Sanguine Gift",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443062.png",
       "tier": "B"
     },
     {
@@ -256,13 +261,13 @@
       "tier": "B"
     },
     {
-      "name": "Kinkou Jitte",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447116.png",
+      "name": "Talisman Of Ascension",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443064.png",
       "tier": "B"
     },
     {
-      "name": "Decapitator",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447107.png",
+      "name": "Sword of the Divine",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443060.png",
       "tier": "B"
     },
     {
@@ -271,13 +276,13 @@
       "tier": "B"
     },
     {
-      "name": "Sword of the Divine",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443060.png",
+      "name": "Decapitator",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447107.png",
       "tier": "C"
     },
     {
-      "name": "Cruelty",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447109.png",
+      "name": "Kinkou Jitte",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447116.png",
       "tier": "C"
     },
     {
@@ -286,18 +291,23 @@
       "tier": "C"
     },
     {
-      "name": "Turbo Chemtank",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443079.png",
+      "name": "Cruelty",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447109.png",
       "tier": "C"
     },
     {
-      "name": "Diamond-Tipped Spear",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447120.png",
+      "name": "Warmog's Armor",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443083.png",
       "tier": "C"
     },
     {
       "name": "Black Hole Gauntlet",
       "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447122.png",
+      "tier": "C"
+    },
+    {
+      "name": "Diamond-Tipped Spear",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/447120.png",
       "tier": "D"
     },
     {
@@ -311,12 +321,12 @@
       "tier": "D"
     },
     {
-      "name": "Force Of Entropy",
-      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/443061.png",
+      "name": "Radiant Virtue",
+      "imageUrl": "https://img.metasrc.com/cdn/15.19.1/img/item/446667.png",
       "tier": "D"
     }
   ],
-  "lastUpdated": "2025-09-28T06:31:20.969Z",
+  "lastUpdated": "2025-10-05T06:30:46.010Z",
   "imageUrl": "https://cdn.mobalytics.gg/assets/lol/images/dd/champions/icons/Viktor.png",
   "slug": "viktor"
 }
