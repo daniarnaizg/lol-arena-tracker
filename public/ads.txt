@@ -1,0 +1,6 @@
+# ads.txt file for lol-arena-tracker
+# Add your advertising partners here
+# Format: domain, publisher ID, relationship type, certification authority ID
+
+# Example:
+# google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0

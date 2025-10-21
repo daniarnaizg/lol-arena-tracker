@@ -120,7 +120,15 @@ const jsonLd = [
   } as const;
   return (
     <html lang="en">
-  <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-dvh flex flex-col bg-gray-100 pt-[env(safe-area-inset-top)] md:pt-0 pb-[env(safe-area-inset-bottom)] md:pb-0`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-dvh flex flex-col bg-gray-100 pt-[env(safe-area-inset-top)] md:pt-0 pb-[env(safe-area-inset-bottom)] md:pb-0`}>
+        <Script 
+          src="https://cmp.gatekeeperconsent.com/min.js" 
+          strategy="beforeInteractive"
+        />
+        <Script 
+          src="https://the.gatekeeperconsent.com/cmp.min.js" 
+          strategy="beforeInteractive"
+        />
         <script type="application/ld+json" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <script type="application/ld+json" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }} />
         <KofiOverlayWidget />
