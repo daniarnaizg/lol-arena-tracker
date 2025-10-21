@@ -131,6 +131,20 @@ const jsonLd = [
         />
         <script type="application/ld+json" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <script type="application/ld+json" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }} />
+        <Script 
+          src="//www.ezojs.com/ezoic/sa.min.js" 
+          strategy="afterInteractive"
+        />
+        <Script 
+          id="ezstandalone-init"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.ezstandalone = window.ezstandalone || {};
+              ezstandalone.cmd = ezstandalone.cmd || [];
+            `
+          }}
+        />
         <KofiOverlayWidget />
         {children}
   <BackToTopFab />
