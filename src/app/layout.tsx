@@ -136,6 +136,11 @@ export default function RootLayout({
             `
           }}
         />
+        <Script
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2604711888144159"
+          strategy="afterInteractive"
+          crossOrigin="anonymous"
+        />
         <script
           type="application/ld+json"
           suppressHydrationWarning
